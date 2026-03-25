@@ -239,6 +239,16 @@ a{ color: inherit; }
   background: linear-gradient(135deg, var(--blue-600), var(--blue-700));
   box-shadow: 0 18px 45px rgba(16, 96, 214, 0.30);
 }
+
+.btn-download{
+  color: #fff;
+  background: var(--blue-600); /* solid blue for prominent downloads */
+  box-shadow: 0 18px 45px rgba(16, 96, 214, 0.30);
+}
+.btn-download:hover{
+  background: var(--blue-700);
+  box-shadow: 0 22px 55px rgba(16, 96, 214, 0.34);
+}
 .btn-ghost{
   background: rgba(255,255,255,0.55);
   border-color: rgba(16, 96, 214, 0.22);
