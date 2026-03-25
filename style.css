@@ -94,6 +94,12 @@ a{ color: inherit; }
   transform: rotate(12deg);
 }
 
+.brand-logo{
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
 .brand-text{ display: flex; flex-direction: column; line-height: 1.1; }
 .brand-name{
   font-weight: 800;
@@ -114,8 +120,8 @@ a{ color: inherit; }
 }
 .nav-link{
   text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
   color: rgba(11, 27, 51, 0.78);
   padding: 10px 12px;
   border-radius: 12px;
