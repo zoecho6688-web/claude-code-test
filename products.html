@@ -62,10 +62,9 @@
       <div class="prod-layout">
         <div class="container prod-layout-inner">
 
-          <!-- Sidebar -->
+          <!-- ── Sidebar ── -->
           <aside class="prod-sidebar" aria-label="Product filters">
 
-            <!-- Mobile filter toggle -->
             <button class="prod-filter-toggle" aria-expanded="false" aria-controls="prod-filters">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M1 3h14M4 8h8M7 13h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
@@ -75,35 +74,55 @@
 
             <div class="prod-filters" id="prod-filters">
 
-              <fieldset class="prod-filter-group">
+              <!-- Equipment Category -->
+              <fieldset class="prod-filter-group" id="filter-category">
                 <legend class="prod-filter-legend">Equipment Category</legend>
                 <label class="prod-check">
-                  <input type="checkbox" checked> GNSS Receivers
+                  <input type="checkbox" value="gnss" checked> GNSS Receivers
                 </label>
                 <label class="prod-check">
-                  <input type="checkbox" checked> Monitoring Nodes
+                  <input type="checkbox" value="node" checked> Monitoring Nodes
                 </label>
                 <label class="prod-check">
-                  <input type="checkbox" checked> Analytics Software
+                  <input type="checkbox" value="software" checked> Analytics Software
                 </label>
                 <label class="prod-check">
-                  <input type="checkbox"> Seismic Sensors
+                  <input type="checkbox" value="seismic" checked> Seismic Sensors
                 </label>
               </fieldset>
 
-              <fieldset class="prod-filter-group">
+              <!-- Precision Class -->
+              <fieldset class="prod-filter-group" id="filter-precision">
                 <legend class="prod-filter-legend">Precision Class</legend>
                 <label class="prod-radio">
-                  <input type="radio" name="precision"> Sub-Millimeter
+                  <input type="radio" name="precision" value="submm"> Sub-Millimeter
                 </label>
                 <label class="prod-radio">
-                  <input type="radio" name="precision"> Geodetic (1–5mm)
+                  <input type="radio" name="precision" value="geodetic"> Geodetic (1–5mm)
                 </label>
                 <label class="prod-radio">
-                  <input type="radio" name="precision" checked> All Instrument Grades
+                  <input type="radio" name="precision" value="all" checked> All Instrument Grades
                 </label>
               </fieldset>
 
+              <!-- Industry -->
+              <fieldset class="prod-filter-group" id="filter-industry">
+                <legend class="prod-filter-legend">Industry</legend>
+                <label class="prod-check">
+                  <input type="checkbox" value="mining" checked> Mining &amp; Tunneling
+                </label>
+                <label class="prod-check">
+                  <input type="checkbox" value="slope" checked> Slope &amp; Landslide
+                </label>
+                <label class="prod-check">
+                  <input type="checkbox" value="infrastructure" checked> Infrastructure &amp; Bridges
+                </label>
+                <label class="prod-check">
+                  <input type="checkbox" value="dam" checked> Dams &amp; Reservoirs
+                </label>
+              </fieldset>
+
+              <!-- Advisory box -->
               <div class="prod-advisory" aria-label="Technical advisory">
                 <svg class="prod-advisory-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
@@ -117,105 +136,186 @@
             </div>
           </aside>
 
-          <!-- Product grid -->
-          <section class="prod-grid" aria-label="Product listings">
+          <!-- ── Product grid ── -->
+          <div class="prod-grid-wrap">
+            <section class="prod-grid" id="prod-grid" aria-label="Product listings" aria-live="polite">
 
-            <!-- Product 1 -->
-            <article class="pcard">
-              <div class="pcard-img-wrap">
-                <img class="pcard-img" src="images/hero-product.png" alt="Medo M50 GNSS Receiver" />
-                <span class="pcard-badge">Multi-Freq</span>
-              </div>
-              <div class="pcard-body">
-                <p class="pcard-category">GNSS Receiver</p>
-                <h2 class="pcard-name">Medo M50 GNSS</h2>
-                <table class="pcard-specs" aria-label="M50 specifications">
-                  <tbody>
-                    <tr>
-                      <th>Positioning Accuracy</th>
-                      <td>H: 2.5mm + 1ppm</td>
-                    </tr>
-                    <tr>
-                      <th>Channels</th>
-                      <td>672 — Triple Frequency</td>
-                    </tr>
-                    <tr>
-                      <th>Update Rate</th>
-                      <td>Up to 20 Hz</td>
-                    </tr>
-                    <tr>
-                      <th>Operating Temp</th>
-                      <td>−40°C to +75°C</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="pcard-footer">
-                  <span class="pcard-avail">Global Shipping</span>
-                  <a class="pcard-cta" href="about.html">Request Quote</a>
+              <!-- M50 GNSS Receiver -->
+              <article class="pcard"
+                data-category="gnss"
+                data-precision="submm"
+                data-industry="mining slope infrastructure dam">
+                <div class="pcard-img-wrap">
+                  <img class="pcard-img" src="images/hero-product.png" alt="Medo M50 GNSS Receiver" />
+                  <span class="pcard-badge">Multi-Freq</span>
                 </div>
-              </div>
-            </article>
+                <div class="pcard-body">
+                  <p class="pcard-category">GNSS Receiver</p>
+                  <h2 class="pcard-name">Medo M50 GNSS</h2>
+                  <table class="pcard-specs" aria-label="M50 specifications">
+                    <tbody>
+                      <tr><th>Positioning Accuracy</th><td>H: 2.5mm + 1ppm</td></tr>
+                      <tr><th>Channels</th><td>672 — Triple Frequency</td></tr>
+                      <tr><th>Update Rate</th><td>Up to 20 Hz</td></tr>
+                      <tr><th>Operating Temp</th><td>−40°C to +75°C</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="pcard-footer">
+                    <span class="pcard-avail">Global Shipping</span>
+                    <a class="pcard-cta" href="about.html">Request Quote</a>
+                  </div>
+                </div>
+              </article>
 
-            <!-- Product 2 -->
-            <article class="pcard">
-              <div class="pcard-img-wrap">
-                <img class="pcard-img" src="images/hero-tech.png" alt="Medo Intelligent Monitoring Node" />
-                <span class="pcard-badge">Series-X</span>
-              </div>
-              <div class="pcard-body">
-                <p class="pcard-category">Monitoring Node</p>
-                <h2 class="pcard-name">Medo Node X1</h2>
-                <table class="pcard-specs" aria-label="Node X1 specifications">
-                  <tbody>
-                    <tr>
-                      <th>Tilt Resolution</th>
-                      <td>0.001°</td>
-                    </tr>
-                    <tr>
-                      <th>Sampling Rate</th>
-                      <td>1 Hz – 200 Hz</td>
-                    </tr>
-                    <tr>
-                      <th>Connectivity</th>
-                      <td>4G / LoRa / RS-485</td>
-                    </tr>
-                    <tr>
-                      <th>Power</th>
-                      <td>Solar + Battery</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="pcard-footer">
-                  <span class="pcard-avail">In-Stock: Local Depot</span>
-                  <a class="pcard-cta" href="about.html">Request Quote</a>
+              <!-- Node X1 Monitoring Node -->
+              <article class="pcard"
+                data-category="node"
+                data-precision="geodetic"
+                data-industry="mining slope infrastructure">
+                <div class="pcard-img-wrap">
+                  <img class="pcard-img" src="images/hero-tech.png" alt="Medo Intelligent Monitoring Node" />
+                  <span class="pcard-badge">Series-X</span>
                 </div>
-              </div>
-            </article>
+                <div class="pcard-body">
+                  <p class="pcard-category">Monitoring Node</p>
+                  <h2 class="pcard-name">Medo Node X1</h2>
+                  <table class="pcard-specs" aria-label="Node X1 specifications">
+                    <tbody>
+                      <tr><th>Tilt Resolution</th><td>0.001°</td></tr>
+                      <tr><th>Sampling Rate</th><td>1 Hz – 200 Hz</td></tr>
+                      <tr><th>Connectivity</th><td>4G / LoRa / RS-485</td></tr>
+                      <tr><th>Power</th><td>Solar + Battery</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="pcard-footer">
+                    <span class="pcard-avail">In-Stock: Local Depot</span>
+                    <a class="pcard-cta" href="about.html">Request Quote</a>
+                  </div>
+                </div>
+              </article>
 
-            <!-- Product 3 — wide feature card -->
-            <article class="pcard pcard--wide">
-              <div class="pcard-img-wrap">
-                <img class="pcard-img" src="images/hero-case.png" alt="Medo Cloud Platform" />
-                <span class="pcard-badge">Enterprise Cloud</span>
-              </div>
-              <div class="pcard-body">
-                <p class="pcard-category">Unified Monitoring Software</p>
-                <h2 class="pcard-name">Medo Cloud Platform</h2>
-                <p class="pcard-desc">AI-driven analytics and 3D visualization. Process multi-sensor inputs into actionable structural integrity reports with automated alert protocols.</p>
-                <div class="pcard-tags" aria-label="Platform features">
-                  <span class="pcard-tag">Auto-Reporting</span>
-                  <span class="pcard-tag">API Integration</span>
-                  <span class="pcard-tag">3D Visualization</span>
-                  <span class="pcard-tag">24/7 Monitoring</span>
+              <!-- Cloud Platform -->
+              <article class="pcard"
+                data-category="software"
+                data-precision="all"
+                data-industry="mining slope infrastructure dam">
+                <div class="pcard-img-wrap">
+                  <img class="pcard-img" src="images/hero-case.png" alt="Medo Cloud Platform" />
+                  <span class="pcard-badge">Enterprise Cloud</span>
                 </div>
-                <div class="pcard-footer">
-                  <a class="pcard-cta" href="about.html">Request Quote</a>
-                  <a class="pcard-cta pcard-cta--ghost" href="solutions.html">Learn More</a>
+                <div class="pcard-body">
+                  <p class="pcard-category">Analytics Software</p>
+                  <h2 class="pcard-name">Medo Cloud Platform</h2>
+                  <table class="pcard-specs" aria-label="Cloud Platform specifications">
+                    <tbody>
+                      <tr><th>Data Inputs</th><td>Multi-sensor fusion</td></tr>
+                      <tr><th>Visualization</th><td>3D real-time rendering</td></tr>
+                      <tr><th>Alerting</th><td>Automated threshold alerts</td></tr>
+                      <tr><th>Deployment</th><td>Cloud / On-premise</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="pcard-footer">
+                    <span class="pcard-avail">Global Availability</span>
+                    <a class="pcard-cta" href="about.html">Request Quote</a>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-          </section>
+              <!-- Seismic Sensor -->
+              <article class="pcard"
+                data-category="seismic"
+                data-precision="submm"
+                data-industry="mining dam infrastructure">
+                <div class="pcard-img-wrap">
+                  <img class="pcard-img" src="images/hero-cas.png" alt="Medo Seismic Sensor" />
+                  <span class="pcard-badge">High-Sensitivity</span>
+                </div>
+                <div class="pcard-body">
+                  <p class="pcard-category">Seismic Sensor</p>
+                  <h2 class="pcard-name">Medo SeisPro S1</h2>
+                  <table class="pcard-specs" aria-label="SeisPro S1 specifications">
+                    <tbody>
+                      <tr><th>Frequency Range</th><td>0.1 Hz – 200 Hz</td></tr>
+                      <tr><th>Dynamic Range</th><td>140 dB</td></tr>
+                      <tr><th>Output</th><td>RS-232 / Ethernet</td></tr>
+                      <tr><th>IP Rating</th><td>IP68 Waterproof</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="pcard-footer">
+                    <span class="pcard-avail">Lead Time: 4 Weeks</span>
+                    <a class="pcard-cta" href="about.html">Request Quote</a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Node X2 — Slope variant -->
+              <article class="pcard"
+                data-category="node"
+                data-precision="geodetic"
+                data-industry="slope dam">
+                <div class="pcard-img-wrap">
+                  <img class="pcard-img" src="images/hero-product.png" alt="Medo Node X2 Slope Monitor" />
+                  <span class="pcard-badge">Slope Edition</span>
+                </div>
+                <div class="pcard-body">
+                  <p class="pcard-category">Monitoring Node</p>
+                  <h2 class="pcard-name">Medo Node X2</h2>
+                  <table class="pcard-specs" aria-label="Node X2 specifications">
+                    <tbody>
+                      <tr><th>Displacement Range</th><td>±150mm</td></tr>
+                      <tr><th>Resolution</th><td>0.01mm</td></tr>
+                      <tr><th>Connectivity</th><td>NB-IoT / 4G</td></tr>
+                      <tr><th>Battery Life</th><td>18 months standby</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="pcard-footer">
+                    <span class="pcard-avail">In-Stock: Local Depot</span>
+                    <a class="pcard-cta" href="about.html">Request Quote</a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- M80 GNSS — high-end -->
+              <article class="pcard"
+                data-category="gnss"
+                data-precision="submm"
+                data-industry="infrastructure dam">
+                <div class="pcard-img-wrap">
+                  <img class="pcard-img" src="images/hero-tech.png" alt="Medo M80 GNSS Receiver" />
+                  <span class="pcard-badge">Geodetic Grade</span>
+                </div>
+                <div class="pcard-body">
+                  <p class="pcard-category">GNSS Receiver</p>
+                  <h2 class="pcard-name">Medo M80 GNSS</h2>
+                  <table class="pcard-specs" aria-label="M80 specifications">
+                    <tbody>
+                      <tr><th>Static Accuracy</th><td>H: 1mm + 0.5ppm</td></tr>
+                      <tr><th>Channels</th><td>1408 — All Constellations</td></tr>
+                      <tr><th>Anti-Interference</th><td>Adaptive notch filter</td></tr>
+                      <tr><th>Operating Temp</th><td>−55°C to +85°C</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="pcard-footer">
+                    <span class="pcard-avail">Global Shipping</span>
+                    <a class="pcard-cta" href="about.html">Request Quote</a>
+                  </div>
+                </div>
+              </article>
+
+            </section>
+
+            <!-- Empty state -->
+            <div class="prod-empty" id="prod-empty" hidden aria-live="polite">
+              <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <rect x="8" y="12" width="32" height="28" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M16 24h16M16 31h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                <path d="M20 8h8v4H20z" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+              <p>No products match your criteria.</p>
+              <p class="prod-empty-sub">Please <a href="about.html">contact our engineering team</a> for a custom solution.</p>
+            </div>
+
+          </div><!-- /prod-grid-wrap -->
         </div>
       </div>
 
@@ -237,6 +337,7 @@
     </footer>
   <script>
     (function(){
+      // Nav hamburger
       var btn = document.querySelector('.nav-toggle');
       var drawer = document.getElementById('mobile-nav');
       if(btn && drawer){
@@ -245,6 +346,7 @@
           btn.setAttribute('aria-expanded', open);
         });
       }
+
       // Mobile filter toggle
       var ftBtn = document.querySelector('.prod-filter-toggle');
       var ftPanel = document.getElementById('prod-filters');
@@ -254,6 +356,45 @@
           ftBtn.setAttribute('aria-expanded', open);
         });
       }
+
+      // ── Filter logic ──
+      var cards   = Array.from(document.querySelectorAll('#prod-grid .pcard'));
+      var empty   = document.getElementById('prod-empty');
+      var catCbs  = Array.from(document.querySelectorAll('#filter-category input[type="checkbox"]'));
+      var precRbs = Array.from(document.querySelectorAll('#filter-precision input[type="radio"]'));
+      var indCbs  = Array.from(document.querySelectorAll('#filter-industry input[type="checkbox"]'));
+
+      function applyFilters(){
+        // Active categories (empty selection = show all)
+        var activeCats = catCbs.filter(function(cb){ return cb.checked; }).map(function(cb){ return cb.value; });
+        // Active precision
+        var activePrecision = (precRbs.find(function(r){ return r.checked; }) || {}).value || 'all';
+        // Active industries
+        var activeInds = indCbs.filter(function(cb){ return cb.checked; }).map(function(cb){ return cb.value; });
+
+        var visible = 0;
+        cards.forEach(function(card){
+          var cat  = card.dataset.category || '';
+          var prec = card.dataset.precision || '';
+          var inds = (card.dataset.industry || '').split(' ');
+
+          var catMatch  = activeCats.length === 0 || activeCats.indexOf(cat) !== -1;
+          var precMatch = activePrecision === 'all' || prec === activePrecision || prec === 'all';
+          var indMatch  = activeInds.length === 0 || inds.some(function(i){ return activeInds.indexOf(i) !== -1; });
+
+          var show = catMatch && precMatch && indMatch;
+          card.hidden = !show;
+          if(show) visible++;
+        });
+
+        empty.hidden = visible > 0;
+      }
+
+      catCbs.forEach(function(cb){ cb.addEventListener('change', applyFilters); });
+      precRbs.forEach(function(r){ r.addEventListener('change', applyFilters); });
+      indCbs.forEach(function(cb){ cb.addEventListener('change', applyFilters); });
+
+      applyFilters(); // run once on load
     })();
   </script>
 </body>
