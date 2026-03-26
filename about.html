@@ -19,11 +19,31 @@
         <nav class="nav" aria-label="Primary navigation">
           <a class="nav-link" href="products.html">Products</a>
           <a class="nav-link" href="solutions.html">Solutions</a>
-          <a class="nav-link" href="cases.html">Case Studies</a>
-          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="cases.html">Cases</a>
+          <a class="nav-link" href="resources.html">Support</a>
+          <a class="nav-link active" href="about.html">About</a>
         </nav>
 
-        <a class="header-cta" href="resources.html">Resources</a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect y="3" width="20" height="2" fill="currentColor"/>
+            <rect y="9" width="20" height="2" fill="currentColor"/>
+            <rect y="15" width="20" height="2" fill="currentColor"/>
+          </svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link" href="products.html">Products</a>
+          <a class="nav-drawer-link" href="solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="cases.html">Cases</a>
+          <a class="nav-drawer-link" href="resources.html">Support</a>
+          <a class="nav-drawer-link" href="about.html">About</a>
+        </div>
       </div>
     </header>
 
@@ -104,6 +124,17 @@
         </div>
       </div>
     </footer>
-  </body>
+  <script>
+    (function(){
+      var btn = document.querySelector('.nav-toggle');
+      var drawer = document.getElementById('mobile-nav');
+      if(!btn || !drawer) return;
+      btn.addEventListener('click', function(){
+        var open = drawer.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open);
+      });
+    })();
+  </script>
+</body>
 </html>
 
