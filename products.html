@@ -48,65 +48,177 @@
     </header>
 
     <main id="main" role="main">
-      <section id="products" class="section" aria-label="Products">
+
+      <!-- ── Page Header ── -->
+      <div class="prod-header">
         <div class="container">
-          <div class="section-head">
-            <h2 class="section-title">Products</h2>
-            <p class="section-subtitle">
-              Built for demanding field environments, Medo components deliver stable measurements, continuous sensing,
-              and dependable performance for monitoring and early warning applications.
-            </p>
-          </div>
-
-          <div class="cards">
-            <article class="card">
-              <div class="card-icon" aria-hidden="true">
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M32 10c11.05 0 20 8.95 20 20S43.05 50 32 50 12 41.05 12 30 20.95 10 32 10Z" stroke="currentColor" stroke-width="2.5"/>
-                  <path d="M32 18c6.63 0 12 5.37 12 12s-5.37 12-12 12-12-5.37-12-12 5.37-12 12-12Z" stroke="currentColor" stroke-width="2.5" opacity="0.85"/>
-                  <path d="M18 46 46 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                  <path d="M24 24 40 40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-                </svg>
-              </div>
-              <h3 class="card-title">M50 GNSS Receiver</h3>
-              <p class="card-copy">
-                A high-performance GNSS receiver engineered for consistent positioning and repeatable measurement,
-                supporting monitoring systems that require precision you can trust.
-              </p>
-              <ul class="card-list">
-                <li>Stable, high-precision positioning support</li>
-                <li>Field-ready acquisition for real monitoring sites</li>
-                <li>Designed to integrate into scalable deployments</li>
-              </ul>
-              <a class="card-link" href="solutions.html">Explore how it powers monitoring</a>
-            </article>
-
-            <article class="card">
-              <div class="card-icon" aria-hidden="true">
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M14 38V16c0-2.2 1.8-4 4-4h28c2.2 0 4 1.8 4 4v22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                  <path d="M20 26h24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                  <path d="M20 32h18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-                  <path d="M20 38h12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-                  <path d="M24 48v-6h16v6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M18 48h28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <h3 class="card-title">Intelligent Monitoring Nodes</h3>
-              <p class="card-copy">
-                Smart edge-ready nodes for continuous sensing and streamlined data handling—helping you transform
-                field observations into monitoring signals that can support early warning decisions.
-              </p>
-              <ul class="card-list">
-                <li>Continuous data acquisition and monitoring</li>
-                <li>Intelligence aligned to early warning workflows</li>
-                <li>Scalable deployment for real infrastructure projects</li>
-              </ul>
-              <a class="card-link" href="cases.html">See the results in practice</a>
-            </article>
-          </div>
+          <p class="prod-eyebrow">Precision Monitoring Ecosystem</p>
+          <h1 class="prod-headline">The Instrumented<br>Perspective.</h1>
+          <p class="prod-subhead">Calibrated hardware and cognitive software engineered for critical infrastructure monitoring. Real-time accuracy where millimeters matter.</p>
         </div>
-      </section>
+      </div>
+
+      <!-- ── Two-column layout ── -->
+      <div class="prod-layout">
+        <div class="container prod-layout-inner">
+
+          <!-- Sidebar -->
+          <aside class="prod-sidebar" aria-label="Product filters">
+
+            <!-- Mobile filter toggle -->
+            <button class="prod-filter-toggle" aria-expanded="false" aria-controls="prod-filters">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M1 3h14M4 8h8M7 13h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+              </svg>
+              Filter Products
+            </button>
+
+            <div class="prod-filters" id="prod-filters">
+
+              <fieldset class="prod-filter-group">
+                <legend class="prod-filter-legend">Equipment Category</legend>
+                <label class="prod-check">
+                  <input type="checkbox" checked> GNSS Receivers
+                </label>
+                <label class="prod-check">
+                  <input type="checkbox" checked> Monitoring Nodes
+                </label>
+                <label class="prod-check">
+                  <input type="checkbox" checked> Analytics Software
+                </label>
+                <label class="prod-check">
+                  <input type="checkbox"> Seismic Sensors
+                </label>
+              </fieldset>
+
+              <fieldset class="prod-filter-group">
+                <legend class="prod-filter-legend">Precision Class</legend>
+                <label class="prod-radio">
+                  <input type="radio" name="precision"> Sub-Millimeter
+                </label>
+                <label class="prod-radio">
+                  <input type="radio" name="precision"> Geodetic (1–5mm)
+                </label>
+                <label class="prod-radio">
+                  <input type="radio" name="precision" checked> All Instrument Grades
+                </label>
+              </fieldset>
+
+              <div class="prod-advisory" aria-label="Technical advisory">
+                <svg class="prod-advisory-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M6 20c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                </svg>
+                <p class="prod-advisory-label">Technical Advisory</p>
+                <p class="prod-advisory-copy">Need a custom monitoring configuration for high-risk structural projects?</p>
+                <a class="prod-advisory-link" href="about.html">Speak with Engineering</a>
+              </div>
+
+            </div>
+          </aside>
+
+          <!-- Product grid -->
+          <section class="prod-grid" aria-label="Product listings">
+
+            <!-- Product 1 -->
+            <article class="pcard">
+              <div class="pcard-img-wrap">
+                <img class="pcard-img" src="images/hero-product.png" alt="Medo M50 GNSS Receiver" />
+                <span class="pcard-badge">Multi-Freq</span>
+              </div>
+              <div class="pcard-body">
+                <p class="pcard-category">GNSS Receiver</p>
+                <h2 class="pcard-name">Medo M50 GNSS</h2>
+                <table class="pcard-specs" aria-label="M50 specifications">
+                  <tbody>
+                    <tr>
+                      <th>Positioning Accuracy</th>
+                      <td>H: 2.5mm + 1ppm</td>
+                    </tr>
+                    <tr>
+                      <th>Channels</th>
+                      <td>672 — Triple Frequency</td>
+                    </tr>
+                    <tr>
+                      <th>Update Rate</th>
+                      <td>Up to 20 Hz</td>
+                    </tr>
+                    <tr>
+                      <th>Operating Temp</th>
+                      <td>−40°C to +75°C</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="pcard-footer">
+                  <span class="pcard-avail">Global Shipping</span>
+                  <a class="pcard-cta" href="about.html">Request Quote</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="pcard">
+              <div class="pcard-img-wrap">
+                <img class="pcard-img" src="images/hero-tech.png" alt="Medo Intelligent Monitoring Node" />
+                <span class="pcard-badge">Series-X</span>
+              </div>
+              <div class="pcard-body">
+                <p class="pcard-category">Monitoring Node</p>
+                <h2 class="pcard-name">Medo Node X1</h2>
+                <table class="pcard-specs" aria-label="Node X1 specifications">
+                  <tbody>
+                    <tr>
+                      <th>Tilt Resolution</th>
+                      <td>0.001°</td>
+                    </tr>
+                    <tr>
+                      <th>Sampling Rate</th>
+                      <td>1 Hz – 200 Hz</td>
+                    </tr>
+                    <tr>
+                      <th>Connectivity</th>
+                      <td>4G / LoRa / RS-485</td>
+                    </tr>
+                    <tr>
+                      <th>Power</th>
+                      <td>Solar + Battery</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="pcard-footer">
+                  <span class="pcard-avail">In-Stock: Local Depot</span>
+                  <a class="pcard-cta" href="about.html">Request Quote</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Product 3 — wide feature card -->
+            <article class="pcard pcard--wide">
+              <div class="pcard-img-wrap">
+                <img class="pcard-img" src="images/hero-case.png" alt="Medo Cloud Platform" />
+                <span class="pcard-badge">Enterprise Cloud</span>
+              </div>
+              <div class="pcard-body">
+                <p class="pcard-category">Unified Monitoring Software</p>
+                <h2 class="pcard-name">Medo Cloud Platform</h2>
+                <p class="pcard-desc">AI-driven analytics and 3D visualization. Process multi-sensor inputs into actionable structural integrity reports with automated alert protocols.</p>
+                <div class="pcard-tags" aria-label="Platform features">
+                  <span class="pcard-tag">Auto-Reporting</span>
+                  <span class="pcard-tag">API Integration</span>
+                  <span class="pcard-tag">3D Visualization</span>
+                  <span class="pcard-tag">24/7 Monitoring</span>
+                </div>
+                <div class="pcard-footer">
+                  <a class="pcard-cta" href="about.html">Request Quote</a>
+                  <a class="pcard-cta pcard-cta--ghost" href="solutions.html">Learn More</a>
+                </div>
+              </div>
+            </article>
+
+          </section>
+        </div>
+      </div>
+
     </main>
 
     <footer class="site-footer" role="contentinfo">
@@ -127,11 +239,21 @@
     (function(){
       var btn = document.querySelector('.nav-toggle');
       var drawer = document.getElementById('mobile-nav');
-      if(!btn || !drawer) return;
-      btn.addEventListener('click', function(){
-        var open = drawer.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', open);
-      });
+      if(btn && drawer){
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      }
+      // Mobile filter toggle
+      var ftBtn = document.querySelector('.prod-filter-toggle');
+      var ftPanel = document.getElementById('prod-filters');
+      if(ftBtn && ftPanel){
+        ftBtn.addEventListener('click', function(){
+          var open = ftPanel.classList.toggle('is-open');
+          ftBtn.setAttribute('aria-expanded', open);
+        });
+      }
     })();
   </script>
 </body>
