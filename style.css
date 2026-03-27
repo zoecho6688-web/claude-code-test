@@ -1272,6 +1272,133 @@ a{ color: inherit; }
   .eco-card--wide .eco-card-visual{ min-height: 140px; }
 }
 
+/* ── Industry Applications ── */
+.industry{
+  padding: 80px 0;
+  background: #f8f9fb;
+}
+
+.industry-head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.industry-head-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.industry-label{
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--blue-600);
+  text-transform: uppercase;
+}
+
+.industry-title{
+  margin: 0;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #0b1b33;
+}
+
+.industry-desc{
+  max-width: 340px;
+  text-align: right;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(11,27,51,0.60);
+  margin: 0;
+  padding-top: 4px;
+}
+
+.industry-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.ind-card{
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid rgba(7,48,103,0.10);
+}
+
+.ind-card-img{
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #e8ecf0;
+  flex-shrink: 0;
+}
+
+.ind-card-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 320ms ease, filter 320ms ease;
+}
+
+.ind-card:hover .ind-card-img img{
+  transform: scale(1.05);
+  filter: brightness(0.88);
+}
+
+.ind-card-body{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px 18px 22px;
+  gap: 8px;
+}
+
+.ind-card-title{
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #0b1b33;
+  letter-spacing: -0.01em;
+}
+
+.ind-card-copy{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(11,27,51,0.58);
+  flex: 1;
+}
+
+.ind-card-link{
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--blue-600);
+  text-decoration: none;
+}
+
+.ind-card-link:hover{ opacity: 0.70; }
+
+@media (max-width: 900px){
+  .industry-head{ flex-direction: column; gap: 16px; }
+  .industry-desc{ text-align: left; max-width: 100%; }
+  .industry-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px){
+  .industry-grid{ grid-template-columns: 1fr; }
+}
+
 /* ── Hamburger button ── */
 .nav-toggle{
   display: none;
