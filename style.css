@@ -1399,6 +1399,122 @@ a{ color: inherit; }
   .industry-grid{ grid-template-columns: 1fr; }
 }
 
+/* ── About Medo ── */
+.about-medo{
+  padding: 100px 0;
+  background: #fff;
+}
+
+.about-medo-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Left visual */
+.about-medo-visual{
+  position: relative;
+}
+
+.about-medo-img-outer{
+  padding-bottom: 40px;
+  padding-right: 40px;
+}
+
+.about-medo-img-wrap{
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.about-medo-img-wrap img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(60%) brightness(1.06) contrast(1.04);
+  transition: transform 400ms ease, filter 400ms ease;
+}
+
+.about-medo-visual:hover .about-medo-img-wrap img{
+  transform: scale(1.04);
+  filter: grayscale(60%) brightness(1.06) contrast(1.04);
+}
+
+/* Right content */
+.about-medo-label{
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #0056D6;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.about-medo-title{
+  margin: 0 0 24px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #0b1b33;
+  text-shadow: 0 2px 16px rgba(0,30,80,0.10);
+}
+
+.about-medo-copy{
+  margin: 0 0 40px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(11,27,51,0.62);
+}
+
+/* Trust bar */
+.about-medo-trust{
+  border-top: 1px solid rgba(7,48,103,0.10);
+  padding-top: 28px;
+}
+
+.about-medo-trust-label{
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(11,27,51,0.38);
+  margin-bottom: 18px;
+}
+
+.about-medo-logos{
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.trust-logo{
+  color: rgba(11,27,51,0.28);
+  transition: color 200ms ease;
+}
+
+.trust-logo:hover{ color: rgba(11,27,51,0.55); }
+
+.trust-logo svg{
+  width: 80px;
+  height: 32px;
+  display: block;
+}
+
+@media (max-width: 768px){
+  .about-medo-grid{
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-medo-badge{ width: 75%; }
+}
+
 /* ── Hamburger button ── */
 .nav-toggle{
   display: none;
