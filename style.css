@@ -1567,6 +1567,87 @@ a{ color: inherit; }
   .sol-btn-primary, .sol-btn-ghost{ text-align: center; }
 }
 
+/* ── Solutions Overview Cards ── */
+.sol-overview{ overflow: hidden; }
+
+.sol-cards{
+  display: flex;
+  height: 600px;
+}
+
+.sol-card{
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sol-card:hover{ flex: 2; }
+
+.sol-card-mask{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+  transition: background 0.4s ease;
+}
+
+.sol-card:hover .sol-card-mask{
+  background: linear-gradient(to top, rgba(10,40,100,0.85) 0%, rgba(20,60,160,0.5) 100%);
+}
+
+.sol-card-body{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 28px 24px;
+}
+
+.sol-card-title{
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.sol-card-desc{
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.85);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sol-card:hover .sol-card-desc{ opacity: 1; }
+
+.sol-card-link{
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding-bottom: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.05s;
+}
+
+.sol-card:hover .sol-card-link{ opacity: 1; }
+
+@media (max-width: 768px){
+  .sol-cards{ flex-direction: column; height: auto; }
+  .sol-card{ flex: none; height: 260px; }
+  .sol-card:hover{ flex: none; }
+  .sol-card-desc, .sol-card-link{ opacity: 1; }
+}
+
 /* ── About Medo ── */
 .about-medo{
   padding: 100px 0;
