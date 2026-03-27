@@ -1232,9 +1232,11 @@ a{ color: inherit; }
 .eco-card--dark   .eco-card-cta{ color: rgba(255,255,255,0.75); }
 .eco-card-cta:hover{ opacity: 0.60; }
 
-/* Card 4 — in 2×2 grid, standard card layout; visual panel stacks below content */
+/* Card 4 — left text, right image */
 .eco-card--wide{
-  flex-direction: column;
+  flex-direction: row;
+  padding: 0;
+  overflow: hidden;
   background: #ffffff;
   color: #1a1a1a;
 }
@@ -1244,23 +1246,19 @@ a{ color: inherit; }
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: 28px 24px;
 }
 .eco-card--wide .eco-card-content .eco-card-cta{ color: var(--blue-600); }
 
 .eco-card--wide .eco-card-visual{
-  width: 100%;
+  width: 42%;
   flex-shrink: 0;
-  background: var(--blue-900);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 28px 32px;
-  min-height: 120px;
 }
-.eco-card--wide .eco-card-visual svg{
+.eco-card--wide .eco-card-visual img{
   width: 100%;
-  max-width: 200px;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 @media (max-width: 992px){
