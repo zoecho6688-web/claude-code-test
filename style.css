@@ -1443,6 +1443,130 @@ a{ color: inherit; }
   .industry-grid{ grid-template-columns: 1fr; }
 }
 
+/* ── Solutions Hero ── */
+.sol-hero{
+  position: relative;
+  min-height: 92vh;
+  overflow: hidden;
+}
+
+.sol-hero-bg{
+  position: absolute;
+  inset: 0;
+  background: url('images/soluhero.png') center center / cover no-repeat;
+  z-index: 0;
+}
+
+.sol-hero-bg::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 247, 250, 0.72);
+}
+
+.sol-hero-content{
+  position: relative;
+  z-index: 1;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  max-width: 720px;
+}
+
+.sol-hero-label{
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+  margin-bottom: 20px;
+}
+
+.sol-hero-heading{
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sol-hero-line1{
+  display: block;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--blue-600);
+  text-shadow: 0 2px 24px rgba(16, 96, 214, 0.15);
+}
+
+.sol-hero-line2{
+  display: block;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: #1a2a3a;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.08);
+}
+
+.sol-hero-desc{
+  margin: 0 0 40px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(11, 27, 51, 0.65);
+  max-width: 560px;
+}
+
+.sol-hero-actions{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sol-btn-primary{
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--blue-600);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--blue-600);
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.sol-btn-primary:hover{
+  background: var(--blue-700);
+  border-color: var(--blue-700);
+}
+
+.sol-btn-ghost{
+  display: inline-block;
+  padding: 14px 32px;
+  background: transparent;
+  color: #1a2a3a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #1a2a3a;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.sol-btn-ghost:hover{
+  background: #1a2a3a;
+  color: #fff;
+}
+
+@media (max-width: 640px){
+  .sol-hero-content{ padding-top: 80px; padding-bottom: 80px; }
+  .sol-hero-actions{ flex-direction: column; }
+  .sol-btn-primary, .sol-btn-ghost{ text-align: center; }
+}
+
 /* ── About Medo ── */
 .about-medo{
   padding: 100px 0;
