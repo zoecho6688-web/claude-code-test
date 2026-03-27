@@ -1572,7 +1572,7 @@ a{ color: inherit; }
 
 .sol-cards{
   display: flex;
-  height: 600px;
+  height: 720px;
 }
 
 .sol-card{
@@ -1646,6 +1646,70 @@ a{ color: inherit; }
   .sol-card{ flex: none; height: 260px; }
   .sol-card:hover{ flex: none; }
   .sol-card-desc, .sol-card-link{ opacity: 1; }
+}
+
+/* ── Trust Stats ── */
+.sol-stats{
+  background: #F8F9FA;
+  padding: 80px 0;
+  border-top: 1px solid rgba(7,48,103,0.07);
+  border-bottom: 1px solid rgba(7,48,103,0.07);
+}
+
+.sol-stats-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.sol-stat{
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0 40px 0 0;
+  border-right: 1px solid rgba(7,48,103,0.10);
+}
+
+.sol-stat:first-child{ padding-left: 0; }
+.sol-stat:last-child{ border-right: none; padding-right: 0; }
+
+.sol-stat-bar{
+  width: 3px;
+  height: 60px;
+  background: var(--blue-600);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.sol-stat-content{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sol-stat-num{
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0b1b33;
+  line-height: 1;
+}
+
+.sol-stat-label{
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(11,27,51,0.50);
+}
+
+@media (max-width: 768px){
+  .sol-stats-grid{ grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .sol-stat{ border-right: none; padding-right: 0; }
+}
+
+@media (max-width: 480px){
+  .sol-stats-grid{ grid-template-columns: 1fr; }
 }
 
 /* ── About Medo ── */
