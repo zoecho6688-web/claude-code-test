@@ -2647,8 +2647,7 @@ a{ color: inherit; }
 /* ── About Stats Bar ── */
 .about-stats-bar{
   display: flex;
-  padding: 0 calc((100% - min(1120px, calc(100% - 40px))) / 2);
-  border-bottom: 0.5px solid rgba(7,48,103,0.12);
+  padding: 48px calc((100% - min(1120px, calc(100% - 40px))) / 2) 0;
   background: #fff;
 }
 
@@ -2658,11 +2657,10 @@ a{ color: inherit; }
   display: flex;
   flex-direction: column;
   gap: 6px;
-  border-right: 0.5px solid rgba(7,48,103,0.12);
 }
 
 .about-stat-item:first-child{ padding-left: 0; }
-.about-stat-item:last-child{ border-right: none; }
+.about-stat-item:last-child{ padding-right: 0; }
 
 .about-stat-num{
   font-size: 56px;
@@ -2680,6 +2678,217 @@ a{ color: inherit; }
   letter-spacing: 0.10em;
   text-transform: uppercase;
   color: #9ca3af;
+}
+
+/* ── About Timeline ── */
+.about-timeline{
+  padding: 40px 0 72px;
+  background: #fff;
+}
+
+.tl-heading{
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 800;
+  color: #0f1f3d;
+  margin: 0 0 100px;
+}
+
+.tl-track{
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.tl-track::before{
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(7,48,103,0.15);
+}
+
+.tl-node{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 16px;
+  cursor: default;
+  transition: flex 0.3s ease;
+  min-width: 0;
+}
+
+.tl-node:hover{ flex: 1.5; }
+.tl-track:has(.tl-node:hover) .tl-node:not(:hover){ flex: 0.7; }
+
+.tl-dot{
+  width: 12px;
+  height: 12px;
+  background: #2563EB;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-year{
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #2563EB;
+  margin-bottom: 6px;
+}
+
+.tl-keyword{
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f1f3d;
+}
+
+.tl-desc{
+  font-size: 12px;
+  color: #718096;
+  line-height: 1.6;
+  margin: 8px 0 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.tl-node:hover .tl-desc{
+  opacity: 1;
+  max-height: 80px;
+}
+
+/* ── About Overview Section ── */
+.about-overview{
+  padding: 100px 0;
+  background: #fff;
+}
+
+.about-overview-grid{
+  display: grid;
+  grid-template-columns: 38fr 62fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-ov-eyebrow{
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2563EB;
+  margin-bottom: 20px;
+}
+
+.about-ov-heading{
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #0f1f3d;
+}
+
+.about-ov-heading-blue{ color: #2563EB; }
+
+.about-ov-line{
+  width: 40px;
+  height: 3px;
+  background: #2563EB;
+  margin-bottom: 32px;
+}
+
+.about-ov-features{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-ov-feature{
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px solid rgba(7,48,103,0.10);
+  padding: 16px;
+}
+
+.about-ov-feature-icon{
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  color: #2563EB;
+}
+
+.about-ov-feature-icon svg{ width: 100%; height: 100%; }
+
+.about-ov-feature-title{
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f1f3d;
+}
+
+.about-ov-feature-desc{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.about-ov-body-lg{
+  font-size: 17px;
+  line-height: 1.75;
+  color: #0f1f3d;
+  margin: 0 0 20px;
+}
+
+.about-ov-body-sm{
+  font-size: 14px;
+  line-height: 1.75;
+  color: #718096;
+  margin: 0;
+}
+
+.about-ov-divider{
+  border: none;
+  border-top: 1px solid rgba(7,48,103,0.10);
+  margin: 32px 0;
+}
+
+.about-ov-missions{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.about-ov-mission-title{
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f1f3d;
+}
+
+.about-ov-mission-desc{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #4a5568;
+}
+
+@media (max-width: 768px){
+  .about-overview-grid{ grid-template-columns: 1fr; gap: 48px; }
+  .about-ov-missions{ grid-template-columns: 1fr; }
 }
 
 /* ── About Legacy Section ── */
