@@ -65,49 +65,30 @@
         </div>
       </section>
 
-      <!-- ── Trust Stats ── -->
-      <section class="sol-stats" aria-label="Trust Statistics">
-        <div class="container">
-          <div class="sol-stats-grid">
-
-            <div class="sol-stat">
-              <div class="sol-stat-bar" aria-hidden="true"></div>
-              <div class="sol-stat-content">
-                <span class="sol-stat-num">1000+</span>
-                <span class="sol-stat-label">Mine Safety Projects</span>
-              </div>
-            </div>
-
-            <div class="sol-stat">
-              <div class="sol-stat-bar" aria-hidden="true"></div>
-              <div class="sol-stat-content">
-                <span class="sol-stat-num">0.5mm</span>
-                <span class="sol-stat-label">Precision Monitoring Standard</span>
-              </div>
-            </div>
-
-            <div class="sol-stat">
-              <div class="sol-stat-bar" aria-hidden="true"></div>
-              <div class="sol-stat-content">
-                <span class="sol-stat-num">25k+</span>
-                <span class="sol-stat-label">Equipment Units Deployed</span>
-              </div>
-            </div>
-
-            <div class="sol-stat">
-              <div class="sol-stat-bar" aria-hidden="true"></div>
-              <div class="sol-stat-content">
-                <span class="sol-stat-num">99.9%</span>
-                <span class="sol-stat-label">System Uptime Reliability</span>
-              </div>
-            </div>
-
-          </div>
+      <!-- ── Anchor Nav ── -->
+      <nav class="sol-anchor-nav" aria-label="Solution sections">
+        <div class="container sol-anchor-inner">
+          <a class="sol-anchor-item" href="#mining">
+            <span class="sol-anchor-bar" aria-hidden="true"></span>
+            <span class="sol-anchor-text"><em>01</em> Mining Safety</span>
+          </a>
+          <a class="sol-anchor-item" href="#water">
+            <span class="sol-anchor-bar" aria-hidden="true"></span>
+            <span class="sol-anchor-text"><em>02</em> Water Conservancy</span>
+          </a>
+          <a class="sol-anchor-item" href="#geology">
+            <span class="sol-anchor-bar" aria-hidden="true"></span>
+            <span class="sol-anchor-text"><em>03</em> Geological Hazards</span>
+          </a>
+          <a class="sol-anchor-item" href="#urban">
+            <span class="sol-anchor-bar" aria-hidden="true"></span>
+            <span class="sol-anchor-text"><em>04</em> Urban Infrastructure</span>
+          </a>
         </div>
-      </section>
+      </nav>
 
       <!-- ── Mining Safety ── -->
-      <section class="sol-detail" aria-labelledby="mining-title">
+      <section id="mining" class="sol-detail" aria-labelledby="mining-title" style="scroll-margin-top:100px;">
         <div class="container sol-detail-grid">
 
           <div class="sol-detail-text">
@@ -139,7 +120,7 @@
       </section>
 
       <!-- ── Water Conservancy ── -->
-      <section class="sol-tri" aria-labelledby="water-title">
+      <section id="water" class="sol-tri" aria-labelledby="water-title" style="scroll-margin-top:100px;">
         <div class="container sol-tri-grid">
 
           <!-- Panel 1: Image -->
@@ -187,7 +168,7 @@
       </section>
 
       <!-- ── Geological Hazards ── -->
-      <section class="sol-geo" aria-labelledby="geo-title">
+      <section id="geology" class="sol-geo" aria-labelledby="geo-title" style="scroll-margin-top:100px;">
         <div class="container sol-geo-grid">
 
           <!-- Left: text + feature cards -->
@@ -229,7 +210,7 @@
       </section>
 
       <!-- ── Urban Infrastructure ── -->
-      <section class="sol-urban" aria-labelledby="urban-title">
+      <section id="urban" class="sol-urban" aria-labelledby="urban-title" style="scroll-margin-top:100px;">
         <div class="container sol-urban-grid">
 
           <!-- Left: text + buttons -->
@@ -320,6 +301,25 @@
           var open = drawer.classList.toggle('is-open');
           btn.setAttribute('aria-expanded', open);
         });
+      })();
+
+      // Anchor nav active state
+      (function(){
+        var items = document.querySelectorAll('.sol-anchor-item');
+        var sections = ['mining','water','geology','urban'].map(function(id){
+          return document.getElementById(id);
+        }).filter(Boolean);
+        if(!sections.length) return;
+        var observer = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              items.forEach(function(a){ a.classList.remove('is-active'); });
+              var active = document.querySelector('.sol-anchor-item[href="#'+entry.target.id+'"]');
+              if(active) active.classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        sections.forEach(function(s){ observer.observe(s); });
       })();
     </script>
   </body>

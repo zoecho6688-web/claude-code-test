@@ -1770,6 +1770,70 @@ a{ color: inherit; }
   .industry-grid{ grid-template-columns: 1fr; }
 }
 
+html{ scroll-behavior: smooth; }
+
+/* ── Solutions Anchor Nav ── */
+.sol-anchor-nav{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 0;
+  background: transparent;
+}
+
+.sol-anchor-inner{
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.sol-anchor-item{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 16px;
+  text-decoration: none;
+  color: #0f1f3d;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  transition: color 160ms, background 160ms;
+  white-space: nowrap;
+}
+
+.sol-anchor-item + .sol-anchor-item{
+  border-left: 1px solid rgba(37,99,235,0.15);
+}
+
+.sol-anchor-item:hover{ color: #2563EB; background: rgba(37,99,235,0.04); }
+.sol-anchor-item.is-active{ color: #2563EB; background: rgba(37,99,235,0.06); }
+
+.sol-anchor-bar{
+  width: 3px;
+  height: 18px;
+  background: rgba(37,99,235,0.30);
+  flex-shrink: 0;
+  border-radius: 2px;
+  transition: background 160ms;
+}
+
+.sol-anchor-item:hover .sol-anchor-bar,
+.sol-anchor-item.is-active .sol-anchor-bar{ background: #2563EB; }
+
+.sol-anchor-text em{
+  font-style: normal;
+  font-weight: 800;
+  color: #0f1f3d;
+  margin-right: 4px;
+}
+
 /* ── Solutions Hero ── */
 .sol-hero {
   position: relative;
