@@ -2319,6 +2319,22 @@ a{ color: inherit; }
   filter: grayscale(60%) brightness(1.06) contrast(1.04);
 }
 
+.about-medo-explore{
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--blue-600);
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 160ms ease;
+}
+
+.about-medo-explore:hover{ opacity: 0.60; }
+
 /* Right content */
 .about-medo-label{
   display: block;
