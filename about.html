@@ -15,7 +15,6 @@
         <a class="brand" href="index.html" aria-label="Medo Home">
           <img class="brand-logo" src="images/logo.png" alt="Medo" />
         </a>
-
         <nav class="nav" aria-label="Primary navigation">
           <a class="nav-link" href="products.html">Products</a>
           <a class="nav-link" href="solutions.html">Solutions</a>
@@ -23,7 +22,6 @@
           <a class="nav-link" href="resources.html">Support</a>
           <a class="nav-link active" href="about.html">About</a>
         </nav>
-
         <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
           <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <rect y="3" width="20" height="2" fill="currentColor"/>
@@ -35,7 +33,6 @@
           </svg>
         </button>
       </div>
-
       <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
         <div class="nav-drawer-inner">
           <a class="nav-drawer-link" href="products.html">Products</a>
@@ -48,66 +45,38 @@
     </header>
 
     <main id="main" role="main">
-      <section id="about" class="section" aria-label="About Medo">
-        <div class="container">
-          <div class="section-head">
-            <h2 class="section-title">About Medo</h2>
-            <p class="section-subtitle">
-              We combine precision positioning technology with intelligent monitoring systems to support safer
-              infrastructure management and reliable early warning practices.
-            </p>
-          </div>
 
-          <div class="about-grid">
-            <div class="about-panel">
-              <h3 class="panel-title">A Precision-First Philosophy</h3>
-              <p class="panel-copy">
-                “Precision in Every Dimension” reflects our focus on accuracy, repeatability, and dependable field operation.
-                Whether the application is risk monitoring, safety supervision, or event early warning, our solutions are
-                designed to help teams act with confidence.
-              </p>
-
-              <div class="panel-metrics" aria-label="Capability themes">
-                <div class="metric">
-                  <div class="metric-num">01</div>
-                  <div class="metric-label">Measurement reliability</div>
-                </div>
-                <div class="metric">
-                  <div class="metric-num">02</div>
-                  <div class="metric-label">Intelligent monitoring signals</div>
-                </div>
-                <div class="metric">
-                  <div class="metric-num">03</div>
-                  <div class="metric-label">Support for early warning workflows</div>
-                </div>
-              </div>
-            </div>
-
-            <aside class="contact-panel" aria-label="Contact">
-              <h3 class="panel-title">Connect with Our Team</h3>
-              <p class="panel-copy">
-                Tell us about your monitoring scenario. We can help you evaluate solution fit—from equipment selection
-                to deployment guidance and operational best practices.
-              </p>
-              <div class="contact-lines">
-                <div class="line">
-                  <span class="line-label">Company</span>
-                  <span class="line-value">Medo (Shanghai Medo Monitoring Technology Co., Ltd.)</span>
-                </div>
-                <div class="line">
-                  <span class="line-label">Focus</span>
-                  <span class="line-value">High-precision monitoring & intelligent early warning</span>
-                </div>
-                <div class="line">
-                  <span class="line-label">Region</span>
-                  <span class="line-value">International collaboration supported</span>
-                </div>
-              </div>
-              <a class="btn btn-ghost btn-small" href="index.html">Back to Home</a>
-            </aside>
-          </div>
+      <section class="about-hero">
+        <div class="about-hero-visual" aria-hidden="true">
+          <img src="images/abouthero.png" alt="">
+        </div>
+        <div class="container about-hero-content">
+          <h1>About <span style="color:#2563EB;">MEDO</span></h1>
+          <p>We provide the technical authority required to monitor global infrastructure with surgical precision. From structural deformation to automated seismic verification.</p>
+          <a class="about-hero-btn" href="cases.html">View Case Studies →</a>
         </div>
       </section>
+
+      <!-- ── Stats Bar ── -->
+      <div class="about-stats-bar">
+        <div class="about-stat-item">
+          <span class="about-stat-num">4.2B</span>
+          <span class="about-stat-label">Data Points / Day</span>
+        </div>
+        <div class="about-stat-item">
+          <span class="about-stat-num">142</span>
+          <span class="about-stat-label">Global Markets</span>
+        </div>
+        <div class="about-stat-item">
+          <span class="about-stat-num">100K+</span>
+          <span class="about-stat-label">Units Deployed</span>
+        </div>
+        <div class="about-stat-item">
+          <span class="about-stat-num">99.9%</span>
+          <span class="about-stat-label">Uptime Reliability</span>
+        </div>
+      </div>
+
     </main>
 
     <footer class="site-footer" role="contentinfo">
@@ -158,17 +127,17 @@
         </div>
       </div>
     </footer>
-  <script>
-    (function(){
-      var btn = document.querySelector('.nav-toggle');
-      var drawer = document.getElementById('mobile-nav');
-      if(!btn || !drawer) return;
-      btn.addEventListener('click', function(){
-        var open = drawer.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', open);
-      });
-    })();
-  </script>
-</body>
-</html>
 
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+    </script>
+  </body>
+</html>
