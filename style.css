@@ -2310,13 +2310,11 @@ a{ color: inherit; }
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(60%) brightness(1.06) contrast(1.04);
   transition: transform 400ms ease, filter 400ms ease;
 }
 
 .about-medo-visual:hover .about-medo-img-wrap img{
   transform: scale(1.04);
-  filter: grayscale(60%) brightness(1.06) contrast(1.04);
 }
 
 .about-medo-explore{
@@ -2357,7 +2355,7 @@ a{ color: inherit; }
 }
 
 .about-medo-copy{
-  margin: 0 0 40px;
+  margin: 0 0 16px;
   font-size: 15px;
   line-height: 1.75;
   color: rgba(11,27,51,0.62);
@@ -2365,7 +2363,7 @@ a{ color: inherit; }
 
 /* Trust bar */
 .about-medo-trust{
-  border-top: 1px solid rgba(7,48,103,0.10);
+  border-top: 0px solid rgba(7,48,103,0.10);
   padding-top: 28px;
 }
 
