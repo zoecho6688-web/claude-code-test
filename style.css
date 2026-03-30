@@ -889,7 +889,6 @@ a{ color: inherit; }
 .cat-sidebar{
   background: #f0f4f8;
   border: 1px solid rgba(7,48,103,0.15);
-  border-left: 3px solid #2563EB;
   padding: 28px 24px;
   position: sticky;
   top: 68px;
