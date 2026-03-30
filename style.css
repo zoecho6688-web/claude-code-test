@@ -3107,7 +3107,7 @@ html{ scroll-behavior: smooth; }
 /* ── About Timeline ── */
 .about-timeline{
   padding: 40px 0 72px;
-  background: #fff;
+  background: linear-gradient(to bottom, #ffffff 0%, #eef2f7 20%, #eef2f7 80%, #ffffff 100%);
 }
 
 .tl-heading{
