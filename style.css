@@ -2650,6 +2650,103 @@ html{ scroll-behavior: smooth; }
   .sol-stats-grid{ grid-template-columns: 1fr; }
 }
 
+/* ── Platform Page ── */
+.plat-header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.plat-heading{
+  margin: 0;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f1f3d;
+}
+
+.plat-header-desc{
+  max-width: 260px;
+  text-align: right;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin: 0;
+  padding-top: 8px;
+}
+
+.plat-modules{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.plat-card{
+  background: #fff;
+  border: 1px solid rgba(7,48,103,0.10);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 180ms;
+}
+
+.plat-card:hover{ box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+
+.plat-card-icon svg{
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.plat-card-title{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f1f3d;
+  line-height: 1.2;
+}
+
+.plat-card-desc{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #4a5568;
+  flex: 1;
+}
+
+.plat-card-link{
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #2563EB;
+  text-decoration: none;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(7,48,103,0.08);
+  transition: opacity 160ms;
+}
+
+.plat-card-link:hover{ opacity: 0.65; }
+
+@media (max-width: 900px){
+  .plat-modules{ grid-template-columns: 1fr 1fr; }
+  .plat-header{ flex-direction: column; gap: 8px; }
+  .plat-header-desc{ text-align: left; }
+}
+
+@media (max-width: 540px){
+  .plat-modules{ grid-template-columns: 1fr; }
+}
+
 /* ── About Page Hero ── */
 .about-hero{
   position: relative;
