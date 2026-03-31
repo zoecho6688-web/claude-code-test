@@ -7,10 +7,9 @@
     <title>Mining Safety Solutions | Medo</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      /* ── Mining Main: page-scoped styles ── */
       body { background: #fff; }
 
-      /* Hero */
+      /* ── Hero ── */
       .mm-hero {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -48,8 +47,6 @@
         color: #4a5568;
         max-width: 48ch;
       }
-
-      /* Hero right: image with gradient fade */
       .mm-hero-right {
         position: relative;
         overflow: hidden;
@@ -71,15 +68,13 @@
         pointer-events: none;
       }
 
-      /* Cards section */
-      .mm-cards-section {
-        background: #fff;
-        padding: 80px 0 100px;
+      /* ── Bars section ── */
+      .mm-bars-section {
+        background: #ffffff;
+        padding: 72px 0 100px;
       }
-      .mm-cards-header {
-        margin-bottom: 48px;
-      }
-      .mm-cards-label {
+      .mm-bars-header { margin-bottom: 48px; }
+      .mm-bars-label {
         display: block;
         font-size: 11px;
         font-weight: 800;
@@ -88,14 +83,14 @@
         color: #0056D6;
         margin-bottom: 12px;
       }
-      .mm-cards-title {
+      .mm-bars-title {
         margin: 0 0 12px;
         font-size: clamp(26px, 3vw, 36px);
         font-weight: 800;
         letter-spacing: -0.02em;
         color: #0f1f3d;
       }
-      .mm-cards-desc {
+      .mm-bars-desc {
         margin: 0;
         font-size: 15px;
         line-height: 1.7;
@@ -103,107 +98,149 @@
         max-width: 60ch;
       }
 
-      /* 5-card grid */
-      .mm-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 0;
-        border: 1px solid rgba(7,48,103,0.12);
-      }
-      .mm-card {
+      /* Bar list */
+      .mm-bar-list {
         display: flex;
         flex-direction: column;
-        padding: 32px 24px 28px;
-        border-right: 1px solid rgba(7,48,103,0.12);
-        background: #fff;
-        transition: background 180ms;
-        position: relative;
+        gap: 8px;
       }
-      .mm-card:last-child { border-right: none; }
-      .mm-card:hover { background: #f7faff; }
-      .mm-card-num {
-        font-size: 10px;
+
+      /* Each bar is the clickable anchor */
+      .mm-bar {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        height: 120px;
+        border: 1px solid #EEEEEE;
+        background: #ffffff;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Blue overlay slides in from left */
+      .mm-bar::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #0056D6;
+        transform: translateX(-100%);
+        transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+      .mm-bar:hover::before { transform: translateX(0); }
+
+      /* Image placeholder (left 30%) */
+      .mm-bar-img {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        border-right: 1px solid #EEEEEE;
+        transition: border-color 420ms;
+      }
+      .mm-bar-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .mm-bar-img-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f0f4f8;
+        transition: background 420ms;
+      }
+      .mm-bar-img-placeholder svg {
+        width: 32px;
+        height: 32px;
+        color: #b0bec5;
+        transition: color 420ms;
+      }
+      .mm-bar:hover .mm-bar-img { border-color: transparent; }
+      .mm-bar:hover .mm-bar-img-placeholder { background: rgba(255,255,255,0.12); }
+      .mm-bar:hover .mm-bar-img-placeholder svg { color: rgba(255,255,255,0.45); }
+
+      /* Right content */
+      .mm-bar-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 36px 0 40px;
+        gap: 24px;
+      }
+      .mm-bar-title {
+        margin: 0;
+        font-size: clamp(16px, 1.8vw, 22px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #0f1f3d;
+        line-height: 1.2;
+        transition: color 200ms;
+      }
+      .mm-bar:hover .mm-bar-title { color: #ffffff; }
+
+      .mm-bar-btn {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0056D6;
+        border: 1px solid #0056D6;
+        padding: 10px 20px;
+        background: transparent;
+        white-space: nowrap;
+        transition: color 200ms, border-color 200ms, background 200ms;
+      }
+      .mm-bar:hover .mm-bar-btn {
+        color: #0056D6;
+        border-color: #ffffff;
+        background: #ffffff;
+      }
+      .mm-bar-btn svg {
+        width: 12px;
+        height: 12px;
+        transition: transform 200ms;
+      }
+      .mm-bar:hover .mm-bar-btn svg { transform: translateX(3px); }
+
+      /* Bar number */
+      .mm-bar-num {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        font-size: 9px;
         font-weight: 800;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #0056D6;
-        margin-bottom: 20px;
+        color: rgba(0,86,214,0.45);
+        z-index: 2;
+        transition: color 200ms;
       }
-      .mm-card-icon {
-        width: 40px;
-        height: 40px;
-        display: grid;
-        place-items: center;
-        border: 1px solid rgba(0,86,214,0.20);
-        color: #0056D6;
-        margin-bottom: 20px;
-        flex-shrink: 0;
-      }
-      .mm-card-icon svg { width: 20px; height: 20px; }
-      .mm-card-title {
-        margin: 0 0 12px;
-        font-size: 15px;
-        font-weight: 800;
-        letter-spacing: -0.01em;
-        color: #0f1f3d;
-        line-height: 1.3;
-        flex: 1;
-      }
-      .mm-card-desc {
-        margin: 0 0 24px;
-        font-size: 13px;
-        line-height: 1.65;
-        color: #4a5568;
-      }
-      .mm-card-cta {
-        display: inline-block;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.10em;
-        text-transform: uppercase;
-        color: #0056D6;
-        text-decoration: none;
-        border-bottom: 1px solid #0056D6;
-        padding-bottom: 2px;
-        transition: opacity 160ms;
-        align-self: flex-start;
-      }
-      .mm-card-cta:hover { opacity: 0.65; }
+      .mm-bar:hover .mm-bar-num { color: rgba(255,255,255,0.55); }
 
-      /* accent bar on hover */
-      .mm-card::after {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 3px;
-        background: #0056D6;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 200ms ease;
-      }
-      .mm-card:hover::after { transform: scaleX(1); }
-
-      @media (max-width: 1100px) {
-        .mm-grid { grid-template-columns: repeat(3, 1fr); }
-        .mm-card:nth-child(3) { border-right: none; }
-        .mm-card:nth-child(4),
-        .mm-card:nth-child(5) { border-top: 1px solid rgba(7,48,103,0.12); }
-        .mm-card:nth-child(5) { border-right: none; }
-      }
       @media (max-width: 768px) {
         .mm-hero { grid-template-columns: 1fr; min-height: auto; }
         .mm-hero-left { padding: 56px 0 40px; }
         .mm-hero-right { height: 300px; }
-        .mm-hero-right::before {
-          background: linear-gradient(to bottom, #fff 0%, transparent 30%);
-        }
-        .mm-grid { grid-template-columns: 1fr 1fr; }
-        .mm-card { border-right: 1px solid rgba(7,48,103,0.12); border-top: 1px solid rgba(7,48,103,0.12); }
-        .mm-card:nth-child(even) { border-right: none; }
+        .mm-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+        .mm-bar { height: auto; min-height: 100px; }
+        .mm-bar-content { padding: 20px 20px 20px 24px; flex-wrap: wrap; gap: 16px; }
+        .mm-bar-title { font-size: 15px; }
       }
-      @media (max-width: 480px) {
-        .mm-grid { grid-template-columns: 1fr; }
-        .mm-card { border-right: none; border-top: 1px solid rgba(7,48,103,0.12); }
+      @media (max-width: 540px) {
+        .mm-bar { grid-template-columns: 1fr; height: auto; }
+        .mm-bar-img { height: 120px; border-right: none; border-bottom: 1px solid #EEEEEE; }
+        .mm-bar-content { padding: 20px; }
       }
     </style>
   </head>
@@ -260,71 +297,101 @@
         </div>
       </section>
 
-      <!-- ── Sub-solution Cards ── -->
-      <section class="mm-cards-section" aria-labelledby="mm-cards-title">
+      <!-- ── Horizontal Bars ── -->
+      <section class="mm-bars-section" aria-labelledby="mm-bars-title">
         <div class="container">
-          <div class="mm-cards-header">
-            <span class="mm-cards-label">Mining Sub-Solutions</span>
-            <h2 class="mm-cards-title" id="mm-cards-title">Select a Monitoring Domain</h2>
-            <p class="mm-cards-desc">Five specialized monitoring systems, each engineered for the unique geotechnical and structural demands of its environment.</p>
+          <div class="mm-bars-header">
+            <span class="mm-bars-label">Mining Sub-Solutions</span>
+            <h2 class="mm-bars-title" id="mm-bars-title">Select a Monitoring Domain</h2>
+            <p class="mm-bars-desc">Five specialized monitoring systems, each engineered for the unique geotechnical and structural demands of its environment.</p>
           </div>
 
-          <div class="mm-grid" role="list">
+          <div class="mm-bar-list" role="list">
 
-            <!-- Card 1 -->
-            <article class="mm-card" role="listitem">
-              <span class="mm-card-num">01</span>
-              <div class="mm-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L18 16H2L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg>
+            <!-- Bar 1 -->
+            <a class="mm-bar" href="solutions-mining-tailings.html" role="listitem" aria-label="Tailings Dam Safety Monitoring Solution">
+              <span class="mm-bar-num">01</span>
+              <div class="mm-bar-img">
+                <div class="mm-bar-img-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L18 16H2L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg>
+                </div>
               </div>
-              <h3 class="mm-card-title">Tailings Dam Safety</h3>
-              <p class="mm-card-desc">Real-time pore pressure, saturation, and GNSS displacement monitoring for tailings storage facilities.</p>
-              <a class="mm-card-cta" href="solutions-mining-tailings.html">Explore Solution</a>
-            </article>
+              <div class="mm-bar-content">
+                <h3 class="mm-bar-title">Tailings Dam Safety Monitoring Solution</h3>
+                <span class="mm-bar-btn">
+                  Explore Module
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </div>
+            </a>
 
-            <!-- Card 2 -->
-            <article class="mm-card" role="listitem">
-              <span class="mm-card-num">02</span>
-              <div class="mm-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none"><path d="M2 16L6 8l4 4 4-6 4 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+            <!-- Bar 2 -->
+            <a class="mm-bar" href="solutions-mining-slope.html" role="listitem" aria-label="Open-pit Mine Slope Safety Monitoring Solution">
+              <span class="mm-bar-num">02</span>
+              <div class="mm-bar-img">
+                <div class="mm-bar-img-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M2 16L6 8l4 4 4-6 4 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+                </div>
               </div>
-              <h3 class="mm-card-title">Open-pit Mine Slope</h3>
-              <p class="mm-card-desc">Dense GNSS arrays and automated radar scanning for real-time slope deformation and blast vibration analysis.</p>
-              <a class="mm-card-cta" href="solutions-mining-slope.html">Explore Solution</a>
-            </article>
+              <div class="mm-bar-content">
+                <h3 class="mm-bar-title">Open-pit Mine Slope Safety Monitoring Solution</h3>
+                <span class="mm-bar-btn">
+                  Explore Module
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </div>
+            </a>
 
-            <!-- Card 3 -->
-            <article class="mm-card" role="listitem">
-              <span class="mm-card-num">03</span>
-              <div class="mm-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="10" width="14" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M6 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.5"/></svg>
+            <!-- Bar 3 -->
+            <a class="mm-bar" href="#" role="listitem" aria-label="Waste Dump High Slope Safety Monitoring Solution">
+              <span class="mm-bar-num">03</span>
+              <div class="mm-bar-img">
+                <div class="mm-bar-img-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="10" width="14" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M6 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
               </div>
-              <h3 class="mm-card-title">Waste Dump High Slope</h3>
-              <p class="mm-card-desc">Continuous settlement and lateral displacement monitoring for waste rock dumps with integrated rainfall gauges.</p>
-              <a class="mm-card-cta" href="#">Explore Solution</a>
-            </article>
+              <div class="mm-bar-content">
+                <h3 class="mm-bar-title">Waste Dump High Slope Safety Monitoring Solution</h3>
+                <span class="mm-bar-btn">
+                  Explore Module
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </div>
+            </a>
 
-            <!-- Card 4 -->
-            <article class="mm-card" role="listitem">
-              <span class="mm-card-num">04</span>
-              <div class="mm-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            <!-- Bar 4 -->
+            <a class="mm-bar" href="#" role="listitem" aria-label="Phosphogypsum Stack Online Monitoring Solution">
+              <span class="mm-bar-num">04</span>
+              <div class="mm-bar-img">
+                <div class="mm-bar-img-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
               </div>
-              <h3 class="mm-card-title">Phosphogypsum Stack</h3>
-              <p class="mm-card-desc">Structural integrity monitoring for phosphogypsum stacks tracking surface deformation, seepage, and pore water pressure.</p>
-              <a class="mm-card-cta" href="#">Explore Solution</a>
-            </article>
+              <div class="mm-bar-content">
+                <h3 class="mm-bar-title">Phosphogypsum Stack Online Monitoring Solution</h3>
+                <span class="mm-bar-btn">
+                  Explore Module
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </div>
+            </a>
 
-            <!-- Card 5 -->
-            <article class="mm-card" role="listitem">
-              <span class="mm-card-num">05</span>
-              <div class="mm-card-icon" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h8M10 6v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            <!-- Bar 5 -->
+            <a class="mm-bar" href="#" role="listitem" aria-label="Goaf Settlement and Displacement Monitoring Solution">
+              <span class="mm-bar-num">05</span>
+              <div class="mm-bar-img">
+                <div class="mm-bar-img-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h8M10 6v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
               </div>
-              <h3 class="mm-card-title">Goaf Settlement</h3>
-              <p class="mm-card-desc">Sub-surface settlement and horizontal displacement monitoring for mined-out goaf areas with early collapse detection.</p>
-              <a class="mm-card-cta" href="#">Explore Solution</a>
-            </article>
+              <div class="mm-bar-content">
+                <h3 class="mm-bar-title">Goaf Settlement &amp; Displacement Monitoring Solution</h3>
+                <span class="mm-bar-btn">
+                  Explore Module
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </div>
+            </a>
 
           </div>
         </div>
