@@ -3,12 +3,281 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Medo Mining Safety Solutions: precision monitoring for tailings dams, open-pit slopes, and underground operations." />
-    <title>Mining Safety Solutions | Medo</title>
+    <meta name="description" content="Medo Tailings Dam Safety Monitoring: real-time pore pressure, saturation, and GNSS displacement monitoring for tailings storage facilities." />
+    <title>Tailings Dam Safety Monitoring | Medo</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .tl-breadcrumb {
+        background: #fff;
+        border-bottom: 1px solid #EEEEEE;
+        padding: 0;
+      }
+      .tl-breadcrumb-inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 44px;
+        font-size: 12px;
+        color: #9ca3af;
+      }
+      .tl-breadcrumb a {
+        text-decoration: none;
+        color: #9ca3af;
+        transition: color 150ms;
+      }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 11px; }
+      .tl-breadcrumb-current {
+        color: #0f1f3d;
+        font-weight: 600;
+      }
+
+      /* ── Page content ── */
+      .tl-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 64px 20px 100px;
+      }
+
+      /* ── Hero row ── */
+      .tl-hero-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        margin-bottom: 72px;
+      }
+      .tl-eyebrow {
+        display: block;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0056D6;
+        margin-bottom: 16px;
+      }
+      .tl-heading {
+        margin: 0 0 20px;
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        color: #0f1f3d;
+      }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-desc {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.75;
+        color: #4a5568;
+      }
+      .tl-hero-img-wrap {
+        position: relative;
+        background: #0f1f3d;
+        overflow: hidden;
+      }
+      .tl-hero-img-wrap img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+      }
+      .tl-img-label {
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        background: rgba(4,26,58,0.72);
+        padding: 10px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .tl-img-label-sub {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+      }
+      .tl-img-label-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      /* ── Feature cards ── */
+      .tl-features-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 80px;
+      }
+      .tl-feat-card {
+        border: 1px solid rgba(7,48,103,0.10);
+        padding: 32px 28px;
+        background: #fff;
+      }
+      .tl-feat-card--blue {
+        background: #0f1f3d;
+        border-color: #0f1f3d;
+      }
+      .tl-feat-num {
+        display: block;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0056D6;
+        margin-bottom: 12px;
+      }
+      .tl-feat-card--blue .tl-feat-num { color: rgba(83,210,255,0.8); }
+      .tl-feat-title {
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: #0f1f3d;
+      }
+      .tl-feat-card--blue .tl-feat-title { color: #fff; }
+      .tl-feat-desc {
+        margin: 0 0 24px;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #4a5568;
+      }
+      .tl-feat-card--blue .tl-feat-desc { color: rgba(255,255,255,0.65); }
+
+      /* metrics */
+      .tl-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .tl-metric {
+        border: 1px solid rgba(7,48,103,0.10);
+        padding: 12px;
+        background: #f7faff;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .tl-metric-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9ca3af;
+      }
+      .tl-metric-val {
+        font-size: 18px;
+        font-weight: 900;
+        color: #0f1f3d;
+        letter-spacing: -0.01em;
+      }
+
+      /* specs */
+      .tl-specs { display: flex; flex-direction: column; gap: 0; }
+      .tl-spec-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.10);
+      }
+      .tl-spec-row:last-child { border-bottom: none; }
+      .tl-spec-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: rgba(255,255,255,0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .tl-spec-val {
+        font-size: 16px;
+        font-weight: 800;
+        color: #fff;
+      }
+
+      /* ── Next solution bar ── */
+      .tl-next {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #EEEEEE;
+        padding: 24px 32px;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 200ms;
+      }
+      .tl-next::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #0056D6;
+        transform: translateX(-100%);
+        transition: transform 380ms cubic-bezier(0.4,0,0.2,1);
+        z-index: 0;
+      }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next-label {
+        position: relative;
+        z-index: 1;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #9ca3af;
+        transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next-title {
+        position: relative;
+        z-index: 1;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #0f1f3d;
+        transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next-arrow {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0056D6;
+        border: 1px solid #0056D6;
+        padding: 10px 20px;
+        transition: color 200ms, background 200ms, border-color 200ms;
+      }
+      .tl-next:hover .tl-next-arrow {
+        color: #0056D6;
+        background: #fff;
+        border-color: #fff;
+      }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+      @media (max-width: 768px) {
+        .tl-hero-row { grid-template-columns: 1fr; gap: 32px; }
+        .tl-features-row { grid-template-columns: 1fr; }
+        .tl-metrics { grid-template-columns: 1fr 1fr; }
+        .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      }
+    </style>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header" role="banner">
       <div class="container header-inner">
         <a class="brand" href="index.html" aria-label="Medo Home">
@@ -22,8 +291,14 @@
           <a class="nav-link" href="about.html">About</a>
         </nav>
         <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
-          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
-          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect y="3" width="20" height="2" fill="currentColor"/>
+            <rect y="9" width="20" height="2" fill="currentColor"/>
+            <rect y="15" width="20" height="2" fill="currentColor"/>
+          </svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+          </svg>
         </button>
       </div>
       <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
@@ -37,155 +312,91 @@
       </div>
     </header>
 
-    <main id="main" role="main">
-      <div class="msol-layout">
+    <!-- ── Breadcrumb ── -->
+    <nav class="tl-breadcrumb" aria-label="Breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="solutions.html">Solutions</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="solutions-mining-main.html">Mining</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="tl-breadcrumb-current" aria-current="page">Tailings Dam Safety</span>
+      </div>
+    </nav>
 
-        <!-- ── Left Sidebar ── -->
-        <aside class="msol-sidenav" aria-label="Mining solutions navigation">
-          <div class="msol-sidenav-inner">
-            <p class="msol-sidenav-heading">Mining Solutions</p>
-            <nav>
-              <a class="msol-nav-item msol-nav-item--active" href="#tailings">
-                <svg class="msol-nav-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2L18 16H2L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg>
-                <span>Tailings Dam Safety Monitoring</span>
-              </a>
-              <a class="msol-nav-item" href="#openpit">
-                <svg class="msol-nav-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 16L6 8l4 4 4-6 4 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg>
-                <span>Open-pit Mine Slope Safety</span>
-              </a>
-              <a class="msol-nav-item" href="#wastedump">
-                <svg class="msol-nav-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="10" width="14" height="7" stroke="currentColor" stroke-width="1.5"/><path d="M6 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.5"/></svg>
-                <span>Waste Dump High Slope Safety</span>
-              </a>
-              <a class="msol-nav-item" href="#phospho">
-                <svg class="msol-nav-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-                <span>Phosphogypsum Stack Online Monitoring</span>
-              </a>
-              <a class="msol-nav-item" href="#goaf">
-                <svg class="msol-nav-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="2" width="16" height="16" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h8M10 6v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-                <span>Goaf Settlement &amp; Displacement</span>
-              </a>
-            </nav>
-            <div class="msol-sidenav-footer">
-              <a class="msol-export-btn" href="downloads/Mining Safety Mointoring Solution.pdf" target="_blank" rel="noopener">Export Data</a>
+    <main id="main" role="main">
+      <div class="tl-page">
+
+        <!-- ── Hero ── -->
+        <div class="tl-hero-row">
+          <div class="tl-hero-text">
+            <span class="tl-eyebrow">Precision Instrumentation</span>
+            <h1 class="tl-heading">Tailings Dam Safety<br><span class="tl-heading-blue">Monitoring Solution</span></h1>
+            <p class="tl-desc">Real-time saturation, pore pressure, and GNSS displacement monitoring for tailings storage facilities — delivering sub-millimeter accuracy and automated multi-level early warning to prevent catastrophic dam failures.</p>
+          </div>
+          <div class="tl-hero-img-wrap">
+            <img src="images-mine/minetailing.png" alt="Tailings dam monitoring facility" />
+            <div class="tl-img-label">
+              <span class="tl-img-label-sub">Sector View</span>
+              <span class="tl-img-label-title">A-01 Tailings Facility</span>
             </div>
           </div>
-        </aside>
-
-        <!-- ── Main Content ── -->
-        <div class="msol-content">
-
-          <!-- Tailings Dam -->
-          <section id="tailings" class="msol-section" style="scroll-margin-top:80px;">
-            <div class="msol-hero-row">
-              <div class="msol-hero-text">
-                <span class="msol-eyebrow">Precision Instrumentation</span>
-                <h1 class="msol-heading">Tailings Dam Safety<br><span class="msol-heading-blue">Monitoring Solution</span></h1>
-                <p class="msol-desc">Real-time saturation, pore pressure, and GNSS displacement monitoring for tailings storage facilities — delivering sub-millimeter accuracy and automated multi-level early warning to prevent catastrophic dam failures.</p>
-              </div>
-              <div class="msol-hero-img-wrap">
-                <img src="images-mine/minetailing.png" alt="Tailings dam monitoring facility" />
-                <div class="msol-img-label">
-                  <span class="msol-img-label-sub">Sector View</span>
-                  <span class="msol-img-label-title">A-01 Tailings Facility</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="msol-features-row">
-              <div class="msol-feat-card">
-                <span class="msol-feat-num">Feature 01</span>
-                <h2 class="msol-feat-title">Real-time Saturation Analysis</h2>
-                <p class="msol-feat-desc">Multi-sensor integration of piezometers, inclinometers, and rain gauges with AI-driven threshold prediction for dam wall stability.</p>
-                <div class="msol-metrics">
-                  <div class="msol-metric">
-                    <span class="msol-metric-label">Pore Pressure</span>
-                    <span class="msol-metric-val">42.8 kPa</span>
-                  </div>
-                  <div class="msol-metric">
-                    <span class="msol-metric-label">Tilt Delta</span>
-                    <span class="msol-metric-val">0.04°</span>
-                  </div>
-                  <div class="msol-metric">
-                    <span class="msol-metric-label">Saturation</span>
-                    <span class="msol-metric-val">18%</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="msol-feat-card msol-feat-card--blue">
-                <span class="msol-feat-num">Feature 02</span>
-                <h2 class="msol-feat-title">GNSS Positioning Infrastructure</h2>
-                <p class="msol-feat-desc">Continuous phase-differential processing for absolute spatial reference in high-dynamic saturation zones.</p>
-                <div class="msol-specs">
-                  <div class="msol-spec-row">
-                    <span class="msol-spec-label">Latency</span>
-                    <span class="msol-spec-val">140ms</span>
-                  </div>
-                  <div class="msol-spec-row">
-                    <span class="msol-spec-label">Accuracy</span>
-                    <span class="msol-spec-val">±2mm</span>
-                  </div>
-                  <div class="msol-spec-row">
-                    <span class="msol-spec-label">Constellation</span>
-                    <span class="msol-spec-val">42 SVs</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Open-pit -->
-          <section id="openpit" class="msol-section" style="scroll-margin-top:80px;">
-            <span class="msol-eyebrow">Precision Instrumentation</span>
-            <h2 class="msol-heading-sm">Open-pit Mine Slope<br><span class="msol-heading-blue">Safety Monitoring Solution</span></h2>
-            <p class="msol-desc">Dense GNSS arrays and automated radar scanning for real-time slope deformation analysis — enabling proactive risk management across open-pit operations.</p>
-            <div class="msol-features-row">
-              <div class="msol-feat-card">
-                <span class="msol-feat-num">Feature 01</span>
-                <h2 class="msol-feat-title">Slope Deformation Monitoring</h2>
-                <p class="msol-feat-desc">3D displacement vector analysis across pit walls with automated prism scanning and failure prediction algorithms.</p>
-                <div class="msol-metrics">
-                  <div class="msol-metric"><span class="msol-metric-label">Tilt Delta</span><span class="msol-metric-val">0.001°</span></div>
-                  <div class="msol-metric"><span class="msol-metric-label">Scan Rate</span><span class="msol-metric-val">10 min</span></div>
-                  <div class="msol-metric"><span class="msol-metric-label">Range</span><span class="msol-metric-val">2 km</span></div>
-                </div>
-              </div>
-              <div class="msol-feat-card msol-feat-card--blue">
-                <span class="msol-feat-num">Feature 02</span>
-                <h2 class="msol-feat-title">Blast Vibration Monitoring</h2>
-                <p class="msol-feat-desc">High-frequency seismic sensors for blast-induced vibration assessment and regulatory compliance reporting.</p>
-                <div class="msol-specs">
-                  <div class="msol-spec-row"><span class="msol-spec-label">Frequency</span><span class="msol-spec-val">0.1–200 Hz</span></div>
-                  <div class="msol-spec-row"><span class="msol-spec-label">Dynamic Range</span><span class="msol-spec-val">140 dB</span></div>
-                  <div class="msol-spec-row"><span class="msol-spec-label">Latency</span><span class="msol-spec-val">80ms</span></div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Waste Dump -->
-          <section id="wastedump" class="msol-section msol-section--stub" style="scroll-margin-top:80px;">
-            <span class="msol-eyebrow">Precision Instrumentation</span>
-            <h2 class="msol-heading-sm">Waste Dump High Slope<br><span class="msol-heading-blue">Safety Monitoring Solution</span></h2>
-            <p class="msol-desc">Continuous settlement and lateral displacement monitoring for waste rock dumps — integrating GNSS, tilt sensors, and rainfall gauges for comprehensive slope stability assessment and early warning.</p>
-          </section>
-
-          <!-- Phosphogypsum -->
-          <section id="phospho" class="msol-section msol-section--stub" style="scroll-margin-top:80px;">
-            <span class="msol-eyebrow">Precision Instrumentation</span>
-            <h2 class="msol-heading-sm">Phosphogypsum Stack<br><span class="msol-heading-blue">Online Monitoring Solution</span></h2>
-            <p class="msol-desc">Real-time structural integrity monitoring for phosphogypsum storage stacks — tracking surface deformation, seepage, and pore water pressure with automated multi-level early warning protocols.</p>
-          </section>
-
-          <!-- Goaf -->
-          <section id="goaf" class="msol-section msol-section--stub" style="scroll-margin-top:80px;">
-            <span class="msol-eyebrow">Precision Instrumentation</span>
-            <h2 class="msol-heading-sm">Goaf Settlement and<br><span class="msol-heading-blue">Displacement Monitoring Solution</span></h2>
-            <p class="msol-desc">Sub-surface settlement and horizontal displacement monitoring for mined-out goaf areas — providing early detection of ground subsidence and surface collapse risk in underground mining operations.</p>
-          </section>
-
         </div>
+
+        <!-- ── Feature Cards ── -->
+        <div class="tl-features-row">
+          <div class="tl-feat-card">
+            <span class="tl-feat-num">Feature 01</span>
+            <h2 class="tl-feat-title">Real-time Saturation Analysis</h2>
+            <p class="tl-feat-desc">Multi-sensor integration of piezometers, inclinometers, and rain gauges with AI-driven threshold prediction for dam wall stability.</p>
+            <div class="tl-metrics">
+              <div class="tl-metric">
+                <span class="tl-metric-label">Pore Pressure</span>
+                <span class="tl-metric-val">42.8 kPa</span>
+              </div>
+              <div class="tl-metric">
+                <span class="tl-metric-label">Tilt Delta</span>
+                <span class="tl-metric-val">0.04°</span>
+              </div>
+              <div class="tl-metric">
+                <span class="tl-metric-label">Saturation</span>
+                <span class="tl-metric-val">18%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-feat-card tl-feat-card--blue">
+            <span class="tl-feat-num">Feature 02</span>
+            <h2 class="tl-feat-title">GNSS Positioning Infrastructure</h2>
+            <p class="tl-feat-desc">Continuous phase-differential processing for absolute spatial reference in high-dynamic saturation zones.</p>
+            <div class="tl-specs">
+              <div class="tl-spec-row">
+                <span class="tl-spec-label">Latency</span>
+                <span class="tl-spec-val">140ms</span>
+              </div>
+              <div class="tl-spec-row">
+                <span class="tl-spec-label">Accuracy</span>
+                <span class="tl-spec-val">±2mm</span>
+              </div>
+              <div class="tl-spec-row">
+                <span class="tl-spec-label">Constellation</span>
+                <span class="tl-spec-val">42 SVs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Next Solution ── -->
+        <a class="tl-next" href="solutions-mining-slope.html" aria-label="Next: Open-pit Mine Slope Safety Monitoring Solution">
+          <div style="position:relative;z-index:1;">
+            <span class="tl-next-label">Next Solution</span>
+            <p class="tl-next-title">Open-pit Mine Slope Safety</p>
+          </div>
+          <span class="tl-next-arrow">
+            Explore Module
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+          </span>
+        </a>
+
       </div>
     </main>
 
@@ -239,22 +450,6 @@
           var open = drawer.classList.toggle('is-open');
           btn.setAttribute('aria-expanded', open);
         });
-      })();
-      (function(){
-        var items = document.querySelectorAll('.msol-nav-item');
-        var ids = ['tailings','openpit','wastedump','phospho','goaf'];
-        var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
-        if(!sections.length) return;
-        var obs = new IntersectionObserver(function(entries){
-          entries.forEach(function(e){
-            if(e.isIntersecting){
-              items.forEach(function(a){ a.classList.remove('msol-nav-item--active'); });
-              var a = document.querySelector('.msol-nav-item[href="#'+e.target.id+'"]');
-              if(a) a.classList.add('msol-nav-item--active');
-            }
-          });
-        }, { rootMargin: '-30% 0px -60% 0px' });
-        sections.forEach(function(s){ obs.observe(s); });
       })();
     </script>
   </body>
