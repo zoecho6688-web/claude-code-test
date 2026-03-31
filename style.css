@@ -2650,6 +2650,299 @@ html{ scroll-behavior: smooth; }
   .sol-stats-grid{ grid-template-columns: 1fr; }
 }
 
+/* ── Mine Safety Solution Page ── */
+.msol-layout{
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: calc(100vh - 52px);
+  align-items: start;
+}
+
+.msol-sidenav{
+  position: sticky;
+  top: 52px;
+  height: calc(100vh - 52px);
+  background: #f8f9fb;
+  border-right: 1px solid rgba(7,48,103,0.08);
+}
+
+.msol-sidenav-inner{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 28px 0 20px;
+}
+
+.msol-sidenav-heading{
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  padding: 0 18px;
+  margin: 0 0 14px;
+}
+
+.msol-nav-item{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 18px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4a5568;
+  border-left: 3px solid transparent;
+  line-height: 1.4;
+  transition: color 150ms, background 150ms, border-color 150ms;
+}
+
+.msol-nav-item:hover{ color: #2563EB; background: rgba(37,99,235,0.04); }
+
+.msol-nav-item--active{
+  color: #2563EB;
+  font-weight: 700;
+  border-left-color: #2563EB;
+  background: rgba(37,99,235,0.06);
+}
+
+.msol-nav-icon{
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.msol-sidenav-footer{
+  margin-top: auto;
+  padding: 16px 18px;
+  border-top: 1px solid rgba(7,48,103,0.08);
+}
+
+.msol-export-btn{
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: #0056D6;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 160ms;
+}
+.msol-export-btn:hover{ background: #0041a8; }
+
+.msol-content{
+  padding: 48px 56px 80px;
+}
+
+.msol-section{
+  margin-bottom: 72px;
+  padding-bottom: 72px;
+  border-bottom: 1px solid rgba(7,48,103,0.08);
+}
+.msol-section:last-child{ border-bottom: none; margin-bottom: 0; }
+.msol-section--stub{ padding-bottom: 0; }
+
+.msol-eyebrow{
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #2563EB;
+  margin-bottom: 12px;
+}
+
+.msol-heading{
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #0f1f3d;
+  margin: 0 0 20px;
+}
+
+.msol-heading-sm{
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #0f1f3d;
+  margin: 0 0 16px;
+}
+
+.msol-heading-blue{ color: #2563EB; }
+
+.msol-desc{
+  font-size: 15px;
+  line-height: 1.75;
+  color: #4a5568;
+  max-width: 540px;
+  margin: 0 0 32px;
+}
+
+.msol-hero-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.msol-hero-img-wrap{
+  position: relative;
+  background: #0f1f3d;
+}
+
+.msol-hero-img-wrap img{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  opacity: 0.88;
+}
+
+.msol-img-label{
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 14px 16px;
+  background: linear-gradient(to top, rgba(0,0,0,0.72), transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.msol-img-label-sub{
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+.msol-img-label-title{
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.msol-features-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.msol-feat-card{
+  background: #fff;
+  border: 1px solid rgba(7,48,103,0.10);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msol-feat-card--blue{
+  background: #2563EB;
+  border-color: #2563EB;
+}
+
+.msol-feat-num{
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2563EB;
+}
+.msol-feat-card--blue .msol-feat-num{ color: rgba(255,255,255,0.60); }
+
+.msol-feat-title{
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f1f3d;
+  line-height: 1.2;
+}
+.msol-feat-card--blue .msol-feat-title{ color: #fff; }
+
+.msol-feat-desc{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #4a5568;
+  flex: 1;
+}
+.msol-feat-card--blue .msol-feat-desc{ color: rgba(255,255,255,0.80); }
+
+.msol-metrics{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.msol-metric{
+  background: #f4f7fb;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.msol-metric-label{
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.msol-metric-val{
+  font-size: 18px;
+  font-weight: 800;
+  color: #2563EB;
+  line-height: 1;
+}
+
+.msol-specs{
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
+
+.msol-spec-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.msol-spec-label{
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+.msol-spec-val{
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (max-width: 900px){
+  .msol-layout{ grid-template-columns: 1fr; }
+  .msol-sidenav{ position: static; height: auto; }
+  .msol-content{ padding: 32px 20px; }
+  .msol-hero-row{ grid-template-columns: 1fr; }
+  .msol-features-row{ grid-template-columns: 1fr; }
+}
+
 /* ── Platform Page ── */
 .plat-header{
   display: flex;
