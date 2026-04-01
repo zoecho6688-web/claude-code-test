@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Medo Pit-Watch: millimeter-level displacement sensing for open-pit mine slopes. Ensuring operational safety in complex geological conditions." />
+    <title>Pit-Watch: Open-Pit Slope Safety Monitoring | Medo</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .tl-breadcrumb { background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-breadcrumb-inner {
+        display: flex; align-items: center; gap: 8px;
+        height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap;
+      }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* ── Hero ── */
+      .tl-hero {
+        display: grid; grid-template-columns: 1fr 1fr;
+        min-height: clamp(260px, 42vh, 460px);
+        background: #fff; border-bottom: 1px solid #EEEEEE;
+      }
+      .tl-hero-left {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 48px 48px 48px 0;
+      }
+      .tl-eyebrow {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 16px;
+      }
+      .tl-heading {
+        margin: 0 0 20px;
+        font-size: clamp(28px, 3.8vw, 48px);
+        font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; color: #0f1f3d;
+      }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl-hero-right::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        z-index: 1; pointer-events: none;
+      }
+
+      /* ── Body layout: sticky sidebar + content ── */
+      .tl-body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 0;
+      }
+
+      /* ── Sticky anchor nav ── */
+      .tl-sidenav {
+        position: sticky;
+        top: 52px;
+        height: calc(100vh - 52px);
+        padding: 56px 32px 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-right: 1px solid #EEEEEE;
+      }
+      .tl-sidenav-label {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px;
+      }
+      .tl-nav-link {
+        display: block;
+        padding: 9px 0;
+        font-size: 13px; font-weight: 500;
+        color: #999999;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
+        line-height: 1.3;
+      }
+      .tl-nav-link .tl-nav-num {
+        display: block; font-size: 9px; font-weight: 700;
+        letter-spacing: 0.10em; color: #c0c8d4;
+        margin-bottom: 2px; transition: color 0.3s ease;
+      }
+      .tl-nav-link:hover { color: #0056D6; }
+      .tl-nav-link:hover .tl-nav-num { color: #0056D6; }
+      .tl-nav-link:hover { border-bottom-color: #0056D6; }
+      .tl-nav-link.is-active { color: #0056D6; border-bottom-color: #0056D6; font-weight: 700; }
+      .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
+
+      /* ── Content area ── */
+      .tl-content { padding: 64px 0 80px 56px; }
+
+      .tl-section {
+        padding-bottom: 96px;
+        border-bottom: 1px solid #EEEEEE;
+        margin-bottom: 80px;
+      }
+      .tl-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
+
+      .tl-section-label {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 14px;
+      }
+      .tl-section-title {
+        margin: 0 0 20px;
+        font-size: clamp(22px, 2.8vw, 34px);
+        font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d;
+      }
+      .tl-section-desc { margin: 0 0 32px; font-size: 15px; line-height: 1.75; color: #4a5568; }
+
+      /* pain points grid */
+      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-pain-card {
+        border: 1px solid #EEEEEE; padding: 24px 22px;
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
+      .tl-pain-icon svg { width: 100%; height: 100%; }
+      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
+      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
+
+      /* solution overview: hero row */
+      .tl-overview-row {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 40px; align-items: center; margin-bottom: 32px;
+      }
+      .tl-img-wrap { position: relative; background: #0f1f3d; overflow: hidden; }
+      .tl-img-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+      .tl-img-label {
+        position: absolute; bottom: 0; left: 0; right: 0;
+        background: rgba(4,26,58,0.72); padding: 10px 16px;
+        display: flex; flex-direction: column; gap: 2px;
+      }
+      .tl-img-label-sub {
+        font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase; color: rgba(255,255,255,0.55);
+      }
+      .tl-img-label-title { font-size: 14px; font-weight: 700; color: #fff; }
+
+      /* feature cards */
+      .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-feat-card { border: 1px solid #EEEEEE; padding: 28px 24px; }
+      .tl-feat-card--dark { background: #0f1f3d; border-color: #0f1f3d; }
+      .tl-feat-num {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 10px;
+      }
+      .tl-feat-card--dark .tl-feat-num { color: rgba(83,210,255,0.8); }
+      .tl-feat-title { margin: 0 0 10px; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-feat-card--dark .tl-feat-title { color: #fff; }
+      .tl-feat-desc { margin: 0 0 20px; font-size: 13px; line-height: 1.7; color: #4a5568; }
+      .tl-feat-card--dark .tl-feat-desc { color: rgba(255,255,255,0.6); }
+
+      .tl-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+      .tl-metric {
+        border: 1px solid rgba(7,48,103,0.10); padding: 12px;
+        background: #f7faff; display: flex; flex-direction: column; gap: 4px;
+      }
+      .tl-metric-label {
+        font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+        text-transform: uppercase; color: #9ca3af;
+      }
+      .tl-metric-val { font-size: 18px; font-weight: 900; color: #0f1f3d; }
+
+      .tl-specs { display: flex; flex-direction: column; }
+      .tl-spec-row {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.10);
+      }
+      .tl-spec-row:last-child { border-bottom: none; }
+      .tl-spec-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
+      .tl-spec-val { font-size: 16px; font-weight: 800; color: #fff; }
+
+      /* advantages */
+      .tl-adv-list { display: flex; flex-direction: column; gap: 12px; }
+      .tl-adv-item {
+        display: grid; grid-template-columns: 48px 1fr;
+        gap: 20px; align-items: start;
+        border: 1px solid #EEEEEE; padding: 20px 24px;
+      }
+      .tl-adv-num {
+        font-size: 28px; font-weight: 900; color: #EEEEEE;
+        letter-spacing: -0.04em; line-height: 1;
+      }
+      .tl-adv-title { margin: 0 0 6px; font-size: 15px; font-weight: 800; color: #0f1f3d; }
+      .tl-adv-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; }
+
+      /* products */
+      .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-prod-card {
+        border: 1px solid #EEEEEE; padding: 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        text-decoration: none; color: inherit;
+        transition: border-color 200ms, box-shadow 200ms;
+      }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+      .tl-prod-cat {
+        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+        text-transform: uppercase; color: #0056D6;
+      }
+      .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-prod-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; flex: 1; }
+      .tl-prod-link {
+        font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+        text-transform: uppercase; color: #0056D6;
+        border-bottom: 1px solid #0056D6; padding-bottom: 1px;
+        align-self: flex-start; margin-top: 8px;
+      }
+
+      /* case study */
+      .tl-case {
+        border: 1px solid #EEEEEE; overflow: hidden;
+      }
+      .tl-case-header {
+        background: #0f1f3d; padding: 28px 32px;
+        display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+      }
+      .tl-case-tag {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
+        text-transform: uppercase; color: rgba(83,210,255,0.8); margin-bottom: 10px; display: block;
+      }
+      .tl-case-title { margin: 0; font-size: 20px; font-weight: 800; color: #fff; line-height: 1.3; }
+      .tl-case-year {
+        font-size: 48px; font-weight: 900; color: rgba(255,255,255,0.12);
+        letter-spacing: -0.04em; line-height: 1; flex-shrink: 0;
+      }
+      .tl-case-body { padding: 28px 32px; }
+      .tl-case-desc { margin: 0 0 24px; font-size: 14px; line-height: 1.75; color: #4a5568; }
+      .tl-case-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+      .tl-case-stat { border: 1px solid #EEEEEE; padding: 16px; }
+      .tl-case-stat-val { font-size: 26px; font-weight: 900; color: #0056D6; letter-spacing: -0.02em; }
+      .tl-case-stat-label { font-size: 12px; color: #9ca3af; margin-top: 4px; line-height: 1.4; }
+
+      /* next solution bar */
+      .tl-next {
+        display: flex; align-items: center; justify-content: space-between;
+        border: 1px solid #EEEEEE; padding: 24px 32px;
+        text-decoration: none; color: inherit;
+        position: relative; overflow: hidden; transition: border-color 200ms;
+        margin-top: 64px;
+      }
+      .tl-next::before {
+        content: ''; position: absolute; inset: 0;
+        background: #0056D6; transform: translateX(-100%);
+        transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next-label {
+        position: relative; z-index: 1; font-size: 11px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next-title {
+        position: relative; z-index: 1; font-size: 20px; font-weight: 800;
+        letter-spacing: -0.02em; color: #0f1f3d; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next-arrow {
+        position: relative; z-index: 1; display: flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; border: 1px solid #0056D6; padding: 10px 20px;
+        transition: color 200ms, background 200ms, border-color 200ms;
+      }
+      .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
+        .tl-hero-left { padding: 48px 0 32px; }
+        .tl-hero-right { height: 260px; }
+        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+
+        /* horizontal scrollable anchor bar */
+        .tl-body { grid-template-columns: 1fr; padding: 0; }
+        .tl-sidenav {
+          position: sticky; top: 52px; height: auto;
+          flex-direction: row; gap: 0;
+          padding: 0; border-right: none; border-bottom: 1px solid #EEEEEE;
+          overflow-x: auto; overflow-y: visible;
+          background: #fff; z-index: 10;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .tl-sidenav::-webkit-scrollbar { display: none; }
+        .tl-sidenav-label { display: none; }
+        .tl-nav-link {
+          flex-shrink: 0; padding: 14px 16px;
+          border-bottom: 2px solid transparent; white-space: nowrap;
+        }
+        .tl-nav-link .tl-nav-num { display: none; }
+        .tl-nav-link.is-active { border-bottom-color: #0056D6; }
+        .tl-content { padding: 40px 20px 60px; }
+        .tl-pain-grid { grid-template-columns: 1fr; }
+        .tl-overview-row { grid-template-columns: 1fr; }
+        .tl-feat-row { grid-template-columns: 1fr; }
+        .tl-metrics { grid-template-columns: 1fr 1fr; }
+        .tl-prod-grid { grid-template-columns: 1fr; }
+        .tl-case-stats { grid-template-columns: 1fr; }
+        .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Medo Home">
+          <img class="brand-logo" src="images/logo.png" alt="Medo" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link active" href="solutions.html">Solutions</a>
+          <a class="nav-link" href="cases.html">Cases</a>
+          <a class="nav-link" href="resources.html">Support</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link" href="products.html">Products</a>
+          <a class="nav-drawer-link" href="solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="cases.html">Cases</a>
+          <a class="nav-drawer-link" href="resources.html">Support</a>
+          <a class="nav-drawer-link" href="about.html">About</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="tl-breadcrumb" aria-label="Breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="solutions.html">Solutions</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="solutions-mining-main.html">Mining</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="tl-breadcrumb-current" aria-current="page">Pit-Watch</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="tl-hero" aria-label="Pit-Watch hero">
+      <div class="container" style="display:contents;">
+        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <span class="tl-eyebrow">Precision Instrumentation</span>
+          <h1 class="tl-heading">Pit-Watch: Open-Pit Slope<br><span class="tl-heading-blue">Safety Monitoring</span></h1>
+          <p class="tl-hero-desc">Millimeter-level displacement sensing for large-scale mining slopes. Ensuring operational safety in complex geological conditions.</p>
+        </div>
+        <div class="tl-hero-right">
+          <img src="images/hero-mining.png" alt="Open-pit mine slope monitoring" />
+        </div>
+      </div>
+    </section>
+
+    <main id="main" role="main">
+      <div class="tl-body">
+
+        <!-- Sticky sidebar nav -->
+        <aside class="tl-sidenav" aria-label="Page sections">
+          <span class="tl-sidenav-label">On this page</span>
+          <a class="tl-nav-link" href="#pain-points">
+            <span class="tl-nav-num">01</span>Industry Pain Points
+          </a>
+          <a class="tl-nav-link" href="#overview">
+            <span class="tl-nav-num">02</span>Solution Overview
+          </a>
+          <a class="tl-nav-link" href="#advantages">
+            <span class="tl-nav-num">03</span>Core Advantages
+          </a>
+          <a class="tl-nav-link" href="#products">
+            <span class="tl-nav-num">04</span>Related Products
+          </a>
+          <a class="tl-nav-link" href="#cases">
+            <span class="tl-nav-num">05</span>Success Stories
+          </a>
+        </aside>
+
+        <!-- Content -->
+        <div class="tl-content">
+
+          <!-- 01 Pain Points -->
+          <section id="pain-points" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">01 / Industry Pain Points</span>
+            <h2 class="tl-section-title">The Open-Pit Challenge</h2>
+            <p class="tl-section-desc">Large open-pit mines operate under constant geotechnical pressure. Bench failures, blasting vibrations, and heavy equipment loads create a dynamic risk environment that demands continuous, automated monitoring.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+              <div style="background:#0f1f3d;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;">
+                <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:80%;opacity:0.7;">
+                  <path d="M10 140 L50 80 L90 100 L130 40 L170 60 L190 140Z" stroke="#0056D6" stroke-width="1.5" fill="rgba(0,86,214,0.08)"/>
+                  <path d="M50 80 L50 140" stroke="#0056D6" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+                  <path d="M90 100 L90 140" stroke="#0056D6" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+                  <path d="M130 40 L130 140" stroke="#0056D6" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+                  <circle cx="130" cy="40" r="4" fill="#0056D6"/>
+                  <text x="134" y="36" fill="rgba(255,255,255,0.6)" font-size="9" font-family="sans-serif">Critical Zone</text>
+                  <path d="M10 140 L190 140" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                </svg>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:0;">
+                <div style="padding:20px 0;border-bottom:1px solid #EEEEEE;display:flex;gap:16px;align-items:flex-start;">
+                  <div style="width:32px;height:32px;flex-shrink:0;color:#0056D6;">
+                    <svg viewBox="0 0 32 32" fill="none"><path d="M16 4L28 24H4L16 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/><path d="M16 13v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><circle cx="16" cy="21" r="1" fill="currentColor"/></svg>
+                  </div>
+                  <div><p style="margin:0 0 4px;font-size:14px;font-weight:800;color:#0f1f3d;">Bench Stability Risks</p><p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Multi-bench slope failures can cascade rapidly. Traditional survey intervals miss the early deformation signals that precede collapse.</p></div>
+                </div>
+                <div style="padding:20px 0;border-bottom:1px solid #EEEEEE;display:flex;gap:16px;align-items:flex-start;">
+                  <div style="width:32px;height:32px;flex-shrink:0;color:#0056D6;">
+                    <svg viewBox="0 0 32 32" fill="none"><path d="M4 24L10 12l6 6 6-10 6 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/><path d="M4 28h24" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                  </div>
+                  <div><p style="margin:0 0 4px;font-size:14px;font-weight:800;color:#0f1f3d;">Heavy Equipment Vibration</p><p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Continuous haul truck and excavator loads induce micro-vibrations that accelerate fatigue cracking in slope faces over time.</p></div>
+                </div>
+                <div style="padding:20px 0;border-bottom:1px solid #EEEEEE;display:flex;gap:16px;align-items:flex-start;">
+                  <div style="width:32px;height:32px;flex-shrink:0;color:#0056D6;">
+                    <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M16 8v4M16 20v4M8 16h4M20 16h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                  </div>
+                  <div><p style="margin:0 0 4px;font-size:14px;font-weight:800;color:#0f1f3d;">Blasting Impact</p><p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Repeated blast events generate shock waves that weaken rock mass integrity and can trigger sudden displacement events in adjacent benches.</p></div>
+                </div>
+                <div style="padding:20px 0;display:flex;gap:16px;align-items:flex-start;">
+                  <div style="width:32px;height:32px;flex-shrink:0;color:#0056D6;">
+                    <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="16" stroke="currentColor" stroke-width="1.8"/><path d="M4 16h24M12 8v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                  </div>
+                  <div><p style="margin:0 0 4px;font-size:14px;font-weight:800;color:#0f1f3d;">Fragmented Monitoring Data</p><p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">GNSS, radar, and total station data collected in isolation prevents holistic slope risk assessment and delays critical decisions.</p></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 Solution Overview -->
+          <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">02 / Solution Overview</span>
+            <h2 class="tl-section-title">From Sensor to Warning: The Data Flow</h2>
+            <p class="tl-section-desc">Medo's Pit-Watch solution creates an unbroken chain from field instrumentation to real-time decision support — four layers, zero gaps.</p>
+            <div style="display:flex;flex-direction:column;gap:0;margin-top:8px;">
+
+              <div style="display:grid;grid-template-columns:48px 1fr;gap:0;align-items:stretch;">
+                <div style="display:flex;flex-direction:column;align-items:center;">
+                  <div style="width:40px;height:40px;background:#0056D6;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg viewBox="0 0 20 20" fill="none" style="width:18px;height:18px;"><circle cx="10" cy="10" r="6" stroke="#fff" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="#fff"/></svg>
+                  </div>
+                  <div style="width:1px;background:#EEEEEE;flex:1;margin-top:4px;"></div>
+                </div>
+                <div style="padding:0 0 32px 24px;">
+                  <p style="margin:0 0 6px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Step 01</p>
+                  <h3 style="margin:0 0 8px;font-size:17px;font-weight:800;color:#0f1f3d;">Field Sensors — GNSS / InSAR / Total Station</h3>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Multi-constellation GNSS rovers, robotic total stations, and InSAR satellite data capture continuous 3D displacement vectors across all slope benches at millimeter resolution.</p>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:48px 1fr;gap:0;align-items:stretch;">
+                <div style="display:flex;flex-direction:column;align-items:center;">
+                  <div style="width:40px;height:40px;background:#0056D6;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg viewBox="0 0 20 20" fill="none" style="width:18px;height:18px;"><rect x="3" y="5" width="14" height="10" stroke="#fff" stroke-width="1.5"/><path d="M7 5V3M13 5V3M3 9h14" stroke="#fff" stroke-width="1.5" stroke-linecap="square"/></svg>
+                  </div>
+                  <div style="width:1px;background:#EEEEEE;flex:1;margin-top:4px;"></div>
+                </div>
+                <div style="padding:0 0 32px 24px;">
+                  <p style="margin:0 0 6px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Step 02</p>
+                  <h3 style="margin:0 0 8px;font-size:17px;font-weight:800;color:#0f1f3d;">Edge Gateway</h3>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Solar-powered edge loggers aggregate multi-sensor streams locally, apply pre-processing filters, and transmit via 4G/satellite with sub-second latency — even in remote pit environments.</p>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:48px 1fr;gap:0;align-items:stretch;">
+                <div style="display:flex;flex-direction:column;align-items:center;">
+                  <div style="width:40px;height:40px;background:#0056D6;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg viewBox="0 0 20 20" fill="none" style="width:18px;height:18px;"><path d="M4 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#fff" stroke-width="1.5" stroke-linecap="square"/><path d="M7 14c0-1.7 1.3-3 3-3s3 1.3 3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="square"/><circle cx="10" cy="14" r="1.5" fill="#fff"/></svg>
+                  </div>
+                  <div style="width:1px;background:#EEEEEE;flex:1;margin-top:4px;"></div>
+                </div>
+                <div style="padding:0 0 32px 24px;">
+                  <p style="margin:0 0 6px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Step 03</p>
+                  <h3 style="margin:0 0 8px;font-size:17px;font-weight:800;color:#0f1f3d;">Cloud Platform</h3>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">All data streams converge in Medo's cloud platform — unified dashboards, historical trend analysis, 3D slope deformation visualization, and regulatory compliance reporting.</p>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:48px 1fr;gap:0;align-items:stretch;">
+                <div style="display:flex;flex-direction:column;align-items:center;">
+                  <div style="width:40px;height:40px;background:#0f1f3d;border:1px solid #0056D6;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg viewBox="0 0 20 20" fill="none" style="width:18px;height:18px;"><path d="M10 3L18 15H2L10 3Z" stroke="#0056D6" stroke-width="1.5" stroke-linejoin="miter"/><path d="M10 9v3" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="10" cy="13.5" r="0.8" fill="#0056D6"/></svg>
+                  </div>
+                </div>
+                <div style="padding:0 0 0 24px;">
+                  <p style="margin:0 0 6px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Step 04</p>
+                  <h3 style="margin:0 0 8px;font-size:17px;font-weight:800;color:#0f1f3d;">Real-time Warning</h3>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Three-tier automated alerts (Attention / Warning / Emergency) trigger simultaneous SMS, email, and platform notifications — giving operators the maximum possible response window.</p>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 03 Core Advantages -->
+          <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">03 / Core Advantages</span>
+            <h2 class="tl-section-title">Why Medo Pit-Watch</h2>
+            <p class="tl-section-desc">Purpose-built for the open-pit environment — not adapted from generic IoT platforms.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;">
+              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;">
+                <div style="width:40px;height:40px;color:#0056D6;">
+                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.8"/><circle cx="20" cy="20" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M20 6v4M20 30v4M6 20h4M30 20h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <div>
+                  <h3 style="margin:0 0 8px;font-size:15px;font-weight:800;color:#0f1f3d;">All-weather Millimeter Precision</h3>
+                  <p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Phase-differential GNSS processing delivers ±2mm accuracy in rain, dust, and extreme temperatures — continuous 24/7 without manual intervention.</p>
+                </div>
+              </div>
+              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;">
+                <div style="width:40px;height:40px;color:#0056D6;">
+                  <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="10" width="24" height="18" stroke="currentColor" stroke-width="1.8"/><path d="M14 10V7M26 10V7M8 18h24" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><path d="M16 24l3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+                </div>
+                <div>
+                  <h3 style="margin:0 0 8px;font-size:15px;font-weight:800;color:#0f1f3d;">Automated Remote Monitoring</h3>
+                  <p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Fully unattended operation with solar power and satellite uplink backup. Alerts fire automatically — no personnel required in hazardous slope zones.</p>
+                </div>
+              </div>
+              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;">
+                <div style="width:40px;height:40px;color:#0056D6;">
+                  <svg viewBox="0 0 40 40" fill="none"><path d="M20 8l14 6v8c0 7-5.5 12-14 14C11.5 34 6 29 6 22v-8L20 8Z" stroke="currentColor" stroke-width="1.8"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+                </div>
+                <div>
+                  <h3 style="margin:0 0 8px;font-size:15px;font-weight:800;color:#0f1f3d;">Blasting-resistant Data Acquisition</h3>
+                  <p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Hardware hardened to IP67 with vibration-tolerant enclosures. Data acquisition resumes within seconds of blast events — no data gaps during production blasting.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 Related Products -->
+          <section id="products" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">04 / Related Products</span>
+            <h2 class="tl-section-title">Recommended Hardware</h2>
+            <p class="tl-section-desc">Each component is field-validated for open-pit environments and integrates natively with the Medo cloud platform.</p>
+            <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;">
+
+              <div style="display:grid;grid-template-columns:200px 1fr;border:1px solid #EEEEEE;overflow:hidden;">
+                <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:24px;">
+                  <svg viewBox="0 0 80 80" fill="none" style="width:64px;height:64px;opacity:0.7;"><circle cx="40" cy="40" r="24" stroke="#0056D6" stroke-width="1.5"/><circle cx="40" cy="40" r="8" stroke="#0056D6" stroke-width="1.5"/><path d="M40 16v8M40 56v8M16 40h8M56 40h8" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <div style="padding:24px 28px;">
+                  <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">GNSS Station</p>
+                  <h3 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#0f1f3d;">MG-300 GNSS Monitoring Station</h3>
+                  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;">
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Multi-constellation: GPS / BDS / GLONASS / Galileo</li>
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Horizontal accuracy: ±2mm, Vertical: ±3mm</li>
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Update rate: 1Hz–20Hz, IP67 rated</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:200px 1fr;border:1px solid #EEEEEE;overflow:hidden;">
+                <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:24px;">
+                  <svg viewBox="0 0 80 80" fill="none" style="width:64px;height:64px;opacity:0.7;"><rect x="28" y="16" width="24" height="32" stroke="#0056D6" stroke-width="1.5"/><path d="M40 48v16M28 64h24M34 24h12M34 32h12M34 40h12" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <div style="padding:24px 28px;">
+                  <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Total Station</p>
+                  <h3 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#0f1f3d;">MT-500 Robotic Total Station</h3>
+                  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;">
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Angular accuracy: 1″, Distance: ±1mm+1ppm</li>
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Automated prism tracking, 360° scanning</li>
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Compatible with Leica-standard prism arrays</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:200px 1fr;border:1px solid #EEEEEE;overflow:hidden;">
+                <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:24px;">
+                  <svg viewBox="0 0 80 80" fill="none" style="width:64px;height:64px;opacity:0.7;"><path d="M16 64L32 32l12 16 12-24 8 20" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><path d="M16 64h48" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="32" cy="32" r="3" fill="#0056D6"/><circle cx="44" cy="48" r="3" fill="#0056D6"/></svg>
+                </div>
+                <div style="padding:24px 28px;">
+                  <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Satellite Data</p>
+                  <h3 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#0f1f3d;">InSAR Data Integration Module</h3>
+                  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;">
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Sentinel-1 / ALOS-2 satellite data ingestion</li>
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Wide-area deformation mapping at 5mm sensitivity</li>
+                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Fused with ground GNSS for cross-validation</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 05 Success Stories -->
+          <section id="cases" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">05 / Success Stories</span>
+            <h2 class="tl-section-title">Proven in the Field</h2>
+            <p class="tl-section-desc">Real deployments. Zero accidents.</p>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #EEEEEE;overflow:hidden;">
+              <div style="background:#0f1f3d;min-height:320px;display:flex;align-items:center;justify-content:center;padding:32px;">
+                <svg viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;opacity:0.65;">
+                  <path d="M10 170 L60 90 L100 120 L150 50 L200 80 L230 170Z" stroke="#0056D6" stroke-width="1.5" fill="rgba(0,86,214,0.08)"/>
+                  <path d="M10 170 L230 170" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                  <circle cx="150" cy="50" r="5" fill="#0056D6"/>
+                  <path d="M150 50 L170 30" stroke="#0056D6" stroke-width="1" stroke-dasharray="3 2"/>
+                  <text x="172" y="28" fill="rgba(255,255,255,0.55)" font-size="9" font-family="sans-serif">Alert Triggered</text>
+                  <text x="8" y="185" fill="rgba(255,255,255,0.3)" font-size="8" font-family="sans-serif">Shanxi Open-Pit Mine — Displacement Timeline</text>
+                </svg>
+              </div>
+              <div style="padding:36px 32px;display:flex;flex-direction:column;gap:20px;">
+                <div>
+                  <span style="display:block;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#0056D6;margin-bottom:10px;">Primary Case Study · 2023</span>
+                  <h3 style="margin:0;font-size:20px;font-weight:800;color:#0f1f3d;line-height:1.3;">Shanxi Huge Open-Pit Mine<br>Slope Safety Project</h3>
+                </div>
+                <div>
+                  <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Challenge</p>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">A 380m deep open-pit coal mine in Shanxi Province faced recurring bench instability events. Blasting cycles were accelerating micro-fracture propagation across three critical slope sectors, with no real-time visibility into displacement rates.</p>
+                </div>
+                <div>
+                  <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Solution</p>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Medo deployed 24 GNSS monitoring stations, 3 robotic total stations, and InSAR data integration across 2.1 km of active slope face. Edge gateways provided continuous data transmission through blasting windows.</p>
+                </div>
+                <div>
+                  <p style="margin:0 0 10px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Results</p>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    <div style="border:1px solid #EEEEEE;padding:12px;">
+                      <div style="font-size:22px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">22 days</div>
+                      <div style="font-size:12px;color:#9ca3af;margin-top:3px;line-height:1.4;">Early warning before visible slope cracking</div>
+                    </div>
+                    <div style="border:1px solid #EEEEEE;padding:12px;">
+                      <div style="font-size:22px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">0</div>
+                      <div style="font-size:12px;color:#9ca3af;margin-top:3px;line-height:1.4;">Accidents during 18-month monitoring period</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Next solution -->
+          <a class="tl-next" href="solutions-mining-main.html" aria-label="Back to Mining Solutions">
+            <div style="position:relative;z-index:1;">
+              <span class="tl-next-label">Back to</span>
+              <p class="tl-next-title">Mining Safety Solutions</p>
+            </div>
+            <span class="tl-next-arrow">
+              View All Modules
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
+
+        </div><!-- /tl-content -->
+      </div><!-- /tl-body -->
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+
+      // Scrollspy
+      (function(){
+        var links = document.querySelectorAll('.tl-nav-link');
+        var ids = ['pain-points','overview','advantages','products','cases'];
+        var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        if(!sections.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){
+              links.forEach(function(a){ a.classList.remove('is-active'); });
+              var active = document.querySelector('.tl-nav-link[href="#'+e.target.id+'"]');
+              if(active) active.classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(function(s){ obs.observe(s); });
+      })();
+    </script>
+  </body>
+</html>
