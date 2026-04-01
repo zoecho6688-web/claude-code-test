@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Medo Goaf & Subsidence Safety Monitoring: specialized sensing for underground void stability and surface subsidence. Protecting communities and infrastructure from mining-induced collapse." />
+    <title>Goaf & Subsidence Area Safety Monitoring | Medo</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .tl-breadcrumb { background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-breadcrumb-inner {
+        display: flex; align-items: center; gap: 8px;
+        height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap;
+      }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* ── Hero ── */
+      .tl-hero {
+        display: grid; grid-template-columns: 1fr 1fr;
+        min-height: clamp(260px, 42vh, 460px);
+        background: #fff; border-bottom: 1px solid #EEEEEE;
+      }
+      .tl-hero-left {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 48px 48px 48px 0;
+      }
+      .tl-eyebrow {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 16px;
+      }
+      .tl-heading {
+        margin: 0 0 20px;
+        font-size: clamp(28px, 3.8vw, 48px);
+        font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; color: #0f1f3d;
+      }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl-hero-right::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        z-index: 1; pointer-events: none;
+      }
+
+      /* ── Body layout: sticky sidebar + content ── */
+      .tl-body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 0;
+      }
+
+      /* ── Sticky anchor nav ── */
+      .tl-sidenav {
+        position: sticky;
+        top: 52px;
+        height: calc(100vh - 52px);
+        padding: 56px 32px 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-right: 1px solid #EEEEEE;
+      }
+      .tl-sidenav-label {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px;
+      }
+      .tl-nav-link {
+        display: block;
+        padding: 9px 0;
+        font-size: 13px; font-weight: 500;
+        color: #999999;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
+        line-height: 1.3;
+      }
+      .tl-nav-link .tl-nav-num {
+        display: block; font-size: 9px; font-weight: 700;
+        letter-spacing: 0.10em; color: #c0c8d4;
+        margin-bottom: 2px; transition: color 0.3s ease;
+      }
+      .tl-nav-link:hover { color: #0056D6; }
+      .tl-nav-link:hover .tl-nav-num { color: #0056D6; }
+      .tl-nav-link:hover { border-bottom-color: #0056D6; }
+      .tl-nav-link.is-active { color: #0056D6; border-bottom-color: #0056D6; font-weight: 700; }
+      .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
+
+      /* ── Content area ── */
+      .tl-content { padding: 64px 0 80px 56px; }
+
+      .tl-section {
+        padding-bottom: 96px;
+        border-bottom: 1px solid #EEEEEE;
+        margin-bottom: 80px;
+      }
+      .tl-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
+
+      .tl-section-label {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 14px;
+      }
+      .tl-section-title {
+        margin: 0 0 20px;
+        font-size: clamp(22px, 2.8vw, 34px);
+        font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d;
+      }
+      .tl-section-desc { margin: 0 0 32px; font-size: 15px; line-height: 1.75; color: #4a5568; }
+
+      /* pain points grid */
+      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-pain-card {
+        border: 1px solid #EEEEEE; padding: 24px 22px;
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
+      .tl-pain-icon svg { width: 100%; height: 100%; }
+      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
+      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
+
+      /* solution overview: hero row */
+      .tl-overview-row {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 40px; align-items: center; margin-bottom: 32px;
+      }
+      .tl-img-wrap { position: relative; background: #0f1f3d; overflow: hidden; }
+      .tl-img-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+      .tl-img-label {
+        position: absolute; bottom: 0; left: 0; right: 0;
+        background: rgba(4,26,58,0.72); padding: 10px 16px;
+        display: flex; flex-direction: column; gap: 2px;
+      }
+      .tl-img-label-sub {
+        font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase; color: rgba(255,255,255,0.55);
+      }
+      .tl-img-label-title { font-size: 14px; font-weight: 700; color: #fff; }
+
+      /* feature cards */
+      .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-feat-card { border: 1px solid #EEEEEE; padding: 28px 24px; }
+      .tl-feat-card--dark { background: #0f1f3d; border-color: #0f1f3d; }
+      .tl-feat-num {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 10px;
+      }
+      .tl-feat-card--dark .tl-feat-num { color: rgba(83,210,255,0.8); }
+      .tl-feat-title { margin: 0 0 10px; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-feat-card--dark .tl-feat-title { color: #fff; }
+      .tl-feat-desc { margin: 0 0 20px; font-size: 13px; line-height: 1.7; color: #4a5568; }
+      .tl-feat-card--dark .tl-feat-desc { color: rgba(255,255,255,0.6); }
+
+      .tl-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+      .tl-metric {
+        border: 1px solid rgba(7,48,103,0.10); padding: 12px;
+        background: #f7faff; display: flex; flex-direction: column; gap: 4px;
+      }
+      .tl-metric-label {
+        font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+        text-transform: uppercase; color: #9ca3af;
+      }
+      .tl-metric-val { font-size: 18px; font-weight: 900; color: #0f1f3d; }
+
+      .tl-specs { display: flex; flex-direction: column; }
+      .tl-spec-row {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.10);
+      }
+      .tl-spec-row:last-child { border-bottom: none; }
+      .tl-spec-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
+      .tl-spec-val { font-size: 16px; font-weight: 800; color: #fff; }
+
+      /* advantages */
+      .tl-adv-list { display: flex; flex-direction: column; gap: 12px; }
+      .tl-adv-item {
+        display: grid; grid-template-columns: 48px 1fr;
+        gap: 20px; align-items: start;
+        border: 1px solid #EEEEEE; padding: 20px 24px;
+      }
+      .tl-adv-num {
+        font-size: 28px; font-weight: 900; color: #EEEEEE;
+        letter-spacing: -0.04em; line-height: 1;
+      }
+      .tl-adv-title { margin: 0 0 6px; font-size: 15px; font-weight: 800; color: #0f1f3d; }
+      .tl-adv-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; }
+
+      /* products */
+      .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-prod-card {
+        border: 1px solid #EEEEEE; padding: 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        text-decoration: none; color: inherit;
+        transition: border-color 200ms, box-shadow 200ms;
+      }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+      .tl-prod-cat {
+        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+        text-transform: uppercase; color: #0056D6;
+      }
+      .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-prod-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; flex: 1; }
+      .tl-prod-link {
+        font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+        text-transform: uppercase; color: #0056D6;
+        border-bottom: 1px solid #0056D6; padding-bottom: 1px;
+        align-self: flex-start; margin-top: 8px;
+      }
+
+      /* case study */
+      .tl-case {
+        border: 1px solid #EEEEEE; overflow: hidden;
+      }
+      .tl-case-header {
+        background: #0f1f3d; padding: 28px 32px;
+        display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+      }
+      .tl-case-tag {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
+        text-transform: uppercase; color: rgba(83,210,255,0.8); margin-bottom: 10px; display: block;
+      }
+      .tl-case-title { margin: 0; font-size: 20px; font-weight: 800; color: #fff; line-height: 1.3; }
+      .tl-case-year {
+        font-size: 48px; font-weight: 900; color: rgba(255,255,255,0.12);
+        letter-spacing: -0.04em; line-height: 1; flex-shrink: 0;
+      }
+      .tl-case-body { padding: 28px 32px; }
+      .tl-case-desc { margin: 0 0 24px; font-size: 14px; line-height: 1.75; color: #4a5568; }
+      .tl-case-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+      .tl-case-stat { border: 1px solid #EEEEEE; padding: 16px; }
+      .tl-case-stat-val { font-size: 26px; font-weight: 900; color: #0056D6; letter-spacing: -0.02em; }
+      .tl-case-stat-label { font-size: 12px; color: #9ca3af; margin-top: 4px; line-height: 1.4; }
+
+      /* next solution bar */
+      .tl-next {
+        display: flex; align-items: center; justify-content: space-between;
+        border: 1px solid #EEEEEE; padding: 24px 32px;
+        text-decoration: none; color: inherit;
+        position: relative; overflow: hidden; transition: border-color 200ms;
+        margin-top: 64px;
+      }
+      .tl-next::before {
+        content: ''; position: absolute; inset: 0;
+        background: #0056D6; transform: translateX(-100%);
+        transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next-label {
+        position: relative; z-index: 1; font-size: 11px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next-title {
+        position: relative; z-index: 1; font-size: 20px; font-weight: 800;
+        letter-spacing: -0.02em; color: #0f1f3d; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next-arrow {
+        position: relative; z-index: 1; display: flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; border: 1px solid #0056D6; padding: 10px 20px;
+        transition: color 200ms, background 200ms, border-color 200ms;
+      }
+      .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
+        .tl-hero-left { padding: 48px 0 32px; }
+        .tl-hero-right { height: 260px; }
+        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+
+        /* horizontal scrollable anchor bar */
+        .tl-body { grid-template-columns: 1fr; padding: 0; }
+        .tl-sidenav {
+          position: sticky; top: 52px; height: auto;
+          flex-direction: row; gap: 0;
+          padding: 0; border-right: none; border-bottom: 1px solid #EEEEEE;
+          overflow-x: auto; overflow-y: visible;
+          background: #fff; z-index: 10;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .tl-sidenav::-webkit-scrollbar { display: none; }
+        .tl-sidenav-label { display: none; }
+        .tl-nav-link {
+          flex-shrink: 0; padding: 14px 16px;
+          border-bottom: 2px solid transparent; white-space: nowrap;
+        }
+        .tl-nav-link .tl-nav-num { display: none; }
+        .tl-nav-link.is-active { border-bottom-color: #0056D6; }
+        .tl-content { padding: 40px 20px 60px; }
+        .tl-pain-grid { grid-template-columns: 1fr; }
+        .tl-overview-row { grid-template-columns: 1fr; }
+        .tl-feat-row { grid-template-columns: 1fr; }
+        .tl-metrics { grid-template-columns: 1fr 1fr; }
+        .tl-prod-grid { grid-template-columns: 1fr; }
+        .tl-case-stats { grid-template-columns: 1fr; }
+        .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Medo Home">
+          <img class="brand-logo" src="images/logo.png" alt="Medo" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link active" href="solutions.html">Solutions</a>
+          <a class="nav-link" href="cases.html">Cases</a>
+          <a class="nav-link" href="resources.html">Support</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link" href="products.html">Products</a>
+          <a class="nav-drawer-link" href="solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="cases.html">Cases</a>
+          <a class="nav-drawer-link" href="resources.html">Support</a>
+          <a class="nav-drawer-link" href="about.html">About</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="tl-breadcrumb" aria-label="Breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="solutions.html">Solutions</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="solutions-mining-main.html">Mining</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="tl-breadcrumb-current" aria-current="page">Goaf Stability</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="tl-hero" aria-label="Goaf Stability Monitoring hero">
+      <div class="container" style="display:contents;">
+        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <span class="tl-eyebrow">Precision Instrumentation</span>
+          <h1 class="tl-heading">Goaf &amp; Subsidence Area<br><span class="tl-heading-blue">Safety Monitoring</span></h1>
+          <p class="tl-hero-desc">Specialized sensing for underground void stability and surface subsidence. Protecting communities and infrastructure from mining-induced collapse.</p>
+        </div>
+        <div class="tl-hero-right">
+          <img src="images/hero-mining.png" alt="Goaf subsidence monitoring" />
+        </div>
+      </div>
+    </section>
+
+    <main id="main" role="main">
+      <div class="tl-body">
+
+        <!-- Sticky sidebar nav -->
+        <aside class="tl-sidenav" aria-label="Page sections">
+          <span class="tl-sidenav-label">On this page</span>
+          <a class="tl-nav-link" href="#pain-points">
+            <span class="tl-nav-num">01</span>Industry Pain Points
+          </a>
+          <a class="tl-nav-link" href="#overview">
+            <span class="tl-nav-num">02</span>Solution Overview
+          </a>
+          <a class="tl-nav-link" href="#advantages">
+            <span class="tl-nav-num">03</span>Core Advantages
+          </a>
+          <a class="tl-nav-link" href="#products">
+            <span class="tl-nav-num">04</span>Related Products
+          </a>
+          <a class="tl-nav-link" href="#cases">
+            <span class="tl-nav-num">05</span>Success Stories
+          </a>
+        </aside>
+
+        <!-- Content -->
+        <div class="tl-content">
+
+          <!-- 01 Pain Points -->
+          <section id="pain-points" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">01 / Industry Pain Points</span>
+            <h2 class="tl-section-title">Why Goaf Zones Are Dangerous</h2>
+            <p class="tl-section-desc">Underground mining creates vast hidden voids that destabilize the rock mass above. Surface subsidence develops slowly — then suddenly — with devastating consequences for infrastructure and communities.</p>
+            <div class="tl-pain-grid">
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L32 28H4L18 4Z" stroke="#0056D6" stroke-width="1.8" stroke-linejoin="miter"/><path d="M18 14v8" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/><circle cx="18" cy="25" r="1.2" fill="#0056D6"/></svg>
+                </div>
+                <h3 class="tl-pain-title">Sudden Void Collapse</h3>
+                <p class="tl-pain-desc">Goaf roofs can fail without warning. Traditional inspection cannot detect the micro-deformation signals that precede catastrophic collapse events.</p>
+              </div>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><path d="M4 28L12 16l6 6 6-10 8 12" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+                </div>
+                <h3 class="tl-pain-title">Progressive Surface Subsidence</h3>
+                <p class="tl-pain-desc">Millimeter-scale surface settlement accumulates over months. Periodic survey methods miss the early displacement trends that signal accelerating subsidence.</p>
+              </div>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" stroke="#0056D6" stroke-width="1.8"/><path d="M18 10v8l5 3" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="tl-pain-title">Delayed Community Warning</h3>
+                <p class="tl-pain-desc">Without automated alerting, subsidence events affecting roads, buildings, and pipelines are only discovered after visible damage — long after the safe evacuation window has closed.</p>
+              </div>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><rect x="4" y="8" width="28" height="20" stroke="#0056D6" stroke-width="1.8"/><path d="M4 16h28M12 8v20" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="tl-pain-title">Fragmented Monitoring Data</h3>
+                <p class="tl-pain-desc">Surface GNSS, InSAR, and underground stress data collected in isolation prevents holistic goaf risk assessment and delays critical safety decisions.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 Solution Overview -->
+          <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">02 / Solution Overview</span>
+            <h2 class="tl-section-title">Integrated Monitoring Architecture</h2>
+            <p class="tl-section-desc">Medo's tailings dam solution fuses GNSS displacement arrays, piezometer networks, inclinometers, and rainfall gauges into a single real-time intelligence platform.</p>
+            <div class="tl-overview-row">
+              <div class="tl-img-wrap">
+                <img src="images-mine/minetailing.png" alt="Tailings dam monitoring facility" />
+                <div class="tl-img-label">
+                  <span class="tl-img-label-sub">Sector View</span>
+                  <span class="tl-img-label-title">A-01 Tailings Facility</span>
+                </div>
+              </div>
+              <div>
+                <p style="font-size:14px;line-height:1.8;color:#4a5568;margin:0 0 20px;">The system deploys a dense network of GNSS reference and rover stations across the dam crest and downstream slope, providing continuous 3D displacement vectors at sub-millimeter resolution. Piezometers embedded at multiple depths feed pore pressure data in real time to the cloud platform.</p>
+                <p style="font-size:14px;line-height:1.8;color:#4a5568;margin:0;">Multi-level early warning thresholds trigger automated SMS, email, and platform alerts — giving operators minutes, not hours, to respond.</p>
+              </div>
+            </div>
+            <div class="tl-feat-row">
+              <div class="tl-feat-card">
+                <span class="tl-feat-num">Feature 01</span>
+                <h3 class="tl-feat-title">Real-time Saturation Analysis</h3>
+                <p class="tl-feat-desc">Multi-sensor integration of piezometers, inclinometers, and rain gauges with AI-driven threshold prediction for dam wall stability.</p>
+                <div class="tl-metrics">
+                  <div class="tl-metric"><span class="tl-metric-label">Pore Pressure</span><span class="tl-metric-val">42.8 kPa</span></div>
+                  <div class="tl-metric"><span class="tl-metric-label">Tilt Delta</span><span class="tl-metric-val">0.04°</span></div>
+                  <div class="tl-metric"><span class="tl-metric-label">Saturation</span><span class="tl-metric-val">18%</span></div>
+                </div>
+              </div>
+              <div class="tl-feat-card tl-feat-card--dark">
+                <span class="tl-feat-num">Feature 02</span>
+                <h3 class="tl-feat-title">GNSS Positioning Infrastructure</h3>
+                <p class="tl-feat-desc">Continuous phase-differential processing for absolute spatial reference in high-dynamic saturation zones.</p>
+                <div class="tl-specs">
+                  <div class="tl-spec-row"><span class="tl-spec-label">Latency</span><span class="tl-spec-val">140ms</span></div>
+                  <div class="tl-spec-row"><span class="tl-spec-label">Accuracy</span><span class="tl-spec-val">±2mm</span></div>
+                  <div class="tl-spec-row"><span class="tl-spec-label">Constellation</span><span class="tl-spec-val">42 SVs</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 03 Core Advantages -->
+          <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">03 / Core Advantages</span>
+            <h2 class="tl-section-title">Why Medo</h2>
+            <p class="tl-section-desc">Purpose-built for the harshest mine environments — not adapted from generic IoT platforms.</p>
+            <div class="tl-adv-list">
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">01</span>
+                <div><h3 class="tl-adv-title">Sub-millimeter GNSS Precision</h3><p class="tl-adv-desc">Phase-differential processing delivers ±2mm horizontal accuracy — an order of magnitude beyond standard GPS, enabling detection of deformation events weeks before visible cracking.</p></div>
+              </div>
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">02</span>
+                <div><h3 class="tl-adv-title">Automated Multi-level Early Warning</h3><p class="tl-adv-desc">Three-tier alert thresholds (attention / warning / emergency) trigger simultaneous notifications across SMS, email, and platform dashboard — no manual intervention required.</p></div>
+              </div>
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">03</span>
+                <div><h3 class="tl-adv-title">Unified Data Platform</h3><p class="tl-adv-desc">All sensor streams — GNSS, piezometer, inclinometer, rainfall — converge in a single cloud dashboard with historical trend analysis and regulatory export tools.</p></div>
+              </div>
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">04</span>
+                <div><h3 class="tl-adv-title">Extreme Environment Hardening</h3><p class="tl-adv-desc">IP67-rated enclosures, solar + battery power, and satellite uplink backup ensure continuous operation through flooding, power outages, and communication blackouts.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 Related Products -->
+          <section id="products" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">04 / Related Products</span>
+            <h2 class="tl-section-title">Recommended Hardware</h2>
+            <p class="tl-section-desc">Each component is field-validated for tailings dam environments and integrates natively with the Medo cloud platform.</p>
+            <div class="tl-prod-grid">
+              <a class="tl-prod-card" href="products.html">
+                <span class="tl-prod-cat">GNSS Sensor</span>
+                <h3 class="tl-prod-name">MG-200 GNSS Rover</h3>
+                <p class="tl-prod-desc">High-precision multi-constellation receiver with ±2mm horizontal accuracy and 140ms update latency. Designed for continuous outdoor deployment.</p>
+                <span class="tl-prod-link">View Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <span class="tl-prod-cat">Pore Pressure</span>
+                <h3 class="tl-prod-name">MP-100 Vibrating Wire Piezometer</h3>
+                <p class="tl-prod-desc">Embedded pore pressure sensor with 0.01 kPa resolution and corrosion-resistant stainless housing for long-term dam wall installation.</p>
+                <span class="tl-prod-link">View Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <span class="tl-prod-cat">Tilt Monitoring</span>
+                <h3 class="tl-prod-name">MI-50 MEMS Inclinometer</h3>
+                <p class="tl-prod-desc">Biaxial tilt sensor with 0.001° resolution for detecting sub-visible slope deformation in dam crest and downstream face installations.</p>
+                <span class="tl-prod-link">View Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <span class="tl-prod-cat">Data Logger</span>
+                <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
+                <p class="tl-prod-desc">Solar-powered edge logger with 4G/satellite dual uplink, local SD storage, and support for up to 32 sensor channels per unit.</p>
+                <span class="tl-prod-link">View Specs →</span>
+              </a>
+            </div>
+          </section>
+
+          <!-- 05 Success Stories -->
+          <section id="cases" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">05 / Success Stories</span>
+            <h2 class="tl-section-title">Proven in the Field</h2>
+            <p class="tl-section-desc">Real deployments. Real outcomes.</p>
+            <div class="tl-case">
+              <div class="tl-case-header">
+                <div>
+                  <span class="tl-case-tag">Primary Case Study</span>
+                  <h3 class="tl-case-title">Guizhou Province Tailings Dam<br>Landslide Prevention — 2022</h3>
+                </div>
+                <span class="tl-case-year" aria-hidden="true">2022</span>
+              </div>
+              <div class="tl-case-body">
+                <p class="tl-case-desc">A large phosphate tailings facility in Guizhou Province deployed Medo's integrated monitoring system across 3.2 km of dam crest following a near-miss saturation event. Within 6 months, the system detected an accelerating displacement anomaly on the northern slope — 18 days before any visible surface cracking appeared. Automated Level-2 alerts triggered an immediate drawdown protocol, preventing an estimated 4.2 million m³ tailings release.</p>
+                <div class="tl-case-stats">
+                  <div class="tl-case-stat">
+                    <div class="tl-case-stat-val">18 days</div>
+                    <div class="tl-case-stat-label">Early warning lead time before visible failure signs</div>
+                  </div>
+                  <div class="tl-case-stat">
+                    <div class="tl-case-stat-val">4.2M m³</div>
+                    <div class="tl-case-stat-label">Estimated tailings release prevented</div>
+                  </div>
+                  <div class="tl-case-stat">
+                    <div class="tl-case-stat-val">±1.8mm</div>
+                    <div class="tl-case-stat-label">GNSS displacement accuracy achieved on-site</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Next solution -->
+          <a class="tl-next" href="solutions-mining-slope.html" aria-label="Next: Open-pit Mine Slope Safety Monitoring Solution">
+            <div style="position:relative;z-index:1;">
+              <span class="tl-next-label">Next Solution</span>
+              <p class="tl-next-title">Open-pit Mine Slope Safety</p>
+            </div>
+            <span class="tl-next-arrow">
+              Explore Module
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
+
+        </div><!-- /tl-content -->
+      </div><!-- /tl-body -->
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+
+      // Scrollspy
+      (function(){
+        var links = document.querySelectorAll('.tl-nav-link');
+        var ids = ['pain-points','overview','advantages','products','cases'];
+        var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        if(!sections.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){
+              links.forEach(function(a){ a.classList.remove('is-active'); });
+              var active = document.querySelector('.tl-nav-link[href="#'+e.target.id+'"]');
+              if(active) active.classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(function(s){ obs.observe(s); });
+      })();
+    </script>
+  </body>
+</html>
