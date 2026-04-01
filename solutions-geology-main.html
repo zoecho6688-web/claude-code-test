@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Medo Geological Hazard Solutions: precision sensing for landslides, debris flows, and rockfall. Maximizing the Golden Warning Time to protect lives and infrastructure." />
+    <title>Geological Hazard Monitoring Solutions | Medo</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Hero ── */
+      .mm-hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: clamp(260px, 45vh, 480px);
+        background: #fff;
+        border-bottom: 1px solid rgba(7,48,103,0.10);
+      }
+      .mm-hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 48px 48px 48px 0;
+      }
+      .mm-hero-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0056D6;
+        margin-bottom: 20px;
+      }
+      .mm-hero-title {
+        margin: 0 0 24px;
+        font-size: clamp(36px, 4.5vw, 60px);
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1.0;
+        color: #0f1f3d;
+      }
+      .mm-hero-desc {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.75;
+        color: #4a5568;
+        max-width: 48ch;
+      }
+      .mm-hero-right {
+        position: relative;
+        overflow: hidden;
+        background: #0f1f3d;
+      }
+      .mm-hero-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      .mm-hero-right::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 30%);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* ── Breadcrumb ── */
+      .mm-breadcrumb {
+        background: #fff;
+        border-bottom: 1px solid #EEEEEE;
+      }
+      .mm-breadcrumb-inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 48px;
+        font-size: 15px;
+        color: #9ca3af;
+        white-space: nowrap;
+      }
+      .mm-breadcrumb a {
+        text-decoration: none;
+        color: #9ca3af;
+        transition: color 150ms;
+      }
+      .mm-breadcrumb a:hover { color: #0056D6; }
+      .mm-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .mm-breadcrumb-current {
+        color: #0056D6;
+        font-weight: 700;
+      }
+
+      /* ── Bars section ── */
+      .mm-bars-section {
+        background: #ffffff;
+        padding: 72px 0 100px;
+      }
+      .mm-bars-header { margin-bottom: 48px; }
+      .mm-bars-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0056D6;
+        margin-bottom: 12px;
+      }
+      .mm-bars-title {
+        margin: 0 0 12px;
+        font-size: clamp(26px, 3vw, 36px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #0f1f3d;
+      }
+      .mm-bars-desc {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.7;
+        color: #4a5568;
+        max-width: 60ch;
+      }
+
+      /* Bar list */
+      .mm-bar-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* Each bar is the clickable anchor */
+      .mm-bar {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        height: 180px;
+        border: 1px solid #EEEEEE;
+        background: #ffffff;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Blue overlay slides in from left */
+      .mm-bar::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #0056D6;
+        transform: translateX(-100%);
+        transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+      .mm-bar:hover::before { transform: translateX(0); }
+
+      /* Image placeholder (left 30%) */
+      .mm-bar-img {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        border-right: 1px solid #EEEEEE;
+        transition: border-color 420ms;
+      }
+      .mm-bar-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .mm-bar-img-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f0f4f8;
+        transition: background 420ms;
+      }
+      .mm-bar-img-placeholder svg {
+        width: 32px;
+        height: 32px;
+        color: #b0bec5;
+        transition: color 420ms;
+      }
+      .mm-bar:hover .mm-bar-img { border-color: transparent; }
+      .mm-bar:hover .mm-bar-img-placeholder { background: rgba(255,255,255,0.12); }
+      .mm-bar:hover .mm-bar-img-placeholder svg { color: rgba(255,255,255,0.45); }
+
+      /* Right content */
+      .mm-bar-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px 0 52px;
+        gap: 32px;
+      }
+      .mm-bar-title {
+        margin: 0;
+        font-size: clamp(18px, 2.2vw, 28px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #0f1f3d;
+        line-height: 1.2;
+        transition: color 200ms;
+      }
+      .mm-bar:hover .mm-bar-title { color: #ffffff; }
+
+      .mm-bar-btn {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0056D6;
+        border: 1px solid #0056D6;
+        padding: 13px 26px;
+        background: transparent;
+        white-space: nowrap;
+        transition: color 200ms, border-color 200ms, background 200ms;
+      }
+      .mm-bar:hover .mm-bar-btn {
+        color: #0056D6;
+        border-color: #ffffff;
+        background: #ffffff;
+      }
+      .mm-bar-btn svg {
+        width: 12px;
+        height: 12px;
+        transition: transform 200ms;
+      }
+      .mm-bar:hover .mm-bar-btn svg { transform: translateX(3px); }
+
+      /* Bar number */
+      .mm-bar-num {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(0,86,214,0.45);
+        z-index: 2;
+        transition: color 200ms;
+      }
+      .mm-bar:hover .mm-bar-num { color: rgba(255,255,255,0.55); }
+
+      @media (max-width: 768px) {
+        .mm-hero { grid-template-columns: 1fr; min-height: auto; }
+        .mm-hero-left { padding: 48px 0 32px; }
+        .mm-hero-right { height: 260px; }
+        .mm-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+        .mm-bar { height: auto; min-height: 140px; }
+        .mm-bar-content { padding: 20px 20px 20px 24px; flex-wrap: wrap; gap: 16px; }
+        .mm-bar-title { font-size: 16px; }
+      }
+      @media (max-width: 540px) {
+        .mm-bar { grid-template-columns: 1fr; height: auto; }
+        .mm-bar-img { height: 120px; border-right: none; border-bottom: 1px solid #EEEEEE; }
+        .mm-bar-content { padding: 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Medo Home">
+          <img class="brand-logo" src="images/logo.png" alt="Medo" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link active" href="solutions.html">Solutions</a>
+          <a class="nav-link" href="cases.html">Cases</a>
+          <a class="nav-link" href="resources.html">Support</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect y="3" width="20" height="2" fill="currentColor"/>
+            <rect y="9" width="20" height="2" fill="currentColor"/>
+            <rect y="15" width="20" height="2" fill="currentColor"/>
+          </svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+          </svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link" href="products.html">Products</a>
+          <a class="nav-drawer-link" href="solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="cases.html">Cases</a>
+          <a class="nav-drawer-link" href="resources.html">Support</a>
+          <a class="nav-drawer-link" href="about.html">About</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" role="main">
+
+      <!-- ── Hero ── -->
+      <section class="mm-hero" aria-label="Geological Hazard Monitoring Solutions hero">
+        <div class="container" style="display:contents;">
+          <div class="mm-hero-left" style="padding-left: max(20px, calc((100vw - 1120px) / 2));">
+            <span class="mm-hero-label">Precision Monitoring Ecosystem</span>
+            <h1 class="mm-hero-title">Geological Hazard<br>Monitoring Solutions.</h1>
+            <p class="mm-hero-desc">Precision sensing for landslides and debris flows. Maximizing the 'Golden Warning Time' to protect lives and infrastructure.</p>
+          </div>
+          <div class="mm-hero-right">
+            <img src="images/hero-tech.png" alt="Geological hazard slope monitoring infrastructure" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Breadcrumb ── -->
+      <nav class="mm-breadcrumb" aria-label="Breadcrumb">
+        <div class="container mm-breadcrumb-inner">
+          <a href="solutions.html">Solutions</a>
+          <span class="mm-breadcrumb-sep" aria-hidden="true">/</span>
+          <span class="mm-breadcrumb-current" aria-current="page">Geological Hazards</span>
+        </div>
+      </nav>
+
+      <!-- ── Horizontal Bars ── -->
+      <section class="mm-bars-section" aria-labelledby="mm-bars-title">
+        <div class="container">
+          <div class="mm-bars-header">
+            <span class="mm-bars-label">Geological Hazard Sub-Solutions</span>
+            <h2 class="mm-bars-title" id="mm-bars-title">Select a Monitoring Domain</h2>
+            <p class="mm-bars-desc">Three specialized monitoring systems, each engineered for the unique geodynamic demands of natural hazard environments.</p>
+          </div>
+
+          <div class="mm-bar-list" role="list">
+
+            <!-- Bar 1 -->
+            <a class="mm-bar" href="#" role="listitem" aria-label="Landslide Safety Monitoring Solution">
+              <span class="mm-bar-num">01</span>
+              <div class="mm-bar-img">
+                <div class="mm-bar-img-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M2 16L6 8l4 4 4-6 4 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+                </div>
+              </div>
+              <div class="mm-bar-content">
+                <h3 class="mm-bar-title">Landslide Safety Monitoring Solution</h3>
+                <span class="mm-bar-btn">
+                  Explore Module
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- Bar 2 -->
+            <a class="mm-bar" href="#" role="listitem" aria-label="Debris Flow & Flash Flood Monitoring Solution">
+              <span class="mm-bar-num">02</span>
+              <div class="mm-bar-img">
+                <div class="mm-bar-img-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M2 12c2-4 4-6 6-6s4 6 6 6 2-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><path d="M2 16c2-3 4-4 6-4s4 4 6 4 2-3 4-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" opacity="0.5"/></svg>
+                </div>
+              </div>
+              <div class="mm-bar-content">
+                <h3 class="mm-bar-title">Debris Flow &amp; Flash Flood Monitoring Solution</h3>
+                <span class="mm-bar-btn">
+                  Explore Module
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- Bar 3 -->
+            <a class="mm-bar" href="#" role="listitem" aria-label="Rockfall & Collapse Online Monitoring Solution">
+              <span class="mm-bar-num">03</span>
+              <div class="mm-bar-img">
+                <div class="mm-bar-img-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L18 16H2L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/><path d="M10 8v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><circle cx="10" cy="14" r="1" fill="currentColor"/></svg>
+                </div>
+              </div>
+              <div class="mm-bar-content">
+                <h3 class="mm-bar-title">Rockfall &amp; Collapse Online Monitoring Solution</h3>
+                <span class="mm-bar-btn">
+                  Explore Module
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo">
+              <img src="images/logowhite.png" alt="Medo" />
+            </div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg>
+              </div>
+              <div class="footer-icon" aria-label="Network">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg>
+              </div>
+              <div class="footer-icon" aria-label="Security">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols">
+              <a href="#">Privacy Protocol</a>
+              <a href="#">Security Compliance</a>
+              <a href="#">System Status</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation">
+              <a href="index.html">Home</a>
+              <a href="solutions.html">Solutions</a>
+              <a href="products.html">Products</a>
+              <a href="about.html">About</a>
+              <a href="#">Contact</a>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status">
+            <span class="footer-status-dot" aria-hidden="true"></span>
+            All Systems Nominal
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+    </script>
+  </body>
+</html>

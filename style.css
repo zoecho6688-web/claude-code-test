@@ -2249,6 +2249,8 @@ html{ scroll-behavior: smooth; }
   display: flex;
   flex-direction: column;
   gap: 10px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .sol-geo-card-icon svg{
