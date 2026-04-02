@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Midu Rockfall & Collapse Monitoring: precision sensing for brittle failure. Capturing precursor signals through high-resolution tilt and crack meters." />
+    <title>Rockfall & Collapse Monitoring | Midu</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ────────────────────────────────────────────────────────────────────────
+         STRICT HOVER PRESERVATION (From Original Snippet)
+      ──────────────────────────────────────────────────────────────────────── */
+      body { background: #fff; }
+
+      /* Nav Hover/Active - DO NOT CHANGE */
+      .tl-nav-link { 
+        display: block; padding: 9px 0; font-size: 13px; font-weight: 500; color: #999999; 
+        text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.3s ease, border-color 0.3s ease; line-height: 1.3; 
+      }
+      .tl-nav-link:hover { color: #0056D6; border-bottom-color: #0056D6; }
+      .tl-nav-link:hover .tl-nav-num { color: #0056D6; }
+      .tl-nav-link.is-active { color: #0056D6; border-bottom-color: #0056D6; font-weight: 700; }
+      .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
+      
+      /* Product Hover - DO NOT CHANGE */
+      .tl-prod-card { transition: border-color 200ms, box-shadow 200ms; }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+
+      /* Next Bar Hover - DO NOT CHANGE */
+      .tl-next::before {
+        content: ''; position: absolute; inset: 0; background: #0056D6; 
+        transform: translateX(-100%); transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+      /* ────────────────────────────────────────────────────────────────────────
+         NEW COMPOSITION LAYOUT (Structure Only)
+      ──────────────────────────────────────────────────────────────────────── */
+      /* Breadcrumb */
+      .tl-breadcrumb { background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-breadcrumb-inner { display: flex; align-items: center; gap: 8px; height: 48px; font-size: 15px; color: #9ca3af; }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* Hero */
+      .tl-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 440px; background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-hero-left { display: flex; flex-direction: column; justify-content: center; padding: 48px 48px 48px 0; }
+      .tl-eyebrow { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #0056D6; margin-bottom: 16px; }
+      .tl-heading { margin: 0 0 20px; font-size: clamp(28px, 3.8vw, 48px); font-weight: 900; line-height: 1.05; color: #0f1f3d; }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; max-width: 50ch; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; }
+      .tl-hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #fff 0%, transparent 28%); z-index: 1; }
+
+      /* Body Layout */
+      .tl-body { display: grid; grid-template-columns: 200px 1fr; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+      .tl-sidenav { position: sticky; top: 52px; height: calc(100vh - 52px); padding: 56px 32px 40px 0; border-right: 1px solid #EEEEEE; display: flex; flex-direction: column; }
+      .tl-sidenav-label { font-size: 9px; font-weight: 800; text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px; }
+      .tl-nav-num { display: block; font-size: 9px; font-weight: 700; color: #c0c8d4; margin-bottom: 2px; transition: color 0.3s; }
+      
+      .tl-content { padding: 64px 0 80px 56px; }
+      .tl-section { padding-bottom: 96px; border-bottom: 1px solid #EEEEEE; margin-bottom: 80px; }
+      .tl-section-label { display: block; font-size: 10px; font-weight: 800; text-transform: uppercase; color: #0056D6; margin-bottom: 14px; }
+      .tl-section-title { font-size: clamp(22px, 2.8vw, 34px); font-weight: 800; color: #0f1f3d; margin-bottom: 20px; }
+
+      /* 01 Pain Points: NEW Asymmetric Composition */
+      .tl-pain-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .tl-pain-feature { background: #0f1f3d; color: #fff; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+      .tl-pain-stack { display: flex; flex-direction: column; gap: 20px; }
+      .tl-pain-item { border: 1px solid #eee; padding: 30px; }
+      .tl-pain-h { font-size: 16px; font-weight: 800; margin-bottom: 8px; color: #0f1f3d; }
+      .tl-pain-p { font-size: 13px; color: #64748b; line-height: 1.6; }
+
+      /* 02 Solution Chain: NEW Vertical Steps */
+      .tl-steps { position: relative; padding-left: 40px; }
+      .tl-steps::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: #eee; }
+      .tl-step-box { position: relative; margin-bottom: 48px; }
+      .tl-step-box::before { content: ''; position: absolute; left: -45px; top: 8px; width: 10px; height: 10px; background: #fff; border: 2px solid #0056D6; border-radius: 50%; }
+      .tl-step-tag { font-size: 10px; font-weight: 800; color: #0056D6; margin-bottom: 6px; display: block; }
+      .tl-step-h { font-size: 19px; font-weight: 800; color: #0f1f3d; margin-bottom: 10px; }
+
+      /* Advantages & Products */
+      .tl-adv-list { display: flex; flex-direction: column; gap: 12px; }
+      .tl-adv-item { display: grid; grid-template-columns: 48px 1fr; gap: 20px; border: 1px solid #EEEEEE; padding: 20px 24px; }
+      .tl-adv-num { font-size: 28px; font-weight: 900; color: #EEEEEE; line-height: 1; }
+      
+      .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-prod-card { border: 1px solid #EEEEEE; padding: 24px; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+      .tl-prod-name { font-size: 17px; font-weight: 800; color: #0f1f3d; margin-bottom: 8px; }
+      .tl-prod-desc { font-size: 13px; color: #4a5568; flex: 1; margin-bottom: 16px; line-height: 1.6; }
+      .tl-prod-link { font-size: 11px; font-weight: 800; color: #0056D6; text-transform: uppercase; align-self: flex-start; border-bottom: 1px solid #0056D6; }
+
+      /* Next Bar Base Styles */
+      .tl-next {
+        display: flex; align-items: center; justify-content: space-between; border: 1px solid #EEEEEE; 
+        padding: 24px 32px; text-decoration: none; color: inherit; position: relative; overflow: hidden; margin-top: 64px;
+      }
+      .tl-next-label { position: relative; z-index: 1; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #9ca3af; transition: color 200ms; }
+      .tl-next-title { position: relative; z-index: 1; font-size: 20px; font-weight: 800; color: #0f1f3d; transition: color 200ms; }
+      .tl-next-arrow { 
+        position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; 
+        color: #0056D6; border: 1px solid #0056D6; padding: 10px 20px; transition: all 200ms; 
+      }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; }
+        .tl-body { grid-template-columns: 1fr; padding: 0; }
+        .tl-sidenav { display: none; }
+        .tl-content { padding: 40px 20px; }
+        .tl-pain-split { grid-template-columns: 1fr; }
+        .tl-prod-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html"><img class="brand-logo" src="images/logo.png" alt="Midu" /></a>
+        <nav class="nav">
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link active" href="solutions.html">Solutions</a>
+          <a class="nav-link" href="cases.html">Cases</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="tl-breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="solutions.html">Solutions</a> <span class="tl-breadcrumb-sep">/</span> 
+        <a href="solutions-geology-main.html">Geohazard</a> <span class="tl-breadcrumb-sep">/</span> 
+        <span class="tl-breadcrumb-current">Rockfall & Collapse</span>
+      </div>
+    </nav>
+
+    <section class="tl-hero">
+      <div class="container" style="display:contents;">
+        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <span class="tl-eyebrow">Structural Integrity</span>
+          <h1 class="tl-heading">Rockfall &amp; Collapse<br><span class="tl-heading-blue">Safety Monitoring</span></h1>
+          <p class="tl-hero-desc">Capturing precursor micro-tilts and joint expansions with 0.001° resolution. Engineering resilience for vertical rock faces and highway corridors.</p>
+        </div>
+        <div class="tl-hero-right">
+          <img src="images-mine/minetailing.png" alt="Rockfall monitoring infrastructure" />
+        </div>
+      </div>
+    </section>
+
+    <main class="tl-body">
+      <aside class="tl-sidenav">
+        <span class="tl-sidenav-label">On this page</span>
+        <a class="tl-nav-link is-active" href="#pain-points"><span class="tl-nav-num">01</span>Rock Mass Risks</a>
+        <a class="tl-nav-link" href="#overview"><span class="tl-nav-num">02</span>The Solution Chain</a>
+        <a class="tl-nav-link" href="#advantages"><span class="tl-nav-num">03</span>Core Advantages</a>
+        <a class="tl-nav-link" href="#products"><span class="tl-nav-num">04</span>Related Hardware</a>
+        <a class="tl-nav-link" href="#cases"><span class="tl-nav-num">05</span>Success Stories</a>
+      </aside>
+
+      <div class="tl-content">
+        
+        <section id="pain-points" class="tl-section">
+          <span class="tl-section-label">01 / Critical Challenges</span>
+          <h2 class="tl-section-title">Brittle Failure Dynamics</h2>
+          <div class="tl-pain-split">
+            <div class="tl-pain-feature">
+              <h3 style="font-size:22px; margin-bottom:15px; color:#fff;">Sudden Brittle Failure</h3>
+              <p style="font-size:14px; opacity:0.75; line-height:1.7;">Unlike gradual landslides, rock masses fail instantaneously. Our sensing focuses on the sub-millimeter precursors that define the 'Golden Warning Time'.</p>
+            </div>
+            <div class="tl-pain-stack">
+              <div class="tl-pain-item">
+                <h4 class="tl-pain-h">High-Risk Accessibility</h4>
+                <p class="tl-pain-p">Vertical rock faces make cabling impossible. Our wireless LoRaWAN terminals enable deployment in inaccessible terrains.</p>
+              </div>
+              <div class="tl-pain-item">
+                <h4 class="tl-pain-h">Meteorological Triggers</h4>
+                <p class="tl-pain-p">Freeze-thaw cycles and intense rain act as final catalysts. Real-time correlation is vital for false-alarm mitigation.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="overview" class="tl-section">
+          <span class="tl-section-label">02 / Integrated Solution</span>
+          <h2 class="tl-section-title">The 'Pre-Detection' Pipeline</h2>
+          <div class="tl-steps">
+            <div class="tl-step-box">
+              <span class="tl-step-tag">Phase 01</span>
+              <h3 class="tl-step-h">Joint & Crack Profiling</h3>
+              <p class="tl-pain-p">Digital crack meters track 3D expansion of rock joints, identifying the mobilization of sliding planes before detachment.</p>
+            </div>
+            <div class="tl-step-box">
+              <span class="tl-step-tag">Phase 02</span>
+              <h3 class="tl-step-h">Angular Stability Vectoring</h3>
+              <p class="tl-pain-p">Wireless MEMS tiltmeters track block rotation with 0.001° resolution, capturing the subtle 'breath' of rock masses.</p>
+            </div>
+            <div class="tl-step-box" style="margin-bottom:0;">
+              <span class="tl-step-tag">Phase 03</span>
+              <h3 class="tl-step-h">Intelligent Crisis Alerting</h3>
+              <p class="tl-pain-p">Cloud-based algorithms correlate displacement velocity with environmental data for instant SMS and siren broadcasting.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="advantages" class="tl-section">
+          <span class="tl-section-label">03 / Core Advantages</span>
+          <h2 class="tl-section-title">Engineered for Brittle Rock masses</h2>
+          <div class="tl-adv-list">
+            <div class="tl-adv-item"><span class="tl-adv-num">01</span><div><h3 class="tl-adv-title">Wireless Autonomy</h3><p class="tl-adv-desc">Low-power LoRaWAN nodes with 5-year battery life, designed for vertical rock faces where power is non-existent.</p></div></div>
+            <div class="tl-adv-item"><span class="tl-adv-num">02</span><div><h3 class="tl-adv-title">Millisecond Response</h3><p class="tl-adv-desc">High-frequency acquisition capable of capturing acoustic and vibration precursors during the initial rock fracturing phase.</p></div></div>
+          </div>
+        </section>
+
+        <section id="products" class="tl-section">
+          <span class="tl-section-label">04 / Technology Stack</span>
+          <h2 class="tl-section-title">Hardware Validation</h2>
+          <div class="tl-prod-grid">
+            <a class="tl-prod-card" href="products.html">
+              <h3 class="tl-prod-name">MT-100 Wireless Tiltmeter</h3>
+              <p class="tl-prod-desc">Ultra-precision MEMS tilt sensor with 0.001° resolution. IP67 rated for permanent rock mass deployment.</p>
+              <span class="tl-prod-link">Specs →</span>
+            </a>
+            <a class="tl-prod-card" href="products.html">
+              <h3 class="tl-prod-name">MC-50 Crack Meter</h3>
+              <p class="tl-prod-desc">3-axis displacement tracking for critical rock joints. Millimeter-scale accuracy in extreme temperatures.</p>
+              <span class="tl-prod-link">Specs →</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="cases" class="tl-section" style="border:none;">
+            <span class="tl-section-label">05 / Success Stories</span>
+          <div style="background:#f8fafc; padding:60px; text-align:center; border:1px solid #eee;">
+            <h2 style="font-size:26px; font-weight:800; margin-bottom:24px;">Securing Vertical Infrastructure</h2>
+            <a href="cases.html" style="display:inline-flex; align-items:center; gap:12px; background:#0056D6; color:#fff; text-decoration:none; padding:18px 48px; font-size:13px; font-weight:800; text-transform:uppercase;">View Geohazard Cases</a>
+          </div>
+        </section>
+
+        <a class="tl-next" href="solutions-geology-main.html" aria-label="Back to Geohazard">
+          <div style="position:relative; z-index:1;">
+            <span class="tl-next-label">Back to</span>
+            <p class="tl-next-title">Geohazard Solutions</p>
+          </div>
+          <span class="tl-next-arrow">
+            View All Modules
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true" style="width:14px; height:14px;"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Original Scrollspy Logic
+      (function(){
+        var links = document.querySelectorAll('.tl-nav-link');
+        var sections = ['pain-points','overview','advantages','products','cases'].map(id => document.getElementById(id));
+        window.addEventListener('scroll', () => {
+          let current = '';
+          sections.forEach(s => { if(pageYOffset >= s.offsetTop - 150) current = s.getAttribute('id'); });
+          links.forEach(a => { a.classList.remove('is-active'); if(a.getAttribute('href') === '#'+current) a.classList.add('is-active'); });
+        });
+      })();
+    </script>
+  </body>
+</html>
