@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Medo Reservoir Dam Safety Monitoring: automated sensing for structural integrity and seepage pressure. High-precision monitoring for concrete gravity dams and earth-rockfill dams." />
+    <title>Reservoir Dam Safety & Seepage Monitoring | Medo</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .tl-breadcrumb { background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-breadcrumb-inner {
+        display: flex; align-items: center; gap: 8px;
+        height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap;
+      }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* ── Hero ── */
+      .tl-hero {
+        display: grid; grid-template-columns: 1fr 1fr;
+        min-height: clamp(260px, 42vh, 460px);
+        background: #fff; border-bottom: 1px solid #EEEEEE;
+      }
+      .tl-hero-left {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 48px 48px 48px 0;
+      }
+      .tl-eyebrow {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 16px;
+      }
+      .tl-heading {
+        margin: 0 0 20px;
+        font-size: clamp(28px, 3.8vw, 48px);
+        font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; color: #0f1f3d;
+      }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl-hero-right::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        z-index: 1; pointer-events: none;
+      }
+
+      /* ── Body layout: sticky sidebar + content ── */
+      .tl-body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 0;
+      }
+
+      /* ── Sticky anchor nav ── */
+      .tl-sidenav {
+        position: sticky;
+        top: 52px;
+        height: calc(100vh - 52px);
+        padding: 56px 32px 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-right: 1px solid #EEEEEE;
+      }
+      .tl-sidenav-label {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px;
+      }
+      .tl-nav-link {
+        display: block;
+        padding: 9px 0;
+        font-size: 13px; font-weight: 500;
+        color: #999999;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
+        line-height: 1.3;
+      }
+      .tl-nav-link .tl-nav-num {
+        display: block; font-size: 9px; font-weight: 700;
+        letter-spacing: 0.10em; color: #c0c8d4;
+        margin-bottom: 2px; transition: color 0.3s ease;
+      }
+      .tl-nav-link:hover { color: #0056D6; }
+      .tl-nav-link:hover .tl-nav-num { color: #0056D6; }
+      .tl-nav-link:hover { border-bottom-color: #0056D6; }
+      .tl-nav-link.is-active { color: #0056D6; border-bottom-color: #0056D6; font-weight: 700; }
+      .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
+
+      /* ── Content area ── */
+      .tl-content { padding: 64px 0 80px 56px; }
+
+      .tl-section {
+        padding-bottom: 96px;
+        border-bottom: 1px solid #EEEEEE;
+        margin-bottom: 80px;
+      }
+      .tl-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
+
+      .tl-section-label {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 14px;
+      }
+      .tl-section-title {
+        margin: 0 0 20px;
+        font-size: clamp(22px, 2.8vw, 34px);
+        font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d;
+      }
+      .tl-section-desc { margin: 0 0 32px; font-size: 15px; line-height: 1.75; color: #4a5568; }
+
+      /* pain points grid */
+      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-pain-card {
+        border: 1px solid #EEEEEE; padding: 24px 22px;
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
+      .tl-pain-icon svg { width: 100%; height: 100%; }
+      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
+      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
+
+      /* solution overview: hero row */
+      .tl-overview-row {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 40px; align-items: center; margin-bottom: 32px;
+      }
+      .tl-img-wrap { position: relative; background: #0f1f3d; overflow: hidden; }
+      .tl-img-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+      .tl-img-label {
+        position: absolute; bottom: 0; left: 0; right: 0;
+        background: rgba(4,26,58,0.72); padding: 10px 16px;
+        display: flex; flex-direction: column; gap: 2px;
+      }
+      .tl-img-label-sub {
+        font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase; color: rgba(255,255,255,0.55);
+      }
+      .tl-img-label-title { font-size: 14px; font-weight: 700; color: #fff; }
+
+      /* feature cards */
+      .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-feat-card { border: 1px solid #EEEEEE; padding: 28px 24px; }
+      .tl-feat-card--dark { background: #0f1f3d; border-color: #0f1f3d; }
+      .tl-feat-num {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 10px;
+      }
+      .tl-feat-card--dark .tl-feat-num { color: rgba(83,210,255,0.8); }
+      .tl-feat-title { margin: 0 0 10px; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-feat-card--dark .tl-feat-title { color: #fff; }
+      .tl-feat-desc { margin: 0 0 20px; font-size: 13px; line-height: 1.7; color: #4a5568; }
+      .tl-feat-card--dark .tl-feat-desc { color: rgba(255,255,255,0.6); }
+
+      .tl-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+      .tl-metric {
+        border: 1px solid rgba(7,48,103,0.10); padding: 12px;
+        background: #f7faff; display: flex; flex-direction: column; gap: 4px;
+      }
+      .tl-metric-label {
+        font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+        text-transform: uppercase; color: #9ca3af;
+      }
+      .tl-metric-val { font-size: 18px; font-weight: 900; color: #0f1f3d; }
+
+      .tl-specs { display: flex; flex-direction: column; }
+      .tl-spec-row {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.10);
+      }
+      .tl-spec-row:last-child { border-bottom: none; }
+      .tl-spec-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
+      .tl-spec-val { font-size: 16px; font-weight: 800; color: #fff; }
+
+      /* advantages */
+      .tl-adv-list { display: flex; flex-direction: column; gap: 12px; }
+      .tl-adv-item {
+        display: grid; grid-template-columns: 48px 1fr;
+        gap: 20px; align-items: start;
+        border: 1px solid #EEEEEE; padding: 20px 24px;
+      }
+      .tl-adv-num {
+        font-size: 28px; font-weight: 900; color: #EEEEEE;
+        letter-spacing: -0.04em; line-height: 1;
+      }
+      .tl-adv-title { margin: 0 0 6px; font-size: 15px; font-weight: 800; color: #0f1f3d; }
+      .tl-adv-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; }
+
+      /* products */
+      .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-prod-card {
+        border: 1px solid #EEEEEE; padding: 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        text-decoration: none; color: inherit;
+        transition: border-color 200ms, box-shadow 200ms;
+      }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+      .tl-prod-cat {
+        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+        text-transform: uppercase; color: #0056D6;
+      }
+      .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-prod-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; flex: 1; }
+      .tl-prod-link {
+        font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+        text-transform: uppercase; color: #0056D6;
+        border-bottom: 1px solid #0056D6; padding-bottom: 1px;
+        align-self: flex-start; margin-top: 8px;
+      }
+
+      /* case study */
+      .tl-case {
+        border: 1px solid #EEEEEE; overflow: hidden;
+      }
+      .tl-case-header {
+        background: #0f1f3d; padding: 28px 32px;
+        display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+      }
+      .tl-case-tag {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
+        text-transform: uppercase; color: rgba(83,210,255,0.8); margin-bottom: 10px; display: block;
+      }
+      .tl-case-title { margin: 0; font-size: 20px; font-weight: 800; color: #fff; line-height: 1.3; }
+      .tl-case-year {
+        font-size: 48px; font-weight: 900; color: rgba(255,255,255,0.12);
+        letter-spacing: -0.04em; line-height: 1; flex-shrink: 0;
+      }
+      .tl-case-body { padding: 28px 32px; }
+      .tl-case-desc { margin: 0 0 24px; font-size: 14px; line-height: 1.75; color: #4a5568; }
+      .tl-case-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+      .tl-case-stat { border: 1px solid #EEEEEE; padding: 16px; }
+      .tl-case-stat-val { font-size: 26px; font-weight: 900; color: #0056D6; letter-spacing: -0.02em; }
+      .tl-case-stat-label { font-size: 12px; color: #9ca3af; margin-top: 4px; line-height: 1.4; }
+
+      /* next solution bar */
+      .tl-next {
+        display: flex; align-items: center; justify-content: space-between;
+        border: 1px solid #EEEEEE; padding: 24px 32px;
+        text-decoration: none; color: inherit;
+        position: relative; overflow: hidden; transition: border-color 200ms;
+        margin-top: 64px;
+      }
+      .tl-next::before {
+        content: ''; position: absolute; inset: 0;
+        background: #0056D6; transform: translateX(-100%);
+        transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next-label {
+        position: relative; z-index: 1; font-size: 11px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next-title {
+        position: relative; z-index: 1; font-size: 20px; font-weight: 800;
+        letter-spacing: -0.02em; color: #0f1f3d; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next-arrow {
+        position: relative; z-index: 1; display: flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; border: 1px solid #0056D6; padding: 10px 20px;
+        transition: color 200ms, background 200ms, border-color 200ms;
+      }
+      .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
+        .tl-hero-left { padding: 48px 0 32px; }
+        .tl-hero-right { height: 260px; }
+        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+
+        /* horizontal scrollable anchor bar */
+        .tl-body { grid-template-columns: 1fr; padding: 0; }
+        .tl-sidenav {
+          position: sticky; top: 52px; height: auto;
+          flex-direction: row; gap: 0;
+          padding: 0; border-right: none; border-bottom: 1px solid #EEEEEE;
+          overflow-x: auto; overflow-y: visible;
+          background: #fff; z-index: 10;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .tl-sidenav::-webkit-scrollbar { display: none; }
+        .tl-sidenav-label { display: none; }
+        .tl-nav-link {
+          flex-shrink: 0; padding: 14px 16px;
+          border-bottom: 2px solid transparent; white-space: nowrap;
+        }
+        .tl-nav-link .tl-nav-num { display: none; }
+        .tl-nav-link.is-active { border-bottom-color: #0056D6; }
+        .tl-content { padding: 40px 20px 60px; }
+        .tl-pain-grid { grid-template-columns: 1fr; }
+        .tl-overview-row { grid-template-columns: 1fr; }
+        .tl-feat-row { grid-template-columns: 1fr; }
+        .tl-metrics { grid-template-columns: 1fr 1fr; }
+        .tl-prod-grid { grid-template-columns: 1fr; }
+        .tl-case-stats { grid-template-columns: 1fr; }
+        .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Medo Home">
+          <img class="brand-logo" src="images/logo.png" alt="Medo" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link active" href="solutions.html">Solutions</a>
+          <a class="nav-link" href="cases.html">Cases</a>
+          <a class="nav-link" href="resources.html">Support</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link" href="products.html">Products</a>
+          <a class="nav-drawer-link" href="solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="cases.html">Cases</a>
+          <a class="nav-drawer-link" href="resources.html">Support</a>
+          <a class="nav-drawer-link" href="about.html">About</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="tl-breadcrumb" aria-label="Breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="solutions.html">Solutions</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="/solutions-water-main.html">Water Conservancy</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="tl-breadcrumb-current" aria-current="page">Reservoir Dam</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="tl-hero" aria-label="Reservoir Dam Safety Monitoring hero">
+      <div class="container" style="display:contents;">
+        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <span class="tl-eyebrow">Precision Instrumentation</span>
+          <h1 class="tl-heading">Reservoir Dam Safety &amp;<br><span class="tl-heading-blue">Seepage Monitoring</span></h1>
+          <p class="tl-hero-desc">Automated sensing for structural integrity and seepage pressure. High-precision monitoring for concrete gravity dams and earth-rockfill dams.</p>
+        </div>
+        <div class="tl-hero-right">
+          <img src="images/hero-mining.png" alt="Waste dump slope monitoring" />
+        </div>
+      </div>
+    </section>
+
+    <main id="main" role="main">
+      <div class="tl-body">
+
+        <!-- Sticky sidebar nav -->
+        <aside class="tl-sidenav" aria-label="Page sections">
+          <span class="tl-sidenav-label">On this page</span>
+          <a class="tl-nav-link" href="#pain-points">
+            <span class="tl-nav-num">01</span>Industry Pain Points
+          </a>
+          <a class="tl-nav-link" href="#overview">
+            <span class="tl-nav-num">02</span>Solution Overview
+          </a>
+          <a class="tl-nav-link" href="#advantages">
+            <span class="tl-nav-num">03</span>Core Advantages
+          </a>
+          <a class="tl-nav-link" href="#products">
+            <span class="tl-nav-num">04</span>Related Products
+          </a>
+          <a class="tl-nav-link" href="#cases">
+            <span class="tl-nav-num">05</span>Success Stories
+          </a>
+        </aside>
+
+        <!-- Content -->
+        <div class="tl-content">
+
+          <!-- 01 Pain Points -->
+          <section id="pain-points" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">01 / Industry Pain Points</span>
+            <h2 class="tl-section-title">Why Reservoir Dams Fail</h2>
+            <p class="tl-section-desc">Reservoir dams face persistent threats from internal seepage, foundation deformation, and reservoir bank instability — risks that manual inspection cannot adequately detect in time.</p>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+
+              <div style="background:#0f1f3d;border-left:3px solid #ef4444;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:36px;height:36px;color:#ef4444;">
+                  <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L32 28H4L18 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/><path d="M18 14v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><circle cx="18" cy="25" r="1.2" fill="currentColor"/></svg>
+                </div>
+                <div>
+                  <p style="margin:0 0 6px;font-size:14px;font-weight:800;color:#fff;">Internal Seepage (渗透)</p>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);">Seepage through the dam body or foundation builds pore pressure invisibly. Without continuous piezometric monitoring, piping failure can develop undetected until catastrophic breach occurs.</p>
+                </div>
+              </div>
+
+              <div style="background:#0f1f3d;border-left:3px solid #f59e0b;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:36px;height:36px;color:#f59e0b;">
+                  <svg viewBox="0 0 36 36" fill="none"><path d="M4 28L12 16l6 6 6-10 8 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/><path d="M4 32h28" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <div>
+                  <p style="margin:0 0 6px;font-size:14px;font-weight:800;color:#fff;">Dam Foundation Deformation (基础形变)</p>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);">Differential settlement and foundation creep under sustained hydraulic load can compromise structural integrity. Early displacement detection is critical to prevent progressive failure.</p>
+                </div>
+              </div>
+
+              <div style="background:#0f1f3d;border-left:3px solid #0056D6;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:36px;height:36px;color:#0056D6;">
+                  <svg viewBox="0 0 36 36" fill="none"><rect x="4" y="20" width="28" height="12" stroke="currentColor" stroke-width="1.8"/><path d="M10 20V14a8 8 0 0 1 16 0v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <div>
+                  <p style="margin:0 0 6px;font-size:14px;font-weight:800;color:#fff;">Reservoir Bank Stability</p>
+                  <p style="margin:0;font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);">Fluctuating reservoir water levels destabilize surrounding slopes and banks. Rapid drawdown in particular creates high pore pressure gradients that can trigger large-scale bank collapses.</p>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 02 Solution Overview -->
+          <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">02 / Solution Overview</span>
+            <h2 class="tl-section-title">Hardware · Transmission · Intelligence</h2>
+            <p class="tl-section-desc">Three integrated layers form a complete monitoring ecosystem — from field sensors to AI-driven cloud warnings.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:8px;border:1px solid #EEEEEE;">
+
+              <div style="padding:32px 28px;border-right:1px solid #EEEEEE;">
+                <div style="width:44px;height:44px;background:#f0f4ff;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                  <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;color:#0056D6;"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Layer 01 — Structural</p>
+                <h3 style="margin:0 0 16px;font-size:16px;font-weight:800;color:#0f1f3d;">Deformation Monitoring</h3>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:#4a5568;">GNSS surface displacement stations</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:#4a5568;">Inclinometers (deep tilt arrays)</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:#4a5568;">Settlement gauges</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:#4a5568;">Crack meters</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding:32px 28px;border-right:1px solid #EEEEEE;background:#fafbfc;">
+                <div style="width:44px;height:44px;background:#f0f4ff;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                  <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;color:#0056D6;"><rect x="3" y="7" width="18" height="12" stroke="currentColor" stroke-width="1.5"/><path d="M8 7V5M16 7V5M3 11h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Layer 02 — Seepage</p>
+                <h3 style="margin:0 0 16px;font-size:16px;font-weight:800;color:#0f1f3d;">Seepage Monitoring</h3>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:#4a5568;">Piezometers (孔隙压力计)</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:#4a5568;">V-notch weir (量水堰)</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:#4a5568;">Seepage flow meters</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:#4a5568;">Turbidity sensors</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding:32px 28px;background:#0f1f3d;">
+                <div style="width:44px;height:44px;background:rgba(0,86,214,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                  <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;color:#0056D6;"><path d="M5 17c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><path d="M8 17c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><circle cx="12" cy="17" r="1.5" fill="currentColor"/></svg>
+                </div>
+                <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(83,210,255,0.8);">Layer 03 — Environment</p>
+                <h3 style="margin:0 0 16px;font-size:16px;font-weight:800;color:#fff;">Environmental Monitoring</h3>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:rgba(255,255,255,0.65);">Water level gauges</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:rgba(255,255,255,0.65);">Rain gauges</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:rgba(255,255,255,0.65);">Temperature sensors</span>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="width:6px;height:6px;background:#0056D6;flex-shrink:0;display:block;"></span>
+                    <span style="font-size:13px;color:rgba(255,255,255,0.65);">Midu Cloud AI warning</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 03 Core Advantages -->
+          <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">03 / Core Advantages</span>
+            <h2 class="tl-section-title">Traditional vs. Midu</h2>
+            <p class="tl-section-desc">The difference between periodic inspection and continuous intelligence is the difference between reacting to failure and preventing it.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #EEEEEE;margin-top:8px;">
+
+              <div style="padding:0;border-right:1px solid #EEEEEE;">
+                <div style="background:#f7f8fa;padding:16px 24px;border-bottom:1px solid #EEEEEE;">
+                  <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;color:#9ca3af;">Traditional Manual Inspection</p>
+                </div>
+                <div style="display:flex;flex-direction:column;">
+                  <div style="padding:18px 24px;border-bottom:1px solid #EEEEEE;display:flex;gap:12px;align-items:flex-start;">
+                    <span style="color:#ef4444;font-size:16px;line-height:1;flex-shrink:0;">✕</span>
+                    <div><p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#0f1f3d;">Weekly or monthly site visits</p><p style="margin:0;font-size:12px;color:#9ca3af;">Anomalies can develop and escalate between inspections</p></div>
+                  </div>
+                  <div style="padding:18px 24px;border-bottom:1px solid #EEEEEE;display:flex;gap:12px;align-items:flex-start;">
+                    <span style="color:#ef4444;font-size:16px;line-height:1;flex-shrink:0;">✕</span>
+                    <div><p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#0f1f3d;">±50mm survey accuracy</p><p style="margin:0;font-size:12px;color:#9ca3af;">Misses early-stage deformation that precedes failure</p></div>
+                  </div>
+                  <div style="padding:18px 24px;border-bottom:1px solid #EEEEEE;display:flex;gap:12px;align-items:flex-start;">
+                    <span style="color:#ef4444;font-size:16px;line-height:1;flex-shrink:0;">✕</span>
+                    <div><p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#0f1f3d;">Manual alert escalation</p><p style="margin:0;font-size:12px;color:#9ca3af;">Hours or days before decision-makers are notified</p></div>
+                  </div>
+                  <div style="padding:18px 24px;display:flex;gap:12px;align-items:flex-start;">
+                    <span style="color:#ef4444;font-size:16px;line-height:1;flex-shrink:0;">✕</span>
+                    <div><p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#0f1f3d;">Personnel in hazard zones</p><p style="margin:0;font-size:12px;color:#9ca3af;">Inspectors exposed to the very risks they are assessing</p></div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding:0;background:#fff;">
+                <div style="background:#0056D6;padding:16px 24px;border-bottom:1px solid #0056D6;">
+                  <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;color:rgba(255,255,255,0.9);">Midu Automated Monitoring</p>
+                </div>
+                <div style="display:flex;flex-direction:column;">
+                  <div style="padding:18px 24px;border-bottom:1px solid #EEEEEE;display:flex;gap:12px;align-items:flex-start;">
+                    <span style="color:#0056D6;font-size:16px;line-height:1;flex-shrink:0;">✓</span>
+                    <div><p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#0f1f3d;">Dual-system (Seepage + Deformation)</p><p style="margin:0;font-size:12px;color:#9ca3af;">Simultaneous piezometric and displacement monitoring for complete dam health visibility</p></div>
+                  </div>
+                  <div style="padding:18px 24px;border-bottom:1px solid #EEEEEE;display:flex;gap:12px;align-items:flex-start;">
+                    <span style="color:#0056D6;font-size:16px;line-height:1;flex-shrink:0;">✓</span>
+                    <div><p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#0f1f3d;">Underwater sensor durability</p><p style="margin:0;font-size:12px;color:#9ca3af;">IP68-rated instruments designed for permanent submerged installation in dam bodies</p></div>
+                  </div>
+                  <div style="padding:18px 24px;border-bottom:1px solid #EEEEEE;display:flex;gap:12px;align-items:flex-start;">
+                    <span style="color:#0056D6;font-size:16px;line-height:1;flex-shrink:0;">✓</span>
+                    <div><p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#0f1f3d;">Automated pre-warning during flood season</p><p style="margin:0;font-size:12px;color:#9ca3af;">Heightened alert thresholds triggered automatically when reservoir levels rise</p></div>
+                  </div>
+                  <div style="padding:18px 24px;display:flex;gap:12px;align-items:flex-start;">
+                    <span style="color:#0056D6;font-size:16px;line-height:1;flex-shrink:0;">✓</span>
+                    <div><p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#0f1f3d;">Zero personnel in hazard zones</p><p style="margin:0;font-size:12px;color:#9ca3af;">Fully remote operation — sensors do the dangerous work</p></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 04 Related Products -->
+          <section id="products" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">04 / Related Products</span>
+            <h2 class="tl-section-title">Recommended Hardware</h2>
+            <p class="tl-section-desc">Field-validated for reservoir dam environments. Each unit integrates natively with the Midu cloud platform.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;">
+
+              <a class="tl-prod-card" href="products.html" style="display:flex;flex-direction:column;gap:12px;border:1px solid #EEEEEE;padding:28px 24px;text-decoration:none;color:inherit;transition:border-color 200ms,box-shadow 200ms;">
+                <div style="width:48px;height:48px;background:#f0f4ff;display:flex;align-items:center;justify-content:center;">
+                  <svg viewBox="0 0 32 32" fill="none" style="width:24px;height:24px;color:#0056D6;"><rect x="13" y="2" width="6" height="28" stroke="currentColor" stroke-width="1.8"/><path d="M10 6l-4 4M22 6l4 4M10 26l-4-4M22 26l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <span style="font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Deep Displacement</span>
+                <h3 style="margin:0;font-size:17px;font-weight:800;color:#0f1f3d;">MI-80 Deep Inclinometer Array</h3>
+                <p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Segmented MEMS inclinometer string for profiling lateral displacement at multiple depths within the waste dump body. Detects foundation movement before surface expression.</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;">
+                  <div style="background:#f7faff;border:1px solid rgba(0,86,214,0.1);padding:10px 12px;">
+                    <p style="margin:0;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Resolution</p>
+                    <p style="margin:4px 0 0;font-size:16px;font-weight:900;color:#0f1f3d;">0.01mm</p>
+                  </div>
+                  <div style="background:#f7faff;border:1px solid rgba(0,86,214,0.1);padding:10px 12px;">
+                    <p style="margin:0;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Depth</p>
+                    <p style="margin:4px 0 0;font-size:16px;font-weight:900;color:#0f1f3d;">Up to 60m</p>
+                  </div>
+                </div>
+                <span style="font-size:11px;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;color:#0056D6;border-bottom:1px solid #0056D6;padding-bottom:1px;align-self:flex-start;margin-top:4px;">View Specs →</span>
+              </a>
+
+              <a class="tl-prod-card" href="products.html" style="display:flex;flex-direction:column;gap:12px;border:1px solid #EEEEEE;padding:28px 24px;text-decoration:none;color:inherit;transition:border-color 200ms,box-shadow 200ms;">
+                <div style="width:48px;height:48px;background:#f0f4ff;display:flex;align-items:center;justify-content:center;">
+                  <svg viewBox="0 0 32 32" fill="none" style="width:24px;height:24px;color:#0056D6;"><path d="M16 4v6M10 7l3 5M22 7l-3 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><path d="M8 16c0 4.4 3.6 8 8 8s8-3.6 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><path d="M16 24v4M10 28h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <span style="font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Hydrology</span>
+                <h3 style="margin:0;font-size:17px;font-weight:800;color:#0f1f3d;">MR-30 Integrated Rain Gauge</h3>
+                <p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Tipping bucket rain gauge with heated anti-freeze mechanism for year-round operation. Correlates rainfall events with pore pressure and displacement data for predictive saturation modeling.</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;">
+                  <div style="background:#f7faff;border:1px solid rgba(0,86,214,0.1);padding:10px 12px;">
+                    <p style="margin:0;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Resolution</p>
+                    <p style="margin:4px 0 0;font-size:16px;font-weight:900;color:#0f1f3d;">0.1mm</p>
+                  </div>
+                  <div style="background:#f7faff;border:1px solid rgba(0,86,214,0.1);padding:10px 12px;">
+                    <p style="margin:0;font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Range</p>
+                    <p style="margin:4px 0 0;font-size:16px;font-weight:900;color:#0f1f3d;">0–4mm/min</p>
+                  </div>
+                </div>
+                <span style="font-size:11px;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;color:#0056D6;border-bottom:1px solid #0056D6;padding-bottom:1px;align-self:flex-start;margin-top:4px;">View Specs →</span>
+              </a>
+
+            </div>
+          </section>
+
+          <!-- 05 Success Stories -->
+          <section id="cases" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">05 / Success Stories</span>
+            <h2 class="tl-section-title">Proven in the Field</h2>
+            <p class="tl-section-desc">Real deployments. Real outcomes.</p>
+
+            <div style="display:grid;grid-template-columns:1fr 280px;gap:0;border:1px solid #EEEEEE;overflow:hidden;margin-top:8px;">
+              <div style="padding:36px 32px;border-right:1px solid #EEEEEE;">
+                <span style="display:block;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#0056D6;margin-bottom:12px;">Primary Case Study · 2023</span>
+                <h3 style="margin:0 0 20px;font-size:22px;font-weight:800;color:#0f1f3d;line-height:1.3;">Southwest Reservoir Dam<br>Seepage Safety Project</h3>
+                <div style="display:flex;flex-direction:column;gap:20px;">
+                  <div>
+                    <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Background</p>
+                    <p style="margin:0;font-size:14px;line-height:1.75;color:#4a5568;">A large earth-rockfill dam in Southwest China with a 120m-high dam body and 4.2 km² reservoir surface. Following detection of increased seepage flow at the drainage gallery, the operator commissioned a comprehensive automated monitoring system.</p>
+                  </div>
+                  <div>
+                    <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Deployment</p>
+                    <p style="margin:0;font-size:14px;line-height:1.75;color:#4a5568;">Midu deployed 12 GNSS stations, 24 piezometers at 3 depth levels, 4 V-notch weirs at drainage outlets, 6 water level gauges, and 3 rain gauges across the dam body and reservoir banks. All sensors integrated via LoRaWAN into the Midu cloud platform.</p>
+                  </div>
+                  <div>
+                    <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Outcome</p>
+                    <p style="margin:0;font-size:14px;line-height:1.75;color:#4a5568;">During the following flood season, the system detected a seepage anomaly in the right abutment zone 11 days before any visible signs appeared. Automated Level-2 alerts triggered a controlled drawdown protocol — preventing a potential piping failure with zero accidents recorded throughout the monitoring period.</p>
+                  </div>
+                </div>
+              </div>
+              <div style="background:#0f1f3d;padding:36px 28px;display:flex;flex-direction:column;gap:28px;justify-content:center;">
+                <p style="margin:0 0 4px;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(83,210,255,0.7);">Project Stats</p>
+                <div style="display:flex;flex-direction:column;gap:20px;">
+                  <div style="border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:20px;">
+                    <div style="font-size:32px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;line-height:1;">12</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;line-height:1.4;">GNSS monitoring stations deployed</div>
+                  </div>
+                  <div style="border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:20px;">
+                    <div style="font-size:32px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;line-height:1;">11 days</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;line-height:1.4;">Warning lead time before visible failure</div>
+                  </div>
+                  <div style="border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:20px;">
+                    <div style="font-size:32px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;line-height:1;">24</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;line-height:1.4;">Piezometers monitoring seepage pressure</div>
+                  </div>
+                  <div>
+                    <div style="font-size:32px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;line-height:1;">0</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;line-height:1.4;">Accidents during monitoring period</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Next solution -->
+          <a class="tl-next" href="cases.html" aria-label="View Dam Case Studies">
+            <div style="position:relative;z-index:1;">
+              <span class="tl-next-label">Explore</span>
+              <p class="tl-next-title">Dam Case Studies</p>
+            </div>
+            <span class="tl-next-arrow">
+              View Dam Case Studies →
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
+
+        </div><!-- /tl-content -->
+      </div><!-- /tl-body -->
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+
+      // Scrollspy
+      (function(){
+        var links = document.querySelectorAll('.tl-nav-link');
+        var ids = ['pain-points','overview','advantages','products','cases'];
+        var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        if(!sections.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){
+              links.forEach(function(a){ a.classList.remove('is-active'); });
+              var active = document.querySelector('.tl-nav-link[href="#'+e.target.id+'"]');
+              if(active) active.classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(function(s){ obs.observe(s); });
+      })();
+    </script>
+  </body>
+</html>
