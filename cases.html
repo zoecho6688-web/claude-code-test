@@ -3,9 +3,197 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A real-world example: Guizhou landslide risk monitoring and early warning support (May 8, 2022)." />
-    <title>Medo Case Studies | Precision in Every Dimension</title>
+    <meta name="description" content="Midu Global Case Studies: Real-world applications of high-precision monitoring in mining, water conservancy, geohazards, and urban infrastructure." />
+    <title>Global Case Studies | Midu Tech</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ────────────────────────────────────────────────────────────────────────
+         STRICT REPLICATION OF "原始代码" CORE STYLES
+      ──────────────────────────────────────────────────────────────────────── */
+      body { background: #fff; scroll-behavior: smooth; font-family: 'Inter', -apple-system, sans-serif; }
+
+      /* Header & Footer Hover Logic */
+      .nav-link { transition: color 0.3s ease; }
+      .nav-link:hover, .nav-link.active { color: #0056D6; }
+      .footer-col-links a { transition: color 0.3s ease; }
+      .footer-col-links a:hover { color: #fff; }
+
+    /* ────────────────────────────────────────────────────────────────────────
+    NEW HERO: TEXT LEFT + SKEWED ACCORDION RIGHT
+    ──────────────────────────────────────────────────────────────────────── */
+    .cs-hero {
+    padding: 0px 0 0px;
+    background: #fff;
+    border-bottom: 1px solid #EEEEEE;
+    overflow: hidden;
+    }
+
+    .cs-hero-grid {
+    display: grid;
+    grid-template-columns: 450px 1fr; /* 左侧文字固定，右侧视觉自适应 */
+    gap: 60px;
+    align-items: center;
+    }
+
+    /* 文字侧样式 */
+    .cs-hero-label {
+    display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; color: #0056D6; margin-bottom: 20px;
+    }
+    .cs-hero-title {
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 900; color: #0f1f3d; line-height: 1.0;
+    letter-spacing: -0.04em; margin-bottom: 32px;
+    }
+    .cs-hero-desc {
+    font-size: 16px; line-height: 1.7; color: #4a5568; max-width: 40ch;
+    }
+
+    /* 视觉侧：向右倾斜的风琴组件 */
+    .hero-visual-area {
+    height: 480px;
+    position: relative;
+    margin-right: -100px; /* 抵消倾斜产生的右侧空白 */
+    }
+
+    .skew-accordion {
+    display: flex;
+    width: 110%;
+    height: 100%;
+    gap: 8px;
+    transform: skewX(-15deg); /* 整体右斜 15度 */
+    }
+
+    .skew-item {
+    position: relative;
+    flex: 1; /* 默认平分 */
+    overflow: hidden;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    background: #0f1f3d;
+    }
+
+    /* Hover 状态：展开并占据主要空间 */
+    .skew-item:hover {
+    flex: 5; 
+    }
+
+    .skew-item img {
+    position: absolute;
+    top: 0;
+    left: -50%; /* 补偿倾斜后的图片中心点 */
+    width: 200%; 
+    height: 100%;
+    object-fit: cover;
+    transform: skewX(15deg) scale(1.1); /* 反向倾斜 15度，让内容看起来是垂直的 */
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: none;
+    }
+
+    .skew-item:hover img {
+    transform: skewX(15deg) scale(1.05);
+    filter: grayscale(0.4) brightness(0.8);
+    }
+
+    /* 图片上的文字标签 */
+    .skew-label {
+    position: absolute;
+    bottom: 40px;
+    left: 20%;
+    z-index: 2;
+    transform: skewX(15deg); /* 纠正文字倾斜 */
+    color: #fff;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s;
+    }
+
+    .skew-item:hover .skew-label {
+    opacity: 1;
+    }
+
+    .skew-label h4 { font-size: 18px; font-weight: 800; margin: 0; }
+    .skew-label span { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #0056D6; }
+
+    /* 响应式降级：手机端取消倾斜 */
+    @media (max-width: 992px) {
+    .cs-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual-area { height: 300px; margin-right: 0; }
+    .skew-accordion { transform: skewX(0); width: 100%; }
+    .skew-item img { transform: skewX(0); left: 0; width: 100%; }
+    .skew-label { transform: skewX(0); left: 20px; }
+    }
+
+      /* ────────────────────────────────────────────────────────────────────────
+         CASES OVERVIEW (Preserving your favorite interaction)
+      ──────────────────────────────────────────────────────────────────────── */
+      .sol-overview { padding: 80px 0 240px 0; }
+      .cs-section-label {
+        display: block; font-size: 24px; font-weight: 800; color: #0056D6;
+        text-transform: uppercase; margin-bottom: 40px; letter-spacing: 0.1em;
+      }
+
+      /* Grid System */
+      .sol-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .sol-card {
+        position: relative;
+        height: 420px;
+        overflow: hidden;
+        background: #0f1f3d;
+        cursor: pointer;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .sol-card-mask {
+        position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(15,31,61,0.95) 0%, rgba(15,31,61,0.2) 60%);
+        z-index: 1;
+        transition: background 0.4s ease;
+      }
+
+      .sol-card-body {
+        position: absolute; bottom: 0; left: 0; right: 0;
+        padding: 40px; z-index: 2;
+        transition: transform 0.4s ease;
+      }
+
+      .sol-card-title {
+        font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px;
+      }
+
+      .sol-card-desc {
+        font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6;
+        margin-bottom: 24px; max-width: 40ch;
+        opacity: 0.9;
+      }
+
+      .sol-card-link {
+        display: inline-flex; align-items: center; gap: 8px;
+        color: #fff; text-decoration: none; font-size: 12px;
+        font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+      }
+
+      /* Interaction: Lift and Lighten on Hover */
+      .sol-card:hover { transform: translateY(-8px); }
+      .sol-card:hover .sol-card-mask { background: linear-gradient(to top, rgba(0,86,214,0.9) 0%, rgba(15,31,61,0.1) 100%); }
+      .sol-card:hover .sol-card-body { transform: translateY(-5px); }
+
+      /* ────────────────────────────────────────────────────────────────────────
+         MOBILE RESPONSIVE
+      ──────────────────────────────────────────────────────────────────────── */
+      @media (max-width: 768px) {
+        .cs-hero { padding: 60px 20px; }
+        .sol-overview { padding: 60px 20px; }
+        .sol-cards { grid-template-columns: 1fr; }
+        .sol-card { height: 320px; }
+        .sol-card-body { padding: 30px; }
+      }
+    </style>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -15,7 +203,6 @@
         <a class="brand" href="index.html" aria-label="Medo Home">
           <img class="brand-logo" src="images/logo.png" alt="Medo" />
         </a>
-
         <nav class="nav" aria-label="Primary navigation">
           <a class="nav-link" href="products.html">Products</a>
           <a class="nav-link" href="solutions.html">Solutions</a>
@@ -23,19 +210,11 @@
           <a class="nav-link" href="resources.html">Support</a>
           <a class="nav-link" href="about.html">About</a>
         </nav>
-
         <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
-          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <rect y="3" width="20" height="2" fill="currentColor"/>
-            <rect y="9" width="20" height="2" fill="currentColor"/>
-            <rect y="15" width="20" height="2" fill="currentColor"/>
-          </svg>
-          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
-          </svg>
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
         </button>
       </div>
-
       <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
         <div class="nav-drawer-inner">
           <a class="nav-drawer-link" href="products.html">Products</a>
@@ -47,116 +226,144 @@
       </div>
     </header>
 
-        <main id="main" role="main">
-
-      <!-- Cases Overview -->
-      <section class="sol-overview" aria-label="Cases Overview">
-        <div class="sol-cards">
-
-          <article class="sol-card" tabindex="0">
-            <img src="images/solumine.png" alt="Mining Safety Monitoring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
-            <div class="sol-card-mask"></div>
-            <div class="sol-card-body">
-              <h3 class="sol-card-title">Mining Safety</h3>
-              <p class="sol-card-desc">Slope stability and tailings dam surveillance for safer extraction operations in high-risk underground environments.</p>
-              <a class="sol-card-link" href="#">Learn more &rarr;</a>
+    <section class="cs-hero">
+        <div class="container cs-hero-grid">
+            
+            <div class="cs-hero-text">
+            <span class="cs-hero-label">Engineering Global Safety</span>
+            <h1 class="cs-hero-title">Global Impact:<br>Real Worlds.</h1>
+            <p class="cs-hero-desc">Discover how Medo's instrumented intelligence is transforming risk management across continents—from deep mines to urban veins.</p>
             </div>
-          </article>
 
-          <article class="sol-card" tabindex="0">
-            <img src="images/soluwater.png" alt="Water Conservancy Monitoring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
-            <div class="sol-card-mask"></div>
-            <div class="sol-card-body">
-              <h3 class="sol-card-title">Water Conservancy</h3>
-              <p class="sol-card-desc">Continuous dam and reservoir monitoring with real-time displacement and seepage analysis for flood prevention.</p>
-              <a class="sol-card-link" href="#">Learn more &rarr;</a>
-            </div>
-          </article>
+            <div class="hero-visual-area">
+            <div class="skew-accordion">
+                
+                <div class="skew-item">
+                <img src="images/solumine.png" alt="Mining">
+                <div class="skew-label">
+                    <span>Industry 01</span>
+                    <h4>Mining Resilience</h4>
+                </div>
+                </div>
 
-          <article class="sol-card" tabindex="0">
-            <img src="images/soludis.png" alt="Geological Hazards Monitoring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
-            <div class="sol-card-mask"></div>
-            <div class="sol-card-body">
-              <h3 class="sol-card-title">Geological Hazards</h3>
-              <p class="sol-card-desc">Early warning systems for landslides and ground subsidence across complex terrain and unstable geological zones.</p>
-              <a class="sol-card-link" href="#">Learn more &rarr;</a>
-            </div>
-          </article>
+                <div class="skew-item">
+                <img src="images/soluwater.png" alt="Water">
+                <div class="skew-label">
+                    <span>Industry 02</span>
+                    <h4>Water Governance</h4>
+                </div>
+                </div>
 
-          <article class="sol-card" tabindex="0">
-            <img src="images/soluinfr.png" alt="Urban Infrastructure Monitoring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
-            <div class="sol-card-mask"></div>
-            <div class="sol-card-body">
-              <h3 class="sol-card-title">Urban Infrastructure</h3>
-              <p class="sol-card-desc">Structural health monitoring for bridges, tunnels, and high-rise buildings in dense urban environments.</p>
-              <a class="sol-card-link" href="#">Learn more &rarr;</a>
+                <div class="skew-item">
+                <img src="images/soludis.png" alt="Geology">
+                <div class="skew-label">
+                    <span>Industry 03</span>
+                    <h4>Geohazard Warning</h4>
+                </div>
+                </div>
+
+                <div class="skew-item">
+                <img src="images/soluinfr.png" alt="Infrastructure">
+                <div class="skew-label">
+                    <span>Industry 04</span>
+                    <h4>Urban Health SHM</h4>
+                </div>
+                </div>
+
             </div>
-          </article>
+            </div>
 
         </div>
-      </section>
+        </section>
 
+      <section class="sol-overview" aria-label="Cases Overview">
+        <div class="container">
+        <span class="cs-section-label">Sector Impact</span>
+          <div class="sol-cards">
+
+            <article class="sol-card" tabindex="0">
+              <img src="images/solumine.png" alt="Mining Safety Monitoring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+              <div class="sol-card-mask"></div>
+              <div class="sol-card-body">
+                <h3 class="sol-card-title">Mining Safety</h3>
+                <p class="sol-card-desc">Slope stability and tailings dam surveillance for safer extraction operations in high-risk environments.</p>
+                <a class="sol-card-link" href="cases-mining.html">Learn more &rarr;</a>
+              </div>
+            </article>
+
+            <article class="sol-card" tabindex="0">
+              <img src="images/soluwater.png" alt="Water Conservancy Monitoring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+              <div class="sol-card-mask"></div>
+              <div class="sol-card-body">
+                <h3 class="sol-card-title">Water Conservancy</h3>
+                <p class="sol-card-desc">Continuous dam and reservoir monitoring with real-time displacement and seepage analysis for flood prevention.</p>
+                <a class="sol-card-link" href="cases-water.html">Learn more &rarr;</a>
+              </div>
+            </article>
+
+            <article class="sol-card" tabindex="0">
+              <img src="images/soludis.png" alt="Geological Hazards Monitoring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+              <div class="sol-card-mask"></div>
+              <div class="sol-card-body">
+                <h3 class="sol-card-title">Geological Hazards</h3>
+                <p class="sol-card-desc">Early warning systems for landslides and ground subsidence across complex terrain and unstable geological zones.</p>
+                <a class="sol-card-link" href="cases-geology.html">Learn more &rarr;</a>
+              </div>
+            </article>
+
+            <article class="sol-card" tabindex="0">
+              <img src="images/soluinfr.png" alt="Urban Infrastructure Monitoring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+              <div class="sol-card-mask"></div>
+              <div class="sol-card-body">
+                <h3 class="sol-card-title">Urban Infrastructure</h3>
+                <p class="sol-card-desc">Structural health monitoring for bridges, tunnels, and high-rise buildings in dense urban environments.</p>
+                <a class="sol-card-link" href="cases-urban.html">Learn more &rarr;</a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer" role="contentinfo">
       <div class="container">
         <div class="footer-inner">
           <div class="footer-left">
-            <div class="footer-logo">
-              <img src="images/logowhite.png" alt="Medo" />
-            </div>
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
             <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
             <div class="footer-icons">
-              <div class="footer-icon" aria-label="Global reach">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg>
-              </div>
-              <div class="footer-icon" aria-label="Network">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg>
-              </div>
-              <div class="footer-icon" aria-label="Security">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg>
-              </div>
+              <div class="footer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
             </div>
           </div>
           <div class="footer-col">
             <h3 class="footer-col-title">Protocols</h3>
-            <nav class="footer-col-links" aria-label="Protocols">
-              <a href="#">Privacy Protocol</a>
-              <a href="#">Security Compliance</a>
-              <a href="#">System Status</a>
-            </nav>
+            <nav class="footer-col-links"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
           </div>
           <div class="footer-col">
             <h3 class="footer-col-title">Foundation</h3>
-            <nav class="footer-col-links" aria-label="Foundation">
-              <a href="index.html">Home</a>
-              <a href="solutions.html">Solutions</a>
-              <a href="products.html">Products</a>
-              <a href="about.html">About</a>
-              <a href="#">Contact</a>
-            </nav>
+            <nav class="footer-col-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
           </div>
         </div>
         <div class="footer-bottom">
           <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
-          <div class="footer-status">
-            <span class="footer-status-dot" aria-hidden="true"></span>
-            All Systems Nominal
-          </div>
+          <div class="footer-status"><span class="footer-status-dot"></span>All Systems Nominal</div>
         </div>
       </div>
     </footer>
-  <script>
-    (function(){
-      var btn = document.querySelector('.nav-toggle');
-      var drawer = document.getElementById('mobile-nav');
-      if(!btn || !drawer) return;
-      btn.addEventListener('click', function(){
-        var open = drawer.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', open);
-      });
-    })();
-  </script>
-</body>
-</html>
 
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+    </script>
+  </body>
+</html>
