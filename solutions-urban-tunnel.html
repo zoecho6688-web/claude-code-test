@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Midu Tunnel Structural & Convergence Monitoring: precision sensing for subway, highway, and railway tunnels. Automated tracking of convergence, settlement, and vibration." />
+    <title>Tunnel Structural & Convergence Monitoring | Midu</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ────────────────────────────────────────────────────────────────────────
+         STRICT REPLICATION OF "原始代码2" CORE STYLES (Header, Footer, Sidenav, Responsive)
+      ──────────────────────────────────────────────────────────────────────── */
+      body { background: #fff; scroll-behavior: smooth; }
+
+      /* Breadcrumb */
+      .tl-breadcrumb { background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-breadcrumb-inner { display: flex; align-items: center; gap: 8px; height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap; }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* Hero */
+      .tl-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: clamp(260px, 42vh, 460px); background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-hero-left { display: flex; flex-direction: column; justify-content: center; padding: 48px 48px 48px 0; }
+      .tl-eyebrow { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #0056D6; margin-bottom: 16px; }
+      .tl-heading { margin: 0 0 20px; font-size: clamp(28px, 3.8vw, 48px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; color: #0f1f3d; }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl-hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #fff 0%, transparent 28%); z-index: 1; pointer-events: none; }
+
+      /* Body Layout */
+      .tl-body { display: grid; grid-template-columns: 200px 1fr; max-width: 1200px; margin: 0 auto; padding: 0 20px; gap: 0; }
+      .tl-sidenav { position: sticky; top: 52px; height: calc(100vh - 52px); padding: 56px 32px 40px 0; display: flex; flex-direction: column; gap: 0; border-right: 1px solid #EEEEEE; }
+      .tl-sidenav-label { font-size: 9px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px; }
+      .tl-nav-link { display: block; padding: 9px 0; font-size: 13px; font-weight: 500; color: #999999; text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s ease; line-height: 1.3; }
+      .tl-nav-link .tl-nav-num { display: block; font-size: 9px; font-weight: 700; color: #c0c8d4; margin-bottom: 2px; transition: color 0.3s ease; }
+      .tl-nav-link:hover, .tl-nav-link.is-active { color: #0056D6; border-bottom-color: #0056D6; }
+      .tl-nav-link.is-active { font-weight: 700; }
+      .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
+
+      /* Content Area */
+      .tl-content { padding: 64px 0 80px 56px; }
+      .tl-section { padding-bottom: 96px; border-bottom: 1px solid #EEEEEE; margin-bottom: 80px; }
+      .tl-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
+      .tl-section-label { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #0056D6; margin-bottom: 14px; }
+      .tl-section-title { margin: 0 0 20px; font-size: clamp(22px, 2.8vw, 34px); font-weight: 800; color: #0f1f3d; }
+      .tl-section-desc { margin: 0 0 32px; font-size: 15px; line-height: 1.75; color: #4a5568; }
+
+      /* ────────────────────────────────────────────────────────────────────────
+         STYLE PRESERVATION FROM "原始代码2" (Products & Pain Points)
+      ──────────────────────────────────────────────────────────────────────── */
+      
+      /* Pain Points Grid (Original style) */
+      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-pain-card { border: 1px solid #EEEEEE; padding: 24px 22px; display: flex; flex-direction: column; gap: 10px; }
+      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
+      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
+      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
+
+      /* Related Products (IDENTICAL TO 原始代码2) */
+      .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-prod-card {
+        border: 1px solid #EEEEEE; padding: 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        text-decoration: none; color: inherit;
+        transition: border-color 200ms, box-shadow 200ms;
+      }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+      .tl-prod-cat { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #0056D6; }
+      .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-prod-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; flex: 1; }
+      .tl-prod-link { font-size: 11px; font-weight: 800; letter-spacing: 0.10em; text-transform: uppercase; color: #0056D6; border-bottom: 1px solid #0056D6; padding-bottom: 1px; align-self: flex-start; margin-top: 8px; }
+
+      /* ────────────────────────────────────────────────────────────────────────
+         TUNNEL LAYOUT SPECIALS
+      ──────────────────────────────────────────────────────────────────────── */
+      .tl-arch-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+      .tl-arch-visual { background: #f8fafc; border: 1px solid #eee; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+      .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+      .tl-feat-card { border: 1px solid #EEEEEE; padding: 28px 24px; }
+      .tl-feat-card--dark { background: #0f1f3d; color: #fff; border-color: #0f1f3d; }
+      .tl-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+      .tl-metric { background: #f7faff; padding: 12px; border: 1px solid rgba(0,86,214,0.1); }
+      .tl-metric-label { font-size: 9px; font-weight: 700; color: #9ca3af; text-transform: uppercase; }
+      .tl-metric-val { font-size: 16px; font-weight: 900; color: #0f1f3d; }
+
+      /* Next Bar */
+      .tl-next { display: flex; align-items: center; justify-content: space-between; border: 1px solid #EEEEEE; padding: 24px 32px; text-decoration: none; color: inherit; position: relative; overflow: hidden; margin-top: 64px; }
+      .tl-next::before { content: ''; position: absolute; inset: 0; background: #0056D6; transform: translateX(-100%); transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0; }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next-arrow { position: relative; z-index: 1; border: 1px solid #0056D6; padding: 10px 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #0056D6; transition: 0.3s; }
+      .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+
+      /* ────────────────────────────────────────────────────────────────────────
+         RESPONSIVE (STRICT REPLICATION)
+      ──────────────────────────────────────────────────────────────────────── */
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
+        .tl-hero-left { padding: 48px 0 32px; }
+        .tl-hero-right { height: 260px; }
+        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+
+        .tl-body { grid-template-columns: 1fr; padding: 0; }
+        .tl-sidenav {
+          position: sticky; top: 52px; height: auto; flex-direction: row; gap: 0;
+          padding: 0; border-right: none; border-bottom: 1px solid #EEEEEE;
+          overflow-x: auto; background: #fff; z-index: 10; scrollbar-width: none;
+        }
+        .tl-sidenav::-webkit-scrollbar { display: none; }
+        .tl-sidenav-label { display: none; }
+        .tl-nav-link { flex-shrink: 0; padding: 14px 16px; border-bottom: 2px solid transparent; white-space: nowrap; }
+        .tl-nav-link .tl-nav-num { display: none; }
+        .tl-nav-link.is-active { border-bottom-color: #0056D6; }
+        .tl-content { padding: 40px 20px 60px; }
+        .tl-pain-grid, .tl-arch-split, .tl-feat-row, .tl-prod-grid { grid-template-columns: 1fr; }
+        .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Medo Home">
+          <img class="brand-logo" src="images/logo.png" alt="Medo" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link active" href="solutions.html">Solutions</a>
+          <a class="nav-link" href="cases.html">Cases</a>
+          <a class="nav-link" href="resources.html">Support</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link" href="products.html">Products</a>
+          <a class="nav-drawer-link" href="solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="cases.html">Cases</a>
+          <a class="nav-drawer-link" href="resources.html">Support</a>
+          <a class="nav-drawer-link" href="about.html">About</a>
+        </div>
+      </div>
+    </header>
+
+    <nav class="tl-breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="solutions.html">Solutions</a> <span class="tl-breadcrumb-sep">/</span>
+        <a href="solutions-urban-main.html">Urban Infrastructure</a> <span class="tl-breadcrumb-sep">/</span>
+        <span class="tl-breadcrumb-current">Tunnel Structural & Convergence</span>
+      </div>
+    </nav>
+
+    <section class="tl-hero">
+      <div class="container" style="display:contents;">
+        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <span class="tl-eyebrow">Subterranean Safety Intelligence</span>
+          <h1 class="tl-heading">Tunnel Structural<br><span class="tl-heading-blue">& Convergence Monitoring</span></h1>
+          <p class="tl-hero-desc">High-frequency automated sensing for urban subways and mountain tunnels. Real-time convergence tracking and settlement analysis for life-cycle safety.</p>
+        </div>
+        <div class="tl-hero-right">
+          <img src="images/hero-tunnel.png" alt="Tunnel structural monitoring" />
+        </div>
+      </div>
+    </section>
+
+    <main class="tl-body">
+      <aside class="tl-sidenav">
+        <span class="tl-sidenav-label">On this page</span>
+        <a class="tl-nav-link" href="#pain-points"><span class="tl-nav-num">01</span>Industry Pain Points</a>
+        <a class="tl-nav-link" href="#overview"><span class="tl-nav-num">02</span>Solution Overview</a>
+        <a class="tl-nav-link" href="#advantages"><span class="tl-nav-num">03</span>Core Advantages</a>
+        <a class="tl-nav-link" href="#products"><span class="tl-nav-num">04</span>Related Products</a>
+        <a class="tl-nav-link" href="#cases"><span class="tl-nav-num">05</span>Success Stories</a>
+      </aside>
+
+      <div class="tl-content">
+        <section id="pain-points" class="tl-section">
+          <span class="tl-section-label">01 / Industry Pain Points</span>
+          <h2 class="tl-section-title">The Hidden Risks in Tunneling</h2>
+          <p class="tl-section-desc">Tunnel structures are subject to immense overburden pressure. Traditional manual convergence measurements are inefficient and pose significant safety risks to personnel.</p>
+          <div class="tl-pain-grid">
+            <div class="tl-pain-card">
+              <div class="tl-pain-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18h28M18 4v28"/></svg></div>
+              <h3 class="tl-pain-title">Convergence Deformation</h3>
+              <p class="tl-pain-desc">Subtle inward movement of tunnel walls signals structural yielding. Manual inspections often miss these rapid trends.</p>
+            </div>
+            <div class="tl-pain-card">
+              <div class="tl-pain-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M30 10l-6 6-6-6M6 26l6-6 6 6"/></svg></div>
+              <h3 class="tl-pain-title">Personnel Safety Hazards</h3>
+              <p class="tl-pain-desc">Manual measurements in active traffic or construction zones are hazardous and labor-intensive.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="overview" class="tl-section">
+          <span class="tl-section-label">02 / Solution Architecture</span>
+          <h2 class="tl-section-title">Digital Twin Integrity Monitoring</h2>
+          <div class="tl-arch-split">
+            <div class="tl-arch-visual"><strong>TUNNEL CROSS-SECTION MONITORING</strong></div>
+            <div>
+              <p class="tl-section-desc">By employing non-contact laser distance arrays and hydrostatic leveling networks, we monitor the tunnel's circular integrity and longitudinal settlement in real-time.</p>
+            </div>
+          </div>
+          <div class="tl-feat-row">
+            <div class="tl-feat-card">
+              <span class="tl-feat-num">Feature 01</span>
+              <h3 class="tl-feat-title">Convergence Analysis</h3>
+              <div class="tl-metrics">
+                <div class="tl-metric"><span class="tl-metric-label">Convergence</span><span class="tl-metric-val">1.2mm</span></div>
+                <div class="tl-metric"><span class="tl-metric-label">Resolution</span><span class="tl-metric-val">0.01mm</span></div>
+                <div class="tl-metric"><span class="tl-metric-label">Latency</span><span class="tl-metric-val">10s</span></div>
+              </div>
+            </div>
+            <div class="tl-feat-card tl-feat-card--dark">
+              <span class="tl-feat-num">Feature 02</span>
+              <h3 class="tl-feat-title">Settlement Prediction</h3>
+              <p style="font-size:13px; opacity:0.7;">Predicting ground settlement trends before surface expression using high-dynamic hydraulic systems.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="advantages" class="tl-section">
+          <span class="tl-section-label">03 / Core Advantages</span>
+          <h2 class="tl-section-title">Why Midu for Tunnels</h2>
+          <div class="tl-adv-list">
+            <div class="tl-adv-item">
+              <span class="tl-adv-num">01</span>
+              <div><h3 class="tl-adv-title">Confined-Space Wireless Uplink</h3><p class="tl-adv-desc">Optimized sub-GHz transmission that penetrates concrete linings without complex cabling infrastructure.</p></div>
+            </div>
+            <div class="tl-adv-item">
+              <span class="tl-adv-num">02</span>
+              <div><h3 class="tl-adv-title">Non-Contact Laser Sensing</h3><p class="tl-adv-desc">Laser arrays eliminate physical tape extensometers, keeping the tunnel gauge free of obstructions.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="products" class="tl-section">
+          <span class="tl-section-label">04 / Related Products</span>
+          <h2 class="tl-section-title">Tunnel Instrumentation Suite</h2>
+          <p class="tl-section-desc">Field-validated components for tunnel health monitoring, integrating natively with the Midu cloud platform.</p>
+          <div class="tl-prod-grid">
+            <a class="tl-prod-card" href="products.html">
+              <span class="tl-prod-cat">Convergence Sensing</span>
+              <h3 class="tl-prod-name">MT-30 Laser Distance Meter</h3>
+              <p class="tl-prod-desc">Non-contact laser ranging with 0.1mm accuracy for real-time tunnel diameter monitoring and automated convergence tracking.</p>
+              <span class="tl-prod-link">View Specs →</span>
+            </a>
+            <a class="tl-prod-card" href="products.html">
+              <span class="tl-prod-cat">Differential Settlement</span>
+              <h3 class="tl-prod-name">MH-100 Hydrostatic Leveling</h3>
+              <p class="tl-prod-desc">High-dynamic liquid level sensing for tracking longitudinal differential settlement along the tunnel axis with 0.01mm resolution.</p>
+              <span class="tl-prod-link">View Specs →</span>
+            </a>
+            <a class="tl-prod-card" href="products.html">
+              <span class="tl-prod-cat">Tilt & Stability</span>
+              <h3 class="tl-prod-name">MI-60 Wireless MEMS Tiltmeter</h3>
+              <p class="tl-prod-desc">Biaxial tilt sensor with 0.001° resolution for detecting segment rotation and lining stability in TBM and SEM tunnels.</p>
+              <span class="tl-prod-link">View Specs →</span>
+            </a>
+            <a class="tl-prod-card" href="products.html">
+              <span class="tl-prod-cat">Data Integration</span>
+              <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
+              <p class="tl-prod-desc">Solar or mains-powered edge logger with 4G/NB-IoT uplink, local storage, and high-frequency synchronization for structural analysis.</p>
+              <span class="tl-prod-link">View Specs →</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="cases" class="tl-section" style="border:none;">
+          <div style="background:#f8fafc; padding:60px; text-align:center; border:1px solid #eee;">
+            <h2 style="font-size:26px; font-weight:800; margin-bottom:24px; color:#0f1f3d;">Securing Urban Lifelines</h2>
+            <a href="cases.html" style="display:inline-flex; align-items:center; gap:12px; background:#0056D6; color:#fff; text-decoration:none; padding:18px 48px; font-size:13px; font-weight:800; text-transform:uppercase;">Explore Case Studies</a>
+          </div>
+        </section>
+
+        <a class="tl-next" href="solutions-urban-lifeline.html">
+          <div style="position:relative; z-index:1;">
+            <span class="tl-next-label" style="font-size:11px; font-weight:700; color:#9ca3af; text-transform:uppercase;">Next Solution</span>
+            <p class="tl-next-title" style="font-size:20px; font-weight:800;">Urban Pipeline Lifeline</p>
+          </div>
+          <span class="tl-next-arrow">View Module <svg viewBox="0 0 14 14" fill="none" style="width:14px; height:14px;"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </a>
+
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+      // Original Scrollspy Logic
+      (function(){
+        var links = document.querySelectorAll('.tl-nav-link');
+        var sections = ['pain-points','overview','advantages','products','cases'].map(id => document.getElementById(id));
+        window.addEventListener('scroll', () => {
+          let current = '';
+          sections.forEach(s => { if(pageYOffset >= s.offsetTop - 150) current = s.getAttribute('id'); });
+          links.forEach(a => { a.classList.remove('is-active'); if(a.getAttribute('href') === '#'+current) a.classList.add('is-active'); });
+        });
+      })();
+    </script>
+  </body>
+</html>
