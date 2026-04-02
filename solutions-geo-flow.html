@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Midu Flash Flood & Debris Flow Monitoring: integrated sensing for rapid-onset mud and water surges. Capturing the 'Golden Warning Time' through infrasound and radar sensing." />
+    <title>Flash Flood & Debris Flow Monitoring | Midu</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .tl-breadcrumb { background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-breadcrumb-inner {
+        display: flex; align-items: center; gap: 8px;
+        height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap;
+      }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* ── Hero ── */
+      .tl-hero {
+        display: grid; grid-template-columns: 1fr 1fr;
+        min-height: clamp(260px, 42vh, 460px);
+        background: #fff; border-bottom: 1px solid #EEEEEE;
+      }
+      .tl-hero-left {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 48px 48px 48px 0;
+      }
+      .tl-eyebrow {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 16px;
+      }
+      .tl-heading {
+        margin: 0 0 20px;
+        font-size: clamp(28px, 3.8vw, 48px);
+        font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; color: #0f1f3d;
+      }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl-hero-right::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        z-index: 1; pointer-events: none;
+      }
+
+      /* ── Body layout ── */
+      .tl-body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 0;
+      }
+
+      /* ── Sticky sidebar nav ── */
+      .tl-sidenav {
+        position: sticky;
+        top: 52px;
+        height: calc(100vh - 52px);
+        padding: 56px 32px 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-right: 1px solid #EEEEEE;
+      }
+      .tl-sidenav-label {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px;
+      }
+      .tl-nav-link {
+        display: block;
+        padding: 9px 0;
+        font-size: 13px; font-weight: 500;
+        color: #999999;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
+        line-height: 1.3;
+      }
+      .tl-nav-link .tl-nav-num {
+        display: block; font-size: 9px; font-weight: 700;
+        letter-spacing: 0.10em; color: #c0c8d4;
+        margin-bottom: 2px; transition: color 0.3s ease;
+      }
+      .tl-nav-link:hover { color: #0056D6; }
+      .tl-nav-link.is-active { color: #0056D6; border-bottom-color: #0056D6; font-weight: 700; }
+      .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
+
+      /* ── Content area ── */
+      .tl-content { padding: 64px 0 80px 56px; }
+
+      .tl-section {
+        padding-bottom: 96px;
+        border-bottom: 1px solid #EEEEEE;
+        margin-bottom: 80px;
+      }
+      .tl-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
+
+      .tl-section-label {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 14px;
+      }
+      .tl-section-title {
+        margin: 0 0 20px;
+        font-size: clamp(22px, 2.8vw, 34px);
+        font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d;
+      }
+      .tl-section-desc { margin: 0 0 32px; font-size: 15px; line-height: 1.75; color: #4a5568; }
+
+      /* pain points grid */
+      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-pain-card {
+        border: 1px solid #EEEEEE; padding: 24px 22px;
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
+      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
+      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
+
+      /* Feature/Solution grid */
+      .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-feat-card { border: 1px solid #EEEEEE; padding: 28px 24px; }
+      .tl-feat-card--dark { background: #0f1f3d; border-color: #0f1f3d; }
+      .tl-feat-num { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #0056D6; margin-bottom: 10px; }
+      .tl-feat-card--dark .tl-feat-num { color: rgba(83,210,255,0.8); }
+      .tl-feat-title { margin: 0 0 10px; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-feat-card--dark .tl-feat-title { color: #fff; }
+      .tl-feat-desc { margin: 0 0 20px; font-size: 13px; line-height: 1.7; color: #4a5568; }
+      .tl-feat-card--dark .tl-feat-desc { color: rgba(255,255,255,0.6); }
+
+      .tl-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+      .tl-metric { border: 1px solid rgba(7,48,103,0.10); padding: 12px; background: #f7faff; display: flex; flex-direction: column; gap: 4px; }
+      .tl-metric-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9ca3af; }
+      .tl-metric-val { font-size: 18px; font-weight: 900; color: #0f1f3d; }
+
+      /* next solution bar */
+      .tl-next {
+        display: flex; align-items: center; justify-content: space-between;
+        border: 1px solid #EEEEEE; padding: 24px 32px;
+        text-decoration: none; color: inherit;
+        position: relative; overflow: hidden; transition: border-color 200ms;
+        margin-top: 64px;
+      }
+      .tl-next::before {
+        content: ''; position: absolute; inset: 0;
+        background: #0056D6; transform: translateX(-100%);
+        transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next-label {
+        position: relative; z-index: 1; font-size: 11px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next-title {
+        position: relative; z-index: 1; font-size: 20px; font-weight: 800;
+        letter-spacing: -0.02em; color: #0f1f3d; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next-arrow {
+        position: relative; z-index: 1; display: flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; border: 1px solid #0056D6; padding: 10px 20px;
+        transition: color 200ms, background 200ms, border-color 200ms;
+      }
+      .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+
+      /* products */
+      .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-prod-card { border: 1px solid #EEEEEE; padding: 24px; text-decoration: none; color: inherit; transition: border-color 200ms; }
+      .tl-prod-card:hover { border-color: #0056D6; }
+      .tl-prod-name { font-size: 17px; font-weight: 800; color: #0f1f3d; margin: 0 0 8px; }
+      .tl-prod-desc { font-size: 13px; color: #4a5568; margin-bottom: 12px; line-height: 1.6; }
+      .tl-prod-link { font-size: 11px; font-weight: 800; color: #0056D6; text-transform: uppercase; border-bottom: 1px solid #0056D6; padding-bottom: 1px; }
+
+      /* Mobile adjustment */
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; }
+        .tl-body { grid-template-columns: 1fr; }
+        .tl-sidenav { display: none; }
+        .tl-content { padding: 40px 0; }
+        .tl-pain-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="index.html"><img class="brand-logo" src="images/logo.png" alt="Midu" /></a>
+        <nav class="nav">
+          <a class="nav-link" href="products.html">Products</a>
+          <a class="nav-link active" href="solutions.html">Solutions</a>
+          <a class="nav-link" href="cases.html">Cases</a>
+          <a class="nav-link" href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="tl-breadcrumb" aria-label="Breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="solutions.html">Solutions</a>
+        <span class="tl-breadcrumb-sep">/</span>
+        <a href="solutions-geology-main.html">Geohazard</a>
+        <span class="tl-breadcrumb-sep">/</span>
+        <span class="tl-breadcrumb-current">Flash Flood & Debris Flow</span>
+      </div>
+    </nav>
+
+    <section class="tl-hero">
+      <div class="container" style="display:contents;">
+        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <span class="tl-eyebrow">Strategic Geohazard Sensing</span>
+          <h1 class="tl-heading">Flash Flood & Debris Flow<br><span class="tl-heading-blue">Early Warning System</span></h1>
+          <p class="tl-hero-desc">Integrated sensing network capturing the unique low-frequency infrasound and radar signatures of rapid mud-water surges. Engineered for mountainous basins and river channels.</p>
+        </div>
+        <div class="tl-hero-right">
+          <img src="images-mine/minetailing.png" alt="Flash flood and debris flow monitoring" />
+        </div>
+      </div>
+    </section>
+
+    <main id="main">
+      <div class="tl-body">
+        <aside class="tl-sidenav">
+          <span class="tl-sidenav-label">On this page</span>
+          <a class="tl-nav-link is-active" href="#pain-points"><span class="tl-nav-num">01</span>Crisis Dynamics</a>
+          <a class="tl-nav-link" href="#overview"><span class="tl-nav-num">02</span>The Solution Chain</a>
+          <a class="tl-nav-link" href="#advantages"><span class="tl-nav-num">03</span>Core Advantages</a>
+          <a class="tl-nav-link" href="#products"><span class="tl-nav-num">04</span>Related Hardware</a>
+          <a class="tl-nav-link" href="#cases"><span class="tl-nav-num">05</span>Success Stories</a>
+        </aside>
+
+        <div class="tl-content">
+
+          <section id="pain-points" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">01 / Critical Risks</span>
+            <h2 class="tl-section-title">High-Velocity Disaster Dynamics</h2>
+            <p class="tl-section-desc">Flash floods and debris flows are triggered in seconds. Conventional contact sensing is often destroyed before alerts can be fired, requiring a more resilient, non-contact approach.</p>
+            <div class="tl-pain-grid">
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
+                <h3 class="tl-pain-title">Sudden Onset</h3>
+                <p class="tl-pain-desc">Mountain torrents can surge within 15-30 minutes of extreme rainfall, leaving zero margin for manual human reporting or relay.</p>
+              </div>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.618.308a1 1 0 01-1.147-.142L8.5 13.25"/></svg></div>
+                <h3 class="tl-pain-title">Destructive Impact</h3>
+                <p class="tl-pain-desc">Debris flows carry immense kinetic energy (rocks and mud), which obliterates traditional in-stream sensors during the initial wave.</p>
+              </div>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 20l-5-5 5-5m6 10l5-5-5-5"/></svg></div>
+                <h3 class="tl-pain-title">Remote 'Blind' Zones</h3>
+                <p class="tl-pain-desc">Hazardous gullies often lack cellular coverage and power access, requiring ultra-low power and satellite transmission protocols.</p>
+              </div>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="18" r="12"/><path d="M18 10v8l5 3"/></svg></div>
+                <h3 class="tl-pain-title">Complex Thresholds</h3>
+                <p class="tl-pain-desc">Correlation between rainfall intensity and soil saturation is non-linear, requiring AI-driven threshold logic to avoid false alarms.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">02 / Solution Chain</span>
+            <h2 class="tl-section-title">The 'Golden' Detection Protocol</h2>
+            <p class="tl-section-desc">We deploy a multi-layered sensing chain that monitors disaster development from trigger to surge, gaining vital seconds for downstream evacuation.</p>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid #EEEEEE;margin-bottom:48px;">
+              <div style="padding:40px 32px;border-right:1px solid #EEEEEE;">
+                <p style="margin:0 0 10px;font-size:10px;font-weight:800;color:#0056D6;text-transform:uppercase;">Phase 01: Trigger</p>
+                <h3 style="margin:0 0 12px;font-size:18px;font-weight:800;color:#0f1f3d;">Rainfall Correlation</h3>
+                <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Automated pluviometers track cumulative rainfall and intensity, establishing the disaster-triggering baseline model for specific basins.</p>
+              </div>
+              <div style="padding:40px 32px;border-right:1px solid #EEEEEE;background:#fafbfc;">
+                <p style="margin:0 0 10px;font-size:10px;font-weight:800;color:#0056D6;text-transform:uppercase;">Phase 02: Early Warning</p>
+                <h3 style="margin:0 0 12px;font-size:18px;font-weight:800;color:#0f1f3d;">Infrasound Detection</h3>
+                <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Capturing the unique low-frequency 'roar' of debris flows 5-15 minutes before impact, allowing for early high-level emergency alerts.</p>
+              </div>
+              <div style="padding:40px 32px;background:#0f1f3d;">
+                <p style="margin:0 0 10px;font-size:10px;font-weight:800;color:rgba(83,210,255,0.8);text-transform:uppercase;">Phase 03: Confirmation</p>
+                <h3 style="margin:0 0 12px;font-size:18px;font-weight:800;color:#fff;">Radar Level Analysis</h3>
+                <p style="margin:0;font-size:13px;line-height:1.7;color:rgba(255,255,255,0.65);">Non-contact radar sensing confirms flow velocity and mud level rise for final automated sirens and SMS broadcasting.</p>
+              </div>
+            </div>
+
+            <div class="tl-feat-row">
+              <div class="tl-feat-card">
+                <span class="tl-feat-num">Tech 01</span>
+                <h3 class="tl-feat-title">Infrasound Surge Detection</h3>
+                <p class="tl-feat-desc">Proprietary infrasound sensing detects energy spikes in the 0.1-20 Hz range, filtering wind and thunder to isolate debris flow signatures.</p>
+                <div class="tl-metrics">
+                  <div class="tl-metric"><span class="tl-metric-label">Freq Range</span><span class="tl-metric-val">0.1-20Hz</span></div>
+                  <div class="tl-metric"><span class="tl-metric-label">Lead Time</span><span class="tl-metric-val">10-15m</span></div>
+                  <div class="tl-metric"><span class="tl-metric-label">Radius</span><span class="tl-metric-val">2.5km</span></div>
+                </div>
+              </div>
+              <div class="tl-feat-card tl-feat-card--dark">
+                <span class="tl-feat-num">Tech 02</span>
+                <h3 class="tl-feat-title">Radar Non-Contact Level</h3>
+                <p class="tl-feat-desc">60GHz millimetric radar measures water/mud levels with zero physical contact, ensuring survival during peak events.</p>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                  <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+                    <span style="font-size:11px; color:rgba(255,255,255,0.5);">Accuracy</span><span style="color:#fff; font-weight:700;">±3mm</span>
+                  </div>
+                  <div style="display:flex; justify-content:space-between;">
+                    <span style="font-size:11px; color:rgba(255,255,255,0.5);">Power</span><span style="color:#fff; font-weight:700;">0.1W Standby</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">03 / Core Advantages</span>
+            <h2 class="tl-section-title">Built for Extreme Mountain Torrent Scenarios</h2>
+            <div class="tl-adv-list">
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">01</span>
+                <div><h3 class="tl-adv-title">Satellite Backhaul (Beidou)</h3><p class="tl-adv-desc">Native integration with Beidou Short-Message ensures emergency data transmission even if cellular towers are washed away.</p></div>
+              </div>
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">02</span>
+                <div><h3 class="tl-adv-title">AI Signal Discrimination</h3><p class="tl-adv-desc">Intelligent algorithms distinguish between normal mountain torrent noise and real mudslide signatures to prevent false evacuation alarms.</p></div>
+              </div>
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">03</span>
+                <div><h3 class="tl-adv-title">Ultra-low Power Autonomy</h3><p class="tl-adv-desc">Optimized for long-term deployment in sun-restricted gullies with smart power management and compact solar arrays.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="products" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">04 / Technology Stack</span>
+            <h2 class="tl-section-title">Recommended Field Hardware</h2>
+            <div class="tl-prod-grid">
+              <a class="tl-prod-card" href="products.html">
+                <h3 class="tl-prod-name">MI-20 Infrasound Sensor</h3>
+                <p class="tl-prod-desc">Specialized geohazard sensor for detecting mud-rock flow energy peaks. Non-contact deployment away from the channel.</p>
+                <span class="tl-prod-link">Explore Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <h3 class="tl-prod-name">MR-60 Radar Level Gauge</h3>
+                <p class="tl-prod-desc">Non-contact 60GHz radar for water and mud level tracking. Millimeter accuracy with zero debris damage risk.</p>
+                <span class="tl-prod-link">Explore Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <h3 class="tl-prod-name">MT-300 Smart Gateway</h3>
+                <p class="tl-prod-desc">Edge-computing IoT terminal with dual 5G/Beidou uplink. Supports multi-sensor fusion and autonomous threshold logic.</p>
+                <span class="tl-prod-link">Explore Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <h3 class="tl-prod-name">MR-30 Rain Gauge</h3>
+                <p class="tl-prod-desc">High-precision tipping bucket rain gauge for real-time rainfall intensity and disaster-triggering correlation analysis.</p>
+                <span class="tl-prod-link">Explore Specs →</span>
+              </a>
+            </div>
+          </section>
+
+          <section id="cases" class="tl-section" style="scroll-margin-top:100px; background:#fff;">
+            <span class="tl-section-label">05 / Success Stories</span>
+            <div style="text-align:center; padding:56px 0;">
+              <h2 class="tl-section-title">Securing Vulnerable Basins</h2>
+              <p style="margin-bottom:32px; color:#4a5568;">Protecting lives in high-risk mountainous regions through automated sensing.</p>
+              <a href="cases.html" style="display:inline-flex; align-items:center; gap:12px; background:#0056D6; color:#fff; text-decoration:none; padding:18px 40px; font-size:13px; font-weight:800; text-transform:uppercase;">
+                View Case Studies →
+              </a>
+            </div>
+          </section>
+
+          <!-- Next solution -->
+          <a class="tl-next" href="solutions-geology-main.html" aria-label="Back to Geohazard Solutions">
+            <div style="position:relative;z-index:1;">
+              <span class="tl-next-label">Back to</span>
+              <p class="tl-next-title">Geohazard Solutions</p>
+            </div>
+            <span class="tl-next-arrow">
+              View All Modules
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
+
+        </div></div></main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+
+      // Simple Scrollspy for sidenav
+      (function(){
+        var links = document.querySelectorAll('.tl-nav-link');
+        var sections = ['pain-points','overview','advantages','products','cases'].map(id => document.getElementById(id));
+        window.addEventListener('scroll', () => {
+          let current = '';
+          sections.forEach(s => { if(pageYOffset >= s.offsetTop - 150) current = s.getAttribute('id'); });
+          links.forEach(a => { a.classList.remove('is-active'); if(a.getAttribute('href') === '#'+current) a.classList.add('is-active'); });
+        });
+      })();
+    </script>
+  </body>
+</html>
