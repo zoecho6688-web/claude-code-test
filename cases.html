@@ -119,9 +119,22 @@
     @media (max-width: 992px) {
     .cs-hero-grid { grid-template-columns: 1fr; gap: 40px; }
     .hero-visual-area { height: 300px; margin-right: 0; }
-    .skew-accordion { transform: skewX(0); width: 100%; }
-    .skew-item img { transform: skewX(0); left: 0; width: 100%; }
-    .skew-label { transform: skewX(0); left: 20px; }
+    .slanted-box {
+  transform: skew(-10deg);
+  transform-origin: top left;
+}
+
+/* 针对移动端（通常是 768px 以下）移除倾斜 */
+@media (max-width: 768px) {
+  .slanted-box {
+    /* 直接取消变换效果 */
+    transform: none; 
+    
+    /* 或者如果你还有其他变换（如 scale），只需重置 skew */
+    /* transform: skew(0deg); */
+  }
+}
+    
     }
 
       /* ────────────────────────────────────────────────────────────────────────
@@ -192,6 +205,9 @@
         .sol-cards { grid-template-columns: 1fr; }
         .sol-card { height: 320px; }
         .sol-card-body { padding: 30px; }
+        .hero-visual-area {
+          display: none !important; /* 加入 !important 确保覆盖掉任何复杂的变换或布局样式 */
+        }
       }
     </style>
   </head>
