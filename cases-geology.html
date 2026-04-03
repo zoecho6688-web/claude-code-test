@@ -50,21 +50,7 @@
         z-index: 1; pointer-events: none;
       }
 
-      
-      /* ── Mobile ── */
-      @media (max-width: 1024px) {
-            .case-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-      @media (max-width: 768px) {
-        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
-        .tl-hero-left { padding: 48px 0 32px; }
-        .tl-hero-right { height: 260px; }
-        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
-        /* 卡片变为单列 */
-        .case-grid { grid-template-columns: 1fr; }
-        .case-section { padding: 60px 0; }
-      }
+    
 
       /* ── Case Grid ── */
       .case-section { padding: 80px 0; }
@@ -154,6 +140,21 @@
         gap: 10px;
         box-shadow: none;           /* ← 去掉阴影 */
         background: transparent;    /* ← 去掉白色背景 */
+      }
+
+       /* ── Mobile ── */
+      @media (max-width: 1024px) {
+            .case-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
+        .tl-hero-left { padding: 48px 0 32px; }
+        .tl-hero-right { height: 260px; }
+        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+        /* 卡片变为单列 */
+        .case-grid { grid-template-columns: 1fr; }
+        .case-section { padding: 60px 0; }
       }
 
 
