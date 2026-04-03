@@ -1268,9 +1268,9 @@ a{ color: inherit; }
 .prod-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(0,0,0,0.08);
-  border: 1px solid rgba(0,0,0,0.08);
+  gap: 20px;
+  background: transparent;
+  border: none;
 }
 
 /* empty state */
@@ -1310,6 +1310,7 @@ a{ color: inherit; }
   background: #fff;
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(26,26,26,0.12);
   transition: box-shadow 180ms ease;
 }
 .pcard:hover{
@@ -4002,4 +4003,3 @@ html{ scroll-behavior: smooth; }
   .btn{ transition: none; }
   .nav-link::after{ transition: none; }
 }
-
