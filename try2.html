@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Case Study - Smart Solution</title>
+    <style>
+        /* --- 基础配置 (与原始代码2保持一致) --- */
+        :root {
+            --ibm-blue: #0f62fe;
+            --ibm-g100: #161616; /* 深黑 */
+            --ibm-g10: #f4f4f4;  /* 浅灰 */
+            --ibm-g30: #d6d6d6;  /* 边框灰 */
+            --text-main: #161616;
+            --text-sec: #525252;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.2, 0, 0.38, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif; 
+            background-color: var(--white);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 2rem; }
+
+        /* --- 模拟 Header (请替换为你原始代码2的Header) --- */
+        header { 
+            height: 60px; 
+            border-bottom: 1px solid var(--ibm-g30); 
+            display: flex; 
+            align-items: center;
+            background: var(--white);
+        }
+
+        /* --- 1. Hero Section --- */
+        .hero-section {
+            background-color: var(--ibm-g100);
+            color: var(--white);
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-content { flex: 1; z-index: 2; }
+        .hero-title { font-size: 3rem; font-weight: 300; margin-bottom: 1.5rem; }
+        .hero-desc { font-size: 1.25rem; color: #a8a8a8; max-width: 600px; }
+
+        /* 这是你要求在手机端隐藏的 Hero Visual 部分 */
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        /* 模拟昨天的风琴/倾斜视觉占位 */
+        .visual-placeholder {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(45deg, #393939 25%, #262626 25%, #262626 50%, #393939 50%, #393939 75%, #262626 75%, #262626 100%);
+            background-size: 40px 40px;
+            transform: skew(-10deg);
+            border: 1px solid #525252;
+        }
+
+        /* --- 2. Breadcrumbs (面包屑) --- */
+        .breadcrumb-wrapper {
+            background: var(--ibm-g10);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--ibm-g30);
+        }
+        .breadcrumbs {
+            list-style: none;
+            display: flex;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs li { color: var(--text-sec); }
+        .breadcrumbs li a { color: var(--ibm-blue); text-decoration: none; margin-right: 0.5rem; }
+        .breadcrumbs li::after { content: "/"; margin: 0 0.5rem; color: #ccc; }
+        .breadcrumbs li:last-child::after { content: ""; }
+
+        /* --- 3. Case Cards Section --- */
+        .case-section { padding: 80px 0; }
+        .section-header { margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2rem; font-weight: 400; }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* 卡片样式：完全参考你提供的截图 */
+        .case-card {
+            background: var(--white);
+            border: 1px solid var(--ibm-g30);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+        }
+
+        .case-card:hover {
+            outline: 2px solid var(--ibm-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* 卡片图片预留区 */
+        .card-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #e0e0e0;
+            overflow: hidden;
+            border-bottom: 1px solid var(--ibm-g30);
+        }
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+        .case-card:hover .card-image img { filter: grayscale(0%); }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: var(--text-sec);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            /* 限制描述行数 */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            line-clamp: 3;
+            overflow: hidden;
+        }
+
+        /* 标签样式 (截图中的 Free Trial) */
+        .card-tag {
+            display: inline-block;
+            background-color: #e0e0e0;
+            color: #161616;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            border-radius: 16px;
+            width: fit-content;
+            margin-bottom: 2rem;
+        }
+
+        .card-link {
+            margin-top: auto;
+            color: var(--ibm-blue);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .case-card:hover .card-link {
+            transform: translateX(5px);
+        }
+
+        /* --- 4. Responsive Design --- */
+        @media (max-width: 1024px) {
+            .case-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-title { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            /* 1. 隐藏手机端的 Hero Visual 部分 */
+            .hero-visual {
+                display: none !important;
+            }
+            
+            .hero-section { padding: 60px 0; text-align: center; }
+            .hero-desc { margin: 0 auto; }
+
+            /* 2. 卡片变为单列 */
+            .case-grid { grid-template-columns: 1fr; }
+
+            /* 3. 去掉任何可能的 skew 影响 */
+            .visual-placeholder { transform: none; }
+        }
+
+        /* --- Footer (请替换为你原始代码2的Footer) --- */
+        footer { 
+            background: var(--ibm-g100); 
+            color: white; 
+            padding: 40px 0; 
+            margin-top: 80px; 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container"><strong>IBM</strong> Mining Solutions</div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container" style="display: flex; width: 100%;">
+            <div class="hero-content">
+                <h1 class="hero-title">Mining Case Studies</h1>
+                <p class="hero-desc">探索我们如何通过端到端的数字化技术，助力全球矿业企业实现智能化生产、预测性维护与零碳目标。</p>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-placeholder"></div>
+            </div>
+        </div>
+    </section>
+
+    <nav class="breadcrumb-wrapper">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Solutions</a></li>
+                <li>Mining</li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="case-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Case Studies</h2>
+            </div>
+
+            <div class="case-grid">
+                <div class="case-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1578319439584-104c94d37305?auto=format&fit=crop&q=80&w=800" alt="Mining 1">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">SPSS Statistics</h3>
+                        <p class="card-text">Empower decisions with IBM SPSS Statistics. Harness advanced analytics tools for impactful insights. Explore features for precision...</p>
+                        <span class="card-tag">Free Trial</span>
+                        <a href="#" class="card-link">→</a>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=800" alt="Mining 2">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">watsonx.ai</h3>
+                        <p class="card-text">A next generation enterprise studio for AI builders to train, validate, tune and deploy AI models in mining operations.</p>
+                        <span class="card-tag">Free Trial</span>
+                        <a href="#" class="card-link">→</a>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1524514587686-82bc45126163?auto=format&fit=crop&q=80&w=800" alt="Mining 3">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">watsonx Orchestrate</h3>
+                        <p class="card-text">IBM watsonx Orchestrate is a generative AI and automation solution that empowers your business by automating tasks...</p>
+                        <span class="card-tag">Free Trial</span>
+                        <a href="#" class="card-link">→</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mining Technology Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
