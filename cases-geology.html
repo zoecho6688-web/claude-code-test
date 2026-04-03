@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Medo Tailings Dam Safety Monitoring: real-time pore pressure, saturation, and GNSS displacement monitoring for tailings storage facilities." />
+    <title>Tailings Dam Safety Monitoring | Medo</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .tl-breadcrumb { background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-breadcrumb-inner {
+        display: flex; align-items: center; gap: 8px;
+        height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap;
+      }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* ── Hero ── */
+      .tl-hero {
+        display: grid; grid-template-columns: 1fr 1fr;
+        min-height: clamp(260px, 42vh, 460px);
+        background: #fff; border-bottom: 1px solid #EEEEEE;
+      }
+      .tl-hero-left {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 48px 48px 48px 0;
+      }
+      .tl-eyebrow {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 16px;
+      }
+      .tl-heading {
+        margin: 0 0 20px;
+        font-size: clamp(28px, 3.8vw, 48px);
+        font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; color: #0f1f3d;
+      }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl-hero-right::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        z-index: 1; pointer-events: none;
+      }
+
+      
+      /* ── Mobile ── */
+      @media (max-width: 1024px) {
+            .case-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
+        .tl-hero-left { padding: 48px 0 32px; }
+        .tl-hero-right { height: 260px; }
+        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+        /* 卡片变为单列 */
+        .case-grid { grid-template-columns: 1fr; }
+        .case-section { padding: 60px 0; }
+      }
+
+      /* ── Case Grid ── */
+      .case-section { padding: 80px 0; }
+
+      .section-header { margin-bottom: 48px; }
+      .section-eyebrow {
+        font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+        text-transform: uppercase; color: #0056b3; margin-bottom: 10px; display: block;
+      }
+      .section-title {
+        font-size: clamp(22px, 2.8vw, 34px); font-weight: 800;
+        color: #0f1f3d; letter-spacing: -0.02em; margin: 0 0 12px;
+      }
+      .section-desc { font-size: 15px; color: #4a5568; line-height: 1.7; max-width: 60ch; margin: 0; }
+
+      .case-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .case-card {
+        border: 1px solid #EEEEEE;
+        display: flex; flex-direction: column;
+        transition: border-color 200ms, box-shadow 200ms;
+        border-radius: 0;
+        background: #fff;
+      }
+      .case-card:hover {
+        border-color: #0056b3;
+      }
+
+      .card-image {
+        width: 100%; aspect-ratio: 16 / 9;
+        overflow: hidden; background: #0f1f3d;
+        border-bottom: 1px solid #EEEEEE;
+      }
+      .card-image img {
+        width: 100%; height: 100%; object-fit: cover;
+        display: block; filter: grayscale(30%);
+        transition: filter 300ms, transform 300ms;
+      }
+      .case-card:hover .card-image img { filter: grayscale(0%); transform: scale(1.03); }
+
+      .card-body { padding: 24px; display: flex; flex-direction: column; flex: 1; gap: 12px; }
+
+      .card-category {
+        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+        text-transform: uppercase; color: #0056b3;
+      }
+
+      .card-title {
+        font-size: 17px; font-weight: 800; color: #0f1f3d;
+        margin: 0; line-height: 1.3;
+      }
+
+      .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+      .card-tech {
+        font-size: 11px; font-weight: 700; padding: 3px 10px;
+        background: #f0f4ff; color: #0056b3;
+        border: 1px solid rgba(0,86,179,0.15);
+      }
+
+      .card-text {
+        font-size: 13px; line-height: 1.7; color: #4a5568; margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        line-clamp: 3;
+        overflow: hidden;
+        flex: 1;
+      }
+
+      .card-link {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+        text-transform: uppercase; color: #0056b3;
+        text-decoration: none;
+        border: none;
+        border-bottom: 1px solid #0056b3; padding-bottom: 1px;
+        background: transparent; 
+        align-self: flex-start; margin-top: 4px;
+        transition: gap 150ms;
+      }
+      .case-card:hover .card-link { gap: 10px; }
+      .case-card:hover .card-link {
+        gap: 10px;
+        box-shadow: none;           /* ← 去掉阴影 */
+        background: transparent;    /* ← 去掉白色背景 */
+      }
+
+
+
+      
+
+    </style>
+
+    </head>
+    <body>
+      <a class="skip-link" href="#main">Skip to content</a>
+
+      <header class="site-header" role="banner">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Medo Home">
+            <img class="brand-logo" src="images/logo.png" alt="Medo" />
+            </a>
+            <nav class="nav" aria-label="Primary navigation">
+            <a class="nav-link" href="products.html">Products</a>
+            <a class="nav-link active" href="solutions.html">Solutions</a>
+            <a class="nav-link" href="cases.html">Cases</a>
+            <a class="nav-link" href="resources.html">Support</a>
+            <a class="nav-link" href="about.html">About</a>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+            <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+            <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+            </button>
+        </div>
+        <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+            <div class="nav-drawer-inner">
+            <a class="nav-drawer-link" href="products.html">Products</a>
+            <a class="nav-drawer-link" href="solutions.html">Solutions</a>
+            <a class="nav-drawer-link" href="cases.html">Cases</a>
+            <a class="nav-drawer-link" href="resources.html">Support</a>
+            <a class="nav-drawer-link" href="about.html">About</a>
+            </div>
+        </div>
+      </header>
+
+      <!-- Breadcrumb -->
+      <nav class="tl-breadcrumb" aria-label="Breadcrumb">
+        <div class="container tl-breadcrumb-inner">
+            <a href="cases.html">Cases</a>
+            <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+            <span class="tl-breadcrumb-current" aria-current="page">Geology Hazards</span>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <section class="tl-hero" aria-label="Tailings Dam Safety hero">
+        <div class="container" style="display:contents;">
+            <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+            <span class="tl-eyebrow">Precision Instrumentation</span>
+            <h1 class="tl-heading">Disaster Monitoring<br><span class="tl-heading-blue">Case Studies</span></h1>
+            <p class="tl-hero-desc">Through the actual accumulation of 100+ mine monitoring projects, it provides global customers with millimeter-level accuracy safety and risk warning.</p>
+            </div>
+            <div class="tl-hero-right">
+            <img src="images-mine/minetailing.png" alt="Tailings dam monitoring facility" />
+            </div>
+        </div>
+      </section>
+
+    <main id="main" role="main">
+      <section class="case-section" aria-labelledby="mining-cases-heading">
+        <div class="container">
+
+          <div class="section-header">
+            <p class="section-eyebrow">Mining Safety Monitoring</p>
+            <h2 id="mining-cases-heading" class="section-title">Featured Case Studies</h2>
+            <p class="section-desc">Real-world deployments of high-precision GNSS and IoT monitoring systems across global mining operations.</p>
+          </div>
+
+          <div class="case-grid">
+
+            <!-- Case A: DRC Copper Mine -->
+            <article class="case-card">
+              <div class="card-image">
+                <img src="images/solumine.png" alt="Open-pit copper mine slope monitoring in the DRC" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <span class="card-category">International Project</span>
+                <h3 class="card-title">DRC Copper Mine Open-pit Slope Monitoring</h3>
+                <div class="card-tags" aria-label="Technologies used">
+                  <span class="card-tech">GNSS RTK</span>
+                  <span class="card-tech">IoT Gateway</span>
+                  <span class="card-tech">24/7 Automated</span>
+                </div>
+                <p class="card-text">Deployed a 24/7 automated GNSS displacement monitoring network across a large open-pit copper mine in the Democratic Republic of the Congo, providing millimeter-level slope stability alerts to prevent catastrophic failure events.</p>
+                <a href="#" class="card-link" aria-label="Read full case study: DRC Copper Mine">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Case B: Changba Lead-Zinc Mine -->
+            <article class="case-card">
+              <div class="card-image">
+                <img src="images/solumine2.png" alt="Changba Lead-Zinc Mine slope and pit safety monitoring" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <span class="card-category">Domestic Project</span>
+                <h3 class="card-title">Changba Lead-Zinc Mine Safety System</h3>
+                <div class="card-tags" aria-label="Technologies used">
+                  <span class="card-tech">Beidou GNSS</span>
+                  <span class="card-tech">Inclinometers</span>
+                  <span class="card-tech">Cloud Platform</span>
+                </div>
+                <p class="card-text">Delivered a comprehensive slope and pit safety information system for Baiyin Nonferrous Group's Changba Mine, integrating Beidou GNSS, deep inclinometers, and a unified cloud dashboard for real-time risk assessment.</p>
+                <a href="#" class="card-link" aria-label="Read full case study: Changba Lead-Zinc Mine">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Case C: Inner Mongolia Tailings Pond -->
+            <article class="case-card">
+              <div class="card-image">
+                <img src="images-mine/minetailing.png" alt="Inner Mongolia tailings pond GNSS deformation monitoring" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <span class="card-category">Tailings Pond</span>
+                <h3 class="card-title">Inner Mongolia Tailings Dam Deformation Monitoring</h3>
+                <div class="card-tags" aria-label="Technologies used">
+                  <span class="card-tech">High-precision GNSS</span>
+                  <span class="card-tech">Piezometers</span>
+                  <span class="card-tech">Early Warning</span>
+                </div>
+                <p class="card-text">Implemented high-precision GNSS deformation monitoring for China National Gold Group's tailings storage facility in Inner Mongolia, enabling continuous dam safety surveillance with automated multi-tier early warning alerts.</p>
+                <a href="#" class="card-link" aria-label="Read full case study: Inner Mongolia Tailings Dam">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Case D: Placeholder -->
+            <article class="case-card">
+              <div class="card-image">
+                <img src="images/placeholder.png" alt="Placeholder" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <span class="card-category">Domestic Project</span>
+                <h3 class="card-title">Project Title Here</h3>
+                <div class="card-tags" aria-label="Technologies used">
+                  <span class="card-tech">Technology 1</span>
+                  <span class="card-tech">Technology 2</span>
+                  <span class="card-tech">Technology 3</span>
+                </div>
+                <p class="card-text">Project description goes here. This is a placeholder for future case study content.</p>
+                <a href="#" class="card-link" aria-label="Read full case study">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Case E: Placeholder -->
+            <article class="case-card">
+              <div class="card-image">
+                <img src="images/placeholder.png" alt="Placeholder" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <span class="card-category">Domestic Project</span>
+                <h3 class="card-title">Project Title Here</h3>
+                <div class="card-tags" aria-label="Technologies used">
+                  <span class="card-tech">Technology 1</span>
+                  <span class="card-tech">Technology 2</span>
+                  <span class="card-tech">Technology 3</span>
+                </div>
+                <p class="card-text">Project description goes here. This is a placeholder for future case study content.</p>
+                <a href="#" class="card-link" aria-label="Read full case study">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Case F: Placeholder -->
+            <article class="case-card">
+              <div class="card-image">
+                <img src="images/placeholder.png" alt="Placeholder" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <span class="card-category">Domestic Project</span>
+                <h3 class="card-title">Project Title Here</h3>
+                <div class="card-tags" aria-label="Technologies used">
+                  <span class="card-tech">Technology 1</span>
+                  <span class="card-tech">Technology 2</span>
+                  <span class="card-tech">Technology 3</span>
+                </div>
+                <p class="card-text">Project description goes here. This is a placeholder for future case study content.</p>
+                <a href="#" class="card-link" aria-label="Read full case study">
+                  View Case Study
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </a>
+              </div>
+            </article>
+
+          </div><!-- /case-grid -->
+        </div>
+      </section>
+    </main>
+
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+    </script>
+      </body>
+      </html>
