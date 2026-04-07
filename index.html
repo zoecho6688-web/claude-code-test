@@ -48,38 +48,86 @@
     </header>
 
     <main id="main" role="main">
-      <section id="home" class="hero" aria-label="Hero">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="container hero-content hero-split">
-          <div class="hero-left">
-            <h1 class="hero-title hero-fadeup">Precision in Every Dimension</h1>
-            <p class="hero-lead hero-subtitle hero-fadeup hero-fadeup-delay">
-              Leading-edge GNSS &amp; IoT monitoring solutions for global safety.
-            </p>
+      <section id="home" class="hero loop-hero" aria-label="Hero">
+        <div class="loop-hero-inner" role="region" aria-roledescription="carousel" aria-label="Continuous loop slider">
+          <div class="loop-track" aria-live="polite">
+            <article class="loop-slide is-active">
+              <img src="images/hero-product.png" alt="Allystar high-precision GNSS technology in the field" />
+              <div class="loop-slide-content">
+                <p class="loop-slide-kicker">Brand &amp; Technology</p>
+                <h1 class="loop-slide-title">PRECISION WITHOUT COMPROMISE</h1>
+                <p class="loop-slide-sub">Global Automated Monitoring Powered by Allystar High-Precision GNSS.</p>
+                <a class="loop-cta" href="products.html">
+                  EXPLORE OUR TECHNOLOGY
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
 
-            <div class="hero-actions hero-fadeup hero-fadeup-delay-2" aria-label="Primary actions">
-              <a class="btn btn-primary" href="products.html">View Products</a>
-              <a class="btn btn-outline" href="cases.html">See Case Studies</a>
-            </div>
+            <article class="loop-slide">
+              <img src="images/hero-mining.png" alt="Mining safety monitoring in an open-pit environment" />
+              <div class="loop-slide-content">
+                <p class="loop-slide-kicker">Mining Safety</p>
+                <h1 class="loop-slide-title">SMART MINING SOLUTIONS</h1>
+                <p class="loop-slide-sub">Millimeter-level accuracy for open-pit slope and tailings pond monitoring.</p>
+                <a class="loop-cta" href="cases-mining.html">
+                  VIEW MINING CASES
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="loop-slide">
+              <img src="images/hero-case.png" alt="Water conservancy infrastructure monitoring" />
+              <div class="loop-slide-content">
+                <p class="loop-slide-kicker">Water Conservancy</p>
+                <h1 class="loop-slide-title">INTELLIGENT WATER CONTROL</h1>
+                <p class="loop-slide-sub">Real-time stability monitoring for reservoirs, levees, and dams.</p>
+                <a class="loop-cta" href="solutions-water-main.html">
+                  VIEW WATER SOLUTIONS
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="loop-slide">
+              <img src="images/hero-tech.png" alt="Urban infrastructure health monitoring" />
+              <div class="loop-slide-content">
+                <p class="loop-slide-kicker">Infrastructure Health</p>
+                <h1 class="loop-slide-title">RESILIENT INFRASTRUCTURE</h1>
+                <p class="loop-slide-sub">Cloud-based structural deformation monitoring for bridges, tunnels, and urban assets.</p>
+                <a class="loop-cta" href="solutions-urban-main.html">
+                  LEARN MORE
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
           </div>
 
-          <div class="hero-right" aria-label="Featured visuals">
-            <div class="hero-slider" role="region" aria-roledescription="carousel">
-              <div class="hero-slider-frame">
-                <div class="hero-slider-track">
-                  <figure class="hero-slide">
-                    <img src="images/hero-product.png" alt="M50 GNSS Receiver visual" />
-                  </figure>
-                  <figure class="hero-slide">
-                    <img src="images/hero-case.png" alt="Guizhou case study visual" />
-                  </figure>
-                  <figure class="hero-slide">
-                    <img src="images/hero-tech.png" alt="High-tech monitoring platform visual" />
-                  </figure>
-                </div>
-              </div>
-              <div class="hero-slider-sheen" aria-hidden="true"></div>
-            </div>
+          <button class="loop-nav loop-nav-prev" type="button" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 12H7M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+            </svg>
+          </button>
+          <button class="loop-nav loop-nav-next" type="button" aria-label="Next slide">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+            </svg>
+          </button>
+
+          <div class="loop-indicators" role="tablist" aria-label="Slide indicators">
+            <button class="loop-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Go to slide 1"></button>
+            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="Go to slide 2"></button>
+            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="Go to slide 3"></button>
+            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="Go to slide 4"></button>
           </div>
         </div>
       </section>
@@ -356,7 +404,92 @@
         btn.setAttribute('aria-expanded', open);
       });
     })();
+    (function(){
+      var slider = document.querySelector('.loop-hero-inner');
+      if(!slider) return;
+      var track = slider.querySelector('.loop-track');
+      var slides = Array.prototype.slice.call(track.children);
+      var dots = Array.prototype.slice.call(slider.querySelectorAll('.loop-dot'));
+      var prevBtn = slider.querySelector('.loop-nav-prev');
+      var nextBtn = slider.querySelector('.loop-nav-next');
+      var interval = 5000;
+      var timer = null;
+      var index = 0;
+      var isPaused = false;
+
+      var clone = slides[0].cloneNode(true);
+      clone.setAttribute('data-clone', 'true');
+      track.appendChild(clone);
+
+      function setTransition(enabled){
+        track.style.transition = enabled ? 'transform 600ms ease' : 'none';
+      }
+
+      function updateIndicators(activeIndex){
+        dots.forEach(function(dot, i){
+          var isActive = i === activeIndex;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+      }
+
+      function goTo(idx, animate){
+        index = idx;
+        setTransition(animate !== false);
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        updateIndicators(index % slides.length);
+      }
+
+      function next(){
+        if(index >= slides.length) return;
+        goTo(index + 1, true);
+      }
+
+      function prev(){
+        if(index === 0){
+          setTransition(false);
+          index = slides.length;
+          track.style.transform = 'translateX(-' + (index * 100) + '%)';
+          requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+              goTo(slides.length - 1, true);
+            });
+          });
+          return;
+        }
+        goTo(index - 1, true);
+      }
+
+      function start(){
+        if(timer) clearInterval(timer);
+        timer = setInterval(function(){
+          if(!isPaused) next();
+        }, interval);
+      }
+
+      track.addEventListener('transitionend', function(){
+        if(index === slides.length){
+          setTransition(false);
+          index = 0;
+          track.style.transform = 'translateX(0%)';
+          requestAnimationFrame(function(){
+            setTransition(true);
+          });
+        }
+      });
+
+      slider.addEventListener('mouseenter', function(){ isPaused = true; });
+      slider.addEventListener('mouseleave', function(){ isPaused = false; });
+
+      if(prevBtn) prevBtn.addEventListener('click', prev);
+      if(nextBtn) nextBtn.addEventListener('click', next);
+      dots.forEach(function(dot, i){
+        dot.addEventListener('click', function(){ goTo(i, true); });
+      });
+
+      goTo(0, false);
+      start();
+    })();
   </script>
 </body>
 </html>
-
