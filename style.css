@@ -995,19 +995,23 @@ a{ color: inherit; }
   background: #fff;
   display: flex;
   flex-direction: column;
-  transition: box-shadow 180ms;
+  transition: box-shadow 200ms ease, transform 200ms ease;
   border-radius: 0 !important;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
-.ccard:hover{ box-shadow: none !important; }
+.ccard:hover{
+  box-shadow: 0 18px 40px rgba(0,86,179,0.18);
+  transform: translateY(-4px);
+}
 
 .ccard-img-wrap{
   position: relative;
-  aspect-ratio: 16 / 9;
+  height: 220px;
   overflow: hidden;
   background: #f1f5f9;
   border-radius: 0 !important;
+  transition: height 220ms ease;
 }
 
 .ccard-img-wrap img{
@@ -1015,7 +1019,10 @@ a{ color: inherit; }
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1);
+  transition: transform 220ms ease;
 }
+.ccard:hover .ccard-img-wrap{ height: 170px; }
 
 .ccard-new{
   position: absolute;
@@ -1062,6 +1069,14 @@ a{ color: inherit; }
   line-height: 1.65;
   color: #4a5568;
   flex: 1;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 200ms ease, max-height 200ms ease;
+}
+.ccard:hover .ccard-desc{
+  opacity: 1;
+  max-height: 120px;
 }
 
 .ccard-footer{
