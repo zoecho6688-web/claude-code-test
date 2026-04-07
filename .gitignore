@@ -1,12 +1,2 @@
-# Local image assets - excluded from version control
-images/
-images-mine/
-
-# Image file types
-*.png
-*.jpg
-*.jpeg
-*.gif
-
 # macOS
 .DS_Store
