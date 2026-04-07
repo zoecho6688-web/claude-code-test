@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Medo M20 GNSS Monitoring Receiver — high-precision multi-constellation receiver for structural and geotechnical monitoring." />
+    <title>M20 GNSS Receiver | Medo</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .pd-breadcrumb { background: #fff; }
+      .pd-breadcrumb-inner {
+        display: flex; align-items: center; gap: 8px;
+        height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap;
+      }
+      .pd-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .pd-breadcrumb a:hover { color: #0056D6; }
+      .pd-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .pd-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* ── Hero ── */
+      .pd-hero {
+        display: grid; grid-template-columns: 1fr 1fr;
+        background: #fff; border-bottom: 1px solid #EEEEEE;
+      }
+      .pd-hero-left {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 48px 48px 48px 0;
+      }
+      .pd-eyebrow {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 16px;
+      }
+      .pd-heading {
+        margin: 0 0 8px;
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; color: #0f1f3d;
+      }
+      .pd-heading-sub {
+        margin: 0 0 20px;
+        font-size: clamp(14px, 1.6vw, 18px);
+        font-weight: 600; color: #9ca3af; letter-spacing: 0.02em;
+      }
+      .pd-hero-desc { margin: 0 0 28px; font-size: 15px; line-height: 1.75; color: #4a5568; }
+
+      .pd-hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+      .pd-hero-tag {
+        font-size: 10px; font-weight: 700; padding: 4px 12px;
+        background: #f0f4ff; color: #0056b3;
+        border: 1px solid rgba(0,86,179,0.15);
+        letter-spacing: 0.06em; text-transform: uppercase;
+      }
+
+      .pd-hero-right {
+        position: relative; overflow: hidden; background: #0f1f3d;
+      }
+      .pd-hero-right img {
+        width: 100%; height: 100%; object-fit: cover; display: block;
+        position: absolute; inset: 0;
+      }
+      .pd-hero-right::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        z-index: 1; pointer-events: none;
+      }
+      /* placeholder if no image */
+      .pd-img-placeholder {
+        width: 100%; height: 100%; min-height: 320px;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 14px; color: rgba(255,255,255,0.2);
+      }
+      .pd-img-placeholder svg { width: 48px; height: 48px; }
+      .pd-img-placeholder span {
+        font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      /* ── Page body ── */
+      .pd-body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ── Sidebar nav ── */
+      .pd-sidenav {
+        position: sticky; top: 52px;
+        height: calc(100vh - 52px);
+        padding: 56px 32px 40px 0;
+        display: flex; flex-direction: column; gap: 4px;
+        border-right: none;
+      }
+      .pd-sidenav-label {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: #c0c8d4; margin-bottom: 20px;
+      }
+      .pd-nav-link {
+        display: flex; align-items: center; gap: 10px;
+        padding: 10px 14px;
+        font-size: 12px; font-weight: 600; color: #9ca3af;
+        text-decoration: none;
+        border-left: 2px solid transparent;
+        transition: color 200ms, background 200ms, border-color 200ms;
+        border-radius: 0 4px 4px 0;
+      }
+      .pd-nav-link .pd-nav-num {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.10em;
+        color: #d1d5db; transition: color 200ms; flex-shrink: 0;
+      }
+      .pd-nav-link:hover,
+      .pd-nav-link.is-active {
+        color: #0056D6; background: #f0f4ff; border-left-color: #0056D6;
+      }
+      .pd-nav-link:hover .pd-nav-num,
+      .pd-nav-link.is-active .pd-nav-num { color: #0056D6; }
+      .pd-nav-link.is-active { font-weight: 700; }
+
+      /* ── Content ── */
+      .pd-content { padding: 64px 0 80px 56px; }
+
+      .pd-section {
+        padding-bottom: 80px; margin-bottom: 72px;
+        border-bottom: 1px solid #EEEEEE;
+      }
+      .pd-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
+
+      .pd-section-label {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 14px;
+      }
+      .pd-section-title {
+        margin: 0 0 24px;
+        font-size: clamp(20px, 2.6vw, 30px);
+        font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d;
+      }
+
+      /* 01 产品简介 */
+      .pd-intro-text {
+        font-size: 14px; line-height: 1.85; color: #4a5568; margin: 0 0 32px;
+      }
+      .pd-intro-stats {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        border: 1px solid #EEEEEE;
+      }
+      .pd-intro-stat {
+        padding: 22px 26px;
+        border-right: 1px solid #EEEEEE;
+      }
+      .pd-intro-stat:last-child { border-right: none; }
+      .pd-intro-stat-val {
+        font-size: 30px; font-weight: 900; color: #0056D6;
+        letter-spacing: -0.03em; line-height: 1;
+      }
+      .pd-intro-stat-label {
+        font-size: 11px; color: #9ca3af; margin-top: 6px;
+        font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4;
+      }
+
+      .pd-func-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: #0056b3; /* gap 颜色用背景色模拟细线 */
+        }
+        .pd-func-card {
+        background: #fff;
+        padding: 28px 26px 30px;
+        display: flex; flex-direction: column; gap: 12px;
+        transition: background 200ms;
+        }
+        .pd-func-card:hover { background: #f7faff; }
+        .pd-func-icon {
+        width: 44px; height: 44px;
+        display: flex; align-items: center; justify-content: center;
+        background: #f0f4ff;
+        padding: 8px;
+        margin-bottom: 4px;
+        transition: background 200ms;
+        }
+        .pd-func-card:hover .pd-func-icon { background: #e0eaff; }
+        .pd-func-icon svg { width: 100%; height: 100%; }
+        .pd-func-title {
+        margin: 0; font-size: 14px; font-weight: 800; color: #0f1f3d; line-height: 1.3;
+        }
+        .pd-func-desc {
+        margin: 0; font-size: 12px; line-height: 1.75; color: #6b7280;
+        }
+
+        @media (max-width: 1024px) {
+        .pd-func-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+        .pd-func-grid { grid-template-columns: 1fr; }
+        }
+
+      /* 03 具体参数 */
+      .pd-specs-layout {
+        display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start;
+      }
+      .pd-spec-img-wrap {
+        aspect-ratio: 4 / 3; background: #0f1f3d;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 12px; color: rgba(255,255,255,0.2);
+        border: 1px solid #EEEEEE; overflow: hidden;
+      }
+      .pd-spec-img-wrap img {
+        width: 100%; height: 100%; object-fit: cover; display: block;
+      }
+      .pd-spec-img-placeholder { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+      .pd-spec-img-placeholder svg { width: 40px; height: 40px; }
+      .pd-spec-img-placeholder span {
+        font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      }
+      .pd-spec-table { display: flex; flex-direction: column; }
+      .pd-spec-row {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 12px 0; border-bottom: 1px solid #EEEEEE; gap: 16px;
+      }
+      .pd-spec-row:last-child { border-bottom: none; }
+      .pd-spec-key {
+        font-size: 12px; font-weight: 600; color: #9ca3af;
+        text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0;
+      }
+      .pd-spec-val { font-size: 14px; font-weight: 700; color: #0f1f3d; text-align: right; }
+
+      /* 04 相关方案 */
+      .pd-solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .pd-solution-btn {
+        display: flex; flex-direction: column; gap: 10px;
+        padding: 24px 28px;
+        border: 1px solid #EEEEEE;
+        text-decoration: none; color: inherit;
+        position: relative; overflow: hidden;
+        transition: border-color 200ms;
+      }
+      .pd-solution-btn::before {
+        content: ''; position: absolute; inset: 0;
+        background: #0056D6; transform: translateY(100%);
+        transition: transform 320ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
+      .pd-solution-btn:hover::before { transform: translateY(0); }
+      .pd-solution-btn:hover { border-color: #0056D6; }
+      .pd-sol-cat {
+        position: relative; z-index: 1;
+        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+        text-transform: uppercase; color: #0056D6;
+        transition: color 200ms;
+      }
+      .pd-solution-btn:hover .pd-sol-cat { color: rgba(255,255,255,0.65); }
+      .pd-sol-title {
+        position: relative; z-index: 1;
+        font-size: 16px; font-weight: 800; color: #0f1f3d; margin: 0;
+        line-height: 1.3; transition: color 200ms;
+      }
+      .pd-solution-btn:hover .pd-sol-title { color: #fff; }
+      .pd-solution-img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #f3f4f6;
+        border: 1px solid #EEEEEE;
+        overflow: hidden;
+        position: relative;
+      }
+      .pd-solution-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .pd-solution-img-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(15,31,61,0.35);
+        background: repeating-linear-gradient(
+          135deg,
+          rgba(15,31,61,0.04),
+          rgba(15,31,61,0.04) 12px,
+          rgba(15,31,61,0.02) 12px,
+          rgba(15,31,61,0.02) 24px
+        );
+      }
+      .pd-sol-arrow {
+        position: relative; z-index: 1;
+        display: flex; align-items: center; gap: 6px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+        text-transform: uppercase; color: #0056D6;
+        margin-top: 8px; transition: color 200ms;
+        align-self: flex-start;
+      }
+      .pd-solution-btn:hover .pd-sol-arrow { color: rgba(255,255,255,0.85); }
+      .pd-sol-arrow svg { width: 12px; height: 12px; transition: transform 200ms; }
+      .pd-solution-btn:hover .pd-sol-arrow svg { transform: translateX(3px); }
+
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        .pd-hero { grid-template-columns: 1fr; }
+        .pd-hero-left { padding: 48px 0 32px; }
+        .pd-hero-right { height: 240px; }
+        .pd-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+        .pd-body { grid-template-columns: 1fr; padding: 0; }
+        .pd-sidenav {
+          position: sticky; top: 52px; height: auto;
+          flex-direction: row; gap: 0;
+          padding: 0; border-right: none; border-bottom: 1px solid #EEEEEE;
+          overflow-x: auto; background: #fff; z-index: 10;
+          -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        }
+        .pd-sidenav::-webkit-scrollbar { display: none; }
+        .pd-sidenav-label { display: none; }
+        .pd-nav-link {
+          flex-shrink: 0; padding: 14px 16px;
+          border-left: none; border-bottom: 2px solid transparent;
+          border-radius: 0; white-space: nowrap; background: transparent;
+        }
+        .pd-nav-link:hover,
+        .pd-nav-link.is-active {
+          background: transparent; border-left-color: transparent;
+          border-bottom-color: #0056D6;
+        }
+        .pd-nav-link .pd-nav-num { display: none; }
+        .pd-content { padding: 40px 20px 60px; }
+        .pd-intro-stats { grid-template-columns: 1fr; }
+        .pd-intro-stat { border-right: none; border-bottom: 1px solid #EEEEEE; }
+        .pd-intro-stat:last-child { border-bottom: none; }
+        .pd-specs-layout { grid-template-columns: 1fr; }
+        .pd-solutions-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html" aria-label="Medo Home">
+          <img class="brand-logo" src="../images/logo.png" alt="Medo" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="nav-link active" href="../products.html">Products</a>
+          <a class="nav-link" href="../solutions.html">Solutions</a>
+          <a class="nav-link" href="../cases.html">Cases</a>
+          <a class="nav-link" href="../resources.html">Support</a>
+          <a class="nav-link" href="../about.html">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link active" href="../products.html">Products</a>
+          <a class="nav-drawer-link" href="../solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="../cases.html">Cases</a>
+          <a class="nav-drawer-link" href="../resources.html">Support</a>
+          <a class="nav-drawer-link" href="../about.html">About</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="pd-breadcrumb" aria-label="Breadcrumb">
+      <div class="container pd-breadcrumb-inner">
+        <a href="../index.html">Home</a>
+        <span class="pd-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="../products.html">GNSS</a>
+        <span class="pd-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="pd-breadcrumb-current" aria-current="page">M20</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pd-hero" aria-label="Product hero">
+      <div class="container" style="display:contents;">
+        <div class="pd-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <span class="pd-eyebrow">GNSS Monitoring Receiver</span>
+          <h1 class="pd-heading">M20</h1>
+          <p class="pd-heading-sub">High-Precision GNSS Rover Station</p>
+          <p class="pd-hero-desc">Multi-constellation GNSS receiver engineered for continuous structural and geotechnical displacement monitoring. Delivers sub-millimeter accuracy in the harshest field environments.</p>
+          <div class="pd-hero-tags">
+            <span class="pd-hero-tag">GPS + BDS + GLONASS</span>
+            <span class="pd-hero-tag">±1mm Accuracy</span>
+            <span class="pd-hero-tag">IP67</span>
+            <span class="pd-hero-tag">Solar Ready</span>
+          </div>
+        </div>
+        <div class="pd-hero-right">
+          <!-- 替换 src 为实际产品图片 -->
+          <img src="../images/product-m20.png" alt="Medo M20 GNSS Receiver"
+            onerror="this.style.display='none'; this.parentElement.querySelector('.pd-img-placeholder').style.display='flex';" />
+          <div class="pd-img-placeholder" style="display:none; position:absolute; inset:0;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg>
+            <span>Product Image</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main id="main" role="main">
+      <div class="pd-body">
+
+        <!-- Sidebar -->
+        <aside class="pd-sidenav" aria-label="Page sections">
+          <span class="pd-sidenav-label">On this page</span>
+          <a class="pd-nav-link" href="#intro">
+            <span class="pd-nav-num">01</span>Product Overview
+          </a>
+          <a class="pd-nav-link" href="#functions">
+            <span class="pd-nav-num">02</span>Features
+          </a>
+          <a class="pd-nav-link" href="#specs">
+            <span class="pd-nav-num">03</span>Technical Specifications
+          </a>
+          <a class="pd-nav-link" href="#solutions">
+            <span class="pd-nav-num">04</span>Related Solutions
+          </a>
+        </aside>
+
+        <div class="pd-content">
+
+          <!-- 01 产品简介 -->
+          <section id="intro" class="pd-section" style="scroll-margin-top:100px;">
+            <span class="pd-section-label">01 / Product Overview</span>
+            <h2 class="pd-section-title">Product Introduction</h2>
+            <p class="pd-intro-text">The Medo M20 is a professional-grade GNSS monitoring receiver designed specifically for long-term, unattended deformation monitoring applications. Unlike survey-grade receivers optimized for short observation sessions, the M20 is built around continuous operation: a ruggedized aluminum housing, wide-temperature electronics, and an integrated power management system that supports solar charging and battery backup for indefinite autonomous deployment.</p>
+            <p class="pd-intro-text">Supporting all major satellite constellations — GPS, BeiDou, GLONASS, and Galileo — the M20 tracks up to 800 channels simultaneously, delivering robust signal acquisition even in partially obstructed environments such as open-pit mine walls, dam faces, and valley-side slope installations. Phase-differential processing against a fixed reference station achieves horizontal accuracy of ±1mm and vertical accuracy of ±2mm under normal atmospheric conditions.</p>
+            <div class="pd-intro-stats">
+              <div class="pd-intro-stat">
+                <div class="pd-intro-stat-val">±1mm</div>
+                <div class="pd-intro-stat-label">Horizontal Accuracy</div>
+              </div>
+              <div class="pd-intro-stat">
+                <div class="pd-intro-stat-val">800ch</div>
+                <div class="pd-intro-stat-label">Tracking Channels</div>
+              </div>
+              <div class="pd-intro-stat">
+                <div class="pd-intro-stat-val">IP67</div>
+                <div class="pd-intro-stat-label">Protection Rating</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 功能说明 -->
+          <section id="functions" class="pd-section" style="scroll-margin-top:100px;">
+            <span class="pd-section-label">02 / Features</span>
+            <h2 class="pd-section-title">Key Functions</h2>
+            <div class="pd-func-grid">
+
+                <div class="pd-func-card">
+                <div class="pd-func-icon">
+                    <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#0056D6" stroke-width="1.5"/><path d="M20 10v10l6 4" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="pd-func-title">Real-time Displacement Monitoring</h3>
+                <p class="pd-func-desc">Continuously computes 3D displacement vectors relative to a fixed reference station. Onboard buffering ensures no data loss during communication outages up to 72 hours.</p>
+                </div>
+
+                <div class="pd-func-card">
+                <div class="pd-func-icon">
+                    <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="4" stroke="#0056D6" stroke-width="1.5"/><circle cx="20" cy="20" r="10" stroke="#0056D6" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="20" cy="20" r="16" stroke="#0056D6" stroke-width="1.5" stroke-dasharray="2 4"/></svg>
+                </div>
+                <h3 class="pd-func-title">Multi-constellation Signal Tracking</h3>
+                <p class="pd-func-desc">Simultaneously tracks GPS, BeiDou, GLONASS, and Galileo signals across 800 channels. Multi-constellation redundancy maintains continuity when individual systems degrade.</p>
+                </div>
+
+                <div class="pd-func-card">
+                <div class="pd-func-icon">
+                    <svg viewBox="0 0 40 40" fill="none"><path d="M8 28l8-10 6 6 6-12 8 8" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><path d="M28 10h6v6" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="pd-func-title">Automated Threshold Alerting</h3>
+                <p class="pd-func-desc">Onboard alert logic evaluates displacement magnitude, velocity, and acceleration against three-tier thresholds, triggering immediate transmission independent of regular reporting cycles.</p>
+                </div>
+
+                <div class="pd-func-card">
+                <div class="pd-func-icon">
+                    <svg viewBox="0 0 40 40" fill="none"><path d="M20 8v6M20 26v6M8 20h6M26 20h6" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="20" cy="20" r="6" stroke="#0056D6" stroke-width="1.5"/><path d="M13 13l3 3M24 24l3 3M13 27l3-3M24 13l3-3" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="pd-func-title">Autonomous Power Management</h3>
+                <p class="pd-func-desc">Integrated MPPT solar charge controller with 20Ah LiFePO₄ battery provides up to 5 days of operation without solar input. Power status reported alongside displacement data.</p>
+                </div>
+
+                <div class="pd-func-card">
+                <div class="pd-func-icon">
+                    <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="14" width="10" height="14" rx="1" stroke="#0056D6" stroke-width="1.5"/><rect x="22" y="10" width="10" height="18" rx="1" stroke="#0056D6" stroke-width="1.5"/><path d="M13 14v-4M27 10V6M6 28h28" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="pd-func-title">Dual-channel Communications</h3>
+                <p class="pd-func-desc">Primary 4G LTE with automatic satellite fallback ensures data continuity in areas with unreliable cellular coverage. Local LoRa radio enables peer-to-peer mesh networking between units.</p>
+                </div>
+
+                <div class="pd-func-card">
+                <div class="pd-func-icon">
+                    <svg viewBox="0 0 40 40" fill="none"><rect x="10" y="8" width="20" height="24" rx="1" stroke="#0056D6" stroke-width="1.5"/><path d="M15 16h10M15 21h6" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="28" cy="28" r="6" fill="#fff" stroke="#0056D6" stroke-width="1.5"/><path d="M25 28l2 2 4-4" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="pd-func-title">Remote Configuration & OTA Update</h3>
+                <p class="pd-func-desc">All parameters configurable remotely via the Medo cloud platform. Firmware updates delivered over-the-air with rollback capability, minimizing maintenance visits to remote sites.</p>
+                </div>
+
+            </div>
+            </section>
+
+          <!-- 03 具体参数 -->
+          <section id="specs" class="pd-section" style="scroll-margin-top:100px;">
+            <span class="pd-section-label">03 /</span>
+            <h2 class="pd-section-title">Technical Specifications</h2>
+            <div class="pd-specs-layout">
+              <!-- 参数表 -->
+              <div class="pd-spec-table">
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Constellations</span>
+                  <span class="pd-spec-val">GPS / BDS / GLONASS / Galileo</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Tracking Channels</span>
+                  <span class="pd-spec-val">800</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Horizontal Accuracy</span>
+                  <span class="pd-spec-val">±1mm (RMS, RTK)</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Vertical Accuracy</span>
+                  <span class="pd-spec-val">±2mm (RMS, RTK)</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Data Rate</span>
+                  <span class="pd-spec-val">1s – 3600s (configurable)</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Communication</span>
+                  <span class="pd-spec-val">4G LTE + Satellite + LoRa</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Power Input</span>
+                  <span class="pd-spec-val">Solar (≤40W) + 12V DC</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Battery Backup</span>
+                  <span class="pd-spec-val">20Ah LiFePO₄ (≥5 days)</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Operating Temp.</span>
+                  <span class="pd-spec-val">−40°C to +70°C</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Protection Rating</span>
+                  <span class="pd-spec-val">IP67</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Dimensions</span>
+                  <span class="pd-spec-val">185 × 185 × 72 mm</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Weight</span>
+                  <span class="pd-spec-val">1.4 kg</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 相关方案 -->
+          <section id="solutions" class="pd-section" style="scroll-margin-top:100px;">
+            <span class="pd-section-label">04 / </span>
+            <h2 class="pd-section-title">Related Solutions</h2>
+            <div class="pd-solutions-grid">
+
+              <a class="pd-solution-btn" href="../solutions-mining-slope.html">
+                <div class="pd-solution-img">
+                  <img src="../images/solution-mining-slope.jpg" alt="Open-pit slope monitoring scene"
+                    onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
+                  <div class="pd-solution-img-placeholder">Solution Image</div>
+                </div>
+                <span class="pd-sol-cat">Mining</span>
+                <h3 class="pd-sol-title">Open-pit Mine Slope Safety Monitoring</h3>
+                <span class="pd-sol-arrow">
+                  Explore
+                  <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </a>
+
+              <a class="pd-solution-btn" href="../solutions-water-dam.html">
+                <div class="pd-solution-img">
+                  <img src="../images/solution-water-dam.jpg" alt="Reservoir dam monitoring scene"
+                    onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
+                  <div class="pd-solution-img-placeholder">Solution Image</div>
+                </div>
+                <span class="pd-sol-cat">Water Infrastructure</span>
+                <h3 class="pd-sol-title">Reservoir Dam Deformation Monitoring</h3>
+                <span class="pd-sol-arrow">
+                  Explore
+                  <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </span>
+              </a>
+
+            </div>
+          </section>
+
+        </div><!-- /pd-content -->
+      </div><!-- /pd-body -->
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="../images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="../index.html">Home</a><a href="solutions.html">Solutions</a><a href="products.html">Products</a><a href="about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+
+      // Scrollspy
+      (function(){
+        var links = document.querySelectorAll('.pd-nav-link');
+        var ids = ['intro','functions','specs','solutions'];
+        var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        if(!sections.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){
+              links.forEach(function(a){ a.classList.remove('is-active'); });
+              var active = document.querySelector('.pd-nav-link[href="#'+e.target.id+'"]');
+              if(active) active.classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(function(s){ obs.observe(s); });
+      })();
+    </script>
+  </body>
+</html>
