@@ -53,8 +53,8 @@
       /* ── Body layout: sticky sidebar + content ── */
       .tl-body {
         display: grid;
-        grid-template-columns: 200px 1fr;
-        max-width: 1200px;
+        grid-template-columns: 180px 1fr;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 0 20px;
         gap: 0;
@@ -290,28 +290,45 @@
       }
 
       /* case study */
-      .tl-case {
-        border: 1px solid #EEEEEE; overflow: hidden;
+      
+      .case-study-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(0, 86, 214, 0.08); /* 极淡的蓝色背景，提示点击区域 */
+        color: #0056D6;
+        text-decoration: none;
+        padding: 12px 24px;   /* 增加内边距，让它更有“块感” */
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden; /* 确保伪元素不会超出边界 */
+        transition: all 0.3s ease;
       }
-      .tl-case-header {
-        background: #0f1f3d; padding: 28px 32px;
-        display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+
+      /* 动态下划线：通过伪元素实现 */
+      .case-study-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 3px; /* 稍微加粗下划线，更明显 */
+          background-color: #0056D6;
+          transition: width 0.3s ease;
       }
-      .tl-case-tag {
-        font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
-        text-transform: uppercase; color: rgba(83,210,255,0.8); margin-bottom: 10px; display: block;
+
+      /* 悬停效果 */
+      .case-study-link:hover {
+          transform: translateY(-2px); /* 配合阴影，让按钮向上微动 */
       }
-      .tl-case-title { margin: 0; font-size: 20px; font-weight: 800; color: #fff; line-height: 1.3; }
-      .tl-case-year {
-        font-size: 48px; font-weight: 900; color: rgba(255,255,255,0.12);
-        letter-spacing: -0.04em; line-height: 1; flex-shrink: 0;
+
+      /* 悬停时下划线伸长 */
+      .case-study-link:hover::after {
+          width: 100%;
       }
-      .tl-case-body { padding: 28px 32px; }
-      .tl-case-desc { margin: 0 0 24px; font-size: 14px; line-height: 1.75; color: #4a5568; }
-      .tl-case-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-      .tl-case-stat { border: 1px solid #EEEEEE; padding: 16px; }
-      .tl-case-stat-val { font-size: 26px; font-weight: 900; color: #0056D6; letter-spacing: -0.02em; }
-      .tl-case-stat-label { font-size: 12px; color: #9ca3af; margin-top: 4px; line-height: 1.4; }
 
       /* next solution bar */
       .tl-next {
@@ -346,6 +363,9 @@
       .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
       .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
       .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+      
+
 
       /* ── Mobile ── */
       @media (max-width: 768px) {
@@ -664,15 +684,8 @@
             <p class="tl-section-desc">Real deployments. Zero accidents.</p>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #EEEEEE;overflow:hidden;">
-              <div style="background:#0f1f3d;min-height:320px;display:flex;align-items:center;justify-content:center;padding:32px;">
-                <svg viewBox="0 0 240 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;opacity:0.65;">
-                  <path d="M10 170 L60 90 L100 120 L150 50 L200 80 L230 170Z" stroke="#0056D6" stroke-width="1.5" fill="rgba(0,86,214,0.08)"/>
-                  <path d="M10 170 L230 170" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                  <circle cx="150" cy="50" r="5" fill="#0056D6"/>
-                  <path d="M150 50 L170 30" stroke="#0056D6" stroke-width="1" stroke-dasharray="3 2"/>
-                  <text x="172" y="28" fill="rgba(255,255,255,0.55)" font-size="9" font-family="sans-serif">Alert Triggered</text>
-                  <text x="8" y="185" fill="rgba(255,255,255,0.3)" font-size="8" font-family="sans-serif">Shanxi Open-Pit Mine — Displacement Timeline</text>
-                </svg>
+              <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:10px;">
+                <img src="images/abouthero.png" alt="Shanxi open-pit mine slope monitoring case study" style="width:100%;height:auto;max-width:400px;"/>
               </div>
               <div style="padding:36px 32px;display:flex;flex-direction:column;gap:20px;">
                 <div>
@@ -700,6 +713,12 @@
                     </div>
                   </div>
                 </div>
+                <a href="cases.html" class="case-study-link">
+                  Explore Geohazard Case Studies → 
+                  <svg viewBox="0 0 14 14" fill="none" class="link-icon" aria-hidden="true">
+                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </section>

@@ -53,8 +53,8 @@
       /* ── Body layout: sticky sidebar + content ── */
       .tl-body {
         display: grid;
-        grid-template-columns: 200px 1fr;
-        max-width: 1200px;
+        grid-template-columns: 180px minmax(0, 1fr);
+        max-width: 1240px;
         margin: 0 auto;
         padding: 0 20px;
         gap: 0;
@@ -65,7 +65,7 @@
         position: sticky;
         top: 52px;
         height: calc(100vh - 52px);
-        padding: 56px 32px 40px 0;
+        padding: 56px 20px 40px 0;
         display: flex;
         flex-direction: column;
         gap: 0;
@@ -97,7 +97,7 @@
       .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
 
       /* ── Content area ── */
-      .tl-content { padding: 64px 0 80px 56px; }
+      .tl-content { padding: 64px 0 80px 40px; }
 
       .tl-section {
         padding-bottom: 96px;
@@ -131,8 +131,8 @@
 
       /* solution overview: hero row */
       .tl-overview-row {
-        display: grid; grid-template-columns: 1fr 1fr;
-        gap: 40px; align-items: center; margin-bottom: 32px;
+        display: grid; grid-template-columns: 1.05fr 1.35fr;
+        gap: 48px; align-items: center; margin-bottom: 32px;
       }
       .tl-img-wrap { position: relative; background: #0f1f3d; overflow: hidden; }
       .tl-img-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
@@ -189,8 +189,9 @@
         gap: 20px; align-items: start;
         border: 1px solid #EEEEEE; padding: 20px 24px;
       }
+
       .tl-adv-num {
-        font-size: 28px; font-weight: 900; color: #EEEEEE;
+        font-size: 28px; font-weight: 900; color: #bad0f1;
         letter-spacing: -0.04em; line-height: 1;
       }
       .tl-adv-title { margin: 0 0 6px; font-size: 15px; font-weight: 800; color: #0f1f3d; }
@@ -199,24 +200,31 @@
       /* products */
       .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
       .tl-prod-card {
-        border: 1px solid #EEEEEE; padding: 24px;
-        display: flex; flex-direction: column; gap: 8px;
+        border: 1px solid #EEEEEE; padding: 0;
+        display: grid; grid-template-columns: minmax(0,1fr) 160px;
+        align-items: stretch; overflow: hidden;
         text-decoration: none; color: inherit;
-        transition: border-color 200ms, box-shadow 200ms;
+        transition: border-color 200ms, box-shadow 200ms, transform 200ms;
       }
-      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); transform: translateY(-8px); }
+      .tl-prod-body {
+        padding: 22px 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        min-height: 140px;
+      }
       .tl-prod-cat {
         font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
         text-transform: uppercase; color: #0056D6;
       }
       .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
-      .tl-prod-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; flex: 1; }
       .tl-prod-link {
         font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
         text-transform: uppercase; color: #0056D6;
         border-bottom: 1px solid #0056D6; padding-bottom: 1px;
-        align-self: flex-start; margin-top: 8px;
+        align-self: flex-start; margin-top: auto;
       }
+      .tl-prod-media { position: relative; background: #0f1f3d; }
+      .tl-prod-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
       /* case study */
       .tl-case {
@@ -617,28 +625,44 @@
             <p class="tl-section-desc">Each component is field-validated for tailings dam environments and integrates natively with the Medo cloud platform.</p>
             <div class="tl-prod-grid">
               <a class="tl-prod-card" href="products.html">
-                <span class="tl-prod-cat">GNSS Sensor</span>
-                <h3 class="tl-prod-name">MG-200 GNSS Rover</h3>
-                <p class="tl-prod-desc">High-precision multi-constellation receiver with ±2mm horizontal accuracy and 140ms update latency. Designed for continuous outdoor deployment.</p>
-                <span class="tl-prod-link">View Specs →</span>
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">GNSS Sensor</span>
+                  <h3 class="tl-prod-name">MG-200 GNSS Rover</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hero-product.png" alt="" />
+                </div>
               </a>
               <a class="tl-prod-card" href="products.html">
-                <span class="tl-prod-cat">Pore Pressure</span>
-                <h3 class="tl-prod-name">MP-100 Vibrating Wire Piezometer</h3>
-                <p class="tl-prod-desc">Embedded pore pressure sensor with 0.01 kPa resolution and corrosion-resistant stainless housing for long-term dam wall installation.</p>
-                <span class="tl-prod-link">View Specs →</span>
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Pore Pressure</span>
+                  <h3 class="tl-prod-name">MP-100 Vibrating Wire Piezometer</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hero-tech.png" alt="" />
+                </div>
               </a>
               <a class="tl-prod-card" href="products.html">
-                <span class="tl-prod-cat">Tilt Monitoring</span>
-                <h3 class="tl-prod-name">MI-50 MEMS Inclinometer</h3>
-                <p class="tl-prod-desc">Biaxial tilt sensor with 0.001° resolution for detecting sub-visible slope deformation in dam crest and downstream face installations.</p>
-                <span class="tl-prod-link">View Specs →</span>
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Tilt Monitoring</span>
+                  <h3 class="tl-prod-name">MI-50 MEMS Inclinometer</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hero-mining.png" alt="" />
+                </div>
               </a>
               <a class="tl-prod-card" href="products.html">
-                <span class="tl-prod-cat">Data Logger</span>
-                <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
-                <p class="tl-prod-desc">Solar-powered edge logger with 4G/satellite dual uplink, local SD storage, and support for up to 32 sensor channels per unit.</p>
-                <span class="tl-prod-link">View Specs →</span>
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Data Logger</span>
+                  <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hero-case.png" alt="" />
+                </div>
               </a>
             </div>
           </section>
