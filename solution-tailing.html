@@ -276,6 +276,95 @@
       .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
       .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
 
+      /* solution overview: flow layout */
+      .flow-wrapper {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        position: relative;
+      }
+      .flow-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        z-index: 1;
+      }
+      .flow-arrow svg { opacity: 0.35; }
+      .flow-card {
+        flex: 1;
+        position: relative;
+        background: #fff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 0;
+        padding: 32px 24px 28px;
+        cursor: default;
+        transition: all 0.32s cubic-bezier(.4,0,.2,1);
+        overflow: hidden;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      }
+      .flow-card:hover {
+        border-color: #0056D6;
+        box-shadow: 0 8px 40px rgba(0,86,214,0.13);
+        transform: translateY(-4px);
+        z-index: 2;
+      }
+      .step-num {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #0056D6;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        opacity: 0.7;
+      }
+      .step-img {
+        width: 140%;
+        height: 60px;
+        object-fit: cover;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .step-title {
+        font-size: 14px;
+        font-weight: 800;
+        color: #0f1f3d;
+        line-height: 1.4;
+        margin-bottom: 0;
+        transition: color 0.2s;
+      }
+      .step-detail {
+        font-size: 12.5px;
+        color: #4a5568;
+        line-height: 1.65;
+        margin-top: 14px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.3s ease;
+      }
+      .flow-card:hover .step-detail {
+        max-height: 200px;
+        opacity: 1;
+      }
+      .flow-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0056D6, #4d9fff);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+        border-radius: 0;
+      }
+      .flow-card:hover::after { transform: scaleX(1); }
+
       /* ── Mobile ── */
       @media (max-width: 768px) {
         .tl-hero { grid-template-columns: 1fr; min-height: auto; }
@@ -310,6 +399,10 @@
         .tl-prod-grid { grid-template-columns: 1fr; }
         .tl-case-stats { grid-template-columns: 1fr; }
         .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+        .flow-wrapper { flex-direction: column; }
+        .flow-arrow { transform: rotate(90deg); width: 100%; height: 28px; }
+        .flow-card { min-height: auto; }
+        .step-detail { max-height: none !important; opacity: 1 !important; }
       }
     </style>
   </head>
@@ -435,41 +528,59 @@
           <!-- 02 Solution Overview -->
           <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
             <span class="tl-section-label">02 / Solution Overview</span>
-            <h2 class="tl-section-title">Integrated Monitoring System</h2>
-            <p class="tl-section-desc">Medo's tailings storage facility solution fuses GNSS displacement arrays, piezometer networks, inclinometers, and rainfall gauges into a single real-time intelligence platform.</p>
-            <div class="tl-overview-row">
-              <div class="tl-img-wrap">
-                <img src="images-mine/minetailing.png" alt="Tailings dam monitoring facility" />
-                <div class="tl-img-label">
-                  <span class="tl-img-label-sub">Sector View</span>
-                  <span class="tl-img-label-title">A-01 Tailings Facility</span>
-                </div>
+            <h2 class="tl-section-title">From Sensor to Warning: The Data Flow</h2>
+            <p class="tl-section-desc">Medo's tailings solution creates an unbroken chain from field instrumentation to real-time decision support — five layers, zero gaps.</p>
+
+            <div class="flow-wrapper">
+              <div class="flow-card">
+                <span class="step-num">Step 01</span>
+                <img class="step-img" src="images-mine/minetailing.png" alt="" />
+                <p class="step-title">Smart Sensors<br/>Always-On Monitoring</p>
+                <p class="step-detail">Field-deployed sensors (GNSS, radar, inclinometers, piezometers) stream displacement, vibration, and stress data 24/7 to keep tailings stability continuously covered.</p>
               </div>
-              <div>
-                <p style="font-size:14px;line-height:1.8;color:#4a5568;margin:0 0 20px;">The system deploys a dense network of GNSS reference and rover stations across the dam crest and downstream slope, providing continuous 3D displacement vectors at sub-millimeter resolution. Piezometers embedded at multiple depths feed pore pressure data in real time to the cloud platform.</p>
-                <p style="font-size:14px;line-height:1.8;color:#4a5568;margin:0;">Multi-level early warning thresholds trigger automated SMS, email, and platform alerts — giving operators minutes, not hours, to respond.</p>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-            </div>
-            <div class="tl-feat-row">
-              <div class="tl-feat-card">
-                <span class="tl-feat-num">Feature 01</span>
-                <h3 class="tl-feat-title">Real-time Saturation Analysis</h3>
-                <p class="tl-feat-desc">Multi-sensor integration of piezometers, inclinometers, and rain gauges with AI-driven threshold prediction for dam wall stability.</p>
-                <div class="tl-metrics">
-                  <div class="tl-metric"><span class="tl-metric-label">Pore Pressure</span><span class="tl-metric-val">42.8 kPa</span></div>
-                  <div class="tl-metric"><span class="tl-metric-label">Tilt Delta</span><span class="tl-metric-val">0.04°</span></div>
-                  <div class="tl-metric"><span class="tl-metric-label">Saturation</span><span class="tl-metric-val">18%</span></div>
-                </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 02</span>
+                <img class="step-img" src="images-mine/minetailing.png" alt="" />
+                <p class="step-title">Satellite / 4G<br/>Reliable Data Uplink</p>
+                <p class="step-detail">Data is transmitted through satellite and 4G/5G links to the Medo cloud, ensuring resilient connectivity even in remote tailings sites.</p>
               </div>
-              <div class="tl-feat-card tl-feat-card--dark">
-                <span class="tl-feat-num">Feature 02</span>
-                <h3 class="tl-feat-title">GNSS Positioning Infrastructure</h3>
-                <p class="tl-feat-desc">Continuous phase-differential processing for absolute spatial reference in high-dynamic saturation zones.</p>
-                <div class="tl-specs">
-                  <div class="tl-spec-row"><span class="tl-spec-label">Latency</span><span class="tl-spec-val">140ms</span></div>
-                  <div class="tl-spec-row"><span class="tl-spec-label">Accuracy</span><span class="tl-spec-val">±2mm</span></div>
-                  <div class="tl-spec-row"><span class="tl-spec-label">Constellation</span><span class="tl-spec-val">42 SVs</span></div>
-                </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 03</span>
+                <img class="step-img" src="images-mine/minetailing.png" alt="" />
+                <p class="step-title">Medo Processing<br/>High-Precision Analytics</p>
+                <p class="step-detail">Cloud-based processing performs differential GNSS solutions, filtering, and fusion to deliver millimeter-grade displacement and deformation trends.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 04</span>
+                <img class="step-img" src="images-mine/minetailing.png" alt="" />
+                <p class="step-title">Visualization & Alerts<br/>Decision Support</p>
+                <p class="step-detail">Dashboards, remote device management, and multi-level thresholds trigger SMS, email, and app alerts the moment anomalies are detected.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 05</span>
+                <img class="step-img" src="images-mine/minetailing.png" alt="" />
+                <p class="step-title">Mobile Operations<br/>24/7 Field Response</p>
+                <p class="step-detail">Operators use the Medo mobile app to monitor device status, receive alerts, and adjust parameters on site for a closed-loop safety workflow.</p>
               </div>
             </div>
           </section>
