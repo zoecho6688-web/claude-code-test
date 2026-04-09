@@ -121,8 +121,18 @@
       /* pain points grid */
       .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
       .tl-pain-card {
-        border: 1px solid #EEEEEE; padding: 24px 22px;
-        display: flex; flex-direction: column; gap: 10px;
+        border: 1px solid #EEEEEE; 
+        padding: 24px 22px;
+        display: flex; 
+        flex-direction: column; 
+        gap: 10px;
+      }
+      .tl-pain-grid .tl-pain-card:nth-child(1),
+      .tl-pain-grid .tl-pain-card:nth-child(4) {
+          background-color: #F0F7FF;
+          border: none;
+          /* 如果你之前设置了直角风格，记得这里也可以统一控制 */
+          border-radius: 0; 
       }
       .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
       .tl-pain-icon svg { width: 100%; height: 100%; }
@@ -147,40 +157,6 @@
       }
       .tl-img-label-title { font-size: 14px; font-weight: 700; color: #fff; }
 
-      /* feature cards */
-      .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-      .tl-feat-card { border: 1px solid #EEEEEE; padding: 28px 24px; }
-      .tl-feat-card--dark { background: #0f1f3d; border-color: #0f1f3d; }
-      .tl-feat-num {
-        display: block; font-size: 10px; font-weight: 800;
-        letter-spacing: 0.12em; text-transform: uppercase;
-        color: #0056D6; margin-bottom: 10px;
-      }
-      .tl-feat-card--dark .tl-feat-num { color: rgba(83,210,255,0.8); }
-      .tl-feat-title { margin: 0 0 10px; font-size: 17px; font-weight: 800; color: #0f1f3d; }
-      .tl-feat-card--dark .tl-feat-title { color: #fff; }
-      .tl-feat-desc { margin: 0 0 20px; font-size: 13px; line-height: 1.7; color: #4a5568; }
-      .tl-feat-card--dark .tl-feat-desc { color: rgba(255,255,255,0.6); }
-
-      .tl-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-      .tl-metric {
-        border: 1px solid rgba(7,48,103,0.10); padding: 12px;
-        background: #f7faff; display: flex; flex-direction: column; gap: 4px;
-      }
-      .tl-metric-label {
-        font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
-        text-transform: uppercase; color: #9ca3af;
-      }
-      .tl-metric-val { font-size: 18px; font-weight: 900; color: #0f1f3d; }
-
-      .tl-specs { display: flex; flex-direction: column; }
-      .tl-spec-row {
-        display: flex; justify-content: space-between; align-items: center;
-        padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.10);
-      }
-      .tl-spec-row:last-child { border-bottom: none; }
-      .tl-spec-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; }
-      .tl-spec-val { font-size: 16px; font-weight: 800; color: #fff; }
 
       /* advantages */
       .tl-adv-list { display: flex; flex-direction: column; gap: 12px; }
@@ -188,6 +164,9 @@
         display: grid; grid-template-columns: 48px 1fr;
         gap: 20px; align-items: start;
         border: 1px solid #EEEEEE; padding: 20px 24px;
+      }
+      .tl-adv-item:hover {
+        box-shadow: 0 4px 20px rgba(0,86,214,0.10); 
       }
 
       .tl-adv-num {
@@ -226,44 +205,119 @@
       .tl-prod-media { position: relative; background: #0f1f3d; }
       .tl-prod-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+    
+      /* --- Case Card：彻底去掉边框和阴影 --- */
+      .case-card {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0;
+          background: #fff;
+          margin: 0;
+          padding: 0;      /* 确保容器本身无内边距 */
+          border: none;    /* 去掉灰色边框 */
+          box-shadow: none;
+          border-radius: 0;
+          overflow: hidden;
+      }
+
+      /* --- Image Wrapper：实现“顶格”效果 --- */
+      .case-image-wrapper {
+          background: #0f1f3d;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          /* 移除 padding 或根据需要调整，确保背景色充满整个 grid 格子 */
+          padding: 40px 0; 
+          margin: 0;
+          width: 100%;
+          height: 100%;
+      }
+
+      .case-image {
+          width: 90%;      /* 图片宽度占容器的 90%，留出一点呼吸感，但背景顶格 */
+          height: auto;
+          max-width: 400px;
+          display: block;
+      }
+
+      /* --- 内容区域 --- */
+      .case-content {
+          padding: 0 40px;   /* 内容区域保持适当内边距 */
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          gap: 24px;
+      }
+
+      /* --- 文字与结果卡片 --- */
+      .case-tag { display: block; font-size: 9px; font-weight: 800; color: #0056D6; text-transform: uppercase; margin-bottom: 8px; }
+      .case-title { margin: 0; font-size: 20px; font-weight: 800; color: #0f1f3d; }
+      .detail-label { font-size: 11px; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px; }
+      .detail-text { font-size: 13px; line-height: 1.6; color: #4a5568; margin: 0; }
+
+      .results-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+      }
+
+      .result-item {
+          border: 1px solid #EEEEEE;
+          padding: 12px;
+          border-radius: 0; /* 直角 */
+      }
+
+      .result-value { font-size: 22px; font-weight: 900; color: #0056D6; }
+      .result-desc { font-size: 12px; color: #9ca3af; margin-top: 3px; }
+      /* --- 按钮样式：淡蓝背景，无阴影，直角 --- */
       .case-study-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        background: rgba(0, 86, 214, 0.08); /* 极淡的蓝色背景，提示点击区域 */
-        color: #0056D6;
-        text-decoration: none;
-        padding: 12px 24px;   /* 增加内边距，让它更有“块感” */
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: 0.10em;
-        text-transform: uppercase;
-        position: relative;
-        overflow: hidden; /* 确保伪元素不会超出边界 */
-        transition: all 0.3s ease;
-    }
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          background: #F0F7FF;
+          color: #0056D6;
+          text-decoration: none;
+          padding: 14px 24px;
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          position: relative;
+          margin-top: auto;
+          width: 100%;
+          transition: all 0.3s ease;
+      }
 
-    /* 动态下划线：通过伪元素实现 */
-    .case-study-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 3px; /* 稍微加粗下划线，更明显 */
-        background-color: #0056D6;
-        transition: width 0.3s ease;
-    }
+      /* 下划线动画：悬停前隐藏，悬停后展开 */
+      .case-study-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: #0056D6;
+          transition: width 0.3s ease;
+      }
 
-    /* 悬停效果 */
-    .case-study-link:hover {
-        transform: translateY(-2px); /* 配合阴影，让按钮向上微动 */
-    }
+      .case-study-link:hover { background: #E1EFFF; }
+      .case-study-link svg { transition: transform 0.3s ease; width: 13px; }
+      .case-study-link:hover svg { transform: translateX(5px); }
 
-    /* 悬停时下划线伸长 */
-    .case-study-link:hover::after {
-        width: 100%;
-    }
+      .case-study-link:hover::after {
+          width: 100%;        /* 悬停时宽度铺满 */
+      }
+
+      /* --- 📱 响应式适配 --- */
+      @media (max-width: 768px) {
+          .case-card {
+              grid-template-columns: 1fr; /* 手机端上下堆叠 */
+          }
+          
+          .case-image-wrapper {
+              padding: 60px 20px; /* 手机端背景同样左右顶格，上下留出空间展示图片 */
+          }
+      }
 
       /* next solution bar */
       .tl-next {
@@ -682,43 +736,48 @@
           </section>
 
           <!-- 05 Success Stories -->
-          <section id="cases" class="tl-section" style="scroll-margin-top:100px;">
+          <section id="cases" class="tl-section">
             <span class="tl-section-label">05 / Success Stories</span>
             <h2 class="tl-section-title">Proven in the Field</h2>
             <p class="tl-section-desc">Real deployments. Zero accidents.</p>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #EEEEEE;overflow:hidden;">
-              <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:10px;">
-                <img src="images/abouthero.png" alt="Shanxi open-pit mine slope monitoring case study" style="width:100%;height:auto;max-width:400px;"/>
+            <div class="case-card">
+              <div class="case-image-wrapper">
+                <img src="images/abouthero.png" alt="Shanxi open-pit mine" class="case-image" />
               </div>
-              <div style="padding:36px 32px;display:flex;flex-direction:column;gap:20px;">
-                <div>
-                  <span style="display:block;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#0056D6;margin-bottom:10px;">Primary Case Study · 2023</span>
-                  <h3 style="margin:0;font-size:20px;font-weight:800;color:#0f1f3d;line-height:1.3;">Shanxi Huge Open-Pit Mine<br>Slope Safety Project</h3>
+
+              <div class="case-content">
+                <div class="case-header">
+                  <span class="case-tag">Primary Case Study · 2023</span>
+                  <h3 class="case-title">Shanxi Huge Open-Pit Mine<br>Slope Safety Project</h3>
                 </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Challenge</p>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">A 380m deep open-pit coal mine in Shanxi Province faced recurring bench instability events. Blasting cycles were accelerating micro-fracture propagation across three critical slope sectors, with no real-time visibility into displacement rates.</p>
+
+                <div class="case-detail">
+                  <p class="detail-label">Challenge</p>
+                  <p class="detail-text">A 380m deep open-pit coal mine in Shanxi Province faced recurring bench instability events.</p>
                 </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Solution</p>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Medo deployed 24 GNSS monitoring stations, 3 robotic total stations, and InSAR data integration across 2.1 km of active slope face. Edge gateways provided continuous data transmission through blasting windows.</p>
+
+                <div class="case-detail">
+                  <p class="detail-label">Solution</p>
+                  <p class="detail-text">Medo deployed 24 GNSS monitoring stations and 3 robotic total stations.</p>
                 </div>
-                <div>
-                  <p style="margin:0 0 10px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Results</p>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                    <div style="border:1px solid #EEEEEE;padding:12px;">
-                      <div style="font-size:22px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">22 days</div>
-                      <div style="font-size:12px;color:#9ca3af;margin-top:3px;line-height:1.4;">Early warning before visible slope cracking</div>
+
+                <div class="case-detail">
+                  <p class="detail-label">Results</p>
+                  <div class="results-grid">
+                    <div class="result-item">
+                      <div class="result-value">22 days</div>
+                      <div class="result-desc">Early warning before visible slope cracking</div>
                     </div>
-                    <div style="border:1px solid #EEEEEE;padding:12px;">
-                      <div style="font-size:22px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">0</div>
-                      <div style="font-size:12px;color:#9ca3af;margin-top:3px;line-height:1.4;">Accidents during 18-month monitoring period</div>
+                    <div class="result-item">
+                      <div class="result-value">0</div>
+                      <div class="result-desc">Accidents during 18-month period</div>
                     </div>
                   </div>
                 </div>
+
                 <a href="cases.html" class="case-study-link">
-                  Explore Geohazard Case Studies → 
+                  Explore Geohazard Case Studies
                   <svg viewBox="0 0 14 14" fill="none" class="link-icon" aria-hidden="true">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
                   </svg>
@@ -726,6 +785,7 @@
               </div>
             </div>
           </section>
+
 
           <!-- Next solution -->
           <a class="tl-next" href="solutions-mining-pit.html" aria-label="Next: Open-pit Mine Slope Safety Monitoring Solution">
