@@ -254,81 +254,222 @@
       .tl-spec-val { font-size: 16px; font-weight: 800; color: #fff; }
 
       /* advantages */
-      .tl-adv-list { display: flex; flex-direction: column; gap: 12px; }
-      .tl-adv-item {
-        display: grid; grid-template-columns: 48px 1fr;
-        gap: 20px; align-items: start;
-        border: 1px solid #EEEEEE; padding: 20px 24px;
+      .advantage-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 16px;
+          margin-top: 24px;
       }
-      .tl-adv-num {
-        font-size: 28px; font-weight: 900; color: #EEEEEE;
-        letter-spacing: -0.04em; line-height: 1;
+
+      /* 基础卡片样式 */
+      .advantage-card {
+          border: 1px solid #EEEEEE;
+          padding: 32px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          background: #fff;
+          border-radius: 0;           /* 保持直角风格 */
+          position: relative;
+          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* 更平滑的曲线 */
+          cursor: default;
       }
-      .tl-adv-title { margin: 0 0 6px; font-size: 15px; font-weight: 800; color: #0f1f3d; }
-      .tl-adv-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; }
+
+      /* Hover 效果：轻微上移 + 边框变蓝 + 底边线出现 */
+      .advantage-card:hover {
+          transform: translateY(-5px);  /* 向上浮动 */
+          background-color: #F0F7FF;
+          border-color: transparent; 
+      }
+
+      /* 图标样式 */
+      .advantage-icon {
+          width: 40px;
+          height: 40px;
+          color: #0056D6;
+          transition: transform 0.4s ease;
+      }
+
+      /* Hover 时图标轻微放大 */
+      .advantage-card:hover .advantage-icon {
+          transform: scale(1.1);
+      }
+
+      /* 文字样式 */
+      .advantage-title {
+          margin: 0 0 8px;
+          font-size: 15px;
+          font-weight: 800;
+          color: #0f1f3d;
+          transition: color 0.3s ease;
+      }
+
+      .advantage-p {
+          margin: 0;
+          font-size: 13px;
+          line-height: 1.65;
+          color: #4a5568;
+      }
+
+      /* 📱 响应式设计 */
+      @media (max-width: 992px) {
+          .advantage-grid {
+              grid-template-columns: 1fr 1fr; /* 平板端两列 */
+          }
+      }
+
+      @media (max-width: 640px) {
+          .advantage-grid {
+              grid-template-columns: 1fr;     /* 手机端单列 */
+          }
+          
+          .advantage-card {
+              padding: 24px; /* 缩小手机端间距 */
+          }
+      }
 
       /* products */
       .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
       .tl-prod-card {
-        border: 1px solid #EEEEEE; padding: 24px;
-        display: flex; flex-direction: column; gap: 8px;
+        border: 1px solid #EEEEEE; padding: 0;
+        display: grid; grid-template-columns: minmax(0,1fr) 160px;
+        align-items: stretch; overflow: hidden;
         text-decoration: none; color: inherit;
-        transition: border-color 200ms, box-shadow 200ms;
+        transition: border-color 200ms, box-shadow 200ms, transform 200ms;
       }
-      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); transform: translateY(-8px); }
+      .tl-prod-body {
+        padding: 22px 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        min-height: 140px;
+      }
       .tl-prod-cat {
         font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
         text-transform: uppercase; color: #0056D6;
       }
       .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
-      .tl-prod-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; flex: 1; }
       .tl-prod-link {
         font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
         text-transform: uppercase; color: #0056D6;
         border-bottom: 1px solid #0056D6; padding-bottom: 1px;
-        align-self: flex-start; margin-top: 8px;
+        align-self: flex-start; margin-top: auto;
+      }
+      .tl-prod-media { position: relative; background: #0f1f3d; }
+      .tl-prod-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+      /* --- Case Card：彻底去掉边框和阴影 --- */
+      .case-card {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0;
+          background: #fff;
+          margin: 0;
+          padding: 0;      /* 确保容器本身无内边距 */
+          border: none;    /* 去掉灰色边框 */
+          box-shadow: none;
+          border-radius: 0;
+          overflow: hidden;
       }
 
-      /* case study */
-      
+      /* --- Image Wrapper：实现“顶格”效果 --- */
+      .case-image-wrapper {
+          background: #0f1f3d;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          /* 移除 padding 或根据需要调整，确保背景色充满整个 grid 格子 */
+          padding: 40px 0; 
+          margin: 0;
+          width: 100%;
+          height: 100%;
+      }
+
+      .case-image {
+          width: 90%;      /* 图片宽度占容器的 90%，留出一点呼吸感，但背景顶格 */
+          height: auto;
+          max-width: 400px;
+          display: block;
+      }
+
+      /* --- 内容区域 --- */
+      .case-content {
+          padding: 0 40px;   /* 内容区域保持适当内边距 */
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          gap: 24px;
+      }
+
+      /* --- 文字与结果卡片 --- */
+      .case-tag { display: block; font-size: 9px; font-weight: 800; color: #0056D6; text-transform: uppercase; margin-bottom: 8px; }
+      .case-title { margin: 0; font-size: 20px; font-weight: 800; color: #0f1f3d; }
+      .detail-label { font-size: 11px; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px; }
+      .detail-text { font-size: 13px; line-height: 1.6; color: #4a5568; margin: 0; }
+
+      .results-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+      }
+
+      .result-item {
+          border: 1px solid #EEEEEE;
+          padding: 12px;
+          border-radius: 0; /* 直角 */
+      }
+
+      .result-value { font-size: 22px; font-weight: 900; color: #0056D6; }
+      .result-desc { font-size: 12px; color: #9ca3af; margin-top: 3px; }
+      /* --- 按钮样式：淡蓝背景，无阴影，直角 --- */
       .case-study-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        background: rgba(0, 86, 214, 0.08); /* 极淡的蓝色背景，提示点击区域 */
-        color: #0056D6;
-        text-decoration: none;
-        padding: 12px 24px;   /* 增加内边距，让它更有“块感” */
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: 0.10em;
-        text-transform: uppercase;
-        position: relative;
-        overflow: hidden; /* 确保伪元素不会超出边界 */
-        transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          background: #F0F7FF;
+          color: #0056D6;
+          text-decoration: none;
+          padding: 14px 24px;
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          position: relative;
+          margin-top: auto;
+          width: 100%;
+          transition: all 0.3s ease;
       }
 
-      /* 动态下划线：通过伪元素实现 */
+      /* 下划线动画：悬停前隐藏，悬停后展开 */
       .case-study-link::after {
           content: '';
           position: absolute;
           bottom: 0;
           left: 0;
           width: 0;
-          height: 3px; /* 稍微加粗下划线，更明显 */
-          background-color: #0056D6;
+          height: 2px;
+          background: #0056D6;
           transition: width 0.3s ease;
       }
 
-      /* 悬停效果 */
-      .case-study-link:hover {
-          transform: translateY(-2px); /* 配合阴影，让按钮向上微动 */
+      .case-study-link:hover { background: #E1EFFF; }
+      .case-study-link svg { transition: transform 0.3s ease; width: 13px; }
+      .case-study-link:hover svg { transform: translateX(5px); }
+
+      .case-study-link:hover::after {
+          width: 100%;        /* 悬停时宽度铺满 */
       }
 
-      /* 悬停时下划线伸长 */
-      .case-study-link:hover::after {
-          width: 100%;
+      /* --- 📱 响应式适配 --- */
+      @media (max-width: 768px) {
+          .case-card {
+              grid-template-columns: 1fr; /* 手机端上下堆叠 */
+          }
+          
+          .case-image-wrapper {
+              padding: 60px 20px; /* 手机端背景同样左右顶格，上下留出空间展示图片 */
+          }
       }
+    
 
       /* next solution bar */
       .tl-next {
@@ -516,7 +657,7 @@
                   </div>
                   <div><p style="margin:0 0 4px;font-size:14px;font-weight:800;color:#0f1f3d;">Blasting Impact</p><p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Repeated blast events generate shock waves that weaken rock mass integrity and can trigger sudden displacement events in adjacent benches.</p></div>
                 </div>
-                <div style="padding:20px 0;display:flex;gap:16px;align-items:flex-start;">
+                <div style="padding:20px 0;border-bottom:1px solid #EEEEEE;display:flex;gap:16px;align-items:flex-start;">
                   <div style="width:32px;height:32px;flex-shrink:0;color:#0056D6;">
                     <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="16" stroke="currentColor" stroke-width="1.8"/><path d="M4 16h24M12 8v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
                   </div>
@@ -587,134 +728,137 @@
           </section>
 
           <!-- 03 Core Advantages -->
-          <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
+          <section id="advantages" class="tl-section">
             <span class="tl-section-label">03 / Core Advantages</span>
             <h2 class="tl-section-title">Why Medo Pit-Watch</h2>
             <p class="tl-section-desc">Purpose-built for the open-pit environment — not adapted from generic IoT platforms.</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;">
-              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;">
-                <div style="width:40px;height:40px;color:#0056D6;">
+            
+            <div class="advantage-grid">
+              <div class="advantage-card">
+                <div class="advantage-icon">
                   <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.8"/><circle cx="20" cy="20" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M20 6v4M20 30v4M6 20h4M30 20h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
                 </div>
-                <div>
-                  <h3 style="margin:0 0 8px;font-size:15px;font-weight:800;color:#0f1f3d;">All-weather Millimeter Precision</h3>
-                  <p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Phase-differential GNSS processing delivers ±2mm accuracy in rain, dust, and extreme temperatures — continuous 24/7 without manual intervention.</p>
+                <div class="advantage-text">
+                  <h3 class="advantage-title">All-weather Millimeter Precision</h3>
+                  <p class="advantage-p">Phase-differential GNSS processing delivers ±2mm accuracy in rain, dust, and extreme temperatures.</p>
                 </div>
               </div>
-              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;">
-                <div style="width:40px;height:40px;color:#0056D6;">
+
+              <div class="advantage-card">
+                <div class="advantage-icon">
                   <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="10" width="24" height="18" stroke="currentColor" stroke-width="1.8"/><path d="M14 10V7M26 10V7M8 18h24" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><path d="M16 24l3 3 5-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></svg>
                 </div>
-                <div>
-                  <h3 style="margin:0 0 8px;font-size:15px;font-weight:800;color:#0f1f3d;">Automated Remote Monitoring</h3>
-                  <p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Fully unattended operation with solar power and satellite uplink backup. Alerts fire automatically — no personnel required in hazardous slope zones.</p>
+                <div class="advantage-text">
+                  <h3 class="advantage-title">Automated Remote Monitoring</h3>
+                  <p class="advantage-p">Fully unattended operation with solar power and satellite uplink backup. Alerts fire automatically.</p>
                 </div>
               </div>
-              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;">
-                <div style="width:40px;height:40px;color:#0056D6;">
+
+              <div class="advantage-card">
+                <div class="advantage-icon">
                   <svg viewBox="0 0 40 40" fill="none"><path d="M20 8l14 6v8c0 7-5.5 12-14 14C11.5 34 6 29 6 22v-8L20 8Z" stroke="currentColor" stroke-width="1.8"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></svg>
                 </div>
-                <div>
-                  <h3 style="margin:0 0 8px;font-size:15px;font-weight:800;color:#0f1f3d;">Blasting-resistant Data Acquisition</h3>
-                  <p style="margin:0;font-size:13px;line-height:1.65;color:#4a5568;">Hardware hardened to IP67 with vibration-tolerant enclosures. Data acquisition resumes within seconds of blast events — no data gaps during production blasting.</p>
+                <div class="advantage-text">
+                  <h3 class="advantage-title">Blasting-resistant Data Acquisition</h3>
+                  <p class="advantage-p">Hardware hardened to IP67 with vibration-tolerant enclosures. Data acquisition resumes within seconds.</p>
                 </div>
               </div>
             </div>
           </section>
+          
 
           <!-- 04 Related Products -->
           <section id="products" class="tl-section" style="scroll-margin-top:100px;">
             <span class="tl-section-label">04 / Related Products</span>
             <h2 class="tl-section-title">Recommended Hardware</h2>
-            <p class="tl-section-desc">Each component is field-validated for open-pit environments and integrates natively with the Medo cloud platform.</p>
-            <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;">
-
-              <div style="display:grid;grid-template-columns:200px 1fr;border:1px solid #EEEEEE;overflow:hidden;">
-                <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:24px;">
-                  <svg viewBox="0 0 80 80" fill="none" style="width:64px;height:64px;opacity:0.7;"><circle cx="40" cy="40" r="24" stroke="#0056D6" stroke-width="1.5"/><circle cx="40" cy="40" r="8" stroke="#0056D6" stroke-width="1.5"/><path d="M40 16v8M40 56v8M16 40h8M56 40h8" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+            <p class="tl-section-desc">Each component is field-validated for tailings dam environments and integrates natively with the Medo cloud platform.</p>
+            <div class="tl-prod-grid">
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">GNSS Sensor</span>
+                  <h3 class="tl-prod-name">MG-200 GNSS Rover</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-                <div style="padding:24px 28px;">
-                  <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">GNSS Station</p>
-                  <h3 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#0f1f3d;">MG-300 GNSS Monitoring Station</h3>
-                  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;">
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Multi-constellation: GPS / BDS / GLONASS / Galileo</li>
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Horizontal accuracy: ±2mm, Vertical: ±3mm</li>
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Update rate: 1Hz–20Hz, IP67 rated</li>
-                  </ul>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hero-product.png" alt="" />
                 </div>
-              </div>
-
-              <div style="display:grid;grid-template-columns:200px 1fr;border:1px solid #EEEEEE;overflow:hidden;">
-                <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:24px;">
-                  <svg viewBox="0 0 80 80" fill="none" style="width:64px;height:64px;opacity:0.7;"><rect x="28" y="16" width="24" height="32" stroke="#0056D6" stroke-width="1.5"/><path d="M40 48v16M28 64h24M34 24h12M34 32h12M34 40h12" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Pore Pressure</span>
+                  <h3 class="tl-prod-name">MP-100 Vibrating Wire Piezometer</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-                <div style="padding:24px 28px;">
-                  <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Total Station</p>
-                  <h3 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#0f1f3d;">MT-500 Robotic Total Station</h3>
-                  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;">
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Angular accuracy: 1″, Distance: ±1mm+1ppm</li>
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Automated prism tracking, 360° scanning</li>
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Compatible with Leica-standard prism arrays</li>
-                  </ul>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hero-tech.png" alt="" />
                 </div>
-              </div>
-
-              <div style="display:grid;grid-template-columns:200px 1fr;border:1px solid #EEEEEE;overflow:hidden;">
-                <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:24px;">
-                  <svg viewBox="0 0 80 80" fill="none" style="width:64px;height:64px;opacity:0.7;"><path d="M16 64L32 32l12 16 12-24 8 20" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><path d="M16 64h48" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="32" cy="32" r="3" fill="#0056D6"/><circle cx="44" cy="48" r="3" fill="#0056D6"/></svg>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Tilt Monitoring</span>
+                  <h3 class="tl-prod-name">MI-50 MEMS Inclinometer</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-                <div style="padding:24px 28px;">
-                  <p style="margin:0 0 4px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Satellite Data</p>
-                  <h3 style="margin:0 0 12px;font-size:17px;font-weight:800;color:#0f1f3d;">InSAR Data Integration Module</h3>
-                  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;">
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Sentinel-1 / ALOS-2 satellite data ingestion</li>
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Wide-area deformation mapping at 5mm sensitivity</li>
-                    <li style="font-size:13px;color:#4a5568;display:flex;gap:8px;"><span style="color:#0056D6;font-weight:800;">—</span>Fused with ground GNSS for cross-validation</li>
-                  </ul>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hero-mining.png" alt="" />
                 </div>
-              </div>
-
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Data Logger</span>
+                  <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hero-case.png" alt="" />
+                </div>
+              </a>
             </div>
           </section>
 
           <!-- 05 Success Stories -->
-          <section id="cases" class="tl-section" style="scroll-margin-top:100px;">
+          <section id="cases" class="tl-section">
             <span class="tl-section-label">05 / Success Stories</span>
             <h2 class="tl-section-title">Proven in the Field</h2>
             <p class="tl-section-desc">Real deployments. Zero accidents.</p>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #EEEEEE;overflow:hidden;">
-              <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:10px;">
-                <img src="images/abouthero.png" alt="Shanxi open-pit mine slope monitoring case study" style="width:100%;height:auto;max-width:400px;"/>
+            <div class="case-card">
+              <div class="case-image-wrapper">
+                <img src="images/abouthero.png" alt="Shanxi open-pit mine" class="case-image" />
               </div>
-              <div style="padding:36px 32px;display:flex;flex-direction:column;gap:20px;">
-                <div>
-                  <span style="display:block;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#0056D6;margin-bottom:10px;">Primary Case Study · 2023</span>
-                  <h3 style="margin:0;font-size:20px;font-weight:800;color:#0f1f3d;line-height:1.3;">Shanxi Huge Open-Pit Mine<br>Slope Safety Project</h3>
+
+              <div class="case-content">
+                <div class="case-header">
+                  <span class="case-tag">Primary Case Study · 2023</span>
+                  <h3 class="case-title">Shanxi Huge Open-Pit Mine<br>Slope Safety Project</h3>
                 </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Challenge</p>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">A 380m deep open-pit coal mine in Shanxi Province faced recurring bench instability events. Blasting cycles were accelerating micro-fracture propagation across three critical slope sectors, with no real-time visibility into displacement rates.</p>
+
+                <div class="case-detail">
+                  <p class="detail-label">Challenge</p>
+                  <p class="detail-text">A 380m deep open-pit coal mine in Shanxi Province faced recurring bench instability events.</p>
                 </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Solution</p>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Medo deployed 24 GNSS monitoring stations, 3 robotic total stations, and InSAR data integration across 2.1 km of active slope face. Edge gateways provided continuous data transmission through blasting windows.</p>
+
+                <div class="case-detail">
+                  <p class="detail-label">Solution</p>
+                  <p class="detail-text">Medo deployed 24 GNSS monitoring stations and 3 robotic total stations.</p>
                 </div>
-                <div>
-                  <p style="margin:0 0 10px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#9ca3af;">Results</p>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                    <div style="border:1px solid #EEEEEE;padding:12px;">
-                      <div style="font-size:22px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">22 days</div>
-                      <div style="font-size:12px;color:#9ca3af;margin-top:3px;line-height:1.4;">Early warning before visible slope cracking</div>
+
+                <div class="case-detail">
+                  <p class="detail-label">Results</p>
+                  <div class="results-grid">
+                    <div class="result-item">
+                      <div class="result-value">22 days</div>
+                      <div class="result-desc">Early warning before visible slope cracking</div>
                     </div>
-                    <div style="border:1px solid #EEEEEE;padding:12px;">
-                      <div style="font-size:22px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">0</div>
-                      <div style="font-size:12px;color:#9ca3af;margin-top:3px;line-height:1.4;">Accidents during 18-month monitoring period</div>
+                    <div class="result-item">
+                      <div class="result-value">0</div>
+                      <div class="result-desc">Accidents during 18-month period</div>
                     </div>
                   </div>
                 </div>
+
                 <a href="cases.html" class="case-study-link">
-                  Explore Geohazard Case Studies → 
+                  Explore Geohazard Case Studies
                   <svg viewBox="0 0 14 14" fill="none" class="link-icon" aria-hidden="true">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
                   </svg>
