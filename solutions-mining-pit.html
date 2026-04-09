@@ -162,7 +162,7 @@
         box-shadow: 0 2px 12px rgba(0,0,0,0.04);
       }
       .flow-card:hover {
-        flex: 2 1 0;
+        flex: 3 1 0;
         border-color: #0056D6;
         box-shadow: 0 8px 40px rgba(0,86,214,0.13);
         transform: translateY(-4px);
@@ -179,13 +179,13 @@
       }
       .step-img {
         width: 140%;
-        height: 60px;
+        height: 90px;
         object-fit: cover;
         display: block;
         margin-bottom: 20px;
       }
       .step-title {
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 800;
         color: #0f1f3d;
         line-height: 1.4;
@@ -193,7 +193,7 @@
         transition: color 0.2s;
       }
       .step-detail {
-        font-size: 12.5px;
+        font-size: 14px;
         color: #4a5568;
         line-height: 1.65;
         margin-top: 14px;
@@ -203,9 +203,10 @@
         transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.3s ease;
       }
       .flow-card:hover .step-detail {
-        max-height: 200px;
+        max-height: 300px;
         opacity: 1;
       }
+      .flow-card:hover .step-title { font-size: 16px; }
       .flow-card::after {
         content: '';
         position: absolute;
@@ -218,6 +219,52 @@
         border-radius: 0;
       }
       .flow-card:hover::after { transform: scaleX(1); }
+
+      @media (max-width: 768px) {
+        .flow-wrapper { 
+            flex-direction: column; 
+            gap: 12px; /* 增加卡片间的间距 */
+        }
+
+        .flow-arrow { 
+            transform: rotate(90deg); 
+            width: 100%; 
+            height: 32px; 
+        }
+
+        .flow-card { 
+            min-height: auto; 
+            flex: 1 1 auto; /* 改为 auto，允许内容撑开高度 */
+            padding: 24px;  /* 稍微缩小内边距 */
+        }
+
+        .flow-card:hover { 
+            flex: 1 1 auto; /* 移除移动端的伸缩效果，避免抖动 */
+            transform: none; /* 移除位移，移动端位移容易导致误触 */
+        }
+
+        /* 修复图片：不要让它超出容器 */
+        .step-img {
+            width: 100%; 
+            height: 120px; /* 固定一个高度或设为 auto */
+            margin-bottom: 15px;
+        }
+
+        /* 核心修复：关于内容显示 */
+        /* 如果你希望手机端默认就能看到内容（推荐），可以取消 0 高度限制 */
+        .step-detail {
+            max-height: none; /* 允许显示内容 */
+            opacity: 1;
+            margin-top: 10px;
+            display: block; /* 确保是块级元素 */
+        }
+
+        /* 或者如果你坚持要点击才显示，确保过渡顺滑，但请注意手机端点击可能不灵敏 */
+        .flow-card:active .step-detail {
+            max-height: 500px;
+            opacity: 1;
+        }
+      }
 
       /* feature cards */
       .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -354,8 +401,16 @@
         border-bottom: 1px solid #0056D6; padding-bottom: 1px;
         align-self: flex-start; margin-top: auto;
       }
-      .tl-prod-media { position: relative; background: #0f1f3d; }
-      .tl-prod-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl-prod-media { position: relative; background: #E1EFFF; display: flex; align-items: center; justify-content: center;  }
+      .tl-prod-media img { 
+        width: 100%; 
+        height: auto; 
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s ease;
+      }
+      .tl-prod-card:hover .tl-prod-media img {
+        transform: scale(1.08); /* 稍微加大一点缩放比例，视觉效果更好 */
+      }
 
       /* --- Case Card：彻底去掉边框和阴影 --- */
       .case-card {
@@ -543,9 +598,6 @@
         .tl-prod-grid { grid-template-columns: 1fr; }
         .tl-case-stats { grid-template-columns: 1fr; }
         .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
-        .flow-wrapper { flex-direction: column; }
-        .flow-arrow { transform: rotate(90deg); width: 100%; height: 28px; }
-        .flow-card { min-height: auto; }
         .step-detail { max-height: none !important; opacity: 1 !important; }
       }
     </style>
@@ -597,7 +649,7 @@
       <div class="container" style="display:contents;">
         <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
           <span class="tl-eyebrow">Precision Instrumentation</span>
-          <h1 class="tl-heading">Pit-Watch: Open-Pit Slope<br><span class="tl-heading-blue">Safety Monitoring</span></h1>
+          <h1 class="tl-heading">Open-Pit Slope<br><span class="tl-heading-blue">Safety Monitoring</span></h1>
           <p class="tl-hero-desc">Millimeter-level displacement sensing for large-scale mining slopes. Ensuring operational safety in complex geological conditions.</p>
         </div>
         <div class="tl-hero-right">
@@ -677,20 +729,19 @@
             <div class="flow-wrapper">
               <div class="flow-card">
                 <span class="step-num">Step 01</span>
-                <img class="step-img" src="images-mine/minetailing.png" alt="" />
-                <p class="step-title">Smart Sensors<br/>Always-On Monitoring</p>
-                <p class="step-detail">Field-deployed sensors (GNSS, radar, inclinometers, piezometers) stream displacement, vibration, and stress data 24/7 to keep tailings stability continuously covered.</p>
+                <img class="step-img" src="images/mining/openpit.png" alt="open pit" />
+                <p class="step-title">On-site Survey &</br> Site Assessment</p>
+                <p class="step-detail">Through rigorous field diagnostics, our engineering team analyzes the complex geomechanics and operational layout of the open pit, evaluating slopes, bench stability, and high-risk zones.Key survey outputs include a 3D topographic model, slope stability classification, sensor placement plan, and network connectivity feasibility report — laying the foundation for a precisely tailored monitoring architecture.</p>
               </div>
-
               <div class="flow-arrow">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
 
               <div class="flow-card">
                 <span class="step-num">Step 02</span>
-                <img class="step-img" src="images-mine/minetailing.png" alt="" />
-                <p class="step-title">Satellite / 4G<br/>Reliable Data Uplink</p>
-                <p class="step-detail">Data is transmitted through satellite and 4G/5G links to the Medo cloud, ensuring resilient connectivity even in remote tailings sites.</p>
+                <img class="step-img" src="images/hero-mining.png" alt="" />
+                <p class="step-title">Hardware & Integrated Monitoring Stations Development</p>
+                <p class="step-detail">Based on the survey results, we deploy a network of all-in-one integrated monitoring stations at critical locations across the site. Each station combines a high-precision GNSS receiver with a suite of environmental and structural sensors — measuring displacement, seepage, pore water pressure, rainfall, and more. Ruggedised enclosures ensure continuous operation in harsh outdoor conditions.</p>
               </div>
 
               <div class="flow-arrow">
@@ -699,9 +750,9 @@
 
               <div class="flow-card">
                 <span class="step-num">Step 03</span>
-                <img class="step-img" src="images-mine/minetailing.png" alt="" />
-                <p class="step-title">Medo Processing<br/>High-Precision Analytics</p>
-                <p class="step-detail">Cloud-based processing performs differential GNSS solutions, filtering, and fusion to deliver millimeter-grade displacement and deformation trends.</p>
+                <img class="step-img" src="images/software/software-ams.png" alt="" />
+                <p class="step-title">Data Transmission & GNSS Processing Platform</p>
+                <p class="step-detail">Raw sensor data is securely transmitted to the cloud-based MEDO computation platform, AMS, via satellite, 4G, or 5G links — whichever provides the most reliable coverage for the site. MEDO performs real-time GNSS baseline processing, multi-sensor fusion, and precision deformation calculation, converting raw signals into high-accuracy displacement vectors and trend indicators.</p>
               </div>
 
               <div class="flow-arrow">
@@ -710,9 +761,9 @@
 
               <div class="flow-card">
                 <span class="step-num">Step 04</span>
-                <img class="step-img" src="images-mine/minetailing.png" alt="" />
-                <p class="step-title">Visualization & Alerts<br/>Decision Support</p>
-                <p class="step-detail">Dashboards, remote device management, and multi-level thresholds trigger SMS, email, and app alerts the moment anomalies are detected.</p>
+                <img class="step-img" src="images/software/software-network.png" alt="" />
+                <p class="step-title">Intelligent Data Analytics & Remote Device Management</p>
+                <p class="step-detail">Acting as the core engine, the MDT Platform ensures high-precision collection and real-time acquisition of monitoring data. By integrating big data analytics and remote device management, the platform automates the entire process—from data retrieval and analysis to visual presentation—providing users with accurate, intuitive, and instantaneous equipment updates to fully understand the real-time status of the open pit.</p>
               </div>
 
               <div class="flow-arrow">
@@ -721,10 +772,10 @@
 
               <div class="flow-card">
                 <span class="step-num">Step 05</span>
-                <img class="step-img" src="images-mine/minetailing.png" alt="" />
-                <p class="step-title">Mobile Operations<br/>24/7 Field Response</p>
-                <p class="step-detail">Operators use the Medo mobile app to monitor device status, receive alerts, and adjust parameters on site for a closed-loop safety workflow.</p>
-              </div>
+                <img class="step-img" src="images/software/software-mdnet.png" alt="" />
+                <p class="step-title">Full-Cycle Lifecycle Management & Decision Support</p>
+                <p class="step-detail">Leveraging MD-NET and MD LINK, this step enables comprehensive project lifecycle management across large-scale displays and mobile devices. The system provides real-time intelligent warnings and instant status updates, empowering stakeholders to make rapid, informed decisions based on live project data.</p> 
+            </div>
             </div>
           </section>
 
@@ -776,42 +827,42 @@
             <div class="tl-prod-grid">
               <a class="tl-prod-card" href="products.html">
                 <div class="tl-prod-body">
-                  <span class="tl-prod-cat">GNSS Sensor</span>
-                  <h3 class="tl-prod-name">MG-200 GNSS Rover</h3>
+                  <span class="tl-prod-cat">GNSS Rover</span>
+                  <h3 class="tl-prod-name">MD E40S</h3>
                   <span class="tl-prod-link">View Specs →</span>
                 </div>
                 <div class="tl-prod-media" aria-hidden="true">
-                  <img src="images/hero-product.png" alt="" />
+                  <img src="images/hardware/e40s.png" alt="" />
                 </div>
               </a>
               <a class="tl-prod-card" href="products.html">
                 <div class="tl-prod-body">
                   <span class="tl-prod-cat">Pore Pressure</span>
-                  <h3 class="tl-prod-name">MP-100 Vibrating Wire Piezometer</h3>
+                  <h3 class="tl-prod-name">MD Vibrating Wire Piezometer</h3>
                   <span class="tl-prod-link">View Specs →</span>
                 </div>
                 <div class="tl-prod-media" aria-hidden="true">
-                  <img src="images/hero-tech.png" alt="" />
+                  <img src="images/hardware/piezometer.png" alt="" />
                 </div>
               </a>
               <a class="tl-prod-card" href="products.html">
                 <div class="tl-prod-body">
-                  <span class="tl-prod-cat">Tilt Monitoring</span>
-                  <h3 class="tl-prod-name">MI-50 MEMS Inclinometer</h3>
+                  <span class="tl-prod-cat">IoT Sensor</span>
+                  <h3 class="tl-prod-name">MD FYL005</br>Tipping Bucket Rain Gauge</h3>
                   <span class="tl-prod-link">View Specs →</span>
                 </div>
                 <div class="tl-prod-media" aria-hidden="true">
-                  <img src="images/hero-mining.png" alt="" />
+                  <img src="images/hardware/fyl001.png" alt="" />
                 </div>
               </a>
               <a class="tl-prod-card" href="products.html">
                 <div class="tl-prod-body">
-                  <span class="tl-prod-cat">Data Logger</span>
-                  <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
+                  <span class="tl-prod-cat">IoT Sensor</span>
+                  <h3 class="tl-prod-name">MD Tilt-Vibration Monitor</h3>
                   <span class="tl-prod-link">View Specs →</span>
                 </div>
                 <div class="tl-prod-media" aria-hidden="true">
-                  <img src="images/hero-case.png" alt="" />
+                  <img src="images/hardware/tilt-vib.png" alt="" />
                 </div>
               </a>
             </div>
