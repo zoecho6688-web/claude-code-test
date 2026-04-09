@@ -146,7 +146,7 @@
       }
       .flow-arrow svg { opacity: 0.35; }
       .flow-card {
-        flex: 1;
+        flex: 1 1 0;
         position: relative;
         background: #fff;
         border: 1.5px solid #e2e8f0;
@@ -162,6 +162,7 @@
         box-shadow: 0 2px 12px rgba(0,0,0,0.04);
       }
       .flow-card:hover {
+        flex: 2 1 0;
         border-color: #0056D6;
         box-shadow: 0 8px 40px rgba(0,86,214,0.13);
         transform: translateY(-4px);
@@ -392,7 +393,8 @@
 
       /* --- 内容区域 --- */
       .case-content {
-          padding: 0 40px;   /* 内容区域保持适当内边距 */
+          padding: 40px 40px;   /* 内容区域保持适当内边距 */
+          padding-bottom: 0;
           display: flex;
           flex-direction: column;
           height: 100%;
