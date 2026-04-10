@@ -53,8 +53,8 @@
       /* ── Body layout: sticky sidebar + content ── */
       .tl-body {
         display: grid;
-        grid-template-columns: 200px 1fr;
-        max-width: 1200px;
+        grid-template-columns: 180px 1fr;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 0 20px;
         gap: 0;
@@ -119,33 +119,217 @@
       .tl-section-desc { margin: 0 0 32px; font-size: 15px; line-height: 1.75; color: #4a5568; }
 
       /* pain points grid */
-      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-      .tl-pain-card {
-        border: 1px solid #EEEEEE; padding: 24px 22px;
-        display: flex; flex-direction: column; gap: 10px;
+      .pain-list {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
       }
-      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
-      .tl-pain-icon svg { width: 100%; height: 100%; }
-      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
-      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
+
+      /* 基础卡片样式 */
+      .pain-item {
+          background: #fff;
+          padding: 24px 28px;
+          border:  1px solid #e2e8f0;
+          display: flex;
+          gap: 20px;
+          align-items: flex-start;
+          transition: all 0.3s ease;
+          border-left: 3px solid transparent; /* 预留边框位置 */
+          cursor: default;
+      }
+
+      /* 悬停效果 */
+      .pain-item:hover {
+          background: #f8fafc; /* 悬停时背景变成极浅的灰色/蓝色 */
+          border-left-width: 8px; /* 边框加宽，增加视觉冲击力 */
+          padding-left: 23px;    /* 补偿边框加宽带来的位移，保持文字不动 */
+      }
+
+      /* 三种状态的颜色定义 */
+      .pain-item.critical { border-left-color: #ef4444; } /* 红色 */
+      .pain-item.warning  { border-left-color: #f59e0b; } /* 橙色 */
+      .pain-item.info     { border-left-color: #0056D6; } /* 蓝色 */
+
+      /* 图标样式 */
+      .pain-icon {
+          flex-shrink: 0;
+          width: 36px;
+          height: 36px;
+          transition: transform 0.3s ease;
+      }
+
+      .pain-item.critical .pain-icon { color: #ef4444; }
+      .pain-item.warning  .pain-icon { color: #f59e0b; }
+      .pain-item.info     .pain-icon { color: #0056D6; }
+
+      .pain-item:hover .pain-icon {
+          transform: scale(1.1); /* 悬停时图标轻微放大 */
+      }
+
+      /* 文字样式 */
+      .pain-item-title {
+          margin: 0 0 6px;
+          font-size: 14px;
+          font-weight: 800;
+          color: #0f1f3d;
+      }
+
+      .pain-item-text {
+          margin: 0;
+          font-size: 13px;
+          line-height: 1.7;
+          color: #4a5568;
+      }
+
+      /* 📱 响应式适配 */
+      @media (max-width: 640px) {
+          .pain-item {
+              padding: 20px;
+              gap: 16px;
+          }
+          
+          .pain-icon {
+              width: 28px;
+              height: 28px;
+          }
+      }
 
       /* solution overview: hero row */
-      .tl-overview-row {
-        display: grid; grid-template-columns: 1fr 1fr;
-        gap: 40px; align-items: center; margin-bottom: 32px;
+      .flow-wrapper {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        position: relative;
       }
-      .tl-img-wrap { position: relative; background: #0f1f3d; overflow: hidden; }
-      .tl-img-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-      .tl-img-label {
-        position: absolute; bottom: 0; left: 0; right: 0;
-        background: rgba(4,26,58,0.72); padding: 10px 16px;
-        display: flex; flex-direction: column; gap: 2px;
+      .flow-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        z-index: 1;
       }
-      .tl-img-label-sub {
-        font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
-        text-transform: uppercase; color: rgba(255,255,255,0.55);
+      .flow-arrow svg { opacity: 0.35; }
+      .flow-card {
+        flex: 1 1 0;
+        position: relative;
+        background: #fff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 0;
+        padding: 32px 24px 28px;
+        cursor: default;
+        transition: all 0.32s cubic-bezier(.4,0,.2,1);
+        overflow: hidden;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
       }
-      .tl-img-label-title { font-size: 14px; font-weight: 700; color: #fff; }
+      .flow-card:hover {
+        flex: 3 1 0;
+        border-color: #0056D6;
+        box-shadow: 0 8px 40px rgba(0,86,214,0.13);
+        transform: translateY(-4px);
+        z-index: 2;
+      }
+      .step-num {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #0056D6;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        opacity: 0.7;
+      }
+      .step-img {
+        width: 140%;
+        height: 90px;
+        object-fit: cover;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .step-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #0f1f3d;
+        line-height: 1.4;
+        margin-bottom: 0;
+        transition: color 0.2s;
+      }
+      .step-detail {
+        font-size: 14px;
+        color: #4a5568;
+        line-height: 1.65;
+        margin-top: 14px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.3s ease;
+      }
+      .flow-card:hover .step-detail {
+        max-height: 400px;
+        opacity: 1;
+      }
+      .flow-card:hover .step-title { font-size: 16px; }
+      .flow-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0056D6, #4d9fff);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+        border-radius: 0;
+      }
+      .flow-card:hover::after { transform: scaleX(1); }
+      
+      @media (max-width: 768px) {
+        .flow-wrapper { 
+            flex-direction: column; 
+            gap: 12px; /* 增加卡片间的间距 */
+        }
+
+        .flow-arrow { 
+            transform: rotate(90deg); 
+            width: 100%; 
+            height: 32px; 
+        }
+
+        .flow-card { 
+            min-height: auto; 
+            flex: 1 1 auto; /* 改为 auto，允许内容撑开高度 */
+            padding: 24px;  /* 稍微缩小内边距 */
+        }
+
+        .flow-card:hover { 
+            flex: 1 1 auto; /* 移除移动端的伸缩效果，避免抖动 */
+            transform: none; /* 移除位移，移动端位移容易导致误触 */
+        }
+
+        /* 修复图片：不要让它超出容器 */
+        .step-img {
+            width: 100%; 
+            height: 120px; /* 固定一个高度或设为 auto */
+            margin-bottom: 15px;
+        }
+
+        /* 核心修复：关于内容显示 */
+        /* 如果你希望手机端默认就能看到内容（推荐），可以取消 0 高度限制 */
+        .step-detail {
+            max-height: none; /* 允许显示内容 */
+            opacity: 1;
+            margin-top: 10px;
+            display: block; /* 确保是块级元素 */
+        }
+
+        /* 或者如果你坚持要点击才显示，确保过渡顺滑，但请注意手机端点击可能不灵敏 */
+        .flow-card:active .step-detail {
+            max-height: 500px;
+            opacity: 1;
+        }
+      }
 
       /* feature cards */
       .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -396,83 +580,143 @@
         <div class="tl-content">
 
           <!-- 01 Pain Points -->
-          <section id="pain-points" class="tl-section" style="scroll-margin-top:100px;">
-            <span class="tl-section-label">01 / Industry Pain Points</span>
-            <h2 class="tl-section-title">Why Reservoir Slopes Fail</h2>
-            <p class="tl-section-desc">Reservoir slopes face a unique combination of hydrological and geotechnical stresses. Rapid water level changes, prolonged saturation, and bank erosion create failure conditions that traditional inspection cannot adequately monitor.</p>
-            <div class="tl-pain-grid">
-              <div class="tl-pain-card">
-                <div class="tl-pain-icon" aria-hidden="true">
-                  <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L32 28H4L18 4Z" stroke="#0056D6" stroke-width="1.8" stroke-linejoin="miter"/><path d="M18 14v8" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/><circle cx="18" cy="25" r="1.2" fill="#0056D6"/></svg>
-                </div>
-                <h3 class="tl-pain-title">Rapid Water Level Drawdown</h3>
-                <p class="tl-pain-desc">Fast reservoir drawdown reduces confining pressure on saturated slopes faster than pore pressure can dissipate, dramatically increasing instability risk in the fluctuation zone.</p>
-              </div>
-              <div class="tl-pain-card">
-                <div class="tl-pain-icon" aria-hidden="true">
-                  <svg viewBox="0 0 36 36" fill="none"><path d="M4 28L12 16l6 6 6-10 8 12" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></svg>
-                </div>
-                <h3 class="tl-pain-title">Bank Erosion &amp; Undercutting</h3>
-                <p class="tl-pain-desc">Wave action and current erosion progressively undercut slope toes. Periodic surveys miss the cumulative erosion that precedes sudden bank collapse events.</p>
-              </div>
-              <div class="tl-pain-card">
-                <div class="tl-pain-icon" aria-hidden="true">
-                  <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" stroke="#0056D6" stroke-width="1.8"/><path d="M18 10v8l5 3" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/></svg>
-                </div>
-                <h3 class="tl-pain-title">Saturated Soil Instability</h3>
-                <p class="tl-pain-desc">Prolonged high water levels saturate slope soils, reducing shear strength. Without continuous pore pressure monitoring, the critical saturation threshold is invisible until failure.</p>
-              </div>
-              <div class="tl-pain-card">
-                <div class="tl-pain-icon" aria-hidden="true">
-                  <svg viewBox="0 0 36 36" fill="none"><rect x="4" y="8" width="28" height="20" stroke="#0056D6" stroke-width="1.8"/><path d="M4 16h28M12 8v20" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/></svg>
-                </div>
-                <h3 class="tl-pain-title">Fragmented Data Silos</h3>
-                <p class="tl-pain-desc">Water level, displacement, and pore pressure data collected by separate systems prevents holistic slope risk assessment and delays critical early warning decisions.</p>
-              </div>
+          <section id="pain-points" class="tl-section">
+    <span class="tl-section-label">01 / Industry Pain Points</span>
+    <h2 class="tl-section-title">Why Reservoir Bank Slopes Fail</h2>
+    <p class="tl-section-desc">
+        Reservoir bank slopes are inherently complex due to the **non-homogeneous and anisotropic nature** of rock masses. The dynamic interaction between fluctuating water levels and shifting hydrogeological conditions creates invisible risks that traditional monitoring fails to capture.
+    </p>
+
+    <div class="pain-list">
+        <div class="pain-item critical">
+            <div class="pain-icon">
+                <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L32 28H4L18 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/><path d="M18 14v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><circle cx="18" cy="25" r="1.2" fill="currentColor"/></svg>
             </div>
-          </section>
+            <div class="pain-info">
+                <p class="pain-item-title">Geomechanical Heterogeneity</p>
+                <p class="pain-item-text">Rock masses exhibit high levels of heterogeneity and anisotropy. This inherent complexity makes it nearly impossible to predict stress distribution and potential failure planes using only surface-level inspections.</p>
+            </div>
+        </div>
+
+        <div class="pain-item warning">
+            <div class="pain-icon">
+                <svg viewBox="0 0 36 36" fill="none"><path d="M4 28L12 16l6 6 6-10 8 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/><path d="M4 32h28" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+            </div>
+            <div class="pain-info">
+                <p class="pain-item-title">Hydraulic Gradient Shifts</p>
+                <p class="pain-item-text">Reservoir impoundment raises groundwater tables and local erosion base levels. These drastic shifts in hydrogeological conditions destabilize the bank, triggering rapid and unforeseen slope deformation.</p>
+            </div>
+        </div>
+
+        <div class="pain-item info">
+            <div class="pain-icon">
+                <svg viewBox="0 0 36 36" fill="none"><rect x="4" y="20" width="28" height="12" stroke="currentColor" stroke-width="1.8"/><path d="M10 20V14a8 8 0 0 1 16 0v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+            </div>
+            <div class="pain-info">
+                <p class="pain-item-title">Invisible Stability Decay</p>
+                <p class="pain-item-text">Fluctuating water levels significantly alter pore water pressure and effective stress within the slope. Without real-time, deep-seated sensing, these critical stability fluctuations remain undetected until a catastrophic event.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
           <!-- 02 Solution Overview -->
           <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
             <span class="tl-section-label">02 / Solution Overview</span>
-            <h2 class="tl-section-title">Integrated Monitoring Architecture</h2>
-            <p class="tl-section-desc">Midu's reservoir slope solution fuses GNSS displacement arrays, in-place inclinometers, water level gauges, and piezometers into a single real-time intelligence platform.</p>
-            <div class="tl-overview-row">
-              <div class="tl-img-wrap">
-                <img src="images/soluwater2.png" alt="Reservoir slope monitoring" />
-                <div class="tl-img-label">
-                  <span class="tl-img-label-sub">Sector View</span>
-                  <span class="tl-img-label-title">W-01 Reservoir Slope Zone</span>
-                </div>
+            <h2 class="tl-section-title">From Sensor to Warning: The Data Flow</h2>
+            <p class="tl-section-desc">Medo's tailings solution creates an unbroken chain from field instrumentation to real-time decision support — five layers, zero gaps.</p>
+
+            <div class="flow-wrapper">
+              <div class="flow-card">
+                <span class="step-num">Step 01</span>
+                <img class="step-img" src="images/mining/mine-chemical.png" alt="mining survey" />
+                <p class="step-title">On-site Survey & Site Assessment</p>
+                <p class="step-detail">Focusing on the unique challenges of phosphogypsum storage, our engineers perform rigorous onsite assessments of stack morphology and seepage risks. We prioritize environmental safety by evaluating leachate impact and chemical erosion zones. This process yields critical insights, including groundwater vulnerability reports and specialized sensor deployment strategies, ensuring a tailored monitoring architecture that withstands harsh chemical environments while safeguarding the surrounding ecosystem.</p>
               </div>
-              <div>
-                <p style="font-size:14px;line-height:1.8;color:#4a5568;margin:0 0 20px;">The system deploys GNSS rover stations across the slope face and crest, providing continuous 3D displacement vectors at sub-millimeter resolution. In-place inclinometers profile lateral movement at depth, detecting slip surface development before surface expression occurs.</p>
-                <p style="font-size:14px;line-height:1.8;color:#4a5568;margin:0;">Water level gauges correlate reservoir fluctuation events with displacement and pore pressure data — enabling predictive risk assessment during drawdown operations.</p>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-            </div>
-            <div class="tl-feat-row">
-              <div class="tl-feat-card">
-                <span class="tl-feat-num">Feature 01</span>
-                <h3 class="tl-feat-title">GNSS + Inclinometer Fusion</h3>
-                <p class="tl-feat-desc">Surface GNSS and deep inclinometer data are fused to provide a complete 3D picture of slope deformation — from surface to slip surface.</p>
-                <div class="tl-metrics">
-                  <div class="tl-metric"><span class="tl-metric-label">GNSS Accuracy</span><span class="tl-metric-val">±2mm</span></div>
-                  <div class="tl-metric"><span class="tl-metric-label">Inclinometer</span><span class="tl-metric-val">0.01mm</span></div>
-                  <div class="tl-metric"><span class="tl-metric-label">Update Rate</span><span class="tl-metric-val">1Hz</span></div>
-                </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 02</span>
+                <img class="step-img" src="images/hero-mining.png" alt="hardware and monitoring stations" />
+                <p class="step-title">Hardware & Integrated Monitoring Stations Development</p>
+                <p class="step-detail">Based on the survey results, we deploy a network of all-in-one integrated monitoring stations at critical locations across the site. Each station combines a high-precision GNSS receiver with a suite of environmental and structural sensors — measuring displacement, seepage, pore water pressure, rainfall, and more. Ruggedised enclosures ensure continuous operation in harsh outdoor conditions.</p>
               </div>
-              <div class="tl-feat-card tl-feat-card--dark">
-                <span class="tl-feat-num">Feature 02</span>
-                <h3 class="tl-feat-title">Water Level Correlation</h3>
-                <p class="tl-feat-desc">Real-time water level gauge data is cross-correlated with displacement and pore pressure to trigger drawdown-linked alert protocols.</p>
-                <div class="tl-specs">
-                  <div class="tl-spec-row"><span class="tl-spec-label">WL Resolution</span><span class="tl-spec-val">1mm</span></div>
-                  <div class="tl-spec-row"><span class="tl-spec-label">Pore Pressure</span><span class="tl-spec-val">0.01 kPa</span></div>
-                  <div class="tl-spec-row"><span class="tl-spec-label">Latency</span><span class="tl-spec-val">140ms</span></div>
-                </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-            </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 03</span>
+                <img class="step-img" src="images/software/software-ams.png" alt="" />
+                <p class="step-title">Data Transmission & GNSS Processing Platform</p>
+                <p class="step-detail">Raw sensor data is securely transmitted to the cloud-based MEDO computation platform, AMS, via satellite, 4G, or 5G links — whichever provides the most reliable coverage for the site. MEDO performs real-time GNSS baseline processing, multi-sensor fusion, and precision deformation calculation, converting raw signals into high-accuracy displacement vectors and trend indicators.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 04</span>
+                <img class="step-img" src="images/software/software-network.png" alt="MDT Platform" />
+                <p class="step-title">Intelligent Data Analytics & Remote Device Management</p>
+                <p class="step-detail">MDT Platform streamlines high-precision data acquisition specifically for phosphogypsum stacks. By integrating comprehensive remote device management, the platform allows for real-time monitoring of sensor health, battery levels, and signal strength, ensuring stable performance. By data visualization, the platform empowers users with instantaneous updates on stack integrity, seepage, and hardware status, ensuring the facility’s safety remains visible, manageable, and under complete control.</p>
+              </div>
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 05</span>
+                <img class="step-img" src="images/software/software-mdnet.png" alt="MD-NET" />
+                <p class="step-title">Full-Cycle Lifecycle Management and Decision Support</p>
+                <p class="step-detail">Powered by MD-NET and MD LINK, this platform integrates project lifecycle management with advanced geomechanical intelligence. Through intuitive data visualization, we assist management units in implementing timely emergency protocols. Our commitment to continuous system evolution ensures that your facility remains protected against potential disasters, minimizing the risk of casualties and environmental damage through every stage of operation.</p> 
+
           </section>
+
+
+          <!-- 03 Core Advantages -->
+          <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
+    <span class="tl-section-label">03 / Core Advantages</span>
+    <h2 class="tl-section-title">Mastering Reservoir Bank Stability</h2>
+    <p class="tl-section-desc">
+        Standard monitoring fails to account for the dynamic interaction between water and rock. Our solution is engineered to quantify the invisible shifts in bank stability caused by fluctuating reservoir levels and complex hydrogeological conditions.
+    </p>
+    <div class="tl-adv-list">
+        <div class="tl-adv-item">
+            <span class="tl-adv-num">01</span>
+            <div>
+                <h3 class="tl-adv-title">Integrated Surface-to-Deep Sensing</h3>
+                <p class="tl-adv-desc">Combines high-precision GNSS with deep-seated MEMS inclinometers. This dual-layer approach overcomes the challenges of rock mass anisotropy, capturing both subtle surface movements and internal shear plane development.</p>
+            </div>
+        </div>
+        <div class="tl-adv-item">
+            <span class="tl-adv-num">02</span>
+            <div>
+                <h3 class="tl-adv-title">Hydraulic-Mechanical Linkage Analysis</h3>
+                <p class="tl-adv-desc">Real-time correlation between reservoir water levels and internal pore water pressure. Our system quantifies how impoundment and drawdown cycles affect the effective stress within the slope, providing a scientific basis for stability assessment.</p>
+            </div>
+        </div>
+        <div class="tl-adv-item">
+            <span class="tl-adv-num">03</span>
+            <div>
+                <h3 class="tl-adv-title">Dynamic Stability Predictive Modeling</h3>
+                <p class="tl-adv-desc">Moves beyond simple thresholds by using advanced geomechanical models. The system predicts the "Time-to-Failure" based on cumulative deformation trends and shifting phreatic lines, enabling proactive rather than reactive management.</p>
+            </div>
+        </div>
+        <div class="tl-adv-item">
+            <span class="tl-adv-num">04</span>
+            <div>
+                <h3 class="tl-adv-title">Unified Reservoir Management Dashboard</h3>
+                <p class="tl-adv-desc">A single, intuitive platform that correlates weather data, hydrological fluctuations, and slope displacement. Provides stakeholders with a holistic view of the reservoir’s health, from individual slopes to the entire bank perimeter.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
           <!-- 03 Core Advantages -->
           <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
