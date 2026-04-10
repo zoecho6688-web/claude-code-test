@@ -53,8 +53,8 @@
       /* ── Body layout: sticky sidebar + content ── */
       .tl-body {
         display: grid;
-        grid-template-columns: 200px 1fr;
-        max-width: 1200px;
+        grid-template-columns: 180px 1fr;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 0 20px;
         gap: 0;
@@ -130,22 +130,205 @@
       .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
 
       /* solution overview: hero row */
-      .tl-overview-row {
-        display: grid; grid-template-columns: 1fr 1fr;
-        gap: 40px; align-items: center; margin-bottom: 32px;
+      /* --- 轨道系统整体布局 --- */
+      .v-pipeline {
+          display: flex;
+          flex-direction: column;
+          margin-top: 40px;
       }
-      .tl-img-wrap { position: relative; background: #0f1f3d; overflow: hidden; }
-      .tl-img-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-      .tl-img-label {
-        position: absolute; bottom: 0; left: 0; right: 0;
-        background: rgba(4,26,58,0.72); padding: 10px 16px;
-        display: flex; flex-direction: column; gap: 2px;
+
+      .v-pipeline-node {
+          display: flex;
+          gap: 30px;
+          align-items: stretch; /* 保证线段随右侧内容高度同步拉长 */
       }
-      .tl-img-label-sub {
-        font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
-        text-transform: uppercase; color: rgba(255,255,255,0.55);
+
+      /* --- 左侧轨道 (带有箭头的线条) --- */
+      .v-pipeline-rail {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 44px;
+          flex-shrink: 0;
       }
-      .tl-img-label-title { font-size: 14px; font-weight: 700; color: #fff; }
+
+      .v-node-dot {
+          width: 44px;
+          height: 44px;
+          background: #fff;
+          border: 2px solid #0056D6;
+          color: #0056D6;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          font-weight: 900;
+          z-index: 2;
+          transition: all 0.4s ease;
+      }
+
+      .v-node-line-arrow {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+      }
+
+      .line-segment {
+          width: 2px;
+          background: #0056D6;
+          flex-grow: 1;
+          margin: 4px 0;
+          transition: background 0.4s ease;
+      }
+
+      .line-arrow-head {
+          width: 20px;
+          height: 20px;
+          color: #0056D6;
+          margin-bottom: 20px;
+          flex-shrink: 0;
+          transition: all 0.4s ease;
+      }
+
+      /* --- 右侧方框内容 --- */
+      .v-flow-card {
+          flex: 1;
+          background: #fff;
+          border: 1px solid #EEEEEE;
+          margin-bottom: 24px;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+          border-radius: 0;
+          position: relative; /* 必须为 relative 以便图片定位 */
+          overflow: hidden;   /* 确保图片超出部分被切掉以实现顶格 */
+      }
+
+      .v-flow-header {
+          /* 关键：去掉上下右 padding，左侧保留 30px */
+          padding: 0 0 0 30px; 
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          min-height: 120px;
+      }
+
+      .v-flow-titles {
+          padding: 30px 0; /* 在内部撑开高度 */
+          flex: 1;
+          padding-right: 140px; /* 为右侧顶格图留出空间，防止文字重叠 */
+      }
+
+      .v-step-title {
+          font-size: 22px;
+          font-weight: 800;
+          color: #0f1f3d;
+          margin: 0 0 6px;
+      }
+
+      .v-step-summary {
+          font-size: 13px;
+          color: #9ca3af;
+          margin: 0;
+      }
+
+      /* --- 右侧缩略图：实现上、下、右顶格 --- */
+      .v-flow-header-thumb {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          width: 230px; /* 调整你需要的宽度 */
+          background: #f7f8fa;
+          transition: all 0.4s ease;
+          border-left: 1px solid #EEEEEE;
+      }
+
+      .v-flow-header-thumb img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* 保证图片填满且不压缩 */
+          display: block;
+      }
+
+      /* 展开区域 */
+      .v-flow-expand-content {
+          max-height: 0;
+          opacity: 0;
+          padding: 0 30px;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .v-step-detail {
+          font-size: 14px;
+          line-height: 1.7;
+          color: #4a5568;
+          margin-bottom: 30px;
+      }
+
+      .v-flow-gallery {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+          padding-bottom: 30px;
+      }
+
+      .gallery-item { display: flex; flex-direction: column; gap: 8px; }
+      .gallery-item img { width: 100%; height: 140px; object-fit: cover; background: #f7f8fa; }
+      .img-caption { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #9ca3af; letter-spacing: 0.1em; }
+
+      /* --- HOVER 联动交互 --- */
+
+      .v-pipeline-node:hover .v-node-dot {
+          border-color: #0056D6;
+          background: #0056D6;
+          color: #fff;
+          transform: scale(1.1);
+      }
+
+      .v-pipeline-node:hover .line-segment {
+          background: #0056D6;
+      }
+
+      .v-pipeline-node:hover .line-arrow-head {
+          color: #0056D6;
+          transform: translateY(8px);
+      }
+
+      .v-pipeline-node:hover .v-flow-card {
+          border-color: #0056D6;
+          background: #fcfdfe;
+      }
+
+      .v-pipeline-node:hover .v-flow-expand-content {
+          max-height: 1200px;
+          opacity: 1;
+          padding-bottom: 10px;
+      }
+
+      /* 展开时图片向右滑出消失 */
+      .v-pipeline-node:hover .v-flow-header-thumb {
+          opacity: 0;
+          transform: translateX(100%);
+      }
+
+      .v-pipeline-node:hover .v-step-title {
+          font-size: 18px; /* 展开时文字区域扩展到右侧 */
+      }
+
+      /* 手机端适配 */
+      @media (max-width: 768px) {
+          .v-pipeline-rail { width: 32px; }
+          .v-node-dot { width: 32px; height: 32px; font-size: 11px; }
+          .v-pipeline-node { gap: 15px; }
+          .v-flow-header-thumb { display: none; } /* 移动端建议隐藏以留出文字空间 */
+          .v-flow-titles { padding-right: 0; }
+          .v-flow-header { padding: 0 0 0 20px; }
+          .v-flow-gallery { grid-template-columns: 1fr; }
+      }
 
       /* feature cards */
       .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -436,45 +619,123 @@
           </section>
 
           <!-- 02 Solution Overview -->
-          <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
+          <section id="overview" class="tl-section">
             <span class="tl-section-label">02 / Solution Overview</span>
-            <h2 class="tl-section-title">Integrated Wireless Monitoring</h2>
-            <p class="tl-section-desc">Radar water level sensing, rain gauges, and video AI — unified on a low-power 4G/LoRa transmission platform. Designed for rapid deployment in remote, off-grid locations.</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:8px;">
-
-              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;">
-                <div style="width:44px;height:44px;background:#f0f4ff;display:flex;align-items:center;justify-content:center;">
-                  <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;color:#0056D6;"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            <h2 class="tl-section-title">The Digital Nervous System</h2>
+            
+            <div class="v-pipeline">
+              <div class="v-pipeline-node">
+                <div class="v-pipeline-rail">
+                  <div class="v-node-dot">01</div>
+                  <div class="v-node-line-arrow">
+                    <div class="line-segment"></div>
+                    <svg class="line-arrow-head" viewBox="0 0 24 24" fill="none"><path d="M7 13l5 5 5-5" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></svg>
+                  </div>
                 </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Layer 01</p>
-                  <h3 style="margin:0 0 10px;font-size:16px;font-weight:800;color:#0f1f3d;">Radar Water Level</h3>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Non-contact radar water level gauges provide continuous, maintenance-free measurement. No moving parts, no fouling — reliable through flood debris and algae growth.</p>
-                </div>
-              </div>
-
-              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;background:#fafbfc;">
-                <div style="width:44px;height:44px;background:#f0f4ff;display:flex;align-items:center;justify-content:center;">
-                  <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;color:#0056D6;"><path d="M12 3v18M8 7l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><path d="M6 12h12M6 17h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" opacity="0.5"/></svg>
-                </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Layer 02</p>
-                  <h3 style="margin:0 0 10px;font-size:16px;font-weight:800;color:#0f1f3d;">Rain Gauge</h3>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">Tipping bucket rain gauges correlate upstream rainfall with reservoir inflow rates. Early rainfall data enables predictive pre-warning before water levels begin to rise.</p>
-                </div>
-              </div>
-
-              <div style="border:1px solid #EEEEEE;padding:28px 24px;display:flex;flex-direction:column;gap:16px;">
-                <div style="width:44px;height:44px;background:#f0f4ff;display:flex;align-items:center;justify-content:center;">
-                  <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;color:#0056D6;"><path d="M12 3c-2 3-4 5-4 8a4 4 0 0 0 8 0c0-3-2-5-4-8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/><path d="M9 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-                </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Layer 03</p>
-                  <h3 style="margin:0 0 10px;font-size:16px;font-weight:800;color:#0f1f3d;">Video AI</h3>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:#4a5568;">AI-powered cameras monitor dam crest and spillway conditions visually. Automatic detection of overtopping, debris blockage, and unauthorized access — transmitted via 4G/LoRa.</p>
+                
+                <div class="v-flow-card">
+                  <div class="v-flow-header">
+                    <div class="v-flow-titles">
+                      <h3 class="v-step-title">Integrated Site Assessment</h3>
+                      <p class="v-step-summary">On-site survey and chemical risk evaluation.</p>
+                    </div>
+                    <div class="v-flow-header-thumb">
+                      <img src="images/mining/mine-chemical.png" alt="survey" />
+                    </div>
+                  </div>
+                  <div class="v-flow-expand-content">
+                    <p class="v-step-detail">Focusing on the unique challenges of phosphogypsum storage, our engineers perform rigorous onsite assessments of stack morphology and seepage risks. We prioritize environmental safety by evaluating leachate impact.</p>
+                    <div class="v-flow-gallery">
+                      <div class="gallery-item"><img src="images/mining/mine-chemical.png" alt="1"><span class="img-caption">Site Morphology</span></div>
+                      <div class="gallery-item"><img src="images/mining/extra-1.png" alt="2"><span class="img-caption">Seepage Risks</span></div>
+                      <div class="gallery-item"><img src="images/mining/extra-2.png" alt="3"><span class="img-caption">Sensor Strategy</span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
+              <div class="v-pipeline-node">
+                <div class="v-pipeline-rail">
+                  <div class="v-node-dot">02</div>
+                  <div class="v-node-line-arrow">
+                    <div class="line-segment"></div>
+                    <svg class="line-arrow-head" viewBox="0 0 24 24" fill="none"><path d="M7 13l5 5 5-5" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></svg>
+                  </div>
+                </div>
+                <div class="v-flow-card">
+                  <div class="v-flow-header">
+                    <div class="v-flow-titles">
+                      <h3 class="v-step-title">Hardware & Station Deployment</h3>
+                      <p class="v-step-summary">GNSS integration and multi-sensor fusion.</p>
+                    </div>
+                    <div class="v-flow-header-thumb">
+                      <img src="images/hero-mining.png" alt="hardware" />
+                    </div>
+                  </div>
+                  <div class="v-flow-expand-content">
+                    <p class="v-step-detail">We deploy a network of all-in-one integrated monitoring stations combining high-precision GNSS with chemical-grade environmental sensors designed for pH 1 environments.</p>
+                    <div class="v-flow-gallery">
+                      <div class="gallery-item"><img src="images/hero-mining.png" alt="1"><span class="img-caption">Station Build</span></div>
+                      <div class="gallery-item"><img src="images/hardware/m20.png" alt="2"><span class="img-caption">GNSS Component</span></div>
+                      <div class="gallery-item"><img src="images/hardware/acid-sensor.png" alt="3"><span class="img-caption">Acid Housing</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="v-pipeline-node">
+                <div class="v-pipeline-rail">
+                  <div class="v-node-dot">03</div>
+                  <div class="v-node-line-arrow">
+                    <div class="line-segment"></div>
+                    <svg class="line-arrow-head" viewBox="0 0 24 24" fill="none"><path d="M7 13l5 5 5-5" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></svg>
+                  </div>
+                </div>
+                <div class="v-flow-card">
+                  <div class="v-flow-header">
+                    <div class="v-flow-titles">
+                      <h3 class="v-step-title">Data Transmission & AMS Processing</h3>
+                      <p class="v-step-summary">Secure cloud uplink and real-time processing.</p>
+                    </div>
+                    <div class="v-flow-header-thumb">
+                      <img src="images/software/software-ams.png" alt="ams" />
+                    </div>
+                  </div>
+                  <div class="v-flow-expand-content">
+                    <p class="v-step-detail">Raw sensor data is securely transmitted via 4G/5G/Satellite. Medo AMS performs real-time GNSS baseline processing and precision deformation calculation.</p>
+                    <div class="v-flow-gallery">
+                      <div class="gallery-item"><img src="images/software/software-ams.png" alt="1"><span class="img-caption">AMS Processing</span></div>
+                      <div class="gallery-item"><img src="images/software/software-dashboard.png" alt="2"><span class="img-caption">Cloud Computing</span></div>
+                      <div class="gallery-item"><img src="images/software/data-fusion.png" alt="3"><span class="img-caption">Data Fusion</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="v-pipeline-node">
+                <div class="v-pipeline-rail">
+                  <div class="v-node-dot">04</div>
+                  </div>
+                <div class="v-flow-card">
+                  <div class="v-flow-header">
+                    <div class="v-flow-titles">
+                      <h3 class="v-step-title">Lifecycle Management & Decision Support</h3>
+                      <p class="v-step-summary">MDT Platform analytics and instant alerting.</p>
+                    </div>
+                    <div class="v-flow-header-thumb">
+                      <img src="images/software/software-network.png" alt="mdt" />
+                    </div>
+                  </div>
+                  <div class="v-flow-expand-content">
+                    <p class="v-step-detail">The MDT Platform streamlines high-precision data acquisition and remote device management, ensuring the facility’s safety remains manageable and under control.</p>
+                    <div class="v-flow-gallery">
+                      <div class="gallery-item"><img src="images/software/software-network.png" alt="1"><span class="img-caption">MDT Dashboard</span></div>
+                      <div class="gallery-item"><img src="images/software/alert-panel.png" alt="2"><span class="img-caption">Alert Panel</span></div>
+                      <div class="gallery-item"><img src="images/mining/decision-making.png" alt="3"><span class="img-caption">Risk Management</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
