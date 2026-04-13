@@ -124,7 +124,7 @@
           display: flex;
           flex-direction: column;
           gap: 12px;
-          margin-top: 8px;
+          margin-top: 40px;
       }
 
       /* 基础卡片样式 */
@@ -761,11 +761,11 @@
       <div class="container" style="display:contents;">
         <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
           <span class="tl-eyebrow">Precision Instrumentation</span>
-          <h1 class="tl-heading">Reservoir &amp; Pond<br><span class="tl-heading-blue">Safety Monitoring</span></h1>
+          <h1 class="tl-heading">Smart Irrigation District<br><span class="tl-heading-blue">Integrated Monitoring Solution</span></h1>
           <p class="tl-hero-desc">Automated hydrological sensing for small reservoirs and mountain ponds. Ensuring flood safety and irrigation reliability through real-time water level tracking.</p>
         </div>
         <div class="tl-hero-right">
-          <img src="images/water/water-pond.png" alt="Reservoir and pond water level monitoring" />
+          <img src="images/water/water-irrigation.png" alt="Irrigation safety monitoring" />
         </div>
       </div>
     </section>
@@ -799,39 +799,51 @@
           <!-- 01 Pain Points -->
           <section id="pain-points" class="tl-section">
             <span class="tl-section-label">01 / Industry Pain Points</span>
-            <h2 class="tl-section-title">Why Small Reservoirs Are High-Risk</h2>
-            <p class="tl-section-desc">
-              Small reservoirs and mountain ponds are among the most vulnerable water infrastructure. Their remote locations and limited oversight create conditions where rapid water level changes go undetected until it's too late.
-            </p>
-
+            <h2 class="tl-section-title">The Core Challenges of Modern Irrigation</h2>
+            
             <div class="pain-container">
               <div class="pain-card is-critical">
                 <div class="pain-icon">
-                  <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L32 28H4L18 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/><path d="M18 14v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><circle cx="18" cy="25" r="1.2" fill="currentColor"/></svg>
+                <svg viewBox="0 0 36 36" fill="none">
+                    <path d="M10 8h16v22H10V8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/>
+                    <path d="M14 6h8v4h-8V6z" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M14 16h8M14 21h8M14 26h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/>
+                    <circle cx="12" cy="16" r="0.8" fill="currentColor"/>
+                    <circle cx="12" cy="21" r="0.8" fill="currentColor"/>
+                </svg>
                 </div>
                 <div class="pain-text-content">
-                  <p class="pain-card-title">High Frequency of Overtopping</p>
-                  <p class="pain-card-desc">Small reservoirs have limited storage capacity and low freeboard margins. During intense rainfall, water levels can rise faster than manual response allows, leading to overtopping and downstream flooding.</p>
+                  <p class="pain-card-title">Labor-Intensive Manual Monitoring</p>
+                  <p class="pain-card-desc">Relying on manual field checks for water levels and gate status leads to high operational costs and significant time lags in data reporting.</p>
                 </div>
               </div>
 
               <div class="pain-card is-warning">
                 <div class="pain-icon">
-                  <svg viewBox="0 0 36 36" fill="none"><path d="M4 28L12 16l6 6 6-10 8 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/><path d="M4 32h28" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                <svg viewBox="0 0 36 36" fill="none">
+                    <path d="M4 14h12l6-8h10M16 14l6 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/>
+                    <path d="M26 28l-2 3h4l-2-3z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M30 10l-2 3h4l-2-3z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
                 </div>
                 <div class="pain-text-content">
-                  <p class="pain-card-title">Remote Locations with Poor Connectivity</p>
-                  <p class="pain-card-desc">Mountain ponds and rural reservoirs are often hours from the nearest town. Wired infrastructure is impractical, and manual inspection schedules cannot match the speed of weather-driven events.</p>
+                  <p class="pain-card-title">Inefficient Water Distribution</p>
+                  <p class="pain-card-desc">Without real-time flow sensing, inaccurate water allocation often results in severe water waste and uneven irrigation across the canal network.</p>
                 </div>
               </div>
 
               <div class="pain-card is-info">
                 <div class="pain-icon">
-                  <svg viewBox="0 0 36 36" fill="none"><rect x="4" y="20" width="28" height="12" stroke="currentColor" stroke-width="1.8"/><path d="M10 20V14a8 8 0 0 1 16 0v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+                <svg viewBox="0 0 36 36" fill="none">
+                    <rect x="6" y="6" width="10" height="8" stroke="currentColor" stroke-width="1.8"/>
+                    <rect x="22" y="14" width="8" height="10" stroke="currentColor" stroke-width="1.8"/>
+                    <rect x="6" y="22" width="10" height="8" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M16 10h4M22 18h-4v6M12 22v-4" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2 2"/>
+                </svg>
                 </div>
                 <div class="pain-text-content">
-                  <p class="pain-card-title">Mitigating Downstream Risks of High-Head Water Containment</p>
-                  <p class="pain-card-desc">Functioning as containment for high-potential-energy water bodies, reservoirs are inherent hazard sources that demand rigorous monitoring to safeguard downstream lives and assets.</p>
+                  <p class="pain-card-title">Fragmented Information & Silos</p>
+                  <p class="pain-card-desc">Disconnected and offline data sources prevent a holistic view of the district, hindering rapid decision-making for optimal irrigation scheduling.</p>
                 </div>
               </div>
             </div>
@@ -1083,13 +1095,13 @@
           </section>
 
           <!-- Next solution -->
-          <a class="tl-next" href="solutions-water-slope.html" aria-label="Back to Reservoir Slope Monitoring">
+          <a class="tl-next" href="solutions-water-embankment.html" aria-label="Next: Embankment Monitoring">
             <div style="position:relative;z-index:1;">
-              <span class="tl-next-label">Back to</span>
-              <p class="tl-next-title">Reservoir Slope Monitoring</p>
+              <span class="tl-next-label">Next</span>
+              <p class="tl-next-title">Embankment Monitoring Solution</p>
             </div>
             <span class="tl-next-arrow">
-              View All Modules
+              View Next Module
               <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
             </span>
           </a>
