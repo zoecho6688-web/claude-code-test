@@ -119,15 +119,83 @@
       .tl-section-desc { margin: 0 0 32px; font-size: 15px; line-height: 1.75; color: #4a5568; }
 
       /* pain points grid */
-      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-      .tl-pain-card {
-        border: 1px solid #EEEEEE; padding: 24px 22px;
-        display: flex; flex-direction: column; gap: 10px;
+      /* 容器布局 */
+      .pain-container {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-top: 8px;
       }
-      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
-      .tl-pain-icon svg { width: 100%; height: 100%; }
-      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
-      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
+
+      /* 基础卡片样式 */
+      .pain-card {
+          background: #fff; /* 深色背景 */
+          padding: 24px 28px;
+          display: flex;
+          gap: 20px;
+          align-items: flex-start;
+          transition: all 0.3s ease;
+          border: 1px solid #e2e8f0;
+          border-left: 3px solid transparent; /* 预留边框 */
+          cursor: default;
+      }
+
+      /* 悬停动效：背景轻微提亮，边框加粗 */
+      .pain-card:hover {
+          background: #f8fafc;
+          border-left-width: 8px;
+          padding-left: 25px; /* 补偿边框加粗，防止文字晃动 */
+      }
+
+      /* 状态颜色定义 */
+      .is-critical { border-left-color: #ef4444; }
+      .is-warning  { border-left-color: #f59e0b; }
+      .is-info     { border-left-color: #0056D6; }
+
+      /* 图标样式 */
+      .pain-icon {
+          flex-shrink: 0;
+          width: 36px;
+          height: 36px;
+          transition: transform 0.3s ease;
+      }
+
+      .is-critical .pain-icon { color: #ef4444; }
+      .is-warning  .pain-icon { color: #f59e0b; }
+      .is-info     .pain-icon { color: #0056D6; }
+
+      /* 悬停时图标微动 */
+      .pain-card:hover .pain-icon {
+          transform: scale(1.1);
+      }
+
+      /* 文字样式 */
+      .pain-card-title {
+          margin: 0 0 6px;
+          font-size: 14px;
+          font-weight: 800;
+          color: #0f1f3d;
+      }
+
+      .pain-card-desc {
+          margin: 0;
+          font-size: 13px;
+          line-height: 1.7;
+          color: #4a5568;
+      }
+
+      /* 📱 响应式适配 */
+      @media (max-width: 768px) {
+          .pain-card {
+              padding: 20px;
+              gap: 15px;
+          }
+          
+          .pain-icon {
+              width: 30px;
+              height: 30px;
+          }
+      }
 
       /* solution overview: hero row */
       /* --- 轨道系统整体布局 --- */
@@ -372,58 +440,242 @@
         gap: 20px; align-items: start;
         border: 1px solid #EEEEEE; padding: 20px 24px;
       }
+      .tl-adv-item:hover { border:none; background: #f0f7ff; }
       .tl-adv-num {
-        font-size: 28px; font-weight: 900; color: #EEEEEE;
+        font-size: 28px; font-weight: 900; color: #0056D6;
         letter-spacing: -0.04em; line-height: 1;
       }
       .tl-adv-title { margin: 0 0 6px; font-size: 15px; font-weight: 800; color: #0f1f3d; }
+      .tl-adv-item:hover .tl-adv-title { color: #0056D6; }
       .tl-adv-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; }
 
       /* products */
       .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
       .tl-prod-card {
-        border: 1px solid #EEEEEE; padding: 24px;
-        display: flex; flex-direction: column; gap: 8px;
+        border: 1px solid #EEEEEE; padding: 0;
+        display: grid; grid-template-columns: minmax(0,1fr) 160px;
+        align-items: stretch; overflow: hidden;
         text-decoration: none; color: inherit;
-        transition: border-color 200ms, box-shadow 200ms;
+        transition: border-color 200ms, box-shadow 200ms, transform 200ms;
       }
-      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); transform: translateY(-8px); }
+      .tl-prod-body {
+        padding: 22px 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        min-height: 140px;
+      }
       .tl-prod-cat {
         font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
         text-transform: uppercase; color: #0056D6;
       }
       .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
-      .tl-prod-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; flex: 1; }
       .tl-prod-link {
         font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
         text-transform: uppercase; color: #0056D6;
         border-bottom: 1px solid #0056D6; padding-bottom: 1px;
-        align-self: flex-start; margin-top: 8px;
+        align-self: flex-start; margin-top: auto;
+      }
+      .tl-prod-media { position: relative; background: #E1EFFF; display: flex; align-items: center; justify-content: center;  }
+      .tl-prod-media img { 
+        width: 100%; 
+        height: auto; 
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s ease;
+      }
+      .tl-prod-card:hover .tl-prod-media img {
+        transform: scale(1.2); /* 稍微加大一点缩放比例，视觉效果更好 */
+      }
+      .tl-prod-card:hover .tl-prod-name {
+        font-size: 20px; 
       }
 
       /* case study */
-      .tl-case {
-        border: 1px solid #EEEEEE; overflow: hidden;
+      .modern-case-layout {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr; /* 非对称比例 */
+          background: #fff;
+          margin-top: 40px;
+          border: 1px solid #EEEEEE;
+          position: relative;
       }
-      .tl-case-header {
-        background: #0f1f3d; padding: 28px 32px;
-        display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+
+      /* --- 左侧视觉区 --- */
+      .case-visual-side {
+          background: #0f1f3d;
+          padding: 60px;
+          position: relative;
+          display: flex;
+          align-items: center;
       }
-      .tl-case-tag {
-        font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
-        text-transform: uppercase; color: rgba(83,210,255,0.8); margin-bottom: 10px; display: block;
+
+      .case-img-bg {
+          position: relative;
+          width: 100%;
       }
-      .tl-case-title { margin: 0; font-size: 20px; font-weight: 800; color: #fff; line-height: 1.3; }
-      .tl-case-year {
-        font-size: 48px; font-weight: 900; color: rgba(255,255,255,0.12);
-        letter-spacing: -0.04em; line-height: 1; flex-shrink: 0;
+
+      .case-hero-img {
+          width: 100%;
+          height: auto;
+          display: block;
+          filter: brightness(0.9);
       }
-      .tl-case-body { padding: 28px 32px; }
-      .tl-case-desc { margin: 0 0 24px; font-size: 14px; line-height: 1.75; color: #4a5568; }
-      .tl-case-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-      .tl-case-stat { border: 1px solid #EEEEEE; padding: 16px; }
-      .tl-case-stat-val { font-size: 26px; font-weight: 900; color: #0056D6; letter-spacing: -0.02em; }
-      .tl-case-stat-label { font-size: 12px; color: #9ca3af; margin-top: 4px; line-height: 1.4; }
+
+      /* 浮动在图片上的结果卡片 */
+      .floating-results {
+          position: absolute;
+          bottom: -30px;
+          right: -40px;
+          background: #0056D6;
+          display: flex;
+          gap: 1px;
+          background: #0056D6; /* 线条色 */
+          border: 8px solid #0056D6;
+          z-index: 10;
+      }
+
+      .f-result-item {
+          background: #0056D6;
+          padding: 20px 25px;
+          display: flex;
+          flex-direction: column;
+          min-width: 140px;
+      }
+
+      .f-val {
+          color: #fff;
+          font-size: 28px;
+          font-weight: 900;
+          line-height: 1;
+      }
+
+      .f-desc {
+          color: rgba(255,255,255,0.7);
+          font-size: 10px;
+          text-transform: uppercase;
+          font-weight: 800;
+          margin-top: 8px;
+          letter-spacing: 0.05em;
+      }
+
+      /* --- 右侧内容区 --- */
+      .case-info-side {
+          padding: 60px 50px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          background: #fff;
+      }
+
+      .case-year-tag {
+          font-size: 10px;
+          font-weight: 800;
+          color: #0056D6;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+          display: block;
+      }
+
+      .case-main-title {
+          font-size: 24px;
+          font-weight: 800;
+          color: #0f1f3d;
+          line-height: 1.3;
+          margin: 0 0 40px 0;
+      }
+
+      .info-row {
+          margin-bottom: 24px;
+      }
+
+      .info-label {
+          font-size: 11px;
+          font-weight: 900;
+          color: #9ca3af;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 8px;
+          border-left: 3px solid #0056D6;
+          padding-left: 10px;
+      }
+
+      .info-p {
+          font-size: 14px;
+          line-height: 1.7;
+          color: #4a5568;
+          margin: 0;
+      }
+
+
+      /* --- 📱 响应式 --- */
+      @media (max-width: 1024px) {
+          .modern-case-layout {
+              grid-template-columns: 1fr;
+          }
+          .floating-results {
+              position: static;
+              margin-top: 20px;
+              justify-content: center;
+          }
+          .case-visual-side {
+              padding: 40px 20px;
+          }
+      }
+      /* --- 强化版案例按钮 --- */
+      .case-primary-btn {
+          margin-top: auto; /* 推到容器底部 */
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: #fff; /* 深色背景，极具质感 */
+          color: #0056D6;
+          border: #0056D6 solid 2px;
+          text-decoration: none;
+          padding: 18px 24px;
+          position: relative;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .btn-text {
+          font-size: 12px;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+      }
+
+      .btn-icon {
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease;
+      }
+
+      /* --- Hover 交互动效 --- */
+      .case-primary-btn:hover {
+          background: #0056D6; /* 悬停时整个变蓝 */
+          padding-left: 32px; /* 产生向右伸展的动感 */
+          color: #fff;
+      }
+
+      .case-primary-btn:hover .btn-icon {
+          transform: translateX(5px);
+      }
+
+      /* 按钮内部的 SVG 颜色跟随父级 */
+      .case-primary-btn svg {
+          width: 16px;
+          stroke: #fff;
+      }
+
+      /* 📱 手机端适配 */
+      @media (max-width: 768px) {
+          .case-primary-btn {
+              margin-top: 32px;
+              padding: 16px 20px;
+          }
+      }
 
       /* next solution bar */
       .tl-next {
@@ -579,42 +831,43 @@
         <div class="tl-content">
 
           <!-- 01 Pain Points -->
-          <section id="pain-points" class="tl-section" style="scroll-margin-top:100px;">
+          <section id="pain-points" class="tl-section">
             <span class="tl-section-label">01 / Industry Pain Points</span>
             <h2 class="tl-section-title">Why Small Reservoirs Are High-Risk</h2>
-            <p class="tl-section-desc">Small reservoirs and mountain ponds are among the most vulnerable water infrastructure. Their remote locations and limited oversight create conditions where rapid water level changes go undetected until it's too late.</p>
-            <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px;">
+            <p class="tl-section-desc">
+              Small reservoirs and mountain ponds are among the most vulnerable water infrastructure. Their remote locations and limited oversight create conditions where rapid water level changes go undetected until it's too late.
+            </p>
 
-              <div style="background:#0f1f3d;border-left:3px solid #ef4444;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
-                <div style="flex-shrink:0;width:36px;height:36px;color:#ef4444;">
+            <div class="pain-container">
+              <div class="pain-card is-critical">
+                <div class="pain-icon">
                   <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L32 28H4L18 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/><path d="M18 14v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/><circle cx="18" cy="25" r="1.2" fill="currentColor"/></svg>
                 </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:14px;font-weight:800;color:#fff;">High Frequency of Overtopping (漫坝)</p>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);">Small reservoirs have limited storage capacity and low freeboard margins. During intense rainfall, water levels can rise faster than manual response allows, leading to overtopping and downstream flooding.</p>
+                <div class="pain-text-content">
+                  <p class="pain-card-title">High Frequency of Overtopping</p>
+                  <p class="pain-card-desc">Small reservoirs have limited storage capacity and low freeboard margins. During intense rainfall, water levels can rise faster than manual response allows, leading to overtopping and downstream flooding.</p>
                 </div>
               </div>
 
-              <div style="background:#0f1f3d;border-left:3px solid #f59e0b;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
-                <div style="flex-shrink:0;width:36px;height:36px;color:#f59e0b;">
+              <div class="pain-card is-warning">
+                <div class="pain-icon">
                   <svg viewBox="0 0 36 36" fill="none"><path d="M4 28L12 16l6 6 6-10 8 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/><path d="M4 32h28" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
                 </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:14px;font-weight:800;color:#fff;">Remote Locations with Poor Connectivity</p>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);">Mountain ponds and rural reservoirs are often hours from the nearest town. Wired infrastructure is impractical, and manual inspection schedules cannot match the speed of weather-driven events.</p>
+                <div class="pain-text-content">
+                  <p class="pain-card-title">Remote Locations with Poor Connectivity</p>
+                  <p class="pain-card-desc">Mountain ponds and rural reservoirs are often hours from the nearest town. Wired infrastructure is impractical, and manual inspection schedules cannot match the speed of weather-driven events.</p>
                 </div>
               </div>
 
-              <div style="background:#0f1f3d;border-left:3px solid #0056D6;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;">
-                <div style="flex-shrink:0;width:36px;height:36px;color:#0056D6;">
+              <div class="pain-card is-info">
+                <div class="pain-icon">
                   <svg viewBox="0 0 36 36" fill="none"><rect x="4" y="20" width="28" height="12" stroke="currentColor" stroke-width="1.8"/><path d="M10 20V14a8 8 0 0 1 16 0v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
                 </div>
-                <div>
-                  <p style="margin:0 0 6px;font-size:14px;font-weight:800;color:#fff;">Rapid Water Level Surges During Storms</p>
-                  <p style="margin:0;font-size:13px;line-height:1.7;color:rgba(255,255,255,0.6);">Flash storm events can raise water levels by meters within minutes. Without automated real-time sensing, downstream communities receive no warning before a surge reaches them.</p>
+                <div class="pain-text-content">
+                  <p class="pain-card-title">Mitigating Downstream Risks of High-Head Water Containment</p>
+                  <p class="pain-card-desc">Functioning as containment for high-potential-energy water bodies, reservoirs are inherent hazard sources that demand rigorous monitoring to safeguard downstream lives and assets.</p>
                 </div>
               </div>
-
             </div>
           </section>
 
@@ -743,7 +996,7 @@
           <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
             <span class="tl-section-label">03 / Core Advantages</span>
             <h2 class="tl-section-title">Built for Remote Water Infrastructure</h2>
-            <p class="tl-section-desc">Small reservoirs need monitoring that works without power grids, fiber cables, or on-site staff. Midu's solution is engineered for rapid deployment and unattended long-term operation.</p>
+            <p class="tl-section-desc">Reservoirs need monitoring that works without power grids, fiber cables, or on-site staff. Medo's solution is engineered for rapid deployment and unattended long-term operation.</p>
             <div class="tl-adv-list">
               <div class="tl-adv-item">
                 <span class="tl-adv-num">01</span>
@@ -768,81 +1021,106 @@
           <section id="products" class="tl-section" style="scroll-margin-top:100px;">
             <span class="tl-section-label">04 / Related Products</span>
             <h2 class="tl-section-title">Recommended Hardware</h2>
-            <p class="tl-section-desc">Field-validated for small reservoir and mountain pond environments. Each unit integrates natively with the Midu cloud platform.</p>
-            <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px;">
-
-              <div style="display:grid;grid-template-columns:72px 1fr;gap:0;border:1px solid #EEEEEE;overflow:hidden;align-items:stretch;">
-                <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:20px;">
-                  <svg viewBox="0 0 32 32" fill="none" style="width:28px;height:28px;color:#0056D6;"><circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M16 6V4M16 28v-2M6 16H4M28 16h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            <p class="tl-section-desc">Each component is field-validated for tailings dam environments and integrates natively with the Medo cloud platform.</p>
+            <div class="tl-prod-grid">
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">GNSS Rover</span>
+                  <h3 class="tl-prod-name">MD 20 GNSS Receiver</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-                <div style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
-                  <div>
-                    <p style="margin:0 0 3px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Water Level</p>
-                    <h3 style="margin:0 0 6px;font-size:16px;font-weight:800;color:#0f1f3d;">SR-20 Radar Water Level Gauge</h3>
-                    <p style="margin:0;font-size:13px;line-height:1.6;color:#4a5568;">Non-contact radar sensor for continuous water level measurement. No moving parts, no fouling — reliable through flood debris and algae. Solar-powered with 4G/LoRa uplink.</p>
-                  </div>
-                  <a href="products.html" style="flex-shrink:0;font-size:11px;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;color:#0056D6;border-bottom:1px solid #0056D6;padding-bottom:1px;text-decoration:none;white-space:nowrap;">View Specs →</a>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/m20.png" alt="M20 GNSS Receiver" />
                 </div>
-              </div>
-
-              <div style="display:grid;grid-template-columns:72px 1fr;gap:0;border:1px solid #EEEEEE;overflow:hidden;align-items:stretch;">
-                <div style="background:#0f1f3d;display:flex;align-items:center;justify-content:center;padding:20px;">
-                  <svg viewBox="0 0 32 32" fill="none" style="width:28px;height:28px;color:#0056D6;"><path d="M16 4v24M10 10l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><path d="M8 20h16M8 24h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" opacity="0.5"/></svg>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Pore Pressure</span>
+                  <h3 class="tl-prod-name">MD Vibrating Wire Piezometer</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-                <div style="padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
-                  <div>
-                    <p style="margin:0 0 3px;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#0056D6;">Telemetry</p>
-                    <h3 style="margin:0 0 6px;font-size:16px;font-weight:800;color:#0f1f3d;">Integrated Telemetry Terminal</h3>
-                    <p style="margin:0;font-size:13px;line-height:1.6;color:#4a5568;">All-in-one data acquisition unit combining 4G and LoRa dual transmission, solar charge controller, and multi-sensor input. Deploys in under 30 minutes with no configuration required.</p>
-                  </div>
-                  <a href="products.html" style="flex-shrink:0;font-size:11px;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;color:#0056D6;border-bottom:1px solid #0056D6;padding-bottom:1px;text-decoration:none;white-space:nowrap;">View Specs →</a>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/piezometer.png" alt="MD Vibrating Wire Piezometer" />
                 </div>
-              </div>
-
-            </div>lay:grid;grid-template-columns:72px 1fr;gap:0;border:1px solid #EEEEEE;overflow:hidden;align-items:stretch;">
-          <!-- 05 Success Stories -->
-          <section id="cases" class="tl-section" style="scroll-margin-top:100px;">
-            <span class="tl-section-label">05 / Success Stories</span>
-            <h2 class="tl-section-title">Success Stories</h2>
-            <p class="tl-section-desc">Real deployments. Real outcomes.</p>
-
-            <div style="border:1px solid #EEEEEE;overflow:hidden;margin-top:8px;">
-              <div style="background:#0f1f3d;padding:28px 32px;">
-                <span style="display:block;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(83,210,255,0.8);margin-bottom:10px;">Case Highlight · 2025</span>
-                <h3 style="margin:0;font-size:20px;font-weight:800;color:#fff;line-height:1.3;">Hunan Small Reservoir Safety Project</h3>
-              </div>
-              <div style="padding:28px 32px;">
-                <p style="margin:0 0 24px;font-size:14px;line-height:1.75;color:#4a5568;">Successfully monitored 150+ rural ponds and small reservoirs across Hunan Province, providing 24-hour advance warning during the 2025 flood season. Automated SMS alerts reached local rangers and village officials before water levels reached critical thresholds — resulting in zero casualties across all monitored sites.</p>
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-                  <div style="border:1px solid #EEEEEE;padding:16px;">
-                    <div style="font-size:26px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">150+</div>
-                    <div style="font-size:12px;color:#9ca3af;margin-top:4px;line-height:1.4;">Rural ponds monitored</div>
-                  </div>
-                  <div style="border:1px solid #EEEEEE;padding:16px;">
-                    <div style="font-size:26px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">24 hrs</div>
-                    <div style="font-size:12px;color:#9ca3af;margin-top:4px;line-height:1.4;">Flood season warning lead time</div>
-                  </div>
-                  <div style="border:1px solid #EEEEEE;padding:16px;">
-                    <div style="font-size:26px;font-weight:900;color:#0056D6;letter-spacing:-0.02em;">0</div>
-                    <div style="font-size:12px;color:#9ca3af;margin-top:4px;line-height:1.4;">Casualties during monitoring period</div>
-                  </div>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Radar Level Gauge</span>
+                  <h3 class="tl-prod-name">MD LD105</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-              </div>
-            </div>
-
-            <div style="display:flex;align-items:center;justify-content:center;padding:40px 0 0;">
-              <a href="cases.html" style="display:inline-flex;align-items:center;gap:10px;background:#0056D6;color:#fff;text-decoration:none;padding:16px 36px;font-size:13px;font-weight:800;letter-spacing:0.10em;text-transform:uppercase;transition:background 200ms;">
-                View Detailed Cases →
-                <svg viewBox="0 0 14 14" fill="none" style="width:13px;height:13px;" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/ld015.png" alt="MD LD105 Radar Level Gauge" />
+                </div>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">GNSS Rover</span>
+                  <h3 class="tl-prod-name">MD E40S</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/e40s.png" alt="MD E40S GNSS Rover" />
+                </div>
               </a>
             </div>
           </section>
 
+          <!-- 05 Success Stories -->
+          <section id="cases" class="tl-section">
+            <span class="tl-section-label">05 / Success Stories</span>
+            <h2 class="tl-section-title">Proven in the Field</h2>
+
+            <div class="modern-case-layout">
+              <div class="case-visual-side">
+                <div class="case-img-bg">
+                  <img src="images/abouthero.png" alt="Shanxi Project" class="case-hero-img" />
+                  <div class="floating-results">
+                    <div class="f-result-item">
+                      <span class="f-val">22d</span>
+                      <span class="f-desc">Pre-crack Warning</span>
+                    </div>
+                    <div class="f-result-item">
+                      <span class="f-val">0</span>
+                      <span class="f-desc">Casualties</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="case-info-side">
+                <div class="case-info-header">
+                  <span class="case-year-tag">Primary Case · 2023</span>
+                  <h3 class="case-main-title">Shanxi Huge Open-Pit Mine Slope Safety Project</h3>
+                </div>
+
+                <div class="case-info-body">
+                  <div class="info-row">
+                    <span class="info-label">Challenge</span>
+                    <p class="info-p">A 380m deep open-pit coal mine in Shanxi Province faced recurring bench instability events that threatened personnel safety and heavy machinery.</p>
+                  </div>
+                  
+                  <div class="info-row">
+                    <span class="info-label">Solution</span>
+                    <p class="info-p">Medo deployed 24 GNSS monitoring stations and 3 robotic total stations, providing millimetric displacement tracking 24/7.</p>
+                  </div>
+                </div>
+
+                <a href="cases.html" class="case-primary-btn">
+                  <span class="btn-text">View Full Case Analysis</span>
+                  <div class="btn-icon">
+                      <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg>
+                  </div>
+              </a>
+              </div>
+            </div>
+          </section>
+
           <!-- Next solution -->
-          <a class="tl-next" href="solutions-water-main.html" aria-label="Back to Water Conservancy Solutions">
+          <a class="tl-next" href="solutions-water-slope.html" aria-label="Back to Reservoir Slope Monitoring">
             <div style="position:relative;z-index:1;">
               <span class="tl-next-label">Back to</span>
-              <p class="tl-next-title">Water Conservancy Solutions</p>
+              <p class="tl-next-title">Reservoir Slope Monitoring</p>
             </div>
             <span class="tl-next-arrow">
               View All Modules
