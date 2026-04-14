@@ -32,7 +32,7 @@
       .tl-hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #fff 0%, transparent 28%); z-index: 1; pointer-events: none; }
 
       /* Body Layout */
-      .tl-body { display: grid; grid-template-columns: 200px 1fr; max-width: 1200px; margin: 0 auto; padding: 0 20px; gap: 0; }
+      .tl-body { display: grid; grid-template-columns: 180px 1fr; max-width: 1240px; margin: 0 auto; padding: 0 20px; gap: 0; }
       .tl-sidenav { position: sticky; top: 52px; height: calc(100vh - 52px); padding: 56px 32px 40px 0; display: flex; flex-direction: column; gap: 0; border-right: 1px solid #EEEEEE; }
       .tl-sidenav-label { font-size: 9px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px; }
       .tl-nav-link { display: block; padding: 9px 0; font-size: 13px; font-weight: 500; color: #999999; text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s ease; line-height: 1.3; }
@@ -54,47 +54,577 @@
       ──────────────────────────────────────────────────────────────────────── */
       
       /* Pain Points Grid (Original style) */
-      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-      .tl-pain-card { border: 1px solid #EEEEEE; padding: 24px 22px; display: flex; flex-direction: column; gap: 10px; }
-      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
-      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
-      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
+      .tun-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1px; /* 形成细线分割感 */
+          background: #EEEEEE; /* 这里的背景色就是分割线的颜色 */
+          border: 1px solid #EEEEEE;
+          margin-top: 40px;
+      }
 
-      /* Related Products (IDENTICAL TO 原始代码2) */
+      /* 痛点单个卡片 */
+      .tun-item {
+          background: #fff;
+          padding: 48px 40px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          transition: all 0.4s ease;
+      }
+
+      /* 悬停效果：背景微变亮，内部组件位移 */
+      .tun-item:hover {
+          background: #fcfdfe;
+          z-index: 1;
+          box-shadow: inset 0 0 0 1px #0056D6; /* 内部边框高亮 */
+      }
+
+      /* 图标样式 */
+      .tun-icon {
+          width: 44px;
+          height: 44px;
+          color: #0056D6;
+          transition: transform 0.4s ease;
+      }
+
+      .tun-item:hover .tun-icon {
+          transform: translateY(-5px);
+      }
+
+      /* 文字内容 */
+      .tun-title {
+          margin: 0 0 12px;
+          font-size: 16px;
+          font-weight: 800;
+          color: #0f1f3d;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+      }
+
+      .tun-desc {
+          margin: 0;
+          font-size: 13px;
+          line-height: 1.7;
+          color: #4a5568;
+          max-width: 90%;
+      }
+
+      /* 📱 响应式适配：手机端切换为单列 */
+      @media (max-width: 768px) {
+          .tun-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .tun-item {
+              padding: 32px 24px;
+          }
+          
+          .tun-desc {
+              max-width: 100%;
+          }
+      }
+
+      /* solution overview: hero row */
+      .flow-wrapper {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        position: relative;
+      }
+      .flow-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        z-index: 1;
+      }
+      .flow-arrow svg { opacity: 0.35; }
+      .flow-card {
+        flex: 1 1 0;
+        position: relative;
+        background: #fff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 0;
+        padding: 32px 24px 28px;
+        cursor: default;
+        transition: all 0.32s cubic-bezier(.4,0,.2,1);
+        overflow: hidden;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      }
+      .flow-card:hover {
+        flex: 3 1 0;
+        border-color: #0056D6;
+        box-shadow: 0 8px 40px rgba(0,86,214,0.13);
+        transform: translateY(-4px);
+        z-index: 2;
+      }
+      .step-num {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #0056D6;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        opacity: 0.7;
+      }
+      .step-img {
+        width: 140%;
+        height: 90px;
+        object-fit: cover;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .step-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #0f1f3d;
+        line-height: 1.4;
+        margin-bottom: 0;
+        transition: color 0.2s;
+      }
+      .step-detail {
+        font-size: 14px;
+        color: #4a5568;
+        line-height: 1.65;
+        margin-top: 14px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.3s ease;
+      }
+      .flow-card:hover .step-detail {
+        max-height: 400px;
+        opacity: 1;
+      }
+      .flow-card:hover .step-title { font-size: 16px; }
+      .flow-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0056D6, #4d9fff);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+        border-radius: 0;
+      }
+      .flow-card:hover::after { transform: scaleX(1); }
+      
+      @media (max-width: 768px) {
+        .flow-wrapper { 
+            flex-direction: column; 
+            gap: 12px; /* 增加卡片间的间距 */
+        }
+
+        .flow-arrow { 
+            transform: rotate(90deg); 
+            width: 100%; 
+            height: 32px; 
+        }
+
+        .flow-card { 
+            min-height: auto; 
+            flex: 1 1 auto; /* 改为 auto，允许内容撑开高度 */
+            padding: 24px;  /* 稍微缩小内边距 */
+        }
+
+        .flow-card:hover { 
+            flex: 1 1 auto; /* 移除移动端的伸缩效果，避免抖动 */
+            transform: none; /* 移除位移，移动端位移容易导致误触 */
+        }
+
+        /* 修复图片：不要让它超出容器 */
+        .step-img {
+            width: 100%; 
+            height: 120px; /* 固定一个高度或设为 auto */
+            margin-bottom: 15px;
+        }
+        /* 核心修复：关于内容显示 */
+        /* 如果你希望手机端默认就能看到内容（推荐），可以取消 0 高度限制 */
+        .step-detail {
+            max-height: none; /* 允许显示内容 */
+            opacity: 1;
+            margin-top: 10px;
+            display: block; /* 确保是块级元素 */
+        }
+
+        /* 或者如果你坚持要点击才显示，确保过渡顺滑，但请注意手机端点击可能不灵敏 */
+        .flow-card:active .step-detail {
+            max-height: 500px;
+            opacity: 1;
+        }
+      }
+
+      /* advantages */
+      .vertical-steps {
+        margin-top: 48px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .step-entry {
+        display: flex;
+        gap: 32px;
+      }
+
+      /* 左侧装饰列 */
+      .step-side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      /* 数字圆圈 */
+      .step-dot {
+        width: 44px;
+        height: 44px;
+        background: #fff;
+        border: 2px solid #0056D6;
+        color: #0056D6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 800;
+        transition: all 0.3s ease;
+        z-index: 2;
+      }
+
+      /* 垂直引导线 */
+      .step-line {
+        width: 2px;
+        background: #EEEEEE;
+        flex-grow: 1; /* 自动填满间隙 */
+        margin: 8px 0;
+        transition: background 0.3s ease;
+      }
+
+      /* 内容区域 */
+      .step-main {
+        padding-bottom: 48px; /* 控制行间距 */
+        transition: transform 0.3s ease;
+      }
+
+      .step-h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 800;
+        color: #0f1f3d;
+        transition: color 0.3s ease;
+      }
+
+      .step-p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #4a5568;
+        max-width: 640px;
+      }
+
+      /* --- Hover 交互效果 --- */
+      .step-entry:hover .step-dot {
+        background: #0056D6;
+        color: #fff;
+        transform: scale(1.1);
+      }
+
+      .step-entry:hover .step-line {
+        background: #0056D6;
+      }
+
+      .step-entry:hover .step-h3 {
+        color: #0056D6;
+      }
+
+      .step-entry:hover .step-main {
+        transform: translateX(10px); /* 内容轻微右移 */
+      }
+
+      /* 📱 手机端适配 */
+      @media (max-width: 768px) {
+        .step-entry {
+          gap: 20px;
+        }
+        
+        .step-dot {
+          width: 36px;
+          height: 36px;
+          font-size: 12px;
+        }
+        
+        .step-main {
+          padding-bottom: 32px;
+        }
+      }
+
+    
+      /* products */
       .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
       .tl-prod-card {
-        border: 1px solid #EEEEEE; padding: 24px;
-        display: flex; flex-direction: column; gap: 8px;
+        border: 1px solid #EEEEEE; padding: 0;
+        display: grid; grid-template-columns: minmax(0,1fr) 160px;
+        align-items: stretch; overflow: hidden;
         text-decoration: none; color: inherit;
-        transition: border-color 200ms, box-shadow 200ms;
+        transition: border-color 200ms, box-shadow 200ms, transform 200ms;
       }
-      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
-      .tl-prod-cat { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #0056D6; }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); transform: translateY(-8px); }
+      .tl-prod-body {
+        padding: 22px 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        min-height: 140px;
+      }
+      .tl-prod-cat {
+        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+        text-transform: uppercase; color: #0056D6;
+      }
       .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
-      .tl-prod-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; flex: 1; }
-      .tl-prod-link { font-size: 11px; font-weight: 800; letter-spacing: 0.10em; text-transform: uppercase; color: #0056D6; border-bottom: 1px solid #0056D6; padding-bottom: 1px; align-self: flex-start; margin-top: 8px; }
+      .tl-prod-link {
+        font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+        text-transform: uppercase; color: #0056D6;
+        border-bottom: 1px solid #0056D6; padding-bottom: 1px;
+        align-self: flex-start; margin-top: auto;
+      }
+      .tl-prod-media { position: relative; background: #E1EFFF; display: flex; align-items: center; justify-content: center;  }
+      .tl-prod-media img { 
+        width: 100%; 
+        height: auto; 
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s ease;
+      }
+      .tl-prod-card:hover .tl-prod-media img {
+        transform: scale(1.2); /* 稍微加大一点缩放比例，视觉效果更好 */
+      }
+      .tl-prod-card:hover .tl-prod-name {
+        font-size: 20px; 
+      }
 
-      /* ────────────────────────────────────────────────────────────────────────
-         TUNNEL LAYOUT SPECIALS
-      ──────────────────────────────────────────────────────────────────────── */
-      .tl-arch-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-      .tl-arch-visual { background: #f8fafc; border: 1px solid #eee; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-      .tl-feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
-      .tl-feat-card { border: 1px solid #EEEEEE; padding: 28px 24px; }
-      .tl-feat-card--dark { background: #0f1f3d; color: #fff; border-color: #0f1f3d; }
-      .tl-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
-      .tl-metric { background: #f7faff; padding: 12px; border: 1px solid rgba(0,86,214,0.1); }
-      .tl-metric-label { font-size: 9px; font-weight: 700; color: #9ca3af; text-transform: uppercase; }
-      .tl-metric-val { font-size: 16px; font-weight: 900; color: #0f1f3d; }
+      .dossier-layout {
+          position: relative;
+          margin-top: 50px;
+          display: flex;
+          align-items: center;
+          min-height: 550px;
+      }
 
-      /* Next Bar */
-      .tl-next { display: flex; align-items: center; justify-content: space-between; border: 1px solid #EEEEEE; padding: 24px 32px; text-decoration: none; color: inherit; position: relative; overflow: hidden; margin-top: 64px; }
-      .tl-next::before { content: ''; position: absolute; inset: 0; background: #0056D6; transform: translateX(-100%); transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0; }
+      /* --- 背景图片区 --- */
+      .dossier-visual {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 70%; /* 占据左侧大部分空间 */
+          height: 100%;
+          overflow: hidden;
+          background: #0f1f3d;
+      }
+
+      .dossier-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: grayscale(0.2) brightness(0.7);
+          transition: transform 0.6s ease;
+      }
+
+      .dossier-layout:hover .dossier-img {
+          transform: scale(1.05);
+      }
+
+      .dossier-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, rgba(15,31,61,0.4) 0%, rgba(15,31,61,0) 100%);
+      }
+
+      /* --- 扫描标签样式 --- */
+      .dossier-stats-tag {
+          position: absolute;
+          top: 30px;
+          left: 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          z-index: 5;
+      }
+
+      .stat-node {
+          background: rgba(0, 86, 214, 0.9);
+          padding: 12px 20px;
+          border-left: 4px solid #fff;
+          backdrop-filter: blur(4px);
+      }
+
+      .node-label {
+          display: block;
+          font-size: 10px;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.8);
+          letter-spacing: 0.1em;
+          font-weight: 700;
+      }
+
+      .node-val {
+          font-size: 20px;
+          font-weight: 900;
+          color: #fff;
+      }
+
+      /* --- 悬浮面板区 --- */
+      .dossier-panel {
+          position: relative;
+          margin-left: auto; /* 靠右对齐 */
+          width: 45%; /* 与图片部分重叠 */
+          background: #fff;
+          padding: 60px;
+          box-shadow: 20px 20px 0px #F0F7FF; /* 工业感硬阴影 */
+          border: 1px solid #EEEEEE;
+          z-index: 10;
+      }
+
+      .panel-tag {
+          color: #0056D6;
+          font-size: 11px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+      }
+
+      .panel-title {
+          font-size: 26px;
+          font-weight: 800;
+          color: #0f1f3d;
+          margin: 15px 0 35px;
+          line-height: 1.2;
+      }
+
+      .panel-row {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 30px;
+      }
+
+      .row-marker {
+          width: 2px;
+          height: 40px;
+          background: #0056D6;
+          flex-shrink: 0;
+      }
+
+      .row-text strong {
+          display: block;
+          font-size: 12px;
+          text-transform: uppercase;
+          color: #9ca3af;
+          margin-bottom: 8px;
+      }
+
+      .row-text p {
+          font-size: 14px;
+          line-height: 1.6;
+          color: #4a5568;
+          margin: 0;
+      }
+
+      /* --- 按钮样式 --- */
+      .dossier-btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 40px;
+          padding: 18px 25px;
+          background: #0f1f3d;
+          color: #fff;
+          text-decoration: none;
+          font-size: 12px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          transition: all 0.3s ease;
+      }
+
+      .dossier-btn:hover {
+          background: #0056D6;
+      }
+
+      .dossier-btn svg {
+          width: 16px;
+          transition: transform 0.3s ease;
+      }
+
+      .dossier-btn:hover svg {
+          transform: translateX(5px);
+      }
+
+      /* --- 📱 响应式适配 --- */
+      @media (max-width: 1024px) {
+          .dossier-layout {
+              flex-direction: column;
+              min-height: auto;
+          }
+          
+          .dossier-visual {
+              position: relative;
+              width: 100%;
+              height: 350px;
+          }
+          
+          .dossier-panel {
+              width: 90%;
+              margin: -50px auto 0; /* 面板向上偏移盖住图片底部 */
+              padding: 40px 30px;
+              box-shadow: 10px 10px 0px #F0F7FF;
+          }
+      }
+
+      @media (max-width: 480px) {
+          .panel-title { font-size: 20px; }
+          .dossier-stats-tag { left: 15px; top: 15px; }
+          .stat-node { padding: 8px 12px; }
+          .node-val { font-size: 16px; }
+      }
+
+      
+      /* next solution bar */
+      .tl-next {
+        display: flex; align-items: center; justify-content: space-between;
+        border: 1px solid #EEEEEE; padding: 24px 32px;
+        text-decoration: none; color: inherit;
+        position: relative; overflow: hidden; transition: border-color 200ms;
+        margin-top: 64px;
+      }
+      .tl-next::before {
+        content: ''; position: absolute; inset: 0;
+        background: #0056D6; transform: translateX(-100%);
+        transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
       .tl-next:hover::before { transform: translateX(0); }
+      .tl-next-label {
+        position: relative; z-index: 1; font-size: 11px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; transition: color 200ms;
+      }
       .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next-title {
+        position: relative; z-index: 1; font-size: 20px; font-weight: 800;
+        letter-spacing: -0.02em; color: #0f1f3d; transition: color 200ms;
+      }
       .tl-next:hover .tl-next-title { color: #fff; }
-      .tl-next-arrow { position: relative; z-index: 1; border: 1px solid #0056D6; padding: 10px 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #0056D6; transition: 0.3s; }
+      .tl-next-arrow {
+        position: relative; z-index: 1; display: flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; border: 1px solid #0056D6; padding: 10px 20px;
+        transition: color 200ms, background 200ms, border-color 200ms;
+      }
       .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
 
       /* ────────────────────────────────────────────────────────────────────────
          RESPONSIVE (STRICT REPLICATION)
@@ -183,112 +713,296 @@
       </aside>
 
       <div class="tl-content">
-        <section id="pain-points" class="tl-section">
-          <span class="tl-section-label">01 / Industry Pain Points</span>
-          <h2 class="tl-section-title">The Hidden Risks in Tunneling</h2>
-          <p class="tl-section-desc">Tunnel structures are subject to immense overburden pressure. Traditional manual convergence measurements are inefficient and pose significant safety risks to personnel.</p>
-          <div class="tl-pain-grid">
-            <div class="tl-pain-card">
-              <div class="tl-pain-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18h28M18 4v28"/></svg></div>
-              <h3 class="tl-pain-title">Convergence Deformation</h3>
-              <p class="tl-pain-desc">Subtle inward movement of tunnel walls signals structural yielding. Manual inspections often miss these rapid trends.</p>
-            </div>
-            <div class="tl-pain-card">
-              <div class="tl-pain-icon"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M30 10l-6 6-6-6M6 26l6-6 6 6"/></svg></div>
-              <h3 class="tl-pain-title">Personnel Safety Hazards</h3>
-              <p class="tl-pain-desc">Manual measurements in active traffic or construction zones are hazardous and labor-intensive.</p>
-            </div>
-          </div>
-        </section>
 
-        <section id="overview" class="tl-section">
-          <span class="tl-section-label">02 / Solution Architecture</span>
-          <h2 class="tl-section-title">Digital Twin Integrity Monitoring</h2>
-          <div class="tl-arch-split">
-            <div class="tl-arch-visual"><strong>TUNNEL CROSS-SECTION MONITORING</strong></div>
-            <div>
-              <p class="tl-section-desc">By employing non-contact laser distance arrays and hydrostatic leveling networks, we monitor the tunnel's circular integrity and longitudinal settlement in real-time.</p>
-            </div>
-          </div>
-          <div class="tl-feat-row">
-            <div class="tl-feat-card">
-              <span class="tl-feat-num">Feature 01</span>
-              <h3 class="tl-feat-title">Convergence Analysis</h3>
-              <div class="tl-metrics">
-                <div class="tl-metric"><span class="tl-metric-label">Convergence</span><span class="tl-metric-val">1.2mm</span></div>
-                <div class="tl-metric"><span class="tl-metric-label">Resolution</span><span class="tl-metric-val">0.01mm</span></div>
-                <div class="tl-metric"><span class="tl-metric-label">Latency</span><span class="tl-metric-val">10s</span></div>
+        <!-- Pain Points -->
+        <section id="pain-points" class="tl-section">
+            <span class="tl-section-label">01 / Industry Pain Points</span>
+            <h2 class="tl-section-title">The Tunnel Integrity Challenge</h2>
+
+            <div class="tun-grid">
+              <div class="tun-item">
+                <div class="tun-icon">
+                  <svg viewBox="0 0 36 36" fill="none">
+                    <path d="M4 28c0-12 6-20 14-20s14 8 14 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M12 12l2-2M24 12l-2-2M18 8V4" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M4 32h28" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </div>
+                <div class="tun-text">
+                  <h3 class="tun-title">Complex Geology & Rock Pressure</h3>
+                  <p class="tun-desc">Unpredictable geological formations and shifting surrounding rock pressure can lead to lining deformation or sudden collapses, especially in zones with high tectonic activity.</p>
+                </div>
+              </div>
+
+              <div class="tun-item">
+                <div class="tun-icon">
+                  <svg viewBox="0 0 36 36" fill="none">
+                    <path d="M18 10v16M12 14c-4 4-4 8 0 12M24 14c4 4 4 8 0 12" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
+                    <path d="M18 30c-2 0-4-2-4-4 0-3 4-8 4-8s4 5 4 8c0 2-2 4-4 4z" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="tun-text">
+                  <h3 class="tun-title">Groundwater Erosion & Seepage</h3>
+                  <p class="tun-desc">Persistent groundwater infiltration erodes lining materials and destabilizes surrounding soil. Hydrostatic pressure buildup often leads to structural leaching and long-term integrity loss.</p>
+                </div>
+              </div>
+
+              <div class="tun-item">
+                <div class="tun-icon">
+                  <svg viewBox="0 0 36 36" fill="none">
+                    <path d="M6 24h24M8 24v-4h20v4M12 20V12h12v8" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M4 28h28M6 32h26" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
+                    <circle cx="12" cy="24" r="2" fill="currentColor"/>
+                    <circle cx="24" cy="24" r="2" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div class="tun-text">
+                  <h3 class="tun-title">Dynamic Loads & Vibration</h3>
+                  <p class="tun-desc">Continuous high-frequency vibrations from heavy vehicle or rail traffic induce structural fatigue, accelerating the development of micro-cracks and loosening of internal lining components.</p>
+                </div>
+              </div>
+
+              <div class="tun-item">
+                <div class="tun-icon">
+                  <svg viewBox="0 0 36 36" fill="none">
+                    <rect x="6" y="6" width="24" height="24" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M6 12h24M12 6v24M18 6v24" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
+                    <path d="M22 14l4 4M26 14l-4 4" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div class="tun-text">
+                  <h3 class="tun-title">Material Aging & Structural Decay</h3>
+                  <p class="tun-desc">The harsh underground environment accelerates concrete carbonation and rebar corrosion. Without real-time sensing, these "invisible wounds" compromise safety over decades of service.</p>
+                </div>
               </div>
             </div>
-            <div class="tl-feat-card tl-feat-card--dark">
-              <span class="tl-feat-num">Feature 02</span>
-              <h3 class="tl-feat-title">Settlement Prediction</h3>
-              <p style="font-size:13px; opacity:0.7;">Predicting ground settlement trends before surface expression using high-dynamic hydraulic systems.</p>
-            </div>
-          </div>
         </section>
 
-        <section id="advantages" class="tl-section">
+        <!-- 02 Solution Overview -->
+          <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">02 / Solution Overview</span>
+            <h2 class="tl-section-title">From Sensor to Warning: The Data Flow</h2>
+            <p class="tl-section-desc">Medo's tailings solution creates an unbroken chain from field instrumentation to real-time decision support — five layers, zero gaps.</p>
+
+            <div class="flow-wrapper">
+              <div class="flow-card">
+                <span class="step-num">Step 01</span>
+                <img class="step-img" src="images/mining/mine-chemical.png" alt="mining survey" />
+                <p class="step-title">On-site Survey & Site Assessment</p>
+                <p class="step-detail">Focusing on the unique challenges of phosphogypsum storage, our engineers perform rigorous onsite assessments of stack morphology and seepage risks. We prioritize environmental safety by evaluating leachate impact and chemical erosion zones. This process yields critical insights, including groundwater vulnerability reports and specialized sensor deployment strategies, ensuring a tailored monitoring architecture that withstands harsh chemical environments while safeguarding the surrounding ecosystem.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 02</span>
+                <img class="step-img" src="images/hero-mining.png" alt="hardware and monitoring stations" />
+                <p class="step-title">Hardware & Integrated Monitoring Stations Development</p>
+                <p class="step-detail">Based on the survey results, we deploy a network of all-in-one integrated monitoring stations at critical locations across the site. Each station combines a high-precision GNSS receiver with a suite of environmental and structural sensors — measuring displacement, seepage, pore water pressure, rainfall, and more. Ruggedised enclosures ensure continuous operation in harsh outdoor conditions.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 03</span>
+                <img class="step-img" src="images/software/software-ams.png" alt="" />
+                <p class="step-title">Data Transmission & GNSS Processing Platform</p>
+                <p class="step-detail">Raw sensor data is securely transmitted to the cloud-based MEDO computation platform, AMS, via satellite, 4G, or 5G links — whichever provides the most reliable coverage for the site. MEDO performs real-time GNSS baseline processing, multi-sensor fusion, and precision deformation calculation, converting raw signals into high-accuracy displacement vectors and trend indicators.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 04</span>
+                <img class="step-img" src="images/software/software-network.png" alt="MDT Platform" />
+                <p class="step-title">Intelligent Data Analytics & Remote Device Management</p>
+                <p class="step-detail">MDT Platform streamlines high-precision data acquisition specifically for phosphogypsum stacks. By integrating comprehensive remote device management, the platform allows for real-time monitoring of sensor health, battery levels, and signal strength, ensuring stable performance. By data visualization, the platform empowers users with instantaneous updates on stack integrity, seepage, and hardware status, ensuring the facility’s safety remains visible, manageable, and under complete control.</p>
+              </div>
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 05</span>
+                <img class="step-img" src="images/software/software-mdnet.png" alt="MD-NET" />
+                <p class="step-title">Full-Cycle Lifecycle Management and Decision Support</p>
+                <p class="step-detail">Powered by MD-NET and MD LINK, this platform integrates project lifecycle management with advanced geomechanical intelligence. Through intuitive data visualization, we assist management units in implementing timely emergency protocols. Our commitment to continuous system evolution ensures that your facility remains protected against potential disasters, minimizing the risk of casualties and environmental damage through every stage of operation.</p> 
+              </div>
+            </div>
+          </section>
+        
+
+          <!-- 03 Core Advantages -->
+          <section id="advantages" class="tl-section">
           <span class="tl-section-label">03 / Core Advantages</span>
-          <h2 class="tl-section-title">Why Midu for Tunnels</h2>
-          <div class="tl-adv-list">
-            <div class="tl-adv-item">
-              <span class="tl-adv-num">01</span>
-              <div><h3 class="tl-adv-title">Confined-Space Wireless Uplink</h3><p class="tl-adv-desc">Optimized sub-GHz transmission that penetrates concrete linings without complex cabling infrastructure.</p></div>
+          <h2 class="tl-section-title">MEDO: Engineering Tunnel Resilience</h2>
+          
+          <div class="vertical-steps">
+            <div class="step-entry">
+              <div class="step-side">
+                <div class="step-dot">01</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-main">
+                <h3 class="step-h3">Multi-Dimensional Structural Perception</h3>
+                <p class="step-p">Integrating GNSS, strain gauges, and convergence sensors to capture a holistic view of tunnel health. We monitor everything from macro-geological shifts to micro-cracks in the lining with sub-millimeter precision.</p>
+              </div>
             </div>
-            <div class="tl-adv-item">
-              <span class="tl-adv-num">02</span>
-              <div><h3 class="tl-adv-title">Non-Contact Laser Sensing</h3><p class="tl-adv-desc">Laser arrays eliminate physical tape extensometers, keeping the tunnel gauge free of obstructions.</p></div>
+
+            <div class="step-entry">
+              <div class="step-side">
+                <div class="step-dot">02</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-main">
+                <h3 class="step-h3">Real-Time Intelligent Defense Line</h3>
+                <p class="step-p">Our 24/7 automated sensing network acts as a digital shield. By correlating rock pressure with dynamic traffic loads, the platform identifies structural anomalies and issues instantaneous alerts before risks escalate.</p>
+              </div>
+            </div>
+
+            <div class="step-entry">
+              <div class="step-side">
+                <div class="step-dot">03</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-main">
+                <h3 class="step-h3">Data-Driven Operational Optimization</h3>
+                <p class="step-p">Shift from reactive repairs to predictive maintenance. Our analytics engine provides scientific evidence for structural reinforcement and traffic management, significantly reducing blind maintenance costs.</p>
+              </div>
+            </div>
+
+            <div class="step-entry">
+              <div class="step-side">
+                <div class="step-dot">04</div>
+              </div>
+              <div class="step-main">
+                <h3 class="step-h3">Integrated Full-Cycle Management</h3>
+                <p class="step-p">A unified "Digital Twin" ecosystem that manages the entire lifecycle—from construction safety to long-term operational health. One platform, one source of truth, for total infrastructure control.</p>
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="products" class="tl-section">
-          <span class="tl-section-label">04 / Related Products</span>
-          <h2 class="tl-section-title">Tunnel Instrumentation Suite</h2>
-          <p class="tl-section-desc">Field-validated components for tunnel health monitoring, integrating natively with the Midu cloud platform.</p>
-          <div class="tl-prod-grid">
-            <a class="tl-prod-card" href="products.html">
-              <span class="tl-prod-cat">Convergence Sensing</span>
-              <h3 class="tl-prod-name">MT-30 Laser Distance Meter</h3>
-              <p class="tl-prod-desc">Non-contact laser ranging with 0.1mm accuracy for real-time tunnel diameter monitoring and automated convergence tracking.</p>
-              <span class="tl-prod-link">View Specs →</span>
-            </a>
-            <a class="tl-prod-card" href="products.html">
-              <span class="tl-prod-cat">Differential Settlement</span>
-              <h3 class="tl-prod-name">MH-100 Hydrostatic Leveling</h3>
-              <p class="tl-prod-desc">High-dynamic liquid level sensing for tracking longitudinal differential settlement along the tunnel axis with 0.01mm resolution.</p>
-              <span class="tl-prod-link">View Specs →</span>
-            </a>
-            <a class="tl-prod-card" href="products.html">
-              <span class="tl-prod-cat">Tilt & Stability</span>
-              <h3 class="tl-prod-name">MI-60 Wireless MEMS Tiltmeter</h3>
-              <p class="tl-prod-desc">Biaxial tilt sensor with 0.001° resolution for detecting segment rotation and lining stability in TBM and SEM tunnels.</p>
-              <span class="tl-prod-link">View Specs →</span>
-            </a>
-            <a class="tl-prod-card" href="products.html">
-              <span class="tl-prod-cat">Data Integration</span>
-              <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
-              <p class="tl-prod-desc">Solar or mains-powered edge logger with 4G/NB-IoT uplink, local storage, and high-frequency synchronization for structural analysis.</p>
-              <span class="tl-prod-link">View Specs →</span>
-            </a>
+          <!-- 04 Related Products -->
+          <section id="products" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">04 / Related Products</span>
+            <h2 class="tl-section-title">Recommended Hardware</h2>
+            <p class="tl-section-desc">Each component is field-validated for tailings dam environments and integrates natively with the Medo cloud platform.</p>
+            <div class="tl-prod-grid">
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">GNSS Rover</span>
+                  <h3 class="tl-prod-name">MD 20 GNSS Receiver</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/m20.png" alt="M20 GNSS Receiver" />
+                </div>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Pore Pressure</span>
+                  <h3 class="tl-prod-name">MD Vibrating Wire Piezometer</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/piezometer.png" alt="MD Vibrating Wire Piezometer" />
+                </div>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Radar Level Gauge</span>
+                  <h3 class="tl-prod-name">MD LD105</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/ld015.png" alt="MD LD105 Radar Level Gauge" />
+                </div>
+              </a>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">GNSS Rover</span>
+                  <h3 class="tl-prod-name">MD E40S</h3>
+                  <span class="tl-prod-link">View Specs →</span>
+                </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/e40s.png" alt="MD E40S GNSS Rover" />
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <!-- 05 Success Stories -->
+        <section id="cases" class="tl-section">
+          <span class="tl-section-label">05 / Success Stories</span>
+          <h2 class="tl-section-title">Field Performance</h2>
+          <div class="dossier-layout">
+              <div class="dossier-visual">
+                  <img src="images/abouthero.png" alt="Shanxi Project" class="dossier-img" />
+                  <div class="dossier-overlay"></div>
+                  
+                  <div class="dossier-stats-tag">
+                      <div class="stat-node">
+                          <span class="node-label">Detection Lead</span>
+                          <span class="node-val">22 Days</span>
+                      </div>
+                      <div class="stat-node">
+                          <span class="node-label">Safety Record</span>
+                          <span class="node-val">Zero Incidents</span>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="dossier-panel">
+                  <div class="panel-header">
+                      <span class="panel-tag">Case Study · 2023</span>
+                      <h3 class="panel-title">Shanxi Huge Open-Pit Mine<br>Slope Safety Project</h3>
+                  </div>
+
+                  <div class="panel-content">
+                      <div class="panel-row">
+                          <div class="row-marker"></div>
+                          <div class="row-text">
+                              <strong>The Challenge:</strong>
+                              <p>A 380m deep open-pit coal mine in Shanxi Province faced recurring bench instability events that threatened personnel safety and heavy machinery.</p>
+                          </div>
+                      </div>
+                      
+                      <div class="panel-row">
+                          <div class="row-marker"></div>
+                          <div class="row-text">
+                              <strong>Medo Solution:</strong>
+                              <p>Deployed 24 GNSS monitoring stations and 3 robotic total stations, providing millimetric displacement tracking 24/7.</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <a href="cases.html" class="dossier-btn">
+                      <span>View Full Analysis</span>
+                      <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg>
+                  </a>
+              </div>
           </div>
         </section>
 
-        <section id="cases" class="tl-section" style="border:none;">
-          <div style="background:#f8fafc; padding:60px; text-align:center; border:1px solid #eee;">
-            <h2 style="font-size:26px; font-weight:800; margin-bottom:24px; color:#0f1f3d;">Securing Urban Lifelines</h2>
-            <a href="cases.html" style="display:inline-flex; align-items:center; gap:12px; background:#0056D6; color:#fff; text-decoration:none; padding:18px 48px; font-size:13px; font-weight:800; text-transform:uppercase;">Explore Case Studies</a>
-          </div>
-        </section>
 
-        <a class="tl-next" href="solutions-urban-lifeline.html">
-          <div style="position:relative; z-index:1;">
-            <span class="tl-next-label" style="font-size:11px; font-weight:700; color:#9ca3af; text-transform:uppercase;">Next Solution</span>
-            <p class="tl-next-title" style="font-size:20px; font-weight:800;">Urban Pipeline Lifeline</p>
-          </div>
-          <span class="tl-next-arrow">View Module <svg viewBox="0 0 14 14" fill="none" style="width:14px; height:14px;"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></span>
-        </a>
+        <!-- Next solution -->
+          <a class="tl-next" href="solutions-urban-fundation.html" aria-label="Next: Tunnel Safety Monitoring Solutions">
+            <div style="position:relative;z-index:1;">
+              <span class="tl-next-label">Next</span>
+              <p class="tl-next-title">Tunnel Safety Monitoring Solution</p>
+            </div>
+            <span class="tl-next-arrow">
+              View More Details
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
 
       </div>
     </main>
