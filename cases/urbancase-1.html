@@ -147,6 +147,7 @@
         border: none;
         padding: 32px 36px;
         display: flex; flex-direction: column; gap: 16px;
+        padding-left: 0;
       }
       .tl-text-block p {
         margin: 0; font-size: 14px; line-height: 1.85; color: #4a5568;
@@ -168,7 +169,7 @@
       }
       .tl-stat-item:last-child { border-right: none; }
       .tl-stat-val {
-        font-size: 28px; font-weight: 900; color: #0056D6;
+        font-size: 48px; font-weight: 700; color: #0056D6;
         letter-spacing: -0.02em; line-height: 1;
       }
       .tl-stat-label {
@@ -176,44 +177,216 @@
         font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
       }
 
-      /* Feature list */
-      .tl-feature-list { display: flex; flex-direction: column; gap: 0; border: none; }
-      .tl-feature-item {
-        display: grid; grid-template-columns: 56px 1fr;
-        gap: 0; border-bottom: none;
+      /* Items */
+      /* ── System Architecture 容器 ── */
+      .tl-arch-wrapper {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
       }
-      .tl-feature-item:last-child { border-bottom: none; }
-      .tl-feature-num-col {
-        display: flex; align-items: flex-start; justify-content: center;
-        padding: 24px 0 24px;
-        border-right: none;
-        font-size: 11px; font-weight: 800; color: #d1d5db;
-        letter-spacing: 0.08em;
-      }
-      .tl-feature-body { padding: 24px 28px; }
-      .tl-feature-title { margin: 0 0 8px; font-size: 15px; font-weight: 800; color: #0f1f3d; }
-      .tl-feature-desc { margin: 0; font-size: 13px; line-height: 1.75; color: #4a5568; }
 
+      /* ── 方案部分 (Solution Strategy) ── */
+      .tl-strategy-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end; /* 按钮对齐到底部，保持稳重 */
+        padding: 40px;
+        padding-left: 30px;
+        background: #f8fafc; /* 浅灰色背景，区别于正文和网格 */
+      }
+
+      .tl-strategy-text {
+        flex: 0 1 70%; /* 占据左侧 70% 空间 */
+      }
+
+      .tl-strategy-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: #0f1f3d;
+        margin: 0 0 16px 0;
+        letter-spacing: -0.01em;
+      }
+
+      .tl-strategy-desc {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #4a5568;
+        margin: 0;
+      }
+
+      /* 方案链接按钮 */
+      .tl-strategy-btn {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 18px;
+        background: #0056D6;
+        color: #fff;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: all 0.3s ease;
+      }
+
+      .tl-strategy-btn:hover {
+        background: #0044aa;
+        color: #fff;
+        padding-right: 30px; /* 伸缩动感 */
+      }
+
+      .tl-strategy-btn svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ── 具体项目网格 (Metrics Grid) ── */
+      .tl-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: none;
+      }
+
+      .tl-metric-card {
+        background: #fff;
+        border: 1px solid #EEEEEE;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        transition: all 0.3s ease;
+        margin: -1px 0 0 -1px;
+      }
+
+      .tl-metric-card:hover {
+        background-color: #f0f7ff;
+        box-shadow: 0 10px 30px rgba(0,86,214,0.06);
+      }
+
+      .tl-metric-icon {
+        width: 32px;
+        height: 32px;
+        color: #0056D6;
+      }
+
+      .tl-metric-name {
+        font-size: 15px;
+        font-weight: 800;
+        color: #0f1f3d;
+        margin: 0;
+        line-height: 1.3;
+      }
+
+      .tl-metric-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #64748b;
+        margin: 0;
+      }
+
+      /* ── 响应式适配 ── */
+      @media (max-width: 1024px) {
+        .tl-strategy-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 32px;
+        }
+        .tl-strategy-text { flex: 1 1 100%; }
+        .tl-metrics-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (max-width: 640px) {
+        .tl-metrics-grid { grid-template-columns: 1fr; }
+      }
+      
+      
       /* Results / outcome blocks */
-      .tl-result-grid {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;
+      .tl-content-align-wrapper {
+        display: flex;
+        gap: 48px;
+        align-items: flex-start; /* 顶部对齐关键 */
+        margin-top: 24px;
       }
+
+      .tl-text-side {
+        flex: 1.2;
+      }
+
+      /* 消除文字首行间距，确保对齐 */
+      .tl-text-block p:first-child {
+        margin-top: 0;
+        line-height: 1.65;
+      }
+
+      .tl-card-side {
+        flex: 0.8;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        /* 微调：补偿左侧文字行高带来的视觉下移，使卡片边缘对齐文字顶部 */
+        padding-top: 4px; 
+      }
+
+      /* --- 卡片样式重置（恢复之前的大数值设计） --- */
       .tl-result-card {
-        border: 1px solid #EEEEEE; padding: 24px;
-        display: flex; flex-direction: column; gap: 8px;
+        border: 1px solid #EEEEEE;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: #fff;
       }
+
       .tl-result-card--dark {
-        background: #0f1f3d; border-color: #0f1f3d;
+        /* Softer "ink" tone to match the overall light UI (less abrupt than pure deep navy) */
+        background: linear-gradient(180deg, #1a335c 0%, #162a4a 100%);
+        border-color: rgba(0, 86, 214, 0.22);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
       }
+
+      /* --- 字体层级定义 --- */
       .tl-result-label {
-        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
-        text-transform: uppercase; color: #0056D6;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0056D6;
+        margin: 0;
       }
-      .tl-result-card--dark .tl-result-label { color: rgba(83,210,255,0.8); }
-      .tl-result-val { font-size: 32px; font-weight: 900; color: #0f1f3d; letter-spacing: -0.03em; line-height: 1; }
-      .tl-result-card--dark .tl-result-val { color: #fff; }
-      .tl-result-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
-      .tl-result-card--dark .tl-result-desc { color: rgba(255,255,255,0.6); }
+
+      .tl-result-card--dark .tl-result-label { color: rgba(170, 220, 255, 0.85); }
+
+      .tl-result-val {
+        font-size: 32px; /* 恢复之前的大字号 */
+        font-weight: 900;
+        color: #0f1f3d;
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+
+      .tl-result-card--dark .tl-result-val { color: #f6fbff; }
+
+      .tl-result-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #4a5568;
+        margin: 0;
+      }
+
+      .tl-result-card--dark .tl-result-desc { color: rgba(235, 245, 255, 0.72); }
+
+      /* 响应式 */
+      @media (max-width: 850px) {
+        .tl-content-align-wrapper {
+          flex-direction: column;
+        }
+        .tl-card-side {
+          padding-top: 0;
+        }
+      }
 
       /* Product cards */
       .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -224,14 +397,24 @@
         transition: border-color 200ms, box-shadow 200ms;
         overflow: hidden;
       }
-      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); transform: translateY(-6px); }
       .tl-prod-img-wrap {
-        width: 100%; aspect-ratio: 16 / 9;
-        background: #0f1f3d; overflow: hidden;
+        /* Full-width separator area; center the image inside for a cleaner card */
+        width: 100%;
+        height: 225px;
+        margin: 0 auto;
+        background: #fff; overflow: hidden;
         border-bottom: 1px solid #EEEEEE;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .tl-prod-img-wrap img {
-        width: 100%; height: 100%; object-fit: cover; display: block;
+        /* Slightly smaller, contained product render for better harmony */
+        width: 78%;
+        height: 78%;
+        object-fit: contain;
+        display: block;
         filter: grayscale(20%);
         transition: filter 300ms, transform 300ms;
       }
@@ -360,7 +543,7 @@
       <div class="container tl-breadcrumb-inner">
         <a href="../cases.html">Cases</a>
         <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
-        <a href="../cases-mining.html">Mining</a>
+        <a href="../cases-urban.html">Urban Infrastructure</a>
         <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
         <span class="tl-breadcrumb-current" aria-current="page">DRC Copper Mine</span>
       </div>
@@ -395,8 +578,8 @@
           <a class="tl-nav-link" href="#overview">
             <span class="tl-nav-num">01</span>Project Overview
           </a>
-          <a class="tl-nav-link" href="#features">
-            <span class="tl-nav-num">02</span>Project Features
+          <a class="tl-nav-link" href="#architecture">
+            <span class="tl-nav-num">02</span>Full-Stack Solution
           </a>
           <a class="tl-nav-link" href="#results">
             <span class="tl-nav-num">03</span>Outcomes
@@ -412,12 +595,11 @@
           <!-- 01 方案概况 -->
           <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
             <span class="tl-section-label">01 / Project Overview</span>
-            <h2 class="tl-section-title">Project Overview</h2>
+            <h2 class="tl-section-title">Project Challenge</h2>
 
             <div class="tl-text-block">
-              <p>The Democratic Republic of the Congo project involved deploying a comprehensive 24/7 automated GNSS displacement monitoring network across one of Central Africa's largest open-pit copper mining operations. The mine spans over 8 km² of active extraction area with slopes reaching heights of 340 meters, presenting significant geotechnical risk requiring continuous surveillance.</p>
-              <p>Medo's team conducted a full site survey and risk zoning assessment prior to installation, identifying 14 high-priority monitoring zones along the eastern and northern pit walls. A total of 28 GNSS rover stations were installed in conjunction with 3 reference base stations, creating a dense displacement monitoring mesh capable of detecting sub-millimeter surface movements across the entire slope face.</p>
-              <p>All data streams are transmitted via the IoT gateway network to Medo's cloud platform in real time, where automated processing and multi-tier alerting algorithms continuously evaluate slope stability against pre-defined safety thresholds. The system operates fully unattended, with solar and battery backup ensuring continuous operation through the region's wet and dry seasons.</p>
+              <p>Situated in a prime waterfront extension zone along the Huangpu River, in the heart of Shanghai, this project is as prestigious as it is complex. The primary challenge lay in the extreme density of the surrounding urban environment and the volatile geological conditions of the riverfront. Nestling a deep foundation pit for a future "Tech Innovation Highland" within such a sensitive area meant that even the slightest subterranean shift could have cascading effects on critical city infrastructure. Traditional, manual monitoring was no longer an option; the project demanded a solution capable of navigating immense structural pressure and high-frequency data requirements without a single point of failure.</p>
+              <p>Faced with these intricate risks, Medo stepped forward with unwavering resolve to push the boundaries of structural health monitoring technology. Our mission was definitive: to transform a high-risk construction site into a transparent, digitally-safeguarded ecosystem. We did not merely deploy sensors; we engineered a sophisticated "digital central nervous system" for the entire construction site. From precision hardware deployment to proprietary software development, Medo delivered a comprehensive, full-lifecycle foundation pit monitoring management solution. In the most demanding urban environments, we proved that innovation and safety can harmoniously coexist through the power of intelligent technology.</p>          
             </div>
 
             <div class="tl-stat-row">
@@ -436,44 +618,70 @@
             </div>
           </section>
 
-          <!-- 02 项目特点 -->
-          <section id="features" class="tl-section" style="scroll-margin-top:100px;">
-            <span class="tl-section-label">02 / Project Features</span>
-            <h2 class="tl-section-title">Project Highlights</h2>
+          <!--02 监测项目-->
+          <section id="architecture" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">02 / Full-Stack Solution</span>
+            <h2 class="tl-section-title">Monitoring Items & Solution</h2>
 
-            <div class="tl-text-block" style="margin-bottom: 24px;">
-              <p>This deployment presented a unique combination of technical and logistical challenges that demanded purpose-built solutions across hardware, communications infrastructure, and software architecture. The following key characteristics defined the approach and differentiated it from standard monitoring installations.</p>
-            </div>
+            <div class="tl-arch-wrapper">
 
-            <div class="tl-feature-list">
-              <div class="tl-feature-item">
-                <div class="tl-feature-num-col">01</div>
-                <div class="tl-feature-body">
-                  <h3 class="tl-feature-title">Extreme Remote Environment Deployment</h3>
-                  <p class="tl-feature-desc">The mine site is located over 180 km from the nearest urban infrastructure center. All hardware — including GNSS receivers, IoT gateways, solar panels, and battery banks — was engineered for tool-free installation by local mine personnel following remote commissioning guidance from Medo's engineering team. IP67-rated enclosures withstand the region's tropical rainfall and dust exposure without maintenance intervention.</p>
+              <div class="tl-metrics-grid">
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h24M4 20h24M16 4v24"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Retaining Wall Displacement</h4>
+                  <p class="tl-metric-desc">Automated tracking of horizontal and vertical shifts of wall coping to ensure crest stability.</p>
+                </div>
+
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 4v24M10 10l6-6 6 6M10 22l6 6 6-6"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Column Vertical Settlement</h4>
+                  <p class="tl-metric-desc">Monitoring differential settlement of internal support columns to prevent uneven structural stress.</p>
+                </div>
+
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 4l4 24M24 4l-4 24M4 16h24" stroke-dasharray="2 2"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Deep-seated Lateral Deformation</h4>
+                  <p class="tl-metric-desc">Inclinometer-based sensing of soil movement at varying depths behind the retaining structure.</p>
+                </div>
+
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 10s4-2 6 0 4 2 6 0 4-2 6 0M6 22s4-2 6 0 4 2 6 0 4-2 6 0"/><circle cx="16" cy="16" r="4"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Groundwater Level Monitoring</h4>
+                  <p class="tl-metric-desc">Piezometric sensing of water table fluctuations outside the pit to assess seepage risks.</p>
+                </div>
+
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="10" width="20" height="12"/><path d="M10 10v12M22 10v12M14 16h4"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Concrete Support Axial Force</h4>
+                  <p class="tl-metric-desc">Vibrating wire strain gauges measure internal stress within concrete struts to detect overloading.</p>
                 </div>
               </div>
-              <div class="tl-feature-item">
-                <div class="tl-feature-num-col">02</div>
-                <div class="tl-feature-body">
-                  <h3 class="tl-feature-title">Multi-Path Satellite Uplink Architecture</h3>
-                  <p class="tl-feature-desc">Given the absence of reliable 4G coverage across the pit floor, the system employs a hybrid uplink strategy combining local LoRa mesh networking between sensor nodes and primary/backup satellite uplinks at the gateway level. This ensures zero data loss even during planned LTE outages or adverse weather events that temporarily affect ground-level communications.</p>
+
+               <div class="tl-strategy-row">
+                <div class="tl-strategy-text">
+                  <h3 class="tl-strategy-title">Integrated Lifecycle Health Strategy</h3>
+                  <p class="tl-strategy-desc">
+                    Medo’s solution for large-scale structural health monitoring focuses on the correlation between multi-source sensors. By synchronizing underground soil mechanics with surface stress data, we provide a unified intelligence layer that predicts structural failure long before it becomes visible.
+                  </p>
                 </div>
+                <a href="../solutions-urban-fundation.html" class="tl-strategy-btn">
+                  View Full Solution
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 7h10M8 3l4 4-4 4" />
+                  </svg>
+                </a>
               </div>
-              <div class="tl-feature-item">
-                <div class="tl-feature-num-col">03</div>
-                <div class="tl-feature-body">
-                  <h3 class="tl-feature-title">Dynamic Blasting Interference Suppression</h3>
-                  <p class="tl-feature-desc">Active open-pit mines conduct daily blasting operations that generate significant ground vibration and temporary GNSS signal interference. The monitoring software incorporates a blasting event mask protocol — operators log blast timing via the platform, and the algorithm automatically excludes contaminated measurement windows while maintaining displacement trend continuity across the interruption, preventing false positive alerts.</p>
-                </div>
-              </div>
-              <div class="tl-feature-item">
-                <div class="tl-feature-num-col">04</div>
-                <div class="tl-feature-body">
-                  <h3 class="tl-feature-title">Tiered Alert Distribution Across Language Groups</h3>
-                  <p class="tl-feature-desc">The mine operates with engineering staff communicating in English, French, and Lingala. Alert notifications are configured to route language-appropriate SMS and email messages to relevant personnel based on role and location zone. Level-1 attention alerts reach zone supervisors; Level-2 warning alerts escalate to shift engineers; Level-3 emergency alerts simultaneously notify site management, the corporate safety team, and Medo's 24/7 remote monitoring center.</p>
-                </div>
-              </div>
+
             </div>
           </section>
 
@@ -482,32 +690,27 @@
             <span class="tl-section-label">03 / Outcomes</span>
             <h2 class="tl-section-title">Outcomes & Impact</h2>
 
-            <div class="tl-result-grid">
-              <div class="tl-result-card">
-                <span class="tl-result-label">Early Warning</span>
-                <div class="tl-result-val">23 days</div>
-                <p class="tl-result-desc">Lead time before a critical displacement event reached visible threshold — allowing controlled drawdown and equipment evacuation with zero injuries.</p>
+            <div class="tl-content-align-wrapper">
+              <div class="tl-text-side">
+                <div class="tl-text-block">
+                  <p>Beyond the immediate safety outcomes, the project demonstrated that high-precision GNSS monitoring infrastructure can be successfully deployed and sustained in sub-Saharan African mining environments with minimal on-site technical expertise requirements.</p>
+                  <p>The success of this deployment has since informed the design standard for Medo's subsequent African mining projects, particularly with respect to communications redundancy architecture and multi-language alert routing.</p>
+                </div>
               </div>
-              <div class="tl-result-card tl-result-card--dark">
-                <span class="tl-result-label">Downtime Prevented</span>
-                <div class="tl-result-val">$4.2M</div>
-                <p class="tl-result-desc">Estimated production loss and remediation cost avoided by the early slope stabilization intervention triggered by the system's Level-2 alert.</p>
-              </div>
-              <div class="tl-result-card">
-                <span class="tl-result-label">System Uptime</span>
-                <div class="tl-result-val">99.7%</div>
-                <p class="tl-result-desc">Across 18 months of continuous operation including two wet seasons, achieving an availability rate that exceeded contractual SLA requirements by 1.2%.</p>
-              </div>
-              <div class="tl-result-card">
-                <span class="tl-result-label">Alert Accuracy</span>
-                <div class="tl-result-val">0</div>
-                <p class="tl-result-desc">False positive emergency alerts issued in the first 18 months of operation, attributed to the blasting interference suppression and multi-sensor confirmation logic.</p>
-              </div>
-            </div>
 
-            <div class="tl-text-block">
-              <p>Beyond the immediate safety outcomes, the project demonstrated that high-precision GNSS monitoring infrastructure can be successfully deployed and sustained in sub-Saharan African mining environments with minimal on-site technical expertise requirements. The mine's geotechnical team reported a significant shift in operational confidence — moving from reactive, inspection-based slope management to proactive, data-driven decision-making supported by continuous displacement trend analysis.</p>
-              <p>The success of this deployment has since informed the design standard for Medo's subsequent African mining projects, particularly with respect to communications redundancy architecture and multi-language alert routing, both of which have been adopted as platform defaults for all international project configurations.</p>
+              <div class="tl-card-side">
+                <div class="tl-result-card">
+                  <span class="tl-result-label">Early Warning</span>
+                  <div class="tl-result-val">23 days</div>
+                  <p class="tl-result-desc">Lead time before a critical displacement event reached visible threshold.</p>
+                </div>
+
+                <div class="tl-result-card tl-result-card--dark">
+                  <span class="tl-result-label">Downtime Prevented</span>
+                  <div class="tl-result-val">$4.2M</div>
+                  <p class="tl-result-desc">Estimated production loss and remediation cost avoided by the early intervention.</p>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -518,15 +721,15 @@
             <div class="tl-prod-grid">
               <a class="tl-prod-card" href="../products.html">
                 <div class="tl-prod-img-wrap">
-                  <img src="../images/product-gnss.png" alt="MG-200 GNSS Rover" />
+                  <img src="../images/hardware/m20.png" alt="M 20 GNSS Rover" />
                 </div>
                 <span class="tl-prod-cat">GNSS Sensor</span>
-                <h3 class="tl-prod-name">MG-200 GNSS Rover</h3>
+                <h3 class="tl-prod-name">M 20 GNSS Rover</h3>
                 <span class="tl-prod-link">View Specs →</span>
               </a>
               <a class="tl-prod-card" href="../products.html">
                 <div class="tl-prod-img-wrap">
-                  <img src="images/product-gateway.png" alt="ML-400 IoT Data Logger" />
+                  <img src="../images/hardware/e40s.png" alt="ML-400 IoT Data Logger" />
                 </div>
                 <span class="tl-prod-cat">Data Logger</span>
                 <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
@@ -609,7 +812,7 @@
       // Scrollspy
       (function(){
         var links = document.querySelectorAll('.tl-nav-link');
-        var ids = ['overview','features','results','products'];
+        var ids = ['overview','architecture','results','products'];
         var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
         if(!sections.length) return;
         var obs = new IntersectionObserver(function(entries){
