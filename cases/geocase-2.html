@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="DRC Copper Mine Open-pit Slope Monitoring Case Study | Medo" />
+    <title>DRC Copper Mine Case Study | Medo</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .tl-breadcrumb { background: #fff; }
+      .tl-breadcrumb-inner {
+        display: flex; align-items: center; gap: 8px;
+        height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap;
+      }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* ── Hero ── */
+      .tl-hero {
+        display: grid; grid-template-columns: 1fr 1fr;
+        background: #fff; border-bottom: 1px solid #EEEEEE;
+      }
+      .tl-hero-left {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 48px 48px 48px 0;
+      }
+      .tl-eyebrow {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 16px;
+      }
+      .tl-heading {
+        margin: 0 0 20px;
+        font-size: clamp(28px, 3.8vw, 48px);
+        font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; color: #0f1f3d;
+      }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; 
+        position: absolute; /* ← 加这行 */
+        inset: 0;
+      }
+      .tl-hero-right::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        z-index: 1; pointer-events: none;
+      }
+
+      /* Hero meta tags */
+      .tl-hero-meta {
+        display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px;
+      }
+      .tl-hero-tag {
+        font-size: 10px; font-weight: 700; padding: 4px 12px;
+        background: #f0f4ff; color: #0056b3;
+        border: 1px solid rgba(0,86,179,0.15);
+        letter-spacing: 0.06em; text-transform: uppercase;
+      }
+
+      /* ── Body layout ── */
+      .tl-body {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 0;
+      }
+
+      /* ── Sticky sidebar nav — new hover style ── */
+      .tl-sidenav {
+        position: sticky;
+        top: 52px;
+        height: calc(100vh - 52px);
+        padding: 56px 32px 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        border-right: 1px solid #EEEEEE;
+      }
+      .tl-sidenav-label {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: #c0c8d4; margin-bottom: 20px;
+      }
+      .tl-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        font-size: 12px; font-weight: 600;
+        color: #9ca3af;
+        text-decoration: none;
+        border-left: 2px solid transparent;
+        transition: color 200ms, background 200ms, border-color 200ms;
+        line-height: 1.3;
+        border-radius: 0 4px 4px 0;
+      }
+      .tl-nav-link .tl-nav-num {
+        font-size: 9px; font-weight: 800;
+        letter-spacing: 0.10em; color: #d1d5db;
+        transition: color 200ms;
+        flex-shrink: 0;
+      }
+      .tl-nav-link:hover {
+        color: #0056D6;
+        background: #f0f4ff;
+        border-left-color: #0056D6;
+      }
+      .tl-nav-link:hover .tl-nav-num { color: #0056D6; }
+      .tl-nav-link.is-active {
+        color: #0056D6;
+        background: #f0f4ff;
+        border-left-color: #0056D6;
+        font-weight: 700;
+      }
+      .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
+
+      /* ── Content area ── */
+      .tl-content { padding: 64px 0 80px 56px; }
+
+      .tl-section {
+        padding-bottom: 80px;
+        border-bottom: none; 
+        margin-bottom: 72px;
+      }
+      .tl-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
+
+      .tl-section-label {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 14px;
+      }
+      .tl-section-title {
+        margin: 0 0 20px;
+        font-size: clamp(22px, 2.8vw, 34px);
+        font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d;
+      }
+
+      /* ── Text block ── */
+      .tl-text-block {
+        border: none;
+        padding: 32px 36px;
+        display: flex; flex-direction: column; gap: 16px;
+        padding-left: 0;
+      }
+      .tl-text-block p {
+        margin: 0; font-size: 14px; line-height: 1.85; color: #4a5568;
+      }
+      .tl-text-block p + p {
+        padding-top: 16px;
+        border-top: 1px solid #f3f4f6;
+      }
+
+      /* Stats row inside overview */
+      .tl-stat-row {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: 0; margin-top: 24px;
+        border: none;
+      }
+      .tl-stat-item {
+        padding: 20px 24px;
+        border-right: none;
+      }
+      .tl-stat-item:last-child { border-right: none; }
+      .tl-stat-val {
+        font-size: 48px; font-weight: 700; color: #0056D6;
+        letter-spacing: -0.02em; line-height: 1;
+      }
+      .tl-stat-label {
+        font-size: 11px; color: #9ca3af; margin-top: 6px; line-height: 1.4;
+        font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
+      }
+
+      /* Items */
+      /* ── System Architecture 容器 ── */
+      .tl-arch-wrapper {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      /* ── 方案部分 (Solution Strategy) ── */
+      .tl-strategy-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end; /* 按钮对齐到底部，保持稳重 */
+        padding: 40px;
+        padding-left: 30px;
+        background: #f8fafc; /* 浅灰色背景，区别于正文和网格 */
+      }
+
+      .tl-strategy-text {
+        flex: 0 1 70%; /* 占据左侧 70% 空间 */
+      }
+
+      .tl-strategy-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: #0f1f3d;
+        margin: 0 0 16px 0;
+        letter-spacing: -0.01em;
+      }
+
+      .tl-strategy-desc {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #4a5568;
+        margin: 0;
+      }
+
+      /* 方案链接按钮 */
+      .tl-strategy-btn {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 18px;
+        background: #0056D6;
+        color: #fff;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: all 0.3s ease;
+      }
+
+      .tl-strategy-btn:hover {
+        background: #0044aa;
+        color: #fff;
+        padding-right: 30px; /* 伸缩动感 */
+      }
+
+      .tl-strategy-btn svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ── 具体项目网格 (Metrics Grid) ── */
+      .tl-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: none;
+      }
+
+      .tl-metric-card {
+        background: #fff;
+        border: 1px solid #EEEEEE;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        transition: all 0.3s ease;
+        margin: -1px 0 0 -1px;
+      }
+
+      .tl-metric-card:hover {
+        background-color: #f0f7ff;
+        box-shadow: 0 10px 30px rgba(0,86,214,0.06);
+      }
+
+      .tl-metric-icon {
+        width: 32px;
+        height: 32px;
+        color: #0056D6;
+      }
+
+      .tl-metric-name {
+        font-size: 15px;
+        font-weight: 800;
+        color: #0f1f3d;
+        margin: 0;
+        line-height: 1.3;
+      }
+
+      .tl-metric-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #64748b;
+        margin: 0;
+      }
+
+      /* ── 响应式适配 ── */
+      @media (max-width: 1024px) {
+        .tl-strategy-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 32px;
+        }
+        .tl-strategy-text { flex: 1 1 100%; }
+        .tl-metrics-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (max-width: 640px) {
+        .tl-metrics-grid { grid-template-columns: 1fr; }
+      }
+      
+      
+      /* Results / outcome blocks */
+      .tl-content-align-wrapper {
+        display: flex;
+        gap: 48px;
+        align-items: flex-start; /* 顶部对齐关键 */
+        margin-top: 24px;
+      }
+
+      .tl-text-side {
+        flex: 1.2;
+      }
+
+      /* 消除文字首行间距，确保对齐 */
+      .tl-text-block p:first-child {
+        margin-top: 0;
+        line-height: 1.65;
+      }
+
+      .tl-card-side {
+        flex: 0.8;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        /* 微调：补偿左侧文字行高带来的视觉下移，使卡片边缘对齐文字顶部 */
+        padding-top: 4px; 
+      }
+
+      /* --- 卡片样式重置（恢复之前的大数值设计） --- */
+      .tl-result-card {
+        border: 1px solid #EEEEEE;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: #fff;
+      }
+
+      .tl-result-card--dark {
+        /* Softer "ink" tone to match the overall light UI (less abrupt than pure deep navy) */
+        background: linear-gradient(180deg, #1a335c 0%, #162a4a 100%);
+        border-color: rgba(0, 86, 214, 0.22);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      }
+
+      /* --- 字体层级定义 --- */
+      .tl-result-label {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0056D6;
+        margin: 0;
+      }
+
+      .tl-result-card--dark .tl-result-label { color: rgba(170, 220, 255, 0.85); }
+
+      .tl-result-val {
+        font-size: 32px; /* 恢复之前的大字号 */
+        font-weight: 900;
+        color: #0f1f3d;
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+
+      .tl-result-card--dark .tl-result-val { color: #f6fbff; }
+
+      .tl-result-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #4a5568;
+        margin: 0;
+      }
+
+      .tl-result-card--dark .tl-result-desc { color: rgba(235, 245, 255, 0.72); }
+
+      /* 响应式 */
+      @media (max-width: 850px) {
+        .tl-content-align-wrapper {
+          flex-direction: column;
+        }
+        .tl-card-side {
+          padding-top: 0;
+        }
+      }
+
+      /* Product cards */
+      .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-prod-card {
+        border: 1px solid #EEEEEE; padding: 0;
+        display: flex; flex-direction: column; gap: 0;
+        text-decoration: none; color: inherit;
+        transition: border-color 200ms, box-shadow 200ms;
+        overflow: hidden;
+      }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); transform: translateY(-6px); }
+      .tl-prod-img-wrap {
+        /* Full-width separator area; center the image inside for a cleaner card */
+        width: 100%;
+        height: 225px;
+        margin: 0 auto;
+        background: #fff; overflow: hidden;
+        border-bottom: 1px solid #EEEEEE;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .tl-prod-img-wrap img {
+        /* Slightly smaller, contained product render for better harmony */
+        width: 78%;
+        height: 78%;
+        object-fit: contain;
+        display: block;
+        filter: grayscale(20%);
+        transition: filter 300ms, transform 300ms;
+      }
+      .tl-prod-card:hover .tl-prod-img-wrap img { filter: grayscale(0%); transform: scale(1.03); }
+      .tl-prod-cat {
+        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+        text-transform: uppercase; color: #0056b3;
+        padding: 20px 24px 0;
+      }
+      .tl-prod-name {
+        margin: 6px 0 0; font-size: 17px; font-weight: 800; color: #0f1f3d;
+        padding: 0 24px;
+      }
+      .tl-prod-link {
+        font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+        text-transform: uppercase; color: #0056b3;
+        border-bottom: 1px solid #0056b3; padding-bottom: 1px;
+        margin: 14px 24px 22px;
+        align-self: flex-start;
+      }
+
+      /* Next bar */
+      .tl-next {
+        display: flex; align-items: center; justify-content: space-between;
+        border: 1px solid #EEEEEE; padding: 24px 32px;
+        text-decoration: none; color: inherit;
+        position: relative; overflow: hidden; transition: border-color 200ms;
+        margin-top: 64px;
+      }
+      .tl-next::before {
+        content: ''; position: absolute; inset: 0;
+        background: #0056D6; transform: translateX(-100%);
+        transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next-label {
+        position: relative; z-index: 1; font-size: 11px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next-title {
+        position: relative; z-index: 1; font-size: 20px; font-weight: 800;
+        letter-spacing: -0.02em; color: #0f1f3d; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next-arrow {
+        position: relative; z-index: 1; display: flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; border: 1px solid #0056D6; padding: 10px 20px;
+        transition: color 200ms, background 200ms, border-color 200ms;
+      }
+      .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
+        .tl-hero-left { padding: 48px 0 32px; }
+        .tl-hero-right { height: 260px; }
+        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+        .tl-body { grid-template-columns: 1fr; padding: 0; }
+        .tl-sidenav {
+          position: sticky; top: 52px; height: auto;
+          flex-direction: row; gap: 0;
+          padding: 0; border-right: none; border-bottom: 1px solid #EEEEEE;
+          overflow-x: auto; overflow-y: visible;
+          background: #fff; z-index: 10;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .tl-sidenav::-webkit-scrollbar { display: none; }
+        .tl-sidenav-label { display: none; }
+        .tl-nav-link {
+          flex-shrink: 0; padding: 14px 16px;
+          border-left: none; border-bottom: 2px solid transparent;
+          border-radius: 0; white-space: nowrap;
+          background: transparent;
+        }
+        .tl-nav-link:hover { background: transparent; border-left-color: transparent; border-bottom-color: #0056D6; }
+        .tl-nav-link.is-active { background: transparent; border-left-color: transparent; border-bottom-color: #0056D6; }
+        .tl-nav-link .tl-nav-num { display: none; }
+        .tl-content { padding: 40px 20px 60px; }
+        .tl-stat-row { grid-template-columns: 1fr; }
+        .tl-stat-item { border-right: none; border-bottom: 1px solid #EEEEEE; }
+        .tl-stat-item:last-child { border-bottom: none; }
+        .tl-result-grid { grid-template-columns: 1fr; }
+        .tl-prod-grid { grid-template-columns: 1fr; }
+        .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html" aria-label="Medo Home">
+          <img class="brand-logo" src="../images/logo.png" alt="Medo" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="nav-link" href="../products.html">Products</a>
+          <a class="nav-link" href="../solutions.html">Solutions</a>
+          <a class="nav-link active" href="../cases.html">Cases</a>
+          <a class="nav-link" href="../resources.html">Support</a>
+          <a class="nav-link" href="../about.html">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link" href="../products.html">Products</a>
+          <a class="nav-drawer-link active" href="../solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="../cases.html">Cases</a>
+          <a class="nav-drawer-link" href="../resources.html">Support</a>
+          <a class="nav-drawer-link" href="../about.html">About</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb (no bottom border) -->
+    <nav class="tl-breadcrumb" aria-label="Breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="../cases.html">Cases</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="../cases-geology.html">Geology</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="tl-breadcrumb-current" aria-current="page">DRC Copper Mine</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="tl-hero" aria-label="Case study hero">
+      <div class="container" style="display:contents;">
+        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <span class="tl-eyebrow">International Project · Mining</span>
+          <h1 class="tl-heading">DRC Copper Mine<br><span class="tl-heading-blue">Slope Monitoring</span></h1>
+          <p class="tl-hero-desc">24/7 automated GNSS displacement monitoring across a large open-pit copper mine in the Democratic Republic of the Congo — millimeter-level accuracy, zero downtime.</p>
+          <div class="tl-hero-meta">
+            <span class="tl-hero-tag">GNSS RTK</span>
+            <span class="tl-hero-tag">IoT Gateway</span>
+            <span class="tl-hero-tag">24/7 Automated</span>
+            <span class="tl-hero-tag">Open-pit</span>
+          </div>
+        </div>
+        <div class="tl-hero-right">
+          <img src="images/" alt="DRC open-pit copper mine slope monitoring" />
+        </div>
+      </div>
+    </section>
+
+    <main id="main" role="main">
+      <div class="tl-body">
+
+        <!-- Sticky sidebar nav -->
+        <aside class="tl-sidenav" aria-label="Page sections">
+          <span class="tl-sidenav-label">On this page</span>
+          <a class="tl-nav-link" href="#overview">
+            <span class="tl-nav-num">01</span>Project Overview
+          </a>
+          <a class="tl-nav-link" href="#architecture">
+            <span class="tl-nav-num">02</span>Full-Stack Solution
+          </a>
+          <a class="tl-nav-link" href="#results">
+            <span class="tl-nav-num">03</span>Outcomes
+          </a>
+          <a class="tl-nav-link" href="#products">
+            <span class="tl-nav-num">04</span>Related Products
+          </a>
+        </aside>
+
+        <!-- Content -->
+        <div class="tl-content">
+
+          <!-- 01 方案概况 -->
+          <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">01 / Project Overview</span>
+            <h2 class="tl-section-title">Project Challenge</h2>
+
+            <div class="tl-text-block">
+              <p>Situated in a prime waterfront extension zone along the Huangpu River, in the heart of Shanghai, this project is as prestigious as it is complex. The primary challenge lay in the extreme density of the surrounding urban environment and the volatile geological conditions of the riverfront. Nestling a deep foundation pit for a future "Tech Innovation Highland" within such a sensitive area meant that even the slightest subterranean shift could have cascading effects on critical city infrastructure. Traditional, manual monitoring was no longer an option; the project demanded a solution capable of navigating immense structural pressure and high-frequency data requirements without a single point of failure.</p>
+              <p>Faced with these intricate risks, Medo stepped forward with unwavering resolve to push the boundaries of structural health monitoring technology. Our mission was definitive: to transform a high-risk construction site into a transparent, digitally-safeguarded ecosystem. We did not merely deploy sensors; we engineered a sophisticated "digital central nervous system" for the entire construction site. From precision hardware deployment to proprietary software development, Medo delivered a comprehensive, full-lifecycle foundation pit monitoring management solution. In the most demanding urban environments, we proved that innovation and safety can harmoniously coexist through the power of intelligent technology.</p>          
+            </div>
+
+            <div class="tl-stat-row">
+              <div class="tl-stat-item">
+                <div class="tl-stat-val">28</div>
+                <div class="tl-stat-label">GNSS Rover Stations Deployed</div>
+              </div>
+              <div class="tl-stat-item">
+                <div class="tl-stat-val">±2mm</div>
+                <div class="tl-stat-label">Horizontal Displacement Accuracy</div>
+              </div>
+              <div class="tl-stat-item">
+                <div class="tl-stat-val">24/7</div>
+                <div class="tl-stat-label">Continuous Automated Monitoring</div>
+              </div>
+            </div>
+          </section>
+
+          <!--02 监测项目-->
+          <section id="architecture" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">02 / Full-Stack Solution</span>
+            <h2 class="tl-section-title">Monitoring Items & Solution</h2>
+
+            <div class="tl-arch-wrapper">
+
+              <div class="tl-metrics-grid">
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h24M4 20h24M16 4v24"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Retaining Wall Displacement</h4>
+                  <p class="tl-metric-desc">Automated tracking of horizontal and vertical shifts of wall coping to ensure crest stability.</p>
+                </div>
+
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 4v24M10 10l6-6 6 6M10 22l6 6 6-6"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Column Vertical Settlement</h4>
+                  <p class="tl-metric-desc">Monitoring differential settlement of internal support columns to prevent uneven structural stress.</p>
+                </div>
+
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 4l4 24M24 4l-4 24M4 16h24" stroke-dasharray="2 2"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Deep-seated Lateral Deformation</h4>
+                  <p class="tl-metric-desc">Inclinometer-based sensing of soil movement at varying depths behind the retaining structure.</p>
+                </div>
+
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 10s4-2 6 0 4 2 6 0 4-2 6 0M6 22s4-2 6 0 4 2 6 0 4-2 6 0"/><circle cx="16" cy="16" r="4"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Groundwater Level Monitoring</h4>
+                  <p class="tl-metric-desc">Piezometric sensing of water table fluctuations outside the pit to assess seepage risks.</p>
+                </div>
+
+                <div class="tl-metric-card">
+                  <div class="tl-metric-icon">
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="10" width="20" height="12"/><path d="M10 10v12M22 10v12M14 16h4"/></svg>
+                  </div>
+                  <h4 class="tl-metric-name">Concrete Support Axial Force</h4>
+                  <p class="tl-metric-desc">Vibrating wire strain gauges measure internal stress within concrete struts to detect overloading.</p>
+                </div>
+              </div>
+
+               <div class="tl-strategy-row">
+                <div class="tl-strategy-text">
+                  <h3 class="tl-strategy-title">Integrated Lifecycle Health Strategy</h3>
+                  <p class="tl-strategy-desc">
+                    Medo’s solution for large-scale structural health monitoring focuses on the correlation between multi-source sensors. By synchronizing underground soil mechanics with surface stress data, we provide a unified intelligence layer that predicts structural failure long before it becomes visible.
+                  </p>
+                </div>
+                <a href="../solutions-urban-fundation.html" class="tl-strategy-btn">
+                  View Full Solution
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 7h10M8 3l4 4-4 4" />
+                  </svg>
+                </a>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 03 应用效果 -->
+          <section id="results" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">03 / Outcomes</span>
+            <h2 class="tl-section-title">Outcomes & Impact</h2>
+
+            <div class="tl-content-align-wrapper">
+              <div class="tl-text-side">
+                <div class="tl-text-block">
+                  <p>Beyond the immediate safety outcomes, the project demonstrated that high-precision GNSS monitoring infrastructure can be successfully deployed and sustained in sub-Saharan African mining environments with minimal on-site technical expertise requirements.</p>
+                  <p>The success of this deployment has since informed the design standard for Medo's subsequent African mining projects, particularly with respect to communications redundancy architecture and multi-language alert routing.</p>
+                </div>
+              </div>
+
+              <div class="tl-card-side">
+                <div class="tl-result-card">
+                  <span class="tl-result-label">Early Warning</span>
+                  <div class="tl-result-val">23 days</div>
+                  <p class="tl-result-desc">Lead time before a critical displacement event reached visible threshold.</p>
+                </div>
+
+                <div class="tl-result-card tl-result-card--dark">
+                  <span class="tl-result-label">Downtime Prevented</span>
+                  <div class="tl-result-val">$4.2M</div>
+                  <p class="tl-result-desc">Estimated production loss and remediation cost avoided by the early intervention.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 相关产品 -->
+          <section id="products" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">04 / 相关产品</span>
+            <h2 class="tl-section-title">Related Products</h2>
+            <div class="tl-prod-grid">
+              <a class="tl-prod-card" href="../products.html">
+                <div class="tl-prod-img-wrap">
+                  <img src="../images/hardware/m20.png" alt="M 20 GNSS Rover" />
+                </div>
+                <span class="tl-prod-cat">GNSS Sensor</span>
+                <h3 class="tl-prod-name">M 20 GNSS Rover</h3>
+                <span class="tl-prod-link">View Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="../products.html">
+                <div class="tl-prod-img-wrap">
+                  <img src="../images/hardware/e40s.png" alt="ML-400 IoT Data Logger" />
+                </div>
+                <span class="tl-prod-cat">Data Logger</span>
+                <h3 class="tl-prod-name">ML-400 IoT Data Logger</h3>
+                <span class="tl-prod-link">View Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="../products.html">
+                <div class="tl-prod-img-wrap">
+                  <img src="images/product-base.png" alt="MG-100 Reference Station" />
+                </div>
+                <span class="tl-prod-cat">GNSS Base Station</span>
+                <h3 class="tl-prod-name">MG-100 Reference Station</h3>
+                <span class="tl-prod-link">View Specs →</span>
+              </a>
+              <a class="tl-prod-card" href="../products.html">
+                <div class="tl-prod-img-wrap">
+                  <img src="images/product-platform.png" alt="Medo Cloud Monitor" />
+                </div>
+                <span class="tl-prod-cat">Software Platform</span>
+                <h3 class="tl-prod-name">Medo Cloud Monitor</h3>
+                <span class="tl-prod-link">View Specs →</span>
+              </a>
+            </div>
+          </section>
+
+          <!-- Next case -->
+          <a class="tl-next" href="../cases-mining.html" aria-label="Back to all mining cases">
+            <div style="position:relative;z-index:1;">
+              <span class="tl-next-label">More Cases</span>
+              <p class="tl-next-title">View All Mining Case Studies</p>
+            </div>
+            <span class="tl-next-arrow">
+              Browse Cases
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
+
+        </div><!-- /tl-content -->
+      </div><!-- /tl-body -->
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="../images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="../index.html">Home</a><a href="../solutions.html">Solutions</a><a href="../products.html">Products</a><a href="../about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+
+      // Scrollspy
+      (function(){
+        var links = document.querySelectorAll('.tl-nav-link');
+        var ids = ['overview','architecture','results','products'];
+        var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        if(!sections.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){
+              links.forEach(function(a){ a.classList.remove('is-active'); });
+              var active = document.querySelector('.tl-nav-link[href="#'+e.target.id+'"]');
+              if(active) active.classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(function(s){ obs.observe(s); });
+      })();
+    </script>
+  </body>
+</html>
