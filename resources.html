@@ -6,6 +6,199 @@
     <meta name="description" content="Download Center - High-Precision Positioning Solutions by Medo." />
     <title>Download Center - High-Precision Positioning Solutions</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+    /* ── Support Hero ── */
+    .sup-hero{
+    background: #f8f9fb;
+    padding: 80px 0 120px;
+    overflow: hidden;
+    }
+
+    .sup-hero-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: end;
+    }
+
+    .sup-hero-label{
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #2563EB;
+    margin-bottom: 18px;
+    }
+
+    .sup-hero-heading{
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    }
+
+    .sup-hero-line1{
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #0f1f3d;
+    }
+
+    .sup-hero-line2{
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #2563EB;
+    }
+
+    .sup-hero-desc{
+    font-size: 15px;
+    line-height: 1.75;
+    color: #4a5568;
+    max-width: 480px;
+    margin: 0 0 32px;
+    }
+
+    /* Search bar */
+    .sidebar-search {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #edf2f7; /* 增加一条分割线 */
+    }
+
+    .sidebar-search-inner {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    border: 1px solid rgba(15, 31, 61, 0.10);
+    border-radius: 0;
+    padding: 7px 10px;
+    box-shadow: none;
+    transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .sidebar-search-inner:hover{
+    border-color: rgba(15, 31, 61, 0.18);
+    background: #eef2f7;
+    }
+
+    .sidebar-search-inner:focus-within {
+    background: #fff;
+    border: 1px solid #2563EB;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.16);
+    }
+
+    .sidebar-search input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 13px;
+    color: #0f1f3d;
+    min-height: 28px;
+    }
+
+    .sidebar-search input::placeholder{
+    color: rgba(15, 31, 61, 0.48);
+    }
+
+    .sidebar-search .search-icon {
+    width: 14px;
+    height: 14px;
+    color: rgba(15, 31, 61, 0.45);
+    margin-left: 8px;
+    }
+
+    /* 移除 Hero 部分搜索框留下的多余边距 */
+    .sup-hero-left .sup-search { display: none; }
+
+
+    /* Right column */
+    .sup-hero-right{
+    position: relative;
+    align-self: end;
+    }
+
+    .sup-hero-img-wrap{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 3;
+
+    }
+
+    .sup-hero-img-wrap img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    }
+
+    .sup-hero-img-overlay{
+    position: absolute;
+    inset: 0;
+    background: rgba(37,99,235,0.06);
+    pointer-events: none;
+    }
+
+    .sup-verified-card{
+    position: absolute;
+    bottom: -24px;
+    left: -32px;
+    width: 260px;
+    background: #fff;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    }
+
+    .sup-verified-icon svg{
+    width: 32px;
+    height: 32px;
+    display: block;
+    }
+
+    .sup-verified-title{
+    margin: 0;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #0f1f3d;
+    }
+
+    .sup-verified-body{
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #4a5568;
+    }
+
+    .sr-only{
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+    }
+
+    @media (max-width: 768px){
+    /* Hero: remove right visual column on small screens */
+    .sup-hero-grid{ grid-template-columns: 1fr; gap: 24px; }
+    .sup-hero-right{ display: none; }
+
+    /* Filters: collapse by default; tap to expand (matches existing .is-open pattern) */
+    .prod-filter-toggle{ display: flex; }
+    .prod-filters{ display: none; padding-top: 16px; }
+    .prod-filters.is-open{ display: block; }
+    }
+
+    </style>
   </head>
 
   <body>
@@ -62,17 +255,6 @@
               <span class="sup-hero-line2">Documentation</span>
             </h1>
             <p class="sup-hero-desc">Access our comprehensive library of technical specifications, installation guides, and product catalogs. Calibrated for professional implementation.</p>
-            <div class="sup-search" role="search">
-              <label for="sup-search-input" class="sr-only">Search documentation</label>
-              <div class="sup-search-inner">
-                <svg class="sup-search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
-                </svg>
-                <input id="sup-search-input" class="sup-search-input" type="search" placeholder="Search technical solutions, product codes, or manuals..." />
-                <button class="sup-search-btn" type="submit">Find</button>
-              </div>
-            </div>
           </div>
 
           <!-- Right column -->
@@ -108,19 +290,30 @@
               Filter Products
             </button>
             <div class="prod-filters" id="prod-filters">
+              <div class="sidebar-search" role="search">
+                <label class="sr-only" for="prod-search-input">Quick search</label>
+                <div class="sidebar-search-inner">
+                  <input id="prod-search-input" type="search" placeholder="Quick search..." />
+                  <svg class="search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M13 13l4 4" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+              </div>
+
               <fieldset class="prod-filter-group">
                 <legend class="prod-filter-legend">Equipment Category</legend>
-                <label class="prod-check"><input type="checkbox" value="gnss" checked> GNSS Receivers</label>
-                <label class="prod-check"><input type="checkbox" value="node" checked> Monitoring Nodes</label>
-                <label class="prod-check"><input type="checkbox" value="software" checked> Analytics Software</label>
-                <label class="prod-check"><input type="checkbox" value="seismic" checked> Seismic Sensors</label>
+                <label class="prod-check"><input type="checkbox" value="gnss"> GNSS Receivers</label>
+                <label class="prod-check"><input type="checkbox" value="node"> Monitoring Nodes</label>
+                <label class="prod-check"><input type="checkbox" value="software"> Analytics Software</label>
+                <label class="prod-check"><input type="checkbox" value="seismic"> Seismic Sensors</label>
               </fieldset>
               <fieldset class="prod-filter-group">
                 <legend class="prod-filter-legend">Industry</legend>
-                <label class="prod-check"><input type="checkbox" value="mining" checked> Mining &amp; Tunneling</label>
-                <label class="prod-check"><input type="checkbox" value="slope" checked> Slope &amp; Landslide</label>
-                <label class="prod-check"><input type="checkbox" value="infrastructure" checked> Infrastructure &amp; Bridges</label>
-                <label class="prod-check"><input type="checkbox" value="dam" checked> Dams &amp; Reservoirs</label>
+                <label class="prod-check"><input type="checkbox" value="mining"> Mining &amp; Tunneling</label>
+                <label class="prod-check"><input type="checkbox" value="slope"> Slope &amp; Landslide</label>
+                <label class="prod-check"><input type="checkbox" value="infrastructure"> Infrastructure &amp; Bridges</label>
+                <label class="prod-check"><input type="checkbox" value="dam"> Dams &amp; Reservoirs</label>
               </fieldset>
               <div class="prod-advisory">
                 <svg class="prod-advisory-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -349,42 +542,60 @@
       </div>
     </footer>
   <script>
-      document.addEventListener('DOMContentLoaded', function() {
-  // 1. 获取导航开关逻辑 (保持原有功能)
-  var btn = document.querySelector('.nav-toggle');
-  var drawer = document.getElementById('mobile-nav');
-  if(btn && drawer) {
-    btn.addEventListener('click', function(){
-      var open = drawer.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open);
-    });
-  }
-
-  // 2. 定义筛选所需的基础变量
-  const filters = document.querySelectorAll('.prod-filters input');
+            document.addEventListener('DOMContentLoaded', function() {
+  // Prefer the sidebar search (the hero search is intentionally hidden on this page).
+  const searchInput =
+    document.getElementById('prod-search-input') ||
+    document.getElementById('hero-search-input');
+  const checkboxes = document.querySelectorAll('.prod-filters input[type="checkbox"]');
   const cards = document.querySelectorAll('.pcard');
   const emptyMsg = document.getElementById('prod-empty');
 
-  // 3. 筛选逻辑函数
-  function filterProducts() {
-    // 获取类别组（第1个fieldset）中选中的值
-    const checkedCategories = Array.from(document.querySelectorAll('.prod-filter-group:nth-of-type(1) input[type="checkbox"]:checked')).map(el => el.value);
+  // Mobile filters toggle (CSS uses .prod-filters.is-open)
+  const filterToggle = document.querySelector('.prod-filter-toggle');
+  const filtersPanel = document.getElementById('prod-filters');
+  if (filterToggle && filtersPanel) {
+    // Ensure a predictable initial state.
+    filterToggle.setAttribute('aria-expanded', filtersPanel.classList.contains('is-open') ? 'true' : 'false');
+    filterToggle.addEventListener('click', function() {
+      const open = !filtersPanel.classList.contains('is-open');
+      filtersPanel.classList.toggle('is-open', open);
+      filterToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  function filterEverything() {
+    // 1. 获取搜索词并转为小写
+    const searchTerm = (searchInput ? searchInput.value : "").toLowerCase().trim();
     
-    // 获取行业组（第2个fieldset，因为删掉了precision，它现在排第二）中选中的值
-    const checkedIndustries = Array.from(document.querySelectorAll('.prod-filter-group:nth-of-type(2) input[type="checkbox"]:checked')).map(el => el.value);
+    // 2. 获取当前勾选的分类 (分为两组)
+    const checkedCats = Array.from(document.querySelectorAll('.prod-filter-group:nth-of-type(1) input:checked')).map(el => el.value);
+    const checkedInds = Array.from(document.querySelectorAll('.prod-filter-group:nth-of-type(2) input:checked')).map(el => el.value);
 
     let visibleCount = 0;
 
     cards.forEach(card => {
-      const cat = card.getAttribute('data-category');
-      const indstr = card.getAttribute('data-industry');
+      // --- 关键：不仅抓取文字，还抓取数据属性 ---
+      const catAttr = card.getAttribute('data-category') || "";
+      const indAttr = card.getAttribute('data-industry') || "";
+      const cardTitle = card.querySelector('.pcard-name')?.innerText.toLowerCase() || "";
+      const cardContent = card.innerText.toLowerCase(); // 包含卡片内所有可见文字
 
-      // 判断逻辑
-      const catMatch = checkedCategories.length === 0 || checkedCategories.includes(cat);
-      const indstrMatch = checkedIndustries.length === 0 || checkedIndustries.some(c => indstr.includes(c));
+      // --- 匹配判断 ---
+      // 类别匹配：没勾选 = 自动通过；勾选了 = 检查 data-category
+      const catMatch = checkedCats.length === 0 || checkedCats.includes(catAttr);
+      
+      // 行业匹配：没勾选 = 自动通过；勾选了 = 检查 data-industry 字符串是否包含
+      const indMatch = checkedInds.length === 0 || checkedInds.some(i => indAttr.includes(i));
+      
+      // 搜索匹配：只要标题、类别属性或卡片文字里包含搜索词，就通过
+      const searchMatch = searchTerm === "" || 
+                          cardTitle.includes(searchTerm) || 
+                          catAttr.includes(searchTerm) || 
+                          cardContent.includes(searchTerm);
 
-      // 只有类别和行业同时满足（或未勾选视为全选）才显示
-      if (catMatch && indstrMatch) {
+      // --- 最终门槛：三者必须同时为 true ---
+      if (catMatch && indMatch && searchMatch) {
         card.style.display = 'block';
         visibleCount++;
       } else {
@@ -392,19 +603,17 @@
       }
     });
 
-    // 处理“找不到结果”的提示
-    emptyMsg.hidden = (visibleCount > 0);
+    // 处理“无结果”提示
+    if(emptyMsg) emptyMsg.hidden = (visibleCount > 0);
   }
 
-  // 4. 绑定监听器：让每个复选框在点击时触发筛选
-  filters.forEach(input => {
-    input.addEventListener('change', filterProducts);
-  });
+  // 绑定事件：打字即搜，点击即滤
+  if (searchInput) searchInput.addEventListener('input', filterEverything);
+  checkboxes.forEach(box => box.addEventListener('change', filterEverything));
 
-  // 5. 初始化：页面加载时运行一次，以应用 HTML 中的默认 checked 状态
-  filterProducts();
+  // 初始化：让页面一进来就全显
+  filterEverything();
 });
   </script>
 </body>
 </html>
-
