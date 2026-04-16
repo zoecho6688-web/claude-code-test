@@ -287,6 +287,71 @@
         margin: 0;
       }
 
+      /* ── Architecture gallery (interactive) ── */
+      .tl-arch-gallery{
+        margin-top: 18px;
+        border: 1px solid #EEEEEE;
+        background: #EEEEEE;
+        display: flex;
+        overflow: hidden;
+      }
+      .tl-arch-shot{
+        position: relative;
+        flex: 1 1 0;
+        min-height: 240px;
+        overflow: hidden;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        outline: none;
+        transition: flex 320ms cubic-bezier(0.2,0,0.2,1);
+      }
+      .tl-arch-shot img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(12%);
+        transform: scale(1.01);
+        transition: transform 420ms cubic-bezier(0.2,0,0.2,1), filter 300ms ease;
+      }
+      .tl-arch-shot::after{
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(15,31,61,0.55) 0%, rgba(15,31,61,0.0) 55%);
+        opacity: 0.9;
+        transition: opacity 260ms ease;
+        pointer-events: none;
+      }
+      .tl-arch-shot-label{
+        position: absolute;
+        left: 16px;
+        bottom: 14px;
+        z-index: 1;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.92);
+        padding-left: 10px;
+        border-left: 2px solid #0056D6;
+      }
+      .tl-arch-shot:hover,
+      .tl-arch-shot:focus-visible{
+        flex: 2.15 1 0;
+      }
+      .tl-arch-shot:hover img,
+      .tl-arch-shot:focus-visible img{
+        filter: grayscale(0%);
+        transform: scale(1.07);
+      }
+      .tl-arch-shot:hover::after,
+      .tl-arch-shot:focus-visible::after{
+        opacity: 0.65;
+      }
+
+
       /* ── 响应式适配 ── */
       @media (max-width: 1024px) {
         .tl-strategy-row {
@@ -294,6 +359,12 @@
           align-items: flex-start;
           gap: 32px;
         }
+         .tl-strategy-text { flex: 1 1 100%; }
+        .tl-metrics-grid { grid-template-columns: 1fr 1fr; }
+        .tl-arch-gallery{ flex-direction: column; }
+        .tl-arch-shot{ min-height: 200px; transition: none; }
+        .tl-arch-shot:hover,
+        .tl-arch-shot:focus-visible{ flex: 1 1 0; }
         .tl-strategy-text { flex: 1 1 100%; }
         .tl-metrics-grid { grid-template-columns: 1fr 1fr; }
       }
@@ -564,7 +635,7 @@
           </div>
         </div>
         <div class="tl-hero-right">
-          <img src="images/" alt="DRC open-pit copper mine slope monitoring" />
+          <img src="../images/mining/mc-1.png" alt="DRC open-pit copper mine slope monitoring" />
         </div>
       </div>
     </section>
@@ -628,44 +699,68 @@
               <div class="tl-metrics-grid">
                 <div class="tl-metric-card">
                   <div class="tl-metric-icon">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h24M4 20h24M16 4v24"/></svg>
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M4 24s4-4 8-4 8 4 12 4M4 20s4-4 8-4 8 4 12 4" stroke-opacity="0.3"/>
+                      <path d="M16 6v10m0 0l-3-3m3 3l3-3M8 24h16" />
+                    </svg>
                   </div>
-                  <h4 class="tl-metric-name">Retaining Wall Displacement</h4>
-                  <p class="tl-metric-desc">Automated tracking of horizontal and vertical shifts of wall coping to ensure crest stability.</p>
+                  <h4 class="tl-metric-name">Surface Displacement</h4>
+                  <p class="tl-metric-desc">High-precision tracking of ground surface settlement and horizontal shifts to safeguard surrounding environments and structures.</p>
                 </div>
 
                 <div class="tl-metric-card">
                   <div class="tl-metric-icon">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 4v24M10 10l6-6 6 6M10 22l6 6 6-6"/></svg>
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="6" y="4" width="20" height="24" rx="2"/>
+                      <path d="M10 10h12M10 16h12M10 22h4"/>
+                      <circle cx="19" cy="22" r="1" fill="currentColor"/>
+                    </svg>
                   </div>
-                  <h4 class="tl-metric-name">Column Vertical Settlement</h4>
-                  <p class="tl-metric-desc">Monitoring differential settlement of internal support columns to prevent uneven structural stress.</p>
+                  <h4 class="tl-metric-name">Server & Software System</h4>
+                  <p class="tl-metric-desc">Customized development of local data servers and integrated analytics software for autonomous data processing and visualization.</p>
                 </div>
 
                 <div class="tl-metric-card">
                   <div class="tl-metric-icon">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 4l4 24M24 4l-4 24M4 16h24" stroke-dasharray="2 2"/></svg>
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M10 28h12M12 24h8l2-8H10l2 8z"/>
+                      <path d="M16 8V4M8 12l-3-3M24 12l3-3" />
+                      <circle cx="16" cy="14" r="2"/>
+                    </svg>
                   </div>
-                  <h4 class="tl-metric-name">Deep-seated Lateral Deformation</h4>
-                  <p class="tl-metric-desc">Inclinometer-based sensing of soil movement at varying depths behind the retaining structure.</p>
+                  <h4 class="tl-metric-name">Audible & Visual Alarm</h4>
+                  <p class="tl-metric-desc">On-site emergency warning system featuring multi-level sirens and strobe lights triggered by automated threshold breaches.</p>
                 </div>
 
                 <div class="tl-metric-card">
                   <div class="tl-metric-icon">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 10s4-2 6 0 4 2 6 0 4-2 6 0M6 22s4-2 6 0 4 2 6 0 4-2 6 0"/><circle cx="16" cy="16" r="4"/></svg>
+                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M8 4h16v24H8zM8 12h16M8 20h16"/>
+                      <path d="M16 8v16" stroke-dasharray="2 2"/>
+                      <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                    </svg>
                   </div>
-                  <h4 class="tl-metric-name">Groundwater Level Monitoring</h4>
-                  <p class="tl-metric-desc">Piezometric sensing of water table fluctuations outside the pit to assess seepage risks.</p>
-                </div>
-
-                <div class="tl-metric-card">
-                  <div class="tl-metric-icon">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="10" width="20" height="12"/><path d="M10 10v12M22 10v12M14 16h4"/></svg>
-                  </div>
-                  <h4 class="tl-metric-name">Concrete Support Axial Force</h4>
-                  <p class="tl-metric-desc">Vibrating wire strain gauges measure internal stress within concrete struts to detect overloading.</p>
+                  <h4 class="tl-metric-name">Internal Displacement</h4>
+                  <p class="tl-metric-desc">Deep-level monitoring of structural deformation and soil strain using specialized geotechnical instrumentation at critical sections.</p>
                 </div>
               </div>
+
+               <!-- Architecture photo strip -->
+              <div class="tl-arch-gallery" aria-label="Project environment photos">
+                <a class="tl-arch-shot" href="../images/mining/openpit.png" target="_blank" rel="noopener">
+                  <img src="../images/mining/openpit.png" alt="Open-pit mining environment" loading="lazy" />
+                  <span class="tl-arch-shot-label">Open-Pit Context</span>
+                </a>
+                <a class="tl-arch-shot" href="../images/mining/minestack.png" target="_blank" rel="noopener">
+                  <img src="../images/mining/minestack.png" alt="Monitoring site infrastructure and stockpiles" loading="lazy" />
+                  <span class="tl-arch-shot-label">Site Infrastructure</span>
+                </a>
+                <a class="tl-arch-shot" href="../images/mining/mining-solution.png" target="_blank" rel="noopener">
+                  <img src="../images/mining/mining-solution.png" alt="Monitoring network schematic" loading="lazy" />
+                  <span class="tl-arch-shot-label">System Layout</span>
+                </a>
+              </div>
+
 
                <div class="tl-strategy-row">
                 <div class="tl-strategy-text">
