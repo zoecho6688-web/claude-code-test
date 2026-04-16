@@ -2040,7 +2040,7 @@ html{ scroll-behavior: smooth; }
   outline: none;
   font-size: 13px;
   color: #0f1f3d;
-  padding: 14px 0;
+  padding: 0 0;
   background: transparent;
   font-family: inherit;
 }
@@ -2049,8 +2049,7 @@ html{ scroll-behavior: smooth; }
 
 .sup-search-btn{
   flex-shrink: 0;
-  padding: 14px 24px;
-  margin: 6px;
+  padding: 14px 24px; 
   background: #2563EB;
   color: #fff;
   font-size: 11px;
@@ -2073,7 +2072,8 @@ html{ scroll-behavior: smooth; }
 .sup-hero-img-wrap{
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 3;
+
 }
 
 .sup-hero-img-wrap img{
@@ -4088,7 +4088,7 @@ html{ scroll-behavior: smooth; }
   font-size: clamp(34px, 5vw, 62px);
   line-height: 1.05;
   letter-spacing: 0.02em;
-  font-weight: 700;
+  font-weight: 900;
   color: #0056b3;
 }
 .loop-slide-sub{

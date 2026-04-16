@@ -7,6 +7,7 @@
     <title>Download Center - High-Precision Positioning Solutions</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -77,7 +78,7 @@
           <!-- Right column -->
           <div class="sup-hero-right">
             <div class="sup-hero-img-wrap">
-              <img src="images/hero-tech.png" alt="Technical instrumentation assembly" />
+              <img src="images/resource-hero.png" alt="Technical instrumentation assembly" />
               <div class="sup-hero-img-overlay" aria-hidden="true"></div>
             </div>
             <div class="sup-verified-card">
@@ -115,12 +116,6 @@
                 <label class="prod-check"><input type="checkbox" value="seismic" checked> Seismic Sensors</label>
               </fieldset>
               <fieldset class="prod-filter-group">
-                <legend class="prod-filter-legend">Precision Class</legend>
-                <label class="prod-radio"><input type="radio" name="precision" value="submm"> Sub-Millimeter</label>
-                <label class="prod-radio"><input type="radio" name="precision" value="geodetic"> Geodetic (1–5mm)</label>
-                <label class="prod-radio"><input type="radio" name="precision" value="all" checked> All Instrument Grades</label>
-              </fieldset>
-              <fieldset class="prod-filter-group">
                 <legend class="prod-filter-legend">Industry</legend>
                 <label class="prod-check"><input type="checkbox" value="mining" checked> Mining &amp; Tunneling</label>
                 <label class="prod-check"><input type="checkbox" value="slope" checked> Slope &amp; Landslide</label>
@@ -142,7 +137,8 @@
           <div class="prod-grid-wrap">
             <section class="prod-grid" id="prod-grid" aria-label="Product listings" aria-live="polite">
 
-              <article class="pcard" data-category="gnss" data-precision="submm" data-industry="mining slope infrastructure dam">
+              <!-- Product card 1-->
+              <article class="pcard" data-category="gnss" data-industry="mining slope infrastructure dam">
                 <div class="pcard-img-wrap">
                   <img class="pcard-img" src="images/hero-product.png" alt="Medo M50 GNSS Receiver" />
                   <span class="pcard-badge">Multi-Freq</span>
@@ -165,7 +161,8 @@
                 </div>
               </article>
 
-              <article class="pcard" data-category="node" data-precision="geodetic" data-industry="mining slope infrastructure">
+              <!-- Product card 2-->
+              <article class="pcard" data-category="node" data-industry="mining slope infrastructure">
                 <div class="pcard-img-wrap">
                   <img class="pcard-img" src="images/hero-tech.png" alt="Medo Intelligent Monitoring Node" />
                   <span class="pcard-badge">Series-X</span>
@@ -188,7 +185,8 @@
                 </div>
               </article>
 
-              <article class="pcard" data-category="software" data-precision="all" data-industry="mining slope infrastructure dam">
+              <!-- Product card 3 -->
+              <article class="pcard" data-category="software" data-industry="mining slope infrastructure dam">
                 <div class="pcard-img-wrap">
                   <img class="pcard-img" src="images/hero-case.png" alt="Medo Cloud Platform" />
                   <span class="pcard-badge">Enterprise Cloud</span>
@@ -211,7 +209,8 @@
                 </div>
               </article>
 
-              <article class="pcard" data-category="seismic" data-precision="submm" data-industry="mining dam infrastructure">
+              <!-- Product card 4 -->
+              <article class="pcard" data-category="seismic" data-industry="mining dam infrastructure">
                 <div class="pcard-img-wrap">
                   <img class="pcard-img" src="images/hero-cas.png" alt="Medo Seismic Sensor" />
                   <span class="pcard-badge">High-Sensitivity</span>
@@ -234,7 +233,8 @@
                 </div>
               </article>
 
-              <article class="pcard" data-category="node" data-precision="geodetic" data-industry="slope dam">
+              <!-- Product card 5 -->
+              <article class="pcard" data-category="node" data-industry="slope dam">
                 <div class="pcard-img-wrap">
                   <img class="pcard-img" src="images/hero-product.png" alt="Medo Node X2 Slope Monitor" />
                   <span class="pcard-badge">Slope Edition</span>
@@ -257,7 +257,8 @@
                 </div>
               </article>
 
-              <article class="pcard" data-category="gnss" data-precision="submm" data-industry="infrastructure dam">
+              <!-- Product card 6 -->
+              <article class="pcard" data-category="gnss" data-industry="infrastructure dam">
                 <div class="pcard-img-wrap">
                   <img class="pcard-img" src="images/hero-tech.png" alt="Medo M80 GNSS Receiver" />
                   <span class="pcard-badge">Geodetic Grade</span>
@@ -282,6 +283,7 @@
 
             </section>
 
+            <!-- Empty state -->
             <div class="prod-empty" id="prod-empty" hidden aria-live="polite">
               <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
                 <rect x="8" y="12" width="32" height="28" stroke="currentColor" stroke-width="1.5"/>
@@ -347,15 +349,61 @@
       </div>
     </footer>
   <script>
-    (function(){
-      var btn = document.querySelector('.nav-toggle');
-      var drawer = document.getElementById('mobile-nav');
-      if(!btn || !drawer) return;
-      btn.addEventListener('click', function(){
-        var open = drawer.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', open);
-      });
-    })();
+      document.addEventListener('DOMContentLoaded', function() {
+  // 1. 获取导航开关逻辑 (保持原有功能)
+  var btn = document.querySelector('.nav-toggle');
+  var drawer = document.getElementById('mobile-nav');
+  if(btn && drawer) {
+    btn.addEventListener('click', function(){
+      var open = drawer.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  }
+
+  // 2. 定义筛选所需的基础变量
+  const filters = document.querySelectorAll('.prod-filters input');
+  const cards = document.querySelectorAll('.pcard');
+  const emptyMsg = document.getElementById('prod-empty');
+
+  // 3. 筛选逻辑函数
+  function filterProducts() {
+    // 获取类别组（第1个fieldset）中选中的值
+    const checkedCategories = Array.from(document.querySelectorAll('.prod-filter-group:nth-of-type(1) input[type="checkbox"]:checked')).map(el => el.value);
+    
+    // 获取行业组（第2个fieldset，因为删掉了precision，它现在排第二）中选中的值
+    const checkedIndustries = Array.from(document.querySelectorAll('.prod-filter-group:nth-of-type(2) input[type="checkbox"]:checked')).map(el => el.value);
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cat = card.getAttribute('data-category');
+      const indstr = card.getAttribute('data-industry');
+
+      // 判断逻辑
+      const catMatch = checkedCategories.length === 0 || checkedCategories.includes(cat);
+      const indstrMatch = checkedIndustries.length === 0 || checkedIndustries.some(c => indstr.includes(c));
+
+      // 只有类别和行业同时满足（或未勾选视为全选）才显示
+      if (catMatch && indstrMatch) {
+        card.style.display = 'block';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // 处理“找不到结果”的提示
+    emptyMsg.hidden = (visibleCount > 0);
+  }
+
+  // 4. 绑定监听器：让每个复选框在点击时触发筛选
+  filters.forEach(input => {
+    input.addEventListener('change', filterProducts);
+  });
+
+  // 5. 初始化：页面加载时运行一次，以应用 HTML 中的默认 checked 状态
+  filterProducts();
+});
   </script>
 </body>
 </html>
