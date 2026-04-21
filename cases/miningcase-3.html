@@ -301,13 +301,14 @@
       @media (max-width: 640px) {
         .tl-metrics-grid { grid-template-columns: 1fr; }
       }
-              .tl-gallery-wrapper {
+        
+      .tl-gallery-wrapper {
         margin-top: 32px; /* 与上方的 Metric Grid 拉开合理间距 */
         display: flex;
         flex-direction: column;
         }
-
-        .tl-gallery-title {
+  
+      .tl-gallery-title {
         font-size: 22px;
         font-weight: 800;
         color: #0f1f3d;
@@ -316,21 +317,20 @@
         }
 
         /* 手风琴容器 */
-        .tl-gallery-container {
+      .tl-gallery-container {
         display: flex;
         height: 240px; /* 竖向视觉的高度设定 */
-        gap: 3px;
+        gap: none;
         width: 100%;
         }
 
         /* 单个卡片 */
-        .tl-gallery-item {
+      .tl-gallery-item {
         position: relative;
         flex: 1; /* 默认状态平分宽度 */
         background-size: cover;
         background-position: center;
         background-color: #f8fafc; /* 图片未加载时的占位底色 */
-        border: 1px solid #EEEEEE; /* 呼应你全站的边框风格 */
         overflow: hidden;
         cursor: pointer;
         transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
@@ -338,7 +338,7 @@
 
         /* 悬停态：边框高亮，宽度扩展 */
         .tl-gallery-item:hover {
-        flex: 2; 
+        flex: 1.5; 
         border-color: #0056D6; /* 品牌蓝高亮 */
         }
 
@@ -384,8 +384,8 @@
 
         /* 标题层级 */
         .tl-item-name {
-        font-size: 16px;
-        font-weight: 800;
+        font-size: 14px;
+        font-weight: 600;
         margin: 0;
         color: #ffffff;
         letter-spacing: -0.01em;
@@ -739,150 +739,146 @@
           <section id="architecture" class="tl-section" style="scroll-margin-top:100px;">
             <span class="tl-section-label">02 / Full-Stack Solution</span>
             <h2 class="tl-section-title">Monitoring Items & Solution</h2>
-
             <div class="tl-arch-wrapper">
-
-              <div class="tl-metrics-grid">
+                <div class="tl-metrics-grid">
                   <div class="tl-metric-card">
-                      <div class="tl-metric-icon">
-                          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
-                              <circle cx="16" cy="12" r="3"/>
-                              <path d="M16 4v5M16 15v13M8 12h3M21 12h3M10 7l2 2M20 9l2-2"/>
-                              <path d="M6 28h20" stroke-linecap="round"/>
-                          </svg>
-                      </div>
-                      <h4 class="tl-metric-name">GNSS Surface Displacement</h4>
-                      <p class="tl-metric-desc">
-                          <strong>Instrument:</strong> GNSS Receiver<br/>
-                          <strong>Quantity:</strong> 18 Units
-                      </p>
+                    <div class="tl-metric-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="16" cy="12" r="3"/>
+                            <path d="M16 4v5M16 15v13M8 12h3M21 12h3M10 7l2 2M20 9l2-2"/>
+                            <path d="M6 28h20" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h4 class="tl-metric-name">GNSS Surface Displacement</h4>
+                    <p class="tl-metric-desc">
+                        <strong>Instrument:</strong> GNSS Receiver<br/>
+                        <strong>Quantity:</strong> 18 Units
+                    </p>
                   </div>
 
                   <div class="tl-metric-card">
-                      <div class="tl-metric-icon">
-                          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
-                              <path d="M4 16c4-2 6 2 10 2s6-4 10-2l4 1"/>
-                              <path d="M16 18v10M12 28h8" stroke-opacity="0.6"/>
-                              <circle cx="16" cy="18" r="1.5" fill="currentColor"/>
-                          </svg>
-                      </div>
-                      <h4 class="tl-metric-name">Phreatic Line Monitoring</h4>
-                      <p class="tl-metric-desc">
-                          <strong>Instrument:</strong> Pore Water Pressure Gauge<br/>
-                          <strong>Quantity:</strong> 9 Units
-                      </p>
+                    <div class="tl-metric-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 16c4-2 6 2 10 2s6-4 10-2l4 1"/>
+                            <path d="M16 18v10M12 28h8" stroke-opacity="0.6"/>
+                            <circle cx="16" cy="18" r="1.5" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h4 class="tl-metric-name">Phreatic Line Monitoring</h4>
+                    <p class="tl-metric-desc">
+                        <strong>Instrument:</strong> Pore Water Pressure Gauge<br/>
+                        <strong>Quantity:</strong> 9 Units
+                    </p>
                   </div>
 
                   <div class="tl-metric-card">
-                      <div class="tl-metric-icon">
-                          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
-                              <path d="M12 4v24M20 4v24M12 8h8M12 16h8M12 24h8"/>
-                              <path d="M16 4c-3 8 3 16 0 24" stroke="red" stroke-dasharray="2 2"/>
-                          </svg>
-                      </div>
-                      <h4 class="tl-metric-name">Internal Displacement</h4>
-                      <p class="tl-metric-desc">
-                          <strong>Instrument:</strong> Fixed Inclinometer<br/>
-                          <strong>Quantity:</strong> 9 Units
-                      </p>
+                    <div class="tl-metric-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 4v24M20 4v24M12 8h8M12 16h8M12 24h8"/>
+                            <path d="M16 4c-3 8 3 16 0 24" stroke="red" stroke-dasharray="2 2"/>
+                        </svg>
+                    </div>
+                    <h4 class="tl-metric-name">Internal Displacement</h4>
+                    <p class="tl-metric-desc">
+                        <strong>Instrument:</strong> Fixed Inclinometer<br/>
+                        <strong>Quantity:</strong> 9 Units
+                    </p>
                   </div>
 
                   <div class="tl-metric-card">
-                      <div class="tl-metric-icon">
-                          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
-                              <path d="M10 8a12 12 0 0 1 12 0M12 12a8 8 0 0 1 8 0M14 16a4 4 0 0 1 4 0"/>
-                              <path d="M4 24h24M4 28h24" stroke-opacity="0.5"/>
-                          </svg>
-                      </div>
-                      <h4 class="tl-metric-name">Reservoir Water Level</h4>
-                      <p class="tl-metric-desc">
-                          <strong>Instrument:</strong> Radar Level Gauge<br/>
-                          <strong>Quantity:</strong> 1 Unit
-                      </p>
+                    <div class="tl-metric-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M10 8a12 12 0 0 1 12 0M12 12a8 8 0 0 1 8 0M14 16a4 4 0 0 1 4 0"/>
+                            <path d="M4 24h24M4 28h24" stroke-opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h4 class="tl-metric-name">Reservoir Water Level</h4>
+                    <p class="tl-metric-desc">
+                        <strong>Instrument:</strong> Radar Level Gauge<br/>
+                        <strong>Quantity:</strong> 1 Unit
+                    </p>
                   </div>
 
                   <div class="tl-metric-card">
-                      <div class="tl-metric-icon">
-                          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
-                              <path d="M24 10l5-3v10l-5-3V10z"/>
-                              <rect x="3" y="8" width="21" height="14" rx="2"/>
-                              <circle cx="11" cy="15" r="3"/>
-                          </svg>
-                      </div>
-                      <h4 class="tl-metric-name">Intelligent Video Surveillance</h4>
-                      <p class="tl-metric-desc">
-                          <strong>Instrument:</strong> PTZ & Bullet Cameras<br/>
-                          <strong>Quantity:</strong> 19 Units
-                      </p>
+                    <div class="tl-metric-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M24 10l5-3v10l-5-3V10z"/>
+                            <rect x="3" y="8" width="21" height="14" rx="2"/>
+                            <circle cx="11" cy="15" r="3"/>
+                        </svg>
+                    </div>
+                    <h4 class="tl-metric-name">Intelligent Video Surveillance</h4>
+                    <p class="tl-metric-desc">
+                        <strong>Instrument:</strong> PTZ & Bullet Cameras<br/>
+                        <strong>Quantity:</strong> 19 Units
+                    </p>
                   </div>
 
                   <div class="tl-metric-card">
-                      <div class="tl-metric-icon">
-                          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
-                              <path d="M20 14a5 5 0 1 0-10 0c0 3 2 5 5 5s5-2 5-5zM15 19v9M12 28h6"/>
-                              <path d="M10 6l-2 3M16 4v3M22 6l2 3" stroke-dasharray="2 2"/>
-                          </svg>
-                      </div>
-                      <h4 class="tl-metric-name">Rainfall Monitoring</h4>
-                      <p class="tl-metric-desc">
-                          <strong>Instrument:</strong> Tipping Bucket Rain Gauge<br/>
-                          <strong>Quantity:</strong> 1 Unit
-                      </p>
+                    <div class="tl-metric-icon">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M20 14a5 5 0 1 0-10 0c0 3 2 5 5 5s5-2 5-5zM15 19v9M12 28h6"/>
+                            <path d="M10 6l-2 3M16 4v3M22 6l2 3" stroke-dasharray="2 2"/>
+                        </svg>
+                    </div>
+                    <h4 class="tl-metric-name">Rainfall Monitoring</h4>
+                    <p class="tl-metric-desc">
+                        <strong>Instrument:</strong> Tipping Bucket Rain Gauge<br/>
+                        <strong>Quantity:</strong> 1 Unit
+                    </p>
                   </div>
-              </div>
+                </div>
               
-              
-              <div class="tl-gallery-wrapper">
-                <div class="tl-gallery-container">
-                    
+                <div class="tl-gallery-wrapper">
+                  <div class="tl-gallery-container">
                     <div class="tl-gallery-item" style="background-image: url('../images/mining/mc-3-1.png');">
-                    <div class="tl-gallery-overlay">
+                      <div class="tl-gallery-overlay">
                         <div class="tl-gallery-content">
                         <span class="tl-item-category">GNSS Receiver</span>
                         <h4 class="tl-item-name">Surface Displacement Tracking</h4>
                         </div>
-                    </div>
+                      </div>
                     </div>
 
                     <div class="tl-gallery-item" style="background-image: url('../images/mining/mc-3-3.png');">
-                    <div class="tl-gallery-overlay">
+                      <div class="tl-gallery-overlay">
                         <div class="tl-gallery-content">
                         <span class="tl-item-category">Fixed Inclinometer</span>
                         <h4 class="tl-item-name">Internal Displacement</h4>
                         </div>
-                    </div>
+                      </div>
                     </div>
 
                     <div class="tl-gallery-item" style="background-image: url('../images/mining/mc-3-5.png');">
-                    <div class="tl-gallery-overlay">
+                      <div class="tl-gallery-overlay">
                         <div class="tl-gallery-content">
                         <span class="tl-item-category">PTZ & Bullet Cameras</span>
                         <h4 class="tl-item-name">Intelligent Video Surveillance</h4>
                         </div>
-                    </div>
+                      </div>
                     </div>
 
                     <div class="tl-gallery-item" style="background-image: url('../images/mining/mc-3-6.png');">
-                    <div class="tl-gallery-overlay">
+                      <div class="tl-gallery-overlay">
                         <div class="tl-gallery-content">
                         <span class="tl-item-category">Tipping Bucket Rain Gauge</span>
                         <h4 class="tl-item-name">Rainfall Monitoring</h4>
                         </div>
-                    </div>
+                      </div>
                     </div>
 
                     <div class="tl-gallery-item" style="background-image: url('../images/mining/mc-3-system.png');">
-                    <div class="tl-gallery-overlay">
+                      <div class="tl-gallery-overlay">
                         <div class="tl-gallery-content">
                         <span class="tl-item-category">MEDO Platform</span>
                         <h4 class="tl-item-name">Equipments Management</h4>
                         </div>
+                      </div>
                     </div>
-                    </div>
-                </div>
-            </div>
+                  </div>
+              </div>
 
-               <div class="tl-strategy-row">
+              <div class="tl-strategy-row">
                 <div class="tl-strategy-text">
                   <h3 class="tl-strategy-title">Phosphogypsum Stack Monitoring Solution</h3>
                   <p class="tl-strategy-desc">
