@@ -24,10 +24,17 @@
       .pd-hero {
         display: grid; grid-template-columns: 1fr 1fr;
         background: #fff; border-bottom: 1px solid #EEEEEE;
+        min-height: 320px;
       }
       .pd-hero-left {
-        display: flex; flex-direction: column; justify-content: center;
-        padding: 48px 48px 48px 0;
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center;
+        /* padding-left 现在包含了基础对齐 + 额外位移 */
+        padding-left: max(40px, calc((100vw - 1200px) / 2 + 30px));
+        padding-right: 48px;
+        padding-top: 48px;
+        padding-bottom: 48px;
       }
       .pd-eyebrow {
         display: block; font-size: 10px; font-weight: 800;
@@ -36,17 +43,10 @@
       }
       .pd-heading {
         margin: 0 0 8px;
-        font-size: clamp(32px, 4vw, 52px);
+        font-size: clamp(44px, 5.5vw, 68px);
         font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; color: #0f1f3d;
       }
-      .pd-heading-sub {
-        margin: 0 0 20px;
-        font-size: clamp(14px, 1.6vw, 18px);
-        font-weight: 600; color: #9ca3af; letter-spacing: 0.02em;
-      }
-      .pd-hero-desc { margin: 0 0 28px; font-size: 15px; line-height: 1.75; color: #4a5568; }
-
-      .pd-hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+      .pd-hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;}
       .pd-hero-tag {
         font-size: 10px; font-weight: 700; padding: 4px 12px;
         background: #f0f4ff; color: #0056b3;
@@ -139,6 +139,11 @@
         margin: 0 0 24px;
         font-size: clamp(20px, 2.6vw, 30px);
         font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d;
+      }
+      .pd-section-title-blue {
+        margin: 0 0 24px;
+        font-size: clamp(24px, 3.2vw, 36px);
+        font-weight: 800; letter-spacing: -0.02em; color: #0056D6;
       }
 
       /* 01 产品简介 */
@@ -387,11 +392,9 @@
     <!-- Hero -->
     <section class="pd-hero" aria-label="Product hero">
       <div class="container" style="display:contents;">
-        <div class="pd-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+        <div class="pd-hero-left">
           <span class="pd-eyebrow">GNSS Monitoring Receiver</span>
           <h1 class="pd-heading">M20</h1>
-          <p class="pd-heading-sub">High-Precision GNSS Rover Station</p>
-          <p class="pd-hero-desc">Multi-constellation GNSS receiver engineered for continuous structural and geotechnical displacement monitoring. Delivers sub-millimeter accuracy in the harshest field environments.</p>
           <div class="pd-hero-tags">
             <span class="pd-hero-tag">GPS + BDS + GLONASS</span>
             <span class="pd-hero-tag">±1mm Accuracy</span>
@@ -401,7 +404,7 @@
         </div>
         <div class="pd-hero-right">
           <!-- 替换 src 为实际产品图片 -->
-          <img src="../images/product-m20.png" alt="Medo M20 GNSS Receiver"
+          <img src="../images/hardware/m20展示.mov" alt="Medo M20 GNSS Receiver"
             onerror="this.style.display='none'; this.parentElement.querySelector('.pd-img-placeholder').style.display='flex';" />
           <div class="pd-img-placeholder" style="display:none; position:absolute; inset:0;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg>
@@ -436,9 +439,9 @@
           <!-- 01 产品简介 -->
           <section id="intro" class="pd-section" style="scroll-margin-top:100px;">
             <span class="pd-section-label">01 / Product Overview</span>
-            <h2 class="pd-section-title">Product Introduction</h2>
-            <p class="pd-intro-text">The Medo M20 is a professional-grade GNSS monitoring receiver designed specifically for long-term, unattended deformation monitoring applications. Unlike survey-grade receivers optimized for short observation sessions, the M20 is built around continuous operation: a ruggedized aluminum housing, wide-temperature electronics, and an integrated power management system that supports solar charging and battery backup for indefinite autonomous deployment.</p>
-            <p class="pd-intro-text">Supporting all major satellite constellations — GPS, BeiDou, GLONASS, and Galileo — the M20 tracks up to 800 channels simultaneously, delivering robust signal acquisition even in partially obstructed environments such as open-pit mine walls, dam faces, and valley-side slope installations. Phase-differential processing against a fixed reference station achieves horizontal accuracy of ±1mm and vertical accuracy of ±2mm under normal atmospheric conditions.</p>
+            <h2 class="pd-section-title-blue">M20: <span class="pd-section-title">A High-Precision GNSS Receiver</span></h2>
+            <p class="pd-intro-text">The M20 is a high-precision GNSS receiver engineered by Medo specifically for geological hazard monitoring in demanding field environments. Leveraging advanced positioning algorithms, integrated communication, and embedded systems technology, the M20 offers a robust solution for real-time displacement tracking.</p>
+            <p class="pd-intro-text">Designed with an ultra-low power architecture, the unit features a built-in MEMS sensor, an internal battery, and versatile communication modules to ensure continuous operation in remote locations. The M20 supports MEMS-triggered computation, allowing for adaptive data processing during critical events. Its highly integrated, all-in-one design not only simplifies the installation process but also significantly reduces the construction and long-term maintenance costs of monitoring stations. When paired with the Medo Cloud Platform, the M20 enables seamless remote device management and real-time status monitoring from any location.</p>
             <div class="pd-intro-stats">
               <div class="pd-intro-stat">
                 <div class="pd-intro-stat-val">±1mm</div>
@@ -517,55 +520,66 @@
             <span class="pd-section-label">03 /</span>
             <h2 class="pd-section-title">Technical Specifications</h2>
             <div class="pd-specs-layout">
-              <!-- 参数表 -->
               <div class="pd-spec-table">
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Constellations</span>
-                  <span class="pd-spec-val">GPS / BDS / GLONASS / Galileo</span>
+                  <span class="pd-spec-val">BDS / GPS / GLONASS / Galileo / Navic / SBAS</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Tracking Channels</span>
-                  <span class="pd-spec-val">800</span>
+                  <span class="pd-spec-key">Tracking Signals</span>
+                  <span class="pd-spec-val">4 Constellations / 15 Frequencies</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Horizontal Accuracy</span>
-                  <span class="pd-spec-val">±1mm (RMS, RTK)</span>
+                  <span class="pd-spec-val">≤ 0.8 cm + 1.0 ppm (RTK)</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Vertical Accuracy</span>
-                  <span class="pd-spec-val">±2mm (RMS, RTK)</span>
+                  <span class="pd-spec-val">≤ 1.5 cm + 1.0 ppm (RTK)</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Static Relative Pos.</span>
+                  <span class="pd-spec-val">H: ±2.5mm + 0.5ppm; V: ±5mm + 0.5ppm</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Dynamic Relative Pos.</span>
+                  <span class="pd-spec-val">H: ±8mm + 1ppm; V: ±15mm + 1ppm</span>
+                </div>
+                <div class="pd-spec-row">
+                  <span class="pd-spec-key">Data Update Rate</span>
+                  <span class="pd-spec-val">10 Hz</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Data Rate</span>
-                  <span class="pd-spec-val">1s – 3600s (configurable)</span>
+                  <span class="pd-spec-val">0s – 24h (Sampling) / 0s – 72h (Upload)</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Communication</span>
-                  <span class="pd-spec-val">4G LTE + Satellite + LoRa</span>
+                  <span class="pd-spec-val">5G / 4G / NB-IoT / LoRa / Wi-Fi / RS485</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Power Input</span>
-                  <span class="pd-spec-val">Solar (≤40W) + 12V DC</span>
+                  <span class="pd-spec-val">9V – 24V DC</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Battery Backup</span>
-                  <span class="pd-spec-val">20Ah LiFePO₄ (≥5 days)</span>
+                  <span class="pd-spec-key">Power Consumption</span>
+                  <span class="pd-spec-val">≤ 1.0W</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Operating Temp.</span>
-                  <span class="pd-spec-val">−40°C to +70°C</span>
+                  <span class="pd-spec-val">−40°C to +75°C</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Protection Rating</span>
-                  <span class="pd-spec-val">IP67</span>
+                  <span class="pd-spec-val">IP68</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Dimensions</span>
-                  <span class="pd-spec-val">185 × 185 × 72 mm</span>
+                  <span class="pd-spec-val">Φ206 × H185 mm</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Weight</span>
-                  <span class="pd-spec-val">1.4 kg</span>
+                  <span class="pd-spec-val">1.5 kg</span>
                 </div>
               </div>
             </div>
@@ -577,9 +591,9 @@
             <h2 class="pd-section-title">Related Solutions</h2>
             <div class="pd-solutions-grid">
 
-              <a class="pd-solution-btn" href="../solutions-mining-slope.html">
+              <a class="pd-solution-btn" href="../solutions-mining-pit.html">
                 <div class="pd-solution-img">
-                  <img src="../images/solution-mining-slope.jpg" alt="Open-pit slope monitoring scene"
+                  <img src="../images/mining/openpit.png" alt="Open-pit slope monitoring scene"
                     onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
                   <div class="pd-solution-img-placeholder">Solution Image</div>
                 </div>
@@ -593,7 +607,7 @@
 
               <a class="pd-solution-btn" href="../solutions-water-dam.html">
                 <div class="pd-solution-img">
-                  <img src="../images/solution-water-dam.jpg" alt="Reservoir dam monitoring scene"
+                  <img src="../images/water/water-dam.png" alt="Reservoir dam monitoring scene"
                     onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
                   <div class="pd-solution-img-placeholder">Solution Image</div>
                 </div>
