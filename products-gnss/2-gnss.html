@@ -43,7 +43,7 @@
       }
       .pd-heading {
         margin: 0 0 8px;
-        font-size: clamp(44px, 5.5vw, 68px);
+        font-size: clamp(40px, 5vw, 60px);
         font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; color: #0f1f3d;
       }
       .pd-heading-sub {
@@ -171,7 +171,7 @@
       }
       .pd-intro-stat:last-child { border-right: none; }
       .pd-intro-stat-val {
-        font-size: 30px; font-weight: 900; color: #0056D6;
+        font-size: 30px; font-weight: 800; color: #0056D6;
         letter-spacing: -0.03em; line-height: 1;
       }
       .pd-intro-stat-label {
@@ -408,9 +408,8 @@
           <h1 class="pd-heading">M50</h1>
           <p class="pd-heading-sub">Integrated Self-Powered GNSS Monitoring Station</p>
           <div class="pd-hero-tags">
-            <span class="pd-hero-tag">GPS + BDS + GLONASS</span>
-            <span class="pd-hero-tag">±1mm Accuracy</span>
-            <span class="pd-hero-tag">IP67</span>
+            <span class="pd-hero-tag">BDS-3</span>
+            <span class="pd-hero-tag">LoRa</span>
             <span class="pd-hero-tag">Solar Ready</span>
           </div>
         </div>
@@ -451,21 +450,21 @@
           <!-- 01 产品简介 -->
           <section id="intro" class="pd-section" style="scroll-margin-top:100px;">
             <span class="pd-section-label">01 / Product Overview</span>
-            <h2 class="pd-section-title-blue">M50 <span class="pd-section-title">Building Autonomous Safety Networks</span></h2>
-            <p class="pd-intro-text">The M20 is a high-precision GNSS receiver engineered by Medo specifically for geological hazard monitoring in demanding field environments. Leveraging advanced positioning algorithms, integrated communication, and embedded systems technology, the M20 offers a robust solution for real-time displacement tracking.</p>
-            <p class="pd-intro-text">Designed with an ultra-low power architecture, the unit features a built-in MEMS sensor, an internal battery, and versatile communication modules to ensure continuous operation in remote locations. The M20 supports MEMS-triggered computation, allowing for adaptive data processing during critical events. Its highly integrated, all-in-one design not only simplifies the installation process but also significantly reduces the construction and long-term maintenance costs of monitoring stations. When paired with the Medo Cloud Platform, the M20 enables seamless remote device management and real-time status monitoring from any location.</p>
+            <h2 class="pd-section-title">Building Autonomous Safety Networks</h2>
+            <p class="pd-intro-text">The M50 is a cutting-edge, all-in-one GNSS monitoring station independently developed by Medo for critical monitoring in slopes, geological hazards, mines, and dams. Representing a new generation of structural health intelligence, the M50 features adaptive timeliness and precision, allowing it to dynamically adjust its operations based on environmental shifts.</p>
+            <p class="pd-intro-text">Engineered for total autonomy, the unit integrates a high-capacity battery with built-in solar panels and utilizes advanced ultra-low power technology. By leveraging internal MEMS sensors and real-time displacement data, the M50 automatically switches between power modes, ensuring over 90 days of continuous operation under typical rainy or low-light conditions. With a 30-day proactive power alert system and on-device edge computation, the M50 guarantees data continuity and rapid response even in the most isolated and "zero-network" environments.</p>
             <div class="pd-intro-stats">
               <div class="pd-intro-stat">
-                <div class="pd-intro-stat-val">±1mm</div>
-                <div class="pd-intro-stat-label">Horizontal Accuracy</div>
+                <div class="pd-intro-stat-val">90 days</div>
+                <div class="pd-intro-stat-label">Low-Light Stamina</div>
               </div>
               <div class="pd-intro-stat">
-                <div class="pd-intro-stat-val">800ch</div>
-                <div class="pd-intro-stat-label">Tracking Channels</div>
+                <div class="pd-intro-stat-val">LoRa</div>
+                <div class="pd-intro-stat-label">Ad-hoc Networking</div>
               </div>
               <div class="pd-intro-stat">
-                <div class="pd-intro-stat-val">IP67</div>
-                <div class="pd-intro-stat-label">Protection Rating</div>
+                <div class="pd-intro-stat-val">BDS+</div>
+                <div class="pd-intro-stat-label">All-Frequency Support</div>
               </div>
             </div>
           </section>
@@ -474,54 +473,54 @@
           <section id="functions" class="pd-section" style="scroll-margin-top:100px;">
             <span class="pd-section-label">02 / Features</span>
             <h2 class="pd-section-title">Key Functions</h2>
-            <div class="pd-func-grid">
+           <div class="pd-func-grid">
+
+                <div class="pd-func-card">
+                <div class="pd-func-icon">
+                    <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="8" width="24" height="24" rx="2" stroke="#0056D6" stroke-width="1.5"/><path d="M14 8v24M20 8v24M26 8v24M8 14h24M8 20h24M8 26h24" stroke="#0056D6" stroke-width="1.2" stroke-opacity="0.5"/></svg>
+                </div>
+                <h3 class="pd-func-title">BeiDou Architecture</h3>
+                <p class="pd-func-desc">Powered by domestic BeiDou-3 chips for complete technical autonomy. Fully supports single-constellation positioning while maintaining compatibility with all major global satellite systems.</p>
+                </div>
 
                 <div class="pd-func-card">
                 <div class="pd-func-icon">
                     <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#0056D6" stroke-width="1.5"/><path d="M20 10v10l6 4" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
                 </div>
-                <h3 class="pd-func-title">Real-time Displacement Monitoring</h3>
-                <p class="pd-func-desc">Continuously computes 3D displacement vectors relative to a fixed reference station. Onboard buffering ensures no data loss during communication outages up to 72 hours.</p>
-                </div>
-
-                <div class="pd-func-card">
-                <div class="pd-func-icon">
-                    <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="4" stroke="#0056D6" stroke-width="1.5"/><circle cx="20" cy="20" r="10" stroke="#0056D6" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="20" cy="20" r="16" stroke="#0056D6" stroke-width="1.5" stroke-dasharray="2 4"/></svg>
-                </div>
-                <h3 class="pd-func-title">Multi-constellation Signal Tracking</h3>
-                <p class="pd-func-desc">Simultaneously tracks GPS, BeiDou, GLONASS, and Galileo signals across 800 channels. Multi-constellation redundancy maintains continuity when individual systems degrade.</p>
+                <h3 class="pd-func-title">90-Day Adaptive Stamina</h3>
+                <p class="pd-func-desc">Features autonomous frequency-variable monitoring to achieve ultra-low power consumption. A single charge provides up to 90 days of continuous operation in typical field conditions.</p>
                 </div>
 
                 <div class="pd-func-card">
                 <div class="pd-func-icon">
                     <svg viewBox="0 0 40 40" fill="none"><path d="M8 28l8-10 6 6 6-12 8 8" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><path d="M28 10h6v6" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
                 </div>
-                <h3 class="pd-func-title">Automated Threshold Alerting</h3>
-                <p class="pd-func-desc">Onboard alert logic evaluates displacement magnitude, velocity, and acceleration against three-tier thresholds, triggering immediate transmission independent of regular reporting cycles.</p>
+                <h3 class="pd-func-title">Advanced Intelligent Analytics</h3>
+                <p class="pd-func-desc">Integrates multi-source data fusion algorithms for high-precision computation. Intelligent on-device analytics ensure that every data point is accurate, reliable, and actionable.</p>
                 </div>
 
                 <div class="pd-func-card">
                 <div class="pd-func-icon">
-                    <svg viewBox="0 0 40 40" fill="none"><path d="M20 8v6M20 26v6M8 20h6M26 20h6" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="20" cy="20" r="6" stroke="#0056D6" stroke-width="1.5"/><path d="M13 13l3 3M24 24l3 3M13 27l3-3M24 13l3-3" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                    <svg viewBox="0 0 40 40" fill="none"><path d="M10 12h20M10 20h20M10 28h20" stroke="#0056D6" stroke-width="1.5"/><path d="M14 8v24M26 8v24" stroke="#0056D6" stroke-width="1.5" stroke-dasharray="2 2"/></svg>
                 </div>
-                <h3 class="pd-func-title">Autonomous Power Management</h3>
-                <p class="pd-func-desc">Integrated MPPT solar charge controller with 20Ah LiFePO₄ battery provides up to 5 days of operation without solar input. Power status reported alongside displacement data.</p>
-                </div>
-
-                <div class="pd-func-card">
-                <div class="pd-func-icon">
-                    <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="14" width="10" height="14" rx="1" stroke="#0056D6" stroke-width="1.5"/><rect x="22" y="10" width="10" height="18" rx="1" stroke="#0056D6" stroke-width="1.5"/><path d="M13 14v-4M27 10V6M6 28h28" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
-                </div>
-                <h3 class="pd-func-title">Dual-channel Communications</h3>
-                <p class="pd-func-desc">Primary 4G LTE with automatic satellite fallback ensures data continuity in areas with unreliable cellular coverage. Local LoRa radio enables peer-to-peer mesh networking between units.</p>
+                <h3 class="pd-func-title">All-in-One Autonomous Station</h3>
+                <p class="pd-func-desc">Highly integrated design allows a single unit to function as a complete standalone monitoring station, significantly simplifying system architecture and reducing deployment footprints.</p>
                 </div>
 
                 <div class="pd-func-card">
                 <div class="pd-func-icon">
-                    <svg viewBox="0 0 40 40" fill="none"><rect x="10" y="8" width="20" height="24" rx="1" stroke="#0056D6" stroke-width="1.5"/><path d="M15 16h10M15 21h6" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="28" cy="28" r="6" fill="#fff" stroke="#0056D6" stroke-width="1.5"/><path d="M25 28l2 2 4-4" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                    <svg viewBox="0 0 40 40" fill="none"><path d="M20 8v6M20 26v6M8 20h6M26 20h6" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="20" cy="20" r="6" stroke="#0056D6" stroke-width="1.5"/></svg>
                 </div>
-                <h3 class="pd-func-title">Remote Configuration & OTA Update</h3>
-                <p class="pd-func-desc">All parameters configurable remotely via the Medo cloud platform. Firmware updates delivered over-the-air with rollback capability, minimizing maintenance visits to remote sites.</p>
+                <h3 class="pd-func-title">Rapid Field Deployment</h3>
+                <p class="pd-func-desc">The lightweight build and streamlined startup process enable efficient, single-person installation and maintenance, minimizing time and labor requirements at remote sites.</p>
+                </div>
+
+                <div class="pd-func-card">
+                <div class="pd-func-icon">
+                    <svg viewBox="0 0 40 40" fill="none"><path d="M20 8v4M20 28v4M8 20h4M28 20h4M11.5 11.5l2.8 2.8M25.7 25.7l2.8 2.8M11.5 28.5l2.8-2.8M25.7 14.3l2.8-2.8" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="pd-func-title">Industrial-Grade Resilience</h3>
+                <p class="pd-func-desc">Designed to withstand extreme environments with robust waterproof, dustproof, and anti-static protection. Operates reliably across wide temperature ranges with built-in surge defense.</p>
                 </div>
 
             </div>
@@ -535,63 +534,51 @@
               <div class="pd-spec-table">
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Constellations</span>
-                  <span class="pd-spec-val">BDS / GPS / GLONASS / Galileo / Navic / SBAS</span>
+                  <span class="pd-spec-val">BDS / GPS / GLONASS / Galileo</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Tracking Signals</span>
-                  <span class="pd-spec-val">4 Constellations / 15 Frequencies</span>
+                  <span class="pd-spec-key">Static Accuracy</span>
+                  <span class="pd-spec-val">H: ±(2.5 + 0.5ppm×D) mm; V: ±(5 + 0.5ppm×D) mm</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Horizontal Accuracy</span>
-                  <span class="pd-spec-val">≤ 0.8 cm + 1.0 ppm (RTK)</span>
+                  <span class="pd-spec-key">RTK Accuracy</span>
+                  <span class="pd-spec-val">H: ±(8 + 1ppm×D) mm; V: ±(15 + 1ppm×D) mm</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Vertical Accuracy</span>
-                  <span class="pd-spec-val">≤ 1.5 cm + 1.0 ppm (RTK)</span>
+                  <span class="pd-spec-key">Tilt Measurement</span>
+                  <span class="pd-spec-val">Accuracy: ±0.01°; Range: Up to ±90°</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Static Relative Pos.</span>
-                  <span class="pd-spec-val">H: ±2.5mm + 0.5ppm; V: ±5mm + 0.5ppm</span>
-                </div>
-                <div class="pd-spec-row">
-                  <span class="pd-spec-key">Dynamic Relative Pos.</span>
-                  <span class="pd-spec-val">H: ±8mm + 1ppm; V: ±15mm + 1ppm</span>
-                </div>
-                <div class="pd-spec-row">
-                  <span class="pd-spec-key">Data Update Rate</span>
-                  <span class="pd-spec-val">10 Hz</span>
-                </div>
-                <div class="pd-spec-row">
-                  <span class="pd-spec-key">Data Rate</span>
-                  <span class="pd-spec-val">0s – 24h (Sampling) / 0s – 72h (Upload)</span>
+                  <span class="pd-spec-key">Data Interval</span>
+                  <span class="pd-spec-val">Sampling: 0s–24h / Upload: 0s–72h</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Communication</span>
-                  <span class="pd-spec-val">5G / 4G / NB-IoT / LoRa / Wi-Fi / RS485</span>
+                  <span class="pd-spec-val">4G / LoRa / RS232 / RS485 / Bluetooth / Satellite</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Power Input</span>
-                  <span class="pd-spec-val">9V – 24V DC</span>
+                  <span class="pd-spec-key">Internal Storage</span>
+                  <span class="pd-spec-val">32GB (Encrypted)</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Power Consumption</span>
-                  <span class="pd-spec-val">≤ 1.0W</span>
+                  <span class="pd-spec-key">External Support</span>
+                  <span class="pd-spec-val">Sensors / Camera / Direct Solar Access</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Operating Temp.</span>
-                  <span class="pd-spec-val">−40°C to +75°C</span>
+                  <span class="pd-spec-val">−35°C to +80°C</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Protection Rating</span>
-                  <span class="pd-spec-val">IP68</span>
+                  <span class="pd-spec-key">Reliability</span>
+                  <span class="pd-spec-val">MTBF > 50,000 Hours</span>
                 </div>
                 <div class="pd-spec-row">
                   <span class="pd-spec-key">Dimensions</span>
-                  <span class="pd-spec-val">Φ206 × H185 mm</span>
+                  <span class="pd-spec-val">427 × 359 × 249 mm</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Weight</span>
-                  <span class="pd-spec-val">1.5 kg</span>
+                  <span class="pd-spec-key">Protection Rating</span>
+                  <span class="pd-spec-val">IP68 / ≤ 99%RH</span>
                 </div>
               </div>
             </div>
@@ -603,14 +590,13 @@
             <h2 class="pd-section-title">Related Solutions</h2>
             <div class="pd-solutions-grid">
 
-              <a class="pd-solution-btn" href="../solutions-mining-pit.html">
+              <a class="pd-solution-btn" href="../solution-tailing.html">
                 <div class="pd-solution-img">
-                  <img src="../images/mining/openpit.png" alt="Open-pit slope monitoring scene"
+                  <img src="../images-mine/minetailing.png" alt="Tailings Storage Facility Safety Monitoring Solution scene"
                     onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
-                  <div class="pd-solution-img-placeholder">Solution Image</div>
                 </div>
                 <span class="pd-sol-cat">Mining</span>
-                <h3 class="pd-sol-title">Open-pit Mine Slope Safety Monitoring</h3>
+                <h3 class="pd-sol-title">Tailings Storage Facility Safety Monitoring Solution</h3>
                 <span class="pd-sol-arrow">
                   Explore
                   <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
@@ -621,7 +607,6 @@
                 <div class="pd-solution-img">
                   <img src="../images/water/water-dam.png" alt="Reservoir dam monitoring scene"
                     onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
-                  <div class="pd-solution-img-placeholder">Solution Image</div>
                 </div>
                 <span class="pd-sol-cat">Water Infrastructure</span>
                 <h3 class="pd-sol-title">Reservoir Dam Deformation Monitoring</h3>
