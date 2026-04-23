@@ -1,0 +1,124 @@
+<style>
+    .pd-func-grid {
+  display: grid;
+  /* 改为 2 列布局，视觉更稳重 */
+  grid-template-columns: repeat(2, 1fr);
+  /* 移除背景色模拟线，改用常规边框逻辑 */
+  background: transparent;
+  border-top: 1px solid #EEEEEE;
+  border-left: 1px solid #EEEEEE;
+}
+
+.pd-func-card {
+  background: #fff;
+  padding: 40px; /* 增加内边距，提升呼吸感 */
+  display: flex;
+  flex-direction: row; /* 改为横向排布：图标在左，文字在右 */
+  align-items: flex-start;
+  gap: 24px;
+  border-right: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+  transition: all 0.3s ease;
+}
+
+.pd-func-card:hover {
+  background: #fcfdfe;
+  /* Hover 时加入一个非常浅的内部阴影，增加深度感 */
+  box-shadow: inset 0 0 20px rgba(0, 86, 214, 0.03);
+}
+
+.pd-func-icon {
+  flex-shrink: 0;
+  width: 52px; /* 稍微加大图标 */
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f4ff;
+  border-radius: 8px; /* 增加一点圆角，更现代 */
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.pd-func-card:hover .pd-func-icon {
+  background: #0056D6;
+}
+
+.pd-func-card:hover .pd-func-icon svg * {
+  stroke: #ffffff; /* Hover 时图标变白，背景变蓝，反色效果 */
+}
+
+.pd-func-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pd-func-title {
+  margin: 0;
+  font-size: 16px; /* 稍微增加字号 */
+  font-weight: 800;
+  color: #0f1f3d;
+  line-height: 1.2;
+}
+
+.pd-func-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+/* 响应式：平板和手机端改为单列 */
+@media (max-width: 992px) {
+  .pd-func-grid {
+    grid-template-columns: 1fr;
+  }
+  .pd-func-card {
+    padding: 32px 24px;
+  }
+}
+</style>
+<div class="pd-func-grid">
+
+    <div class="pd-func-card">
+        <div class="pd-func-icon">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#0056D6" stroke-width="1.5"/><path d="M20 10v10l6 4" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+        </div>
+        <div class="pd-func-content">
+            <h3 class="pd-func-title">High-Precision Displacement Monitoring</h3>
+            <p class="pd-func-desc">Continuously computes 3D displacement vectors with millimeter accuracy. Onboard buffering ensures zero data loss during communication outages.</p>
+        </div>
+    </div>
+
+    <div class="pd-func-card">
+        <div class="pd-func-icon">
+            <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="4" stroke="#0056D6" stroke-width="1.5"/><circle cx="20" cy="20" r="10" stroke="#0056D6" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="20" cy="20" r="16" stroke="#0056D6" stroke-width="1.5" stroke-dasharray="2 4"/></svg>
+        </div>
+        <div class="pd-func-content">
+            <h3 class="pd-func-title">Multi-constellation Signal Tracking</h3>
+            <p class="pd-func-desc">Simultaneously tracks 1408 channels across GPS, BeiDou, GLONASS, and Galileo, maintaining stable positioning in challenging environments.</p>
+        </div>
+    </div>
+
+    <div class="pd-func-card">
+        <div class="pd-func-icon">
+            <svg viewBox="0 0 40 40" fill="none"><rect x="8" y="14" width="10" height="14" rx="1" stroke="#0056D6" stroke-width="1.5"/><rect x="22" y="10" width="10" height="18" rx="1" stroke="#0056D6" stroke-width="1.5"/><path d="M13 14v-4M27 10V6M6 28h28" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+        </div>
+        <div class="pd-func-content">
+            <h3 class="pd-func-title">Robust Hybrid Communications</h3>
+            <p class="pd-func-desc">Integrated 4G/5G backhaul with LoRa mesh capabilities, ensuring reliable data transmission from the most remote and obstructed field sites.</p>
+        </div>
+    </div>
+
+    <div class="pd-func-card">
+        <div class="pd-func-icon">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M8 28l8-10 6 6 6-12 8 8" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/><path d="M28 10h6v6" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+        </div>
+        <div class="pd-func-content">
+            <h3 class="pd-func-title">Intelligent Threshold Alerting</h3>
+            <p class="pd-func-desc">Edge-computing logic evaluates displacement velocity and acceleration, triggering instant alerts when multi-tier thresholds are exceeded.</p>
+        </div>
+    </div>
+
+</div>
