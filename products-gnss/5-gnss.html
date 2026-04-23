@@ -37,13 +37,13 @@
       }
       .pd-heading {
         margin: 0 0 8px;
-        font-size: clamp(32px, 4vw, 52px);
+        font-size: clamp(44px, 5.5vw, 68px);
         font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; color: #0f1f3d;
       }
       .pd-heading-sub {
         margin: 0 0 20px;
-        font-size: clamp(21px, 2.4vw, 27px);
-        font-weight: 600; color: #9ca3af; letter-spacing: 0.02em;
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 800; color: #0056D6; letter-spacing: 0.02em;
       }
       .pd-hero-desc { margin: 0 0 28px; font-size: 15px; line-height: 1.75; color: #4a5568; }
 
@@ -57,6 +57,7 @@
 
       .pd-hero-right {
         position: relative; overflow: hidden; background: #0f1f3d;
+        min-height: 360px;
       }
       .pd-hero-right img {
         width: 100%; height: 100%; object-fit: cover; display: block;
@@ -166,7 +167,7 @@
 
       .pd-func-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 1px;
         background: #0056b3; /* gap 颜色用背景色模拟细线 */
         }
@@ -381,7 +382,7 @@
         <span class="pd-breadcrumb-sep" aria-hidden="true">/</span>
         <a href="../products.html">GNSS</a>
         <span class="pd-breadcrumb-sep" aria-hidden="true">/</span>
-        <span class="pd-breadcrumb-current" aria-current="page">E40</span>
+        <span class="pd-breadcrumb-current" aria-current="page">A800</span>
       </div>
     </nav>
 
@@ -389,17 +390,16 @@
     <section class="pd-hero" aria-label="Product hero">
       <div class="container" style="display:contents;">
         <div class="pd-hero-left">
-          <span class="pd-eyebrow">GNSS Monitoring Receiver</span>
-          <h1 class="pd-heading">E40</h1>
-          <p class="pd-heading-sub">GNSS Receiver</p>
+          <span class="pd-eyebrow">GNSS Antenna</span>
+          <h1 class="pd-heading">A800</h1>
+          <p class="pd-heading-sub">3D Choke Ring Antenna</p>
           <div class="pd-hero-tags">
             <span class="pd-hero-tag">3D Choke Ring Synergy</span>
             <span class="pd-hero-tag">Mobile-Web</span>
           </div>
         </div>
         <div class="pd-hero-right">
-          <!-- 替换 src 为实际产品图片 -->
-          <img src="../images/hardware/e40-1.png" alt="Medo E40 GNSS Receiver"
+          <img src="../images/hardware/a800.png" alt="3D Choke Ring Antenna"
             onerror="this.style.display='none'; this.parentElement.querySelector('.pd-img-placeholder').style.display='flex';" />
           <div class="pd-img-placeholder" style="display:none; position:absolute; inset:0;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg>
@@ -433,26 +433,16 @@
           <!-- 01 产品简介 -->
           <section id="intro" class="pd-section" style="scroll-margin-top:100px;">
             <span class="pd-section-label">01 / Product Overview</span>
-            <h2 class="pd-section-title">E40 ｜ Geodetic-Grade Split-Design GNSS Receiver</h2>
-          <p class="pd-intro-text">
-            The E40 is a specialized millimeter-level monitoring receiver engineered for high-stakes structural health and geodetic applications. Its distinctive split-design architecture provides maximum site flexibility, allowing the host to be paired with a wide array of industry-standard GNSS antennas. For peak performance, the E40 is optimized for synergy with 
-            <a href="../products-gnss/5-gnss.html" target="_blank" rel="noopener noreferrer">
-              <strong>Medo's 3D Choke Ring Antenna</strong>
-            </a>, 
-            a combination that significantly suppresses multi-path interference to deliver rapid, high-fidelity data acquisition. Featuring integrated 4G and WiFi modules for driverless mobile configuration, the E40 is the preferred choice for demanding sectors including mining, dam safety, bridge deformation, and maritime geodetic surveying.
-          </p>
+            <h2 class="pd-section-title">A800 ｜ High-Precision 3D Choke Ring Antenna</h2>
+          <p class="pd-intro-text">The A800 is a geodetic-grade, four-system multi-frequency 3D choke ring antenna engineered for the most demanding high-precision monitoring environments. Designed to track BDS, GPS, GLONASS, and Galileo constellations simultaneously, it serves as a robust signal foundation for geodetic mapping, seismic research, and large-scale structural health projects. Its unique 3D architecture provides an unmatched barrier against multipath interference, ensuring that high-stakes monitoring in ports, dams, and landslide zones maintains sub-millimeter stability even in complex signal landscapes.</p>
               <div class="pd-intro-stats">
               <div class="pd-intro-stat">
-                <div class="pd-intro-stat-val">Linux</div>
-                <div class="pd-intro-stat-label">Operating System</div>
+                <div class="pd-intro-stat-val">100m+</div>
+                <div class="pd-intro-stat-label">High-Gain Signal Reach</div>
               </div>
               <div class="pd-intro-stat">
-                <div class="pd-intro-stat-val">IP68</div>
-                <div class="pd-intro-stat-label">Protection Rating</div>
-              </div>
-              <div class="pd-intro-stat">
-                <div class="pd-intro-stat-val">Cortex-A8</div>
-                <div class="pd-intro-stat-label">Processor</div>
+                <div class="pd-intro-stat-val">3D</div>
+                <div class="pd-intro-stat-label">Multipath Mitigation</div>
               </div>
             </div>
           </section>
@@ -465,37 +455,30 @@
 
                 <div class="pd-func-card">
                 <div class="pd-func-icon">
-                    <svg viewBox="0 0 40 40" fill="none"><path d="M20 8v24M8 20h24" stroke="#0056D6" stroke-width="1.5" stroke-opacity="0.3"/><path d="M12 12l16 16M28 12L12 28" stroke="#0056D6" stroke-width="1.5" stroke-opacity="0.3"/><circle cx="20" cy="20" r="8" stroke="#0056D6" stroke-width="1.8"/><path d="M20 15v5l3 2" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                    <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#0056D6" stroke-width="1.5"/><path d="M20 10v20M10 20h20" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/><circle cx="20" cy="20" r="2" fill="#0056D6"/></svg>
                 </div>
-                <h3 class="pd-func-title">High-Dynamic Precision Engine</h3>
-                <p class="pd-func-desc">Powered by an imported dual-star five-frequency GNSS board, the system utilizes unfiltered pseudorange data for superior dynamic capture and carrier-phase resolution, ensuring 20,000 hours of MTBF with ultra-low multipath error.</p>
-                </div>
-
-                <div class="pd-func-card">
-                <div class="pd-func-icon">
-                    <svg viewBox="0 0 40 40" fill="none"><path d="M22 6L14 20h8l-2 14 12-18h-8l2-6z" stroke="#0056D6" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 12c-2 4-2 12 0 16M32 12c2 4 2 12 0 16" stroke="#0056D6" stroke-width="1.2" stroke-dasharray="3 3"/></svg>
-                </div>
-                <h3 class="pd-func-title">Fail-Safe Electrical Resilience</h3>
-                <p class="pd-func-desc">Features 2000V photoelectric isolation to protect against overcurrent, overvoltage, and reverse polarity. This robust architecture effectively shields the receiver from lightning strikes and induced surges in harsh field environments.</p>
+                <h3 class="pd-func-title">Sub-Millimeter Phase Center Precision</h3>
+                <p class="pd-func-desc">Achieves sub-millimeter phase center accuracy with exceptional stability and repeatability. This geodetic-grade precision ensures highly reliable data acquisition for bridge deformation, seismic monitoring, and landslide tracking.</p>
                 </div>
 
                 <div class="pd-func-card">
                 <div class="pd-func-icon">
-                    <svg viewBox="0 0 40 40" fill="none"><rect x="12" y="12" width="16" height="16" rx="2" stroke="#0056D6" stroke-width="1.8"/><path d="M16 32v4M24 32v4M32 16h4M32 24h4M4 16h4M4 24h4M16 4v4M24 4v4" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
+                    <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#0056D6" stroke-width="1" stroke-dasharray="2 2"/><circle cx="20" cy="20" r="12" stroke="#0056D6" stroke-width="1.5"/><circle cx="20" cy="20" r="8" stroke="#0056D6" stroke-width="2"/><circle cx="20" cy="20" r="2" fill="#0056D6"/></svg>
                 </div>
-                <h3 class="pd-func-title">Industrial Multi-Network Hub</h3>
-                <p class="pd-func-desc">Encased in an Al-Mg alloy shell with Swiss LEMO connectors, the 32-bit ARM-powered unit supports Fiber, Ethernet, and Wireless Bridges. Integrated TCP/IP protocols ensure seamless data transmission across diverse infrastructure modes.</p>
+                <h3 class="pd-func-title">Advanced 3D Multi-path Suppression</h3>
+                <p class="pd-func-desc">The unique 3D choke ring architecture is specifically designed to mitigate multi-path interference. By effectively filtering reflected signals, it maintains superior data fidelity in complex environments like ports and urban corridors.</p>
                 </div>
 
                 <div class="pd-func-card">
                 <div class="pd-func-icon">
-                    <svg viewBox="0 0 40 40" fill="none"><path d="M10 10h20v20H10V10z" stroke="#0056D6" stroke-width="1.8"/><path d="M14 10v20M26 10v20M10 14h20M10 26h20" stroke="#0056D6" stroke-width="1" stroke-opacity="0.4"/><circle cx="20" cy="20" r="3" fill="#0056D6"/></svg>
+                    <svg viewBox="0 0 40 40" fill="none"><path d="M8 20c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#0056D6" stroke-width="1.5"/><path d="M14 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#0056D6" stroke-width="1.5"/><path d="M20 32V20l4 4" stroke="#0056D6" stroke-width="1.5" stroke-linecap="square"/></svg>
                 </div>
-                <h3 class="pd-func-title">Edge Autonomy & Data Security</h3>
-                <p class="pd-func-desc">Equipped with 16GB of internal storage supporting raw data logging up to 20Hz. An embedded web server allows for remote parameter configuration and management via any standard browser, independent of local software.</p>
+                <h3 class="pd-func-title">Superior Low-Elevation Signal Gain</h3>
+                <p class="pd-func-desc">Engineered with high gain at low elevation angles to maximize satellite availability in obstructed terrains. Integrated high-gain LNAs support stable, low-noise signal transmission over cable distances exceeding 100 meters.</p>
                 </div>
 
             </div>
+            
           </section>
 
           <!-- 03 具体参数 -->
@@ -506,54 +489,54 @@
               <!-- 参数表 -->
               <div class="pd-spec-table">
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Constellations</span>
-                  <span class="pd-spec-val">BDS / GPS / GLONASS (3-Constellation 8-Frequency)</span>
+                    <span class="pd-spec-key">Constellations</span>
+                    <span class="pd-spec-val">GPS / BDS / GLONASS / Galileo / IRNSS / L-Band</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Detection Accuracy</span>
-                  <span class="pd-spec-val">H: ±(1.2 + 1ppm×D) mm; V: ±(2.5 + 1ppm×D) mm</span>
+                    <span class="pd-spec-key">Phase Center Error</span>
+                    <span class="pd-spec-val">± 1.0 mm</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Static Accuracy</span>
-                  <span class="pd-spec-val">H: ±(2.5 + 0.5ppm×D) mm; V: ±(5 + 0.5ppm×D) mm</span>
+                    <span class="pd-spec-key">Antenna Gain</span>
+                    <span class="pd-spec-val">Normal: ≥ 5dBi; @20° Elevation: ≥ -5dBi</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Dynamic Accuracy</span>
-                  <span class="pd-spec-val">H: ±(8 + 1ppm×D) mm; V: ±(15 + 1ppm×D) mm</span>
+                    <span class="pd-spec-key">Axial Ratio</span>
+                    <span class="pd-spec-val">Boresight: ≤ 2dB; @20° Elevation: ≤ 4dB</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Communication</span>
-                  <span class="pd-spec-val">4G / 5G Full Netcom / NB-IoT / Local TCP</span>
+                    <span class="pd-spec-key">LNA Performance</span>
+                    <span class="pd-spec-val">Gain: 50 ± 2dB; Noise Figure: ≤ 2dB</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Transmission Protocols</span>
-                  <span class="pd-spec-val">MQTT / NTRIP Server / HTTPS / Modbus / TCP/IP</span>
+                    <span class="pd-spec-key">Signal Rejection</span>
+                    <span class="pd-spec-val">≥ 30dB (@BW ± 100MHz)</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Storage Capacity</span>
-                  <span class="pd-spec-val">32GB (Up to 3 years of raw observation data)</span>
+                    <span class="pd-spec-key">Power Input</span>
+                    <span class="pd-spec-val">3V – 16V DC; Current ≤ 60mA</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Power Management</span>
-                  <span class="pd-spec-val">9V – 36V DC; Consumption ≤ 1.5W (Average)</span>
+                    <span class="pd-spec-key">Operating Temp.</span>
+                    <span class="pd-spec-val">−40°C to +85°C</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Operating Temp.</span>
-                  <span class="pd-spec-val">−40°C to +75°C (Humidity 0%–99%RH)</span>
+                    <span class="pd-spec-key">Resilience</span>
+                    <span class="pd-spec-val">Surge ≥ 4kV; ESD ≥ 8kV; MTBF ≥ 30,000h</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Protection Rating</span>
-                  <span class="pd-spec-val">IP68</span>
+                    <span class="pd-spec-key">Protection Rating</span>
+                    <span class="pd-spec-val">IP67 (1m immersion); Salt Fog Resistant</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Dimensions</span>
-                  <span class="pd-spec-val">172 × 116 × 60 mm</span>
+                    <span class="pd-spec-key">Weight</span>
+                    <span class="pd-spec-val">8.6 kg ± 0.2</span>
                 </div>
                 <div class="pd-spec-row">
-                  <span class="pd-spec-key">Physical Interface</span>
-                  <span class="pd-spec-val">RS485 / TNC Antenna / SMA WiFi & 4G</span>
+                    <span class="pd-spec-key">Dimensions</span>
+                    <span class="pd-spec-val">Φ380 × 300 mm (Connector: TNC-K)</span>
                 </div>
-              </div>
+                </div>
             </div>
           </section>
 
@@ -563,26 +546,26 @@
             <h2 class="pd-section-title">Related Solutions</h2>
             <div class="pd-solutions-grid">
 
-              <a class="pd-solution-btn" href="../solutions-urban-fundation.html">
+              <a class="pd-solution-btn" href="../solutions-geo-collapse.html">
                 <div class="pd-solution-img">
-                  <img src="../images/urban/urban-building.png" alt="Open-pit slope monitoring scene"
+                  <img src="../images/geology/geo-collapse.png" alt="Rockfall & Collapse Safety Monitoring"
                     onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
                 </div>
-                <span class="pd-sol-cat">Urban Infrastructure</span>
-                <h3 class="pd-sol-title">Integrated Building Structural Health Monitoring</h3>
+                <span class="pd-sol-cat">Geology Hazards</span>
+                <h3 class="pd-sol-title">Rockfall & Collapse Safety Monitoring</h3>
                 <span class="pd-sol-arrow">
                   Explore
                   <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
                 </span>
               </a>
 
-              <a class="pd-solution-btn" href="../solutions-water-slope.html">
+              <a class="pd-solution-btn" href="../solutions-water-irrigation.html">
                 <div class="pd-solution-img">
-                  <img src="../images/water/water-slope.png" alt="Reservoir Slope Online Monitoring"
+                  <img src="../images/water/water-irrigation.png" alt="Smart Irrigation District Integrated Monitoring"
                     onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
                 </div>
                 <span class="pd-sol-cat">Water Infrastructure</span>
-                <h3 class="pd-sol-title">Reservoir Slope Online Monitoring</h3>
+                <h3 class="pd-sol-title">Smart Irrigation District Integrated Monitoring</h3>
                 <span class="pd-sol-arrow">
                   Explore
                   <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
