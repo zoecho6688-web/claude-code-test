@@ -72,38 +72,48 @@
       }
       .pd-hero-desc {
         margin: 0 0 28px;
-        font-size: 15px;
+        font-size: 18px;
         line-height: 1.75;
         color: #4a5568;
+        margin-top: auto;
       }
       .pd-hero-right {
         position: relative;
         overflow: hidden;
         background: #0f1f3d;
+        max-height: 360px;
         min-height: 360px;
       }
       .pd-hero-right::before {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        background: linear-gradient(
+          to right, #fff 0%, transparent 28%
+        );
         z-index: 1;
         pointer-events: none;
       }
       .pd-img-placeholder {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
-        min-height: 320px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 14px;
+        min-height: 0;
+        display: block;
         color: rgba(255,255,255,0.24);
-        border-left: 1px solid rgba(255,255,255,0.08);
-        background:
-          radial-gradient(circle at top left, rgba(255,255,255,0.14), transparent 36%),
-          linear-gradient(135deg, rgba(5,18,42,0.98), rgba(15,31,61,0.95));
+        border-left: none;
+        background: transparent;
+        overflow: hidden;
+      }
+      .pd-img-placeholder img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: cover;
+        object-position: center;
       }
       .pd-img-placeholder svg { width: 48px; height: 48px; }
       .pd-img-placeholder span {
@@ -248,11 +258,11 @@
 
       /* 01 Overview */
       .pd-intro {
-        width: 480px;
-        margin: 24px 0;
+        width: 600px;
+        margin: 12px 0;
       }
       .pd-intro-desc {
-        margin: -12px 0 24px;
+        margin: 12px 0 ;
         font-size: 16px;
         line-height: 1.7;
         color: #4a5568;
@@ -312,9 +322,9 @@
 
         /* 左侧图片区域 (取代原本的 icon) */
         .pd-func-media {
-        flex: 0 0 220px; /* 固定图片容器宽度 */
+        flex: 0 0 200px; /* 固定图片容器宽度 */
         height: 140px;
-        background: #f8fbff;
+        background: transparent;
         border-radius: none;
         overflow: hidden;
         position: relative;
@@ -327,26 +337,72 @@
         transition: transform 0.4s ease;
         }
 
+        .pd-func-media svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        }
+
         .pd-func-card:hover .pd-func-media img {
-        transform: scale(1.05); /* 悬停时图片轻微放大 */
+        transform: none; /* 悬停时图片轻微放大 */
         }
         /* 卡片文字区 */
         .pd-func-text {
         flex: 1;
+        position: relative;
+        min-height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
         }
 
-        .pd-func-text h3 {
-        margin: 0 0 8px;
-        font-size: 16px;
-        font-weight: 700;
-        color: #0f1f3d;
-        }
-
-        .pd-func-text p {
+        .pd-func-title {
         margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.45;
+        color: #0f1f3d;
+        max-height: 96px;
+        overflow: hidden;
+        transform: translateY(0);
+        opacity: 1;
+        transition:
+        transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 260ms ease;
+        }
+
+        .pd-func-desc-text {
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
         font-size: 13px;
-        line-height: 1.6;
+        line-height: 1.7;
         color: #4a5568;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: 
+        transform 330ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 520ms ease;
+        pointer-events: none;
+        margin-top: 0px;
+        }
+
+        .pd-func-card:hover .pd-func-title {
+        font-size: 16px;
+        max-height: 0;
+        transform: translateY(-12px);
+        opacity: 0;
+        }
+
+        .pd-func-card:hover .pd-func-desc-text {
+        max-height: 500px;
+        transform: translateY(0);
+        opacity: 1;
+        }
+
+        .pd-func-card:hover .pd-func-text {
+        justify-content: flex-start;
         }
 
         /* 📱 响应式适配 */
@@ -373,6 +429,30 @@
             width: 100%;
             flex: none;
             height: 200px; /* 手机端图片更高 */
+        }
+
+        .pd-func-text {
+            min-height: auto;
+            width: 100%;
+            overflow: visible;
+            display: block;
+        }
+
+        .pd-func-title,
+        .pd-func-desc-text {
+            display: block;
+            transform: none;
+            opacity: 1;
+            max-height: none;
+            overflow: visible;
+        }
+
+        .pd-func-title {
+            margin: 0 0 8px;
+        }
+
+        .pd-func-desc-text {
+            pointer-events: auto;
         }
 
         .pd-func-card:hover {
@@ -507,8 +587,16 @@
           padding: 48px 20px 32px;
           margin-left: 0;
         }
-        .pd-hero-right { height: 240px; }
-        .pd-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+        .pd-hero-right { height: 240px; min-height: 240px; }
+        .pd-hero-right::before {
+          background: linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.72) 0%,
+            rgba(255,255,255,0.28) 14%,
+            rgba(255,255,255,0.10) 28%,
+            transparent 46%
+          );
+        }
         .pd-body { grid-template-columns: 1fr; padding: 0; }
         .pd-sidenav {
           position: static;
@@ -584,18 +672,13 @@
     <section class="pd-hero" aria-label="Product hero">
       <div class="container" style="display:contents;">
         <div class="pd-hero-left">
-          <span class="pd-eyebrow">Monitoring Data Transmission Platform</span>
           <h1 class="pd-heading">MDT</h1>
-          <p class="pd-heading-sub">Platform</p>
-          <p class="pd-hero-desc">This hero copy is intentionally left as a placeholder. Replace it with the final platform positioning, value proposition, or one-sentence summary of MDT.</p>
+          <p class="pd-heading-sub">IoT Cloud Platform</p>
+          <p class="pd-hero-desc">More comprehensive management of the entire equipment lifecycle.</p>
         </div>
         <div class="pd-hero-right">
           <div class="pd-img-placeholder" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="3" y="4" width="18" height="16" rx="2" />
-              <path d="M7 9h10M7 13h6" stroke-linecap="square" />
-            </svg>
-            <span>Hero Image Placeholder</span>
+            <img src="../images/software/mdt.png">
           </div>
         </div>
       </div>
@@ -620,11 +703,11 @@
         <div class="pd-content">
           <!-- 01 Overview -->
           <section id="overview" class="pd-section" style="scroll-margin-top:100px;">
-            <span class="pd-section-label">01 / Overview</span>
-            <h2 class="pd-section-title">Platform Overview</h2>
             <div class="pd-intro">
-                <p class="pd-intro-desc">Use this section to introduce MDT at a high level. The copy below is only a placeholder so you can replace it with the final overview text later.</p>
-            </div>         
+                <span class="pd-section-label">01 / Overview</span>
+                <h2 class="pd-section-title">Achieve comprehensive management through one single platform.</h2>
+                <p class="pd-intro-desc">This intelligent IoT middleware platform integrates IoT, Big Data, and Artificial Intelligence technologies, comprising core modules such as device data access, message orchestration, stream computing, rule engines, business centers, and an open platform. Designed specifically for developers, O&M specialists, and project managers, it facilitates highly efficient device deployment and maintenance. Furthermore, the platform enables comprehensive monitoring of uploaded sensor data while providing a robust data backbone for diverse business applications.</p>
+            </div>    
           </section>
 
           <!-- 02 功能说明 -->
@@ -635,71 +718,135 @@
                 <span class="pd-section-label">02 / Platform Functions</span>
                 <h2 class="pd-section-title">Six Core Modules</h2>
                 <p class="pd-functions-desc">
-                    Explore the core capabilities driving our platform.
+                    Enable full-cycle management of equipment, data, and projects.
                 </p>
                 </div>
 
                 <div class="pd-functions-stack">
-                
+                <!--01-->
                 <article class="pd-func-card">
                     <div class="pd-func-media">
-                    <img src="../images/hero-mining.png" alt="Data Acquisition" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="../images/software/mdt-1.png" alt="Data Acquisition" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     </div>
                     <div class="pd-func-text">
-                    <h3>Real-time Data Acquisition</h3>
-                    <p>
+                    <h3 class="pd-func-title">Command Center: Global Project Configuration and Visualization</h3>
+                    <p class="pd-func-desc-text">
                         Real-time, multi-dimensional presentation of the overall operational status of platform devices, including device data reporting volume, device online status, device alarms, IoT card data usage, and more. Supports various display formats such as numerical values, line charts, bar charts, etc., and can be customized according to specific requirements.
                     </p>    
                     </div>
                 </article>
-
+                
+                <!--02-->
                 <article class="pd-func-card">
                     <div class="pd-func-media">
-                    <img src="../images/placeholder-2.jpg" alt="Device Management" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="../images/software/mdt-2.png" alt="Device Management" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     </div>
                     <div class="pd-func-text">
-                    <h3>Centralized Device Management</h3>
-                    <p>Monitor battery life, signal strength, and operational status for your entire hardware fleet from a single unified interface. Push OTA updates effortlessly.</p>
+                    <h3 class="pd-func-title">Product Management: Ecosystem Integration Administration</h3>
+                    <p class="pd-func-desc-text">
+                    Engineered for extensive compatibility with both Medo and third-party hardware ecosystems. This module empowers product administrators to perform multi-dimensional queries and data parsing based on product categories, access protocols, and custom tags, ensuring highly efficient management of the platform's hardware templates.
+                    </p>
                     </div>
                 </article>
 
+                <!-- 03 -->
                 <article class="pd-func-card">
                     <div class="pd-func-media">
-                    <img src="../images/placeholder-3.jpg" alt="Alerting Workflow" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="../images/software/mdt-3.png" alt="Alerting Workflow" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     </div>
                     <div class="pd-func-text">
-                    <h3>Multi-tier Alert Workflow</h3>
-                    <p>Configure complex, multi-variable trigger conditions. Receive instant notifications via SMS, email, or webhook when thresholds are breached, ensuring rapid response.</p>
+                    <h3 class="pd-func-title">Device Management: Unified O&M and Asset Administration</h3>
+                    <p class="pd-func-desc-text">
+                    Delivers comprehensive, multi-dimensional control and operations for individual field units. It centralizes device querying and management, facilitating seamless asset transfers, command execution, and remote debugging. Users can monitor real-time device parameters and data streams, while maintaining full historical traceability for system logs and over-the-air (OTA) firmware updates.
+                    </p>
                     </div>
                 </article>
 
+                <!-- 04 -->
                 <article class="pd-func-card">
                     <div class="pd-func-media">
-                    <img src="../images/placeholder-4.jpg" alt="Data Visualization" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <img src="../images/software/mdt-4.png" alt="Data Visualization" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                     </div>
                     <div class="pd-func-text">
-                    <h3>Dynamic Visualization</h3>
-                    <p>Transform raw metrics into actionable insights using interactive charts, spatial heatmaps, and customizable dashboards tailored to different stakeholder needs.</p>
+                        <h3 class="pd-func-title">Data Management: Intelligent Telemetry Analysis</h3>
+                        <p class="pd-func-desc-text">Continuously analyzes device status metrics to instantly identify and trigger warnings for data anomalies. Critical alerts are immediately pushed to designated personnel. The platform empowers administrators with real-time flexibility to manage and adjust contact directories and notification endpoints, ensuring a highly responsive incident management workflow.</p>                
                     </div>
                 </article>
 
+                <!-- 05 -->
                 <article class="pd-func-card">
                     <div class="pd-func-media">
-                    <img src="../images/placeholder-5.jpg" alt="Reporting" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <svg viewBox="0 0 200 140" role="img" aria-label="Early Warning Management icon" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#0056D6" fill="none" stroke-width="1.5" opacity="0.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M74 70 C 95 70, 95 36, 120 36 H 138"/>
+                            <path d="M132 32l4 4-4 4"/>
+                            <path d="M74 70 H 138"/>
+                            <path d="M132 66l4 4-4 4"/>
+                            <path d="M74 70 C 95 70, 95 104, 120 104 H 138"/>
+                            <path d="M132 100l4 4-4 4"/>
+                        </g>
+
+                        <g fill="none" stroke="#0056D6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="50" cy="70" r="22" fill="#fff" stroke-width="2.5"/> <path d="M50 58v12" stroke-width="2.5"/> <circle cx="50" cy="78" r="2" fill="#0056D6"/> </g>
+
+                        <g fill="none" stroke="#0056D6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="150" y="24" width="14" height="24" rx="2.5"/>
+                            <path d="M154 30h6"/>
+                            
+                            <rect x="148" y="63" width="20" height="14" rx="2"/>
+                            <path d="M148 63l10 7 10-7"/>
+                            
+                            <rect x="146" y="96" width="22" height="15" rx="2"/>
+                            <path d="M151 113h12"/>
+                        </g>
+                        </svg>
                     </div>
                     <div class="pd-func-text">
-                    <h3>Automated Reporting</h3>
-                    <p>Generate professional PDF or Excel reports automatically on daily, weekly, or monthly schedules. Streamline compliance and internal review processes.</p>
+                    <h3 class="pd-func-title">Early Warning Management: Real-Time Alert Routing</h3>
+                    <p class="pd-func-desc-text">Generate professional PDF or Excel reports automatically on daily, weekly, or monthly schedules. Streamline compliance and internal review processes.</p>
                     </div>
                 </article>
 
+                <!-- 06 -->
                 <article class="pd-func-card">
                     <div class="pd-func-media">
-                    <img src="../images/placeholder-6.jpg" alt="API Integration" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <svg viewBox="0 0 200 140" role="img" aria-label="Rule Engine icon" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#0056D6" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="32" cy="70" r="4" fill="#0056D6"/>
+                        <path d="M36 70h12"/>
+                    </g>
+
+                    <g stroke="#0056D6" fill="none" stroke-width="1.5" opacity="0.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M70 48v-8c0-10 10-10 20-10h36"/>
+                        <path d="M122 26l4 4-4 4"/>
+                        
+                        <path d="M92 70h34"/>
+                        <path d="M122 66l4 4-4 4"/>
+                        
+                        <path d="M70 92v8c0 10 10 10 20 10h36"/>
+                        <path d="M122 106l4 4-4 4"/>
+                    </g>
+
+                    <g stroke="#0056D6" fill="none" stroke-width="2" stroke-linejoin="round">
+                        <path d="M70 48l22 22-22 22-22-22z" fill="#fff"/>
+                        <circle cx="70" cy="70" r="5" stroke-width="1.5"/>
+                    </g>
+
+                    <g stroke="#0056D6" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="132" y="20" width="28" height="20" rx="3"/>
+                        <path d="M141 30h10"/>
+                        
+                        <rect x="132" y="60" width="28" height="20" rx="3"/>
+                        <path d="M141 70h10"/>
+                        
+                        <rect x="132" y="100" width="28" height="20" rx="3"/>
+                        <path d="M141 110h10"/>
+                    </g>
+                    </svg>
                     </div>
                     <div class="pd-func-text">
-                    <h3>API & Third-party Integration</h3>
-                    <p>Connect MDT to your existing enterprise systems. Our open RESTful APIs allow for bi-directional data flow with ERP, GIS, or custom digital twin platforms.</p>
+                    <h3 class="pd-func-title">Rule Engine: Dynamic Automation Workflows</h3>
+                    <p class="pd-func-desc-text">Empowers users with superior automated response configuration. By setting specific trigger parameters—such as data evaluation thresholds or specific device events—teams can automatically initiate corresponding actions to achieve customized automation. This robust architecture significantly enhances the cloud platform's scalability, enabling fluid, autonomous interactions across diverse business platforms.</p>
                     </div>
                 </article>
 
@@ -709,8 +856,8 @@
 
           <!-- 03 相关方案 -->
           <section id="solutions" class="pd-section" style="scroll-margin-top:100px;">
-            <span class="pd-section-label">03 / Related Solutions</span>
-            <h2 class="pd-section-title">Two Linked Solutions</h2>
+            <span class="pd-section-label">03 / Related Content</span>
+            <h2 class="pd-section-title">Solution & Case</h2>
             <div class="pd-solutions-grid">
               <a class="pd-solution-btn" href="../solutions-geo-flow.html">
                 <div class="pd-solution-visual">
@@ -719,50 +866,32 @@
                     alt="Related solution placeholder"
                     onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-visual-placeholder').style.display='flex';"
                   />
-                  <div class="pd-solution-visual-placeholder">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
-                      <rect x="4" y="4" width="16" height="16" rx="2" />
-                      <path d="M7 14l3-3 3 3 4-5" stroke-linecap="square" />
-                    </svg>
-                    <span>Solution Image 01</span>
-                  </div>
                 </div>
                 <div class="pd-solution-content">
-                  <span class="pd-sol-cat">Solution Link</span>
-                  <h3 class="pd-sol-title">Related Solution Placeholder</h3>
-                  <p class="pd-sol-copy">Replace with the final solution name and a short supporting description.</p>
+                  <span class="pd-sol-cat">Flash Flood & Debris Flow Monitoring</span>
+                  <p class="pd-sol-copy">Explore how to apply the MDT platform in geo-hazard monitoring.</p>
                   <div class="pd-sol-meta">
-                    <span class="pd-sol-chip">Link Placeholder</span>
                     <span class="pd-sol-arrow">
-                      Explore
+                      View Specific Solution
                       <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
                     </span>
                   </div>
                 </div>
               </a>
 
-              <a class="pd-solution-btn" href="../solutions-water-irrigation.html">
+              <a class="pd-solution-btn" href="../cases/geocase-1.html">
                 <div class="pd-solution-visual">
                   <img
-                    src="../images/water/water-irrigation.png"
+                    src="../images/geology/gc-1.png"
                     alt="Related solution placeholder"
                     onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-visual-placeholder').style.display='flex';"
                   />
-                  <div class="pd-solution-visual-placeholder">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
-                      <path d="M4 16c3-6 5-8 8-8s5 2 8 8" stroke-linecap="square" />
-                      <path d="M8 16h8" stroke-linecap="square" />
-                    </svg>
-                    <span>Solution Image 02</span>
-                  </div>
                 </div>
                 <div class="pd-solution-content">
-                  <span class="pd-sol-cat">Solution Link</span>
-                  <h3 class="pd-sol-title">Related Solution Placeholder</h3>
-                  <p class="pd-sol-copy">This placeholder can later point to another solution page that pairs naturally with MDT.</p>
-                    <span class="pd-sol-chip">Link Placeholder</span>
+                  <span class="pd-sol-cat">Guizhou Large-Scale Landslide Warning</span>
+                  <p class="pd-sol-copy">See how MDT plays a role in geohazard-prone areas.</p>
                     <span class="pd-sol-arrow">
-                      Explore
+                      Explore Guizhou Case
                       <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
                     </span>
                   </div>
