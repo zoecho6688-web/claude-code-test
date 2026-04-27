@@ -2878,7 +2878,7 @@ html{ scroll-behavior: smooth; }
   transition: opacity 160ms;
 }
 
-.plat-card-link:hover{ opacity: 0.65; }
+.plat-card-link:hover{ color:#003b99; }
 
 @media (max-width: 900px){
   .plat-modules{ grid-template-columns: 1fr 1fr; }
