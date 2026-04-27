@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="MDT Platform — a monitoring data transmission and device management platform for real-time acquisition, visualization, and alerting."
+    />
+    <title>MDT Platform | Medo</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── Breadcrumb ── */
+      .pd-breadcrumb { background: #fff; }
+      .pd-breadcrumb-inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 48px;
+        font-size: 15px;
+        color: #9ca3af;
+        white-space: nowrap;
+      }
+      .pd-breadcrumb a {
+        text-decoration: none;
+        color: #9ca3af;
+        transition: color 150ms;
+      }
+      .pd-breadcrumb a:hover { color: #0056D6; }
+      .pd-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .pd-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+
+      /* ── Hero ── */
+      .pd-hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: #fff;
+        border-bottom: 1px solid #EEEEEE;
+      }
+      .pd-hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 48px 48px 48px 0;
+        margin-left: max(20px, calc((100vw - 1120px) / 2));
+      }
+      .pd-eyebrow {
+        display: block;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0056D6;
+        margin-bottom: 16px;
+      }
+      .pd-heading {
+        margin: 0 0 8px;
+        font-size: clamp(44px, 5.5vw, 68px);
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1.0;
+        color: #0f1f3d;
+      }
+      .pd-heading-sub {
+        margin: 0 0 20px;
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 800;
+        color: #0056D6;
+        letter-spacing: 0.02em;
+      }
+      .pd-hero-desc {
+        margin: 0 0 28px;
+        font-size: 18px;
+        line-height: 1.75;
+        color: #4a5568;
+        margin-top: auto;
+      }
+      .pd-hero-right {
+        position: relative;
+        overflow: hidden;
+        background: #0f1f3d;
+        max-height: 360px;
+        min-height: 360px;
+      }
+      .pd-hero-right::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right, #fff 0%, transparent 28%
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+      .pd-img-placeholder {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        display: block;
+        color: rgba(255,255,255,0.24);
+        border-left: none;
+        background: transparent;
+        overflow: hidden;
+      }
+      .pd-img-placeholder img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: cover;
+        object-position: center;
+      }
+      .pd-img-placeholder svg { width: 48px; height: 48px; }
+      .pd-img-placeholder span {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      /* ── Page body ── */
+      .pd-body {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ── Sidebar nav ── */
+      /* ── Sidebar nav (线条串联模式) ── */
+        .pd-sidenav {
+        position: sticky;
+        top: 52px;
+        height: calc(100vh - 52px);
+        padding: 56px 32px 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0; /* 【关键】移除间距，让线条首尾相连 */
+        border-right: none;
+        }
+
+        .pd-sidenav-label {
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #c0c8d4;
+        margin-bottom: 20px;
+        padding-left: 24px; /* 让标签与下方的文字对齐 */
+        }
+
+        .pd-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 24px; /* 稍微增加上下内边距，让线段更长 */
+        font-size: 13px; /* 移除背景后，稍微放大字体增加存在感 */
+        font-weight: 600;
+        color: #9ca3af;
+        text-decoration: none;
+        /* 【关键】基础线条：浅灰色，形成串联的轨道 */
+        border-left: 2px solid #EEEEEE; 
+        background: transparent; /* 确保完全没有背景色 */
+        border-radius: 0; /* 移除圆角 */
+        transition: all 250ms ease;
+        }
+
+        .pd-nav-link .pd-nav-num {
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.10em;
+        color: #d1d5db;
+        transition: color 250ms ease;
+        flex-shrink: 0;
+        margin-top: 1px; /* 微调数字的垂直对齐 */
+        }
+
+        /* 悬停状态 (Hover) - 柔和的暗示 */
+        .pd-nav-link:hover {
+        color: #4a5568; /* 文字稍微变深 */
+        border-left-color: #cbd5e1; /* 线条变为中度灰，作为点击暗示 */
+        }
+        .pd-nav-link:hover .pd-nav-num { 
+        color: #9ca3af; 
+        }
+
+        /* 激活状态 (Active) - 强烈的蓝色高亮 */
+        .pd-nav-link.is-active {
+        color: #0056D6; 
+        font-weight: 700;
+        border-left-color: #0056D6; /* 高亮当前激活的线段 */
+        }
+        .pd-nav-link.is-active .pd-nav-num { 
+        color: #0056D6; 
+        }
+
+        /* ── 手机端响应式适配 (底部线条串联) ── */
+        @media (max-width: 768px) {
+        .pd-sidenav {
+            gap: 0;
+        }
+        .pd-sidenav-label {
+            display: none;
+        }
+        .pd-nav-link {
+            border-left: none; /* 手机端移除左侧线条 */
+            border-bottom: 2px solid #EEEEEE; /* 改为底部线条串联 */
+            padding: 12px 16px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .pd-nav-link:hover {
+            border-left-color: transparent;
+            border-bottom-color: #cbd5e1;
+        }
+        .pd-nav-link.is-active {
+            border-left-color: transparent;
+            border-bottom-color: #0056D6;
+        }
+        }
+
+      /* ── Content ── */
+      .pd-content { padding: 64px 0 80px 56px; }
+
+      .pd-section {
+        padding-bottom: 80px;
+        margin-bottom: 72px;
+        border-bottom: 1px solid #EEEEEE;
+      }
+      .pd-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 40px;
+      }
+
+      .pd-section-label {
+        display: block;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0056D6;
+        margin-bottom: 14px;
+      }
+      .pd-section-title {
+        margin: 0 0 24px;
+        font-size: clamp(20px, 2.6vw, 30px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #0f1f3d;
+      }
+
+      /* 01 Overview */
+      .pd-intro {
+        width: 700px;
+        margin: 12px 0;
+      }
+      .pd-intro-desc {
+        margin: 12px 0 ;
+        font-size: 16px;
+        line-height: 1.7;
+        color: #4a5568;
+      }
+
+      /* 02 Features */
+      /* ── 02 Platform Functions: 左侧固定，右侧滚动列表布局 ── */
+
+        .pd-functions-container {
+        display: flex;
+        gap: 60px;
+        align-items: flex-start;
+        margin-top: 32px;
+        }
+
+        /* 左侧介绍与标题区 */
+        .pd-functions-intro {
+        flex: 0 0 200px; /* 固定宽度，比之前稍微缩窄 */
+        position: sticky;
+        top: 120px; /* 控制滚动时的悬浮位置 */
+        }
+
+        .pd-functions-intro .pd-section-title {
+        margin: 0 0 16px;
+        }
+
+        .pd-functions-desc {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #4a5568;
+        }
+
+        /* 右侧功能卡片堆叠区 */
+        .pd-functions-stack {
+        flex: 1; /* 占据剩余全部宽度 */
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        }
+
+        /* 卡片样式 */
+        .pd-func-card {
+        background: #fff;
+        border: 1px solid #EEEEEE;
+        padding: 24px;
+        display: flex;
+        gap: 24px;
+        align-items: center; /* 确保图片和文字垂直居中 */
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pd-func-card:hover {
+        border-color: #0056D6;
+        transform: translateX(2px);
+        box-shadow: 0 4px 16px rgba(0, 86, 214, 0.08);
+        }
+
+        /* 左侧图片区域 (取代原本的 icon) */
+        .pd-func-media {
+        flex: 0 0 200px; /* 固定图片容器宽度 */
+        height: 140px;
+        background: transparent;
+        border-radius: none;
+        overflow: hidden;
+        position: relative;
+        }
+
+        .pd-func-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+        }
+
+        .pd-func-media svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        }
+
+        .pd-func-card:hover .pd-func-media img {
+        transform: none; /* 悬停时图片轻微放大 */
+        }
+        /* 卡片文字区 */
+        .pd-func-text {
+        flex: 1;
+        position: relative;
+        min-height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        }
+
+        .pd-func-title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.45;
+        color: #0f1f3d;
+        max-height: 96px;
+        overflow: hidden;
+        transform: translateY(0);
+        opacity: 1;
+        transition:
+        transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 260ms ease;
+        }
+
+        .pd-func-desc-text {
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        font-size: 13px;
+        line-height: 1.7;
+        color: #4a5568;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: 
+        transform 330ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 520ms ease;
+        pointer-events: none;
+        margin-top: 0px;
+        }
+
+        .pd-func-card:hover .pd-func-title {
+        font-size: 16px;
+        max-height: 0;
+        transform: translateY(-12px);
+        opacity: 0;
+        }
+
+        .pd-func-card:hover .pd-func-desc-text {
+        max-height: 500px;
+        transform: translateY(0);
+        opacity: 1;
+        }
+
+        .pd-func-card:hover .pd-func-text {
+        justify-content: flex-start;
+        }
+
+        /* 📱 响应式适配 */
+        @media (max-width: 992px) {
+        .pd-functions-container {
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .pd-functions-intro {
+            flex: auto;
+            position: static;
+            max-width: 100%;
+        }
+
+        .pd-func-card {
+            flex-direction: column; /* 手机端图片在上方 */
+            align-items: flex-start;
+            padding: 20px;
+            gap: 16px;
+        }
+
+        .pd-func-media {
+            width: 100%;
+            flex: none;
+            height: 200px; /* 手机端图片更高 */
+        }
+
+        .pd-func-text {
+            min-height: auto;
+            width: 100%;
+            overflow: visible;
+            display: block;
+        }
+
+        .pd-func-title,
+        .pd-func-desc-text {
+            display: block;
+            transform: none;
+            opacity: 1;
+            max-height: none;
+            overflow: visible;
+        }
+
+        .pd-func-title {
+            margin: 0 0 8px;
+        }
+
+        .pd-func-desc-text {
+            pointer-events: auto;
+        }
+
+        .pd-func-card:hover {
+            transform: translateY(-2px); /* 手机端改为向上浮动 */
+            box-shadow: 0px 8px 24px rgba(0, 86, 214, 0.08);
+        }
+        }
+
+            /* ── 仿 IBM 简约风格 Related Solutions ── */
+        .pd-solutions-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px; /* 增加两列之间的间距 */
+        margin-top: 32px;
+        width: 720px;
+        }
+
+        .pd-solution-btn {
+        display: flex;
+        flex-direction: column; /* 转换布局为垂直堆叠 */
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        background: transparent; /* 移除背景 */
+        border: none; /* 移除硬边框 */
+        overflow: visible; /* 允许圆角图片正确显示 */
+        }
+
+        /* 简约风格通常通过透明度变化而非位移来体现交互 */
+        .pd-solution-btn:hover {
+        border-color: transparent; /* 防止由于原始样式引入边框 */
+        transform: none; /* 移除位移 */
+        box-shadow: none; /* 移除阴影 */
+        }
+
+        /* 图片容器：调整为全宽、固定比例、大圆角 */
+        .pd-solution-visual {
+        width: 100%;
+        aspect-ratio: 16 / 10; /* 保持图片比例统一 */
+        background: #f4f4f4; /* 匹配轻微背景 */
+        border-radius: none; /* 大圆角 */
+        overflow: hidden;
+        margin-bottom: 24px; /* 与下方文字拉开间距 */
+        border: none; /* 移除内边框 */
+        }
+
+        .pd-solution-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        }
+
+        /* 文字内容区域 */
+        .pd-solution-content {
+        padding: 0; /* 移除内边距 */
+        flex: none; /* 停止原有的flex设置 */
+        }
+
+        .pd-sol-cat {
+        display: block;
+        font-size: 16px;
+        font-weight: 700;
+        color: #0f1f3d; /* 匹配文字颜色 */
+        margin-bottom: 8px; /* 描述上方的间距 */
+        text-transform: none; /* 取消全大写 */
+        letter-spacing: 0; /* 取消字符间距 */
+        }
+
+        .pd-sol-copy {
+        margin: 0 0 20px 0; /* 下方链接的间距 */
+        font-size: 15px;
+        line-height: 1.6;
+        color: #4a5568;
+        }
+
+        /* 底部链接样式 */
+        .pd-sol-arrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        color: #0056D6; /* 初始蓝色 */
+        font-weight: 500;
+        text-decoration: none; /* 默认无下划线 */
+        text-underline-offset: 4px; /* 让下划线与文字保持适当距离，显得更精致 */
+        text-decoration-thickness: 1px; /* 定义下划线粗细 */
+        transition: color 0.2s ease, text-decoration-color 0.2s ease; /* 增加颜色变化的平滑过渡 */
+        }
+
+        .pd-sol-arrow svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.2s ease;
+        }
+
+        .pd-solution-btn:hover .pd-sol-arrow svg {
+        transform: translateX(4px); /* 更 subtle 的移动 */
+        }
+        .pd-solution-btn:hover .pd-sol-arrow {
+        color: #003B99; /* 颜色变深 (你可以根据 Medo 的品牌色板微调这个色值) */
+        text-decoration: underline; /* 显示下划线 */
+        }
+
+        /* 隐藏不需要的装饰元素 */
+        .pd-sol-chip, .pd-sol-title {
+        display: none; 
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+        .pd-solutions-grid {
+            grid-template-columns: 1fr;
+            gap: 48px; /* 移动端增加项与项之间的间距 */
+        }
+        }
+
+      @media (max-width: 1024px) {
+        .pd-feature-card { grid-template-columns: 1fr; }
+        .pd-feature-card:nth-child(even) .pd-feature-media,
+        .pd-feature-card:nth-child(even) .pd-feature-body { order: initial; }
+        .pd-feature-media {
+          border-right: none;
+          border-bottom: 1px solid #EEEEEE;
+        }
+        .pd-solutions-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 768px) {
+        .pd-hero { grid-template-columns: 1fr; }
+        .pd-hero-left {
+          padding: 48px 20px 32px;
+          margin-left: 0;
+        }
+        .pd-hero-right { height: 240px; min-height: 240px; }
+        .pd-hero-right::before {
+          background: linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.72) 0%,
+            rgba(255,255,255,0.28) 14%,
+            rgba(255,255,255,0.10) 28%,
+            transparent 46%
+          );
+        }
+        .pd-body { grid-template-columns: 1fr; padding: 0; }
+        .pd-sidenav {
+          position: static;
+          height: auto;
+          padding: 20px 20px 8px;
+          display: flex;
+          overflow-x: auto;
+          gap: 8px;
+          flex-direction: row;
+        }
+        .pd-sidenav::-webkit-scrollbar { display: none; }
+        .pd-sidenav-label { display: none; }
+        .pd-nav-link {
+          white-space: nowrap;
+          border-left: none;
+          border-bottom: 2px solid transparent;
+          border-radius: 0;
+          flex-shrink: 0;
+        }
+        .pd-nav-link:hover,
+        .pd-nav-link.is-active {
+          border-left-color: transparent;
+          border-bottom-color: #0056D6;
+        }
+        .pd-nav-link .pd-nav-num { display: none; }
+        .pd-content { padding: 24px 20px 60px; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html" aria-label="Medo Home">
+          <img class="brand-logo" src="../images/logo.png" alt="Medo" />
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="nav-link active" href="../products.html">Products</a>
+          <a class="nav-link" href="../solutions.html">Solutions</a>
+          <a class="nav-link" href="../cases.html">Cases</a>
+          <a class="nav-link" href="../resources.html">Support</a>
+          <a class="nav-link" href="../about.html">About</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link active" href="../products.html">Products</a>
+          <a class="nav-drawer-link" href="../solutions.html">Solutions</a>
+          <a class="nav-drawer-link" href="../cases.html">Cases</a>
+          <a class="nav-drawer-link" href="../resources.html">Support</a>
+          <a class="nav-drawer-link" href="../about.html">About</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="pd-breadcrumb" aria-label="Breadcrumb">
+      <div class="container pd-breadcrumb-inner">
+        <a href="../index.html">Home</a>
+        <span class="pd-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="../platform.html">Platform</a>
+        <span class="pd-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="pd-breadcrumb-current" aria-current="page" >MYT App</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pd-hero" aria-label="Product hero">
+      <div class="container" style="display:contents;">
+        <div class="pd-hero-left">
+          <h1 class="pd-heading">MYT</h1>
+          <p class="pd-heading-sub">IoT Device Management App</p>
+          <p class="pd-hero-desc">An intelligent mobile application designed for the near-field and remote online configuration, monitoring, and telemetry of monitoring equipment.</p>
+        </div>
+        <div class="pd-hero-right">
+          <div class="pd-img-placeholder" aria-hidden="true">
+            <img src="../images/software/myt.png">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main id="main" role="main">
+      <div class="pd-body">
+        <!-- Sidebar -->
+        <aside class="pd-sidenav" aria-label="Page sections">
+          <span class="pd-sidenav-label">On this page</span>
+          <a class="pd-nav-link" href="#overview">
+            <span class="pd-nav-num">01</span>Overview
+          </a>
+          <a class="pd-nav-link" href="#functions">
+            <span class="pd-nav-num">02</span>Platform Functions
+          </a>
+          <a class="pd-nav-link" href="#solutions">
+            <span class="pd-nav-num">03</span>Related Solutions
+          </a>
+        </aside>
+
+        <div class="pd-content">
+          <!-- 01 Overview -->
+          <section id="overview" class="pd-section" style="scroll-margin-top:100px;">
+            <div class="pd-intro">
+                <span class="pd-section-label">01 / Overview</span>
+                <h2 class="pd-section-title">IoT Mobile Device Commissioning and Telemetry</h2>
+                <p class="pd-intro-desc">
+                    MYT is a specialized mobile application engineered for the rapid field deployment, local configuration, and remote telemetry of industrial monitoring devices. Acting as a powerful pocket-sized extension of the Medo IoT cloud, it empowers field engineers to seamlessly connect to hardware on-site via near-field protocols or manage them remotely across vast distances. By transforming complex hardware setup and real-time data monitoring into intuitive mobile workflows, the application drastically reduces on-site commissioning time and guarantees continuous equipment visibility from any location.
+                </p>
+                </div>    
+          </section>
+
+          <!-- 02 功能说明 -->
+          <section id="functions" class="pd-section" style="scroll-margin-top:100px;">
+            <div class="pd-functions-container">
+                
+                <div class="pd-functions-intro">
+                <span class="pd-section-label">02 / Platform Functions</span>
+                <h2 class="pd-section-title">Four Core Functions</h2>
+                <p class="pd-functions-desc">
+                    Efficient and rapid remote equipment management.    
+                </p>
+                </div>
+
+                <div class="pd-functions-stack">
+                <!--01-->
+                <article class="pd-func-card">
+                <div class="pd-func-media">
+                    <svg viewBox="0 0 200 140" role="img" aria-label="Adaptive Wireless Connectivity icon" xmlns="http://www.w3.org/2000/svg">
+                    
+                    <g stroke="#0056D6" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+
+                        <path d="M 82 52 A 25 25 0 0 0 82 88" stroke-dasharray="2 3" opacity="0.6"/>
+                        <path d="M 72 42 A 40 40 0 0 0 72 98" stroke-dasharray="3 4" opacity="0.4"/>
+                        <path d="M 62 32 A 55 55 0 0 0 62 108" stroke-dasharray="4 5" opacity="0.2"/>
+
+                        <circle cx="45" cy="70" r="14" fill="#fff"/>
+                        <path d="M 40 65 L 45 70 L 40 75 M 45 59 L 52 65 L 45 70 L 52 75 L 45 81 V 59" stroke-width="1.5"/>
+                        
+                        <path d="M 59 70 H 86" stroke-dasharray="2 3" opacity="0.6"/>
+
+
+                        <path d="M 118 52 A 25 25 0 0 1 118 88" stroke-width="1.5" opacity="0.6"/>
+                        <path d="M 128 42 A 40 40 0 0 1 128 98" stroke-width="2" opacity="0.4"/>
+                        <path d="M 138 32 A 55 55 0 0 1 138 108" stroke-width="2.5" opacity="0.2"/>
+
+                        <circle cx="155" cy="70" r="14" fill="#fff" stroke-width="1.5"/>
+                        <path d="M 148 76 V 72 M 152 76 V 68 M 156 76 V 64 M 160 76 V 60" stroke-width="2"/>
+                        <path d="M 148 61 A 8 8 0 0 1 160 61" opacity="0.6"/> <path d="M 114 70 H 141" stroke-width="1.5"/>
+
+
+                        <circle cx="100" cy="70" r="19" stroke-dasharray="1 4" opacity="0.5"/>
+                        
+                        <circle cx="100" cy="70" r="14" fill="#f8fbff" stroke-width="1.5"/>
+                        
+                        <path d="M 100 65 L 105 70 L 100 75 L 95 70 Z" fill="#0056D6"/>
+
+                    </g>
+                    </svg>
+                </div>
+                <div class="pd-func-text">
+                    <h3 class="pd-func-title">Adaptive Wireless Connectivity</h3>
+                    <p class="pd-func-desc-text">
+                    Engineered with highly adaptable communication protocols to conquer complex field environments. Field engineers can establish stable, near-field connections via Bluetooth in offline or remote areas lacking signal coverage, while leveraging robust 4G networks for high-speed, continuous data transmission in connected zones.    
+                    </p>    
+                </div>
+                </article>
+                
+                <!--02-->
+               <article class="pd-func-card">
+                <div class="pd-func-media">
+                    <svg viewBox="0 0 200 140" role="img" aria-label="Real-Time Status Monitoring icon" xmlns="http://www.w3.org/2000/svg">
+                    
+                    <g stroke="#0056D6" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+
+                        <circle cx="100" cy="70" r="48" stroke-dasharray="4 6" opacity="0.3"/>
+                        <circle cx="100" cy="70" r="65" stroke-dasharray="2 8" opacity="0.15"/>
+
+                        <path d="M 35 70 H 70" stroke-dasharray="2 4" opacity="0.5"/>
+                        <circle cx="35" cy="70" r="2.5" fill="#0056D6" stroke="none"/>
+                        
+                        <path d="M 165 70 H 130" stroke-dasharray="2 4" opacity="0.5"/>
+                        <circle cx="165" cy="70" r="2.5" fill="#0056D6" stroke="none"/>
+
+                        <rect x="70" y="20" width="60" height="100" rx="6" fill="#fff"/>
+                        <path d="M 94 28 h 12" opacity="0.5"/>
+                        
+                        <rect x="76" y="36" width="48" height="76" rx="3" fill="#f8fbff"/>
+                        
+                        <rect x="82" y="44" width="36" height="20" rx="2" fill="#fff"/>
+                        <path d="M 86 54 h 6 l 4 -6 l 4 12 l 4 -6 h 10" stroke-width="1.5"/>
+
+                        <rect x="82" y="70" width="16" height="22" rx="2" fill="#fff"/>
+                        <rect x="86" y="76" width="8" height="10" rx="1"/>
+                        <path d="M 88 76 v -2 h 4 v 2"/>
+                        <rect x="88" y="80" width="4" height="4" fill="#0056D6" stroke="none"/>
+
+                        <rect x="102" y="70" width="16" height="22" rx="2" fill="#fff"/>
+                        <path d="M 106 86 v -4 M 110 86 v -8 M 114 86 v -12" stroke-width="1.5"/>
+
+                        <path d="M 92 106 h 16" opacity="0.4"/>
+
+                    </g>
+                    </svg>
+                </div>
+                <div class="pd-func-text">
+                    <h3 class="pd-func-title">Real-Time Status Monitoring</h3>
+                    <p class="pd-func-desc-text">
+                    Delivers instant, on-the-go access to critical hardware metrics. The application provides dynamic visibility into device operational status, battery levels, and signal strength, empowering O&M teams to proactively detect anomalies and ensure monitoring networks maintain peak performance without dispatching personnel.
+                    </p>
+                </div>
+                </article>
+
+                <!-- 03 -->
+                <article class="pd-func-card">
+                <div class="pd-func-media">
+                    <svg viewBox="0 0 200 140" role="img" aria-label="OTA Firmware Upgrades icon" xmlns="http://www.w3.org/2000/svg">
+                    
+                    <g stroke="#0056D6" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        
+                        <circle cx="100" cy="85" r="42" opacity="0.2" stroke-dasharray="4 6"/>
+                        
+                        <path d="M 80 40 A 12 12 0 0 1 86 20 A 18 18 0 0 1 114 20 A 12 12 0 0 1 120 40 Z" fill="#fff"/>
+                        <path d="M 80 40 h 40" />
+                        
+                        <path d="M 64 72 h 8 M 64 85 h 8 M 64 98 h 8" opacity="0.7"/>
+                        <path d="M 128 72 h 8 M 128 85 h 8 M 128 98 h 8" opacity="0.7"/>
+                        
+                        <rect x="72" y="60" width="56" height="50" rx="4" fill="#fff"/>
+                        <rect x="82" y="70" width="36" height="30" rx="2" fill="#f8fbff"/>
+                        
+                        <path d="M 90 78 h 20 M 90 85 h 12 M 90 92 h 16" opacity="0.4"/>
+
+                        <path d="M 100 40 v 15" stroke-dasharray="2 3"/>
+                        <path d="M 100 55 v 10" stroke-width="2.5"/>
+                        <path d="M 95 60 l 5 5 l 5 -5" stroke-width="2.5"/>
+                        
+                        <circle cx="100" cy="46" r="2.5" fill="#0056D6" stroke="none"/>
+
+                        <path d="M 112 52 l 3 -3 M 120 52 h 4" opacity="0.4"/> 
+                        <path d="M 88 52 l -3 -3 M 80 52 h -4" opacity="0.4"/>
+                        
+                        <circle cx="120" cy="102" r="8" fill="#fff"/>
+                        <path d="M 116 102 l 3 3 l 5 -6" stroke-width="2"/>
+                        
+                    </g>
+                    </svg>
+                </div>
+                <div class="pd-func-text">
+                    <h3 class="pd-func-title">Over-The-Air Firmware Upgrades</h3>
+                    <p class="pd-func-desc-text">
+                    Eliminates the logistical burden of manual, on-site software maintenance. Administrators can securely push essential firmware updates and system patches to remote monitoring stations over the air (OTA), guaranteeing that all field assets continuously operate on the most advanced and secure system versions.
+                    </p>
+                </div>
+                </article>
+                <!-- 04 -->
+                <article class="pd-func-card">
+            <div class="pd-func-media">
+                <svg viewBox="0 0 200 140" role="img" aria-label="Dynamic Configuration icon" xmlns="http://www.w3.org/2000/svg">
+                
+                <g stroke="#0056D6" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+
+                    <path d="M 20 70 C 50 110, 60 30, 100 70 C 140 110, 150 30, 180 70" opacity="0.25" stroke-dasharray="4 6"/>
+
+                    <rect x="70" y="20" width="60" height="100" rx="6" fill="#fff"/>
+                    <path d="M 94 28 h 12" opacity="0.4"/> <rect x="76" y="36" width="48" height="78" rx="3" fill="#f8fbff"/>
+
+                    <rect x="82" y="42" width="36" height="24" rx="2" fill="#fff"/>
+                    <path d="M 86 58 l 6 -8 l 6 4 l 8 -10 l 6 6"/>
+                    <circle cx="106" cy="44" r="1.5" fill="#0056D6" stroke="none"/>
+
+                    <g>
+                    <path d="M 82 80 h 36" opacity="0.2"/> <path d="M 82 80 h 12" stroke-width="2"/> <circle cx="94" cy="80" r="3" fill="#0056D6" stroke="none"/> </g>
+
+                    <g>
+                    <path d="M 82 96 h 36" opacity="0.2"/> <path d="M 82 96 h 26" stroke-width="2"/> <circle cx="108" cy="96" r="3" fill="#0056D6" stroke="none"/> </g>
+
+                    <path d="M 55 55 l -4 -4 M 60 45 l -4 -4" opacity="0.5"/>
+                    <path d="M 145 55 l 4 -4 M 140 45 l 4 -4" opacity="0.5"/>
+
+                </g>
+                </svg>
+            </div>
+            <div class="pd-func-text">
+                <h3 class="pd-func-title">Dynamic Configuration and Telemetry</h3>
+                <p class="pd-func-desc-text">
+                Transforms a standard smartphone into a powerful hardware command center. Users can seamlessly adjust device parameters, calibrate sensor thresholds, and retrieve real-time telemetry data directly from the mobile interface, enabling immediate adaptation to fluctuating environmental conditions and operational demands.
+                </p>                
+            </div>
+            </article>
+
+
+                </div>
+            </div>
+            </section>
+
+          <!-- 03 相关方案 -->
+          <section id="solutions" class="pd-section" style="scroll-margin-top:100px;">
+            <span class="pd-section-label">03 / Related Content</span>
+            <h2 class="pd-section-title">Solution & Case</h2>
+            <div class="pd-solutions-grid">
+                <!-- solution -->
+              <a class="pd-solution-btn" href="../solutions-geo-landslide.html">
+                <div class="pd-solution-visual">
+                  <img
+                    src="../images/geology/geo-slide.png"
+                    alt="Related solution placeholder"
+                    onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-visual-placeholder').style.display='flex';"
+                  />
+                </div>
+                <div class="pd-solution-content">
+                  <span class="pd-sol-cat">Landslide & Slope Stability Monitoring</span>
+                  <p class="pd-sol-copy">Capturing the 'Golden Warning Time' through GNSS millimeter-level sensing.</p>
+                  <div class="pd-sol-meta">
+                    <span class="pd-sol-arrow">
+                      View Landslide Monitoring Solution
+                      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- case -->
+              <a class="pd-solution-btn" href="../cases/geocase-2.html">
+                <div class="pd-solution-visual">
+                  <img
+                    src="../images/geology/gc-2.png"
+                    alt="Related solution placeholder"
+                    onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-visual-placeholder').style.display='flex';"
+                  />
+                </div>
+                <div class="pd-solution-content">
+                  <span class="pd-sol-cat">Southwest China Multi-Province Geo-hazard Monitoring</span>
+                  <p class="pd-sol-copy">MD-NET helps 4,700+ devices run smoothly.</p>
+                    <span class="pd-sol-arrow">
+                      Explore the Multi-Province Case
+                      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </section>
+        </div><!-- /pd-content -->
+      </div><!-- /pd-body -->
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="footer-logo"><img src="../images/logowhite.png" alt="Medo" /></div>
+            <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Protocols</h3>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Foundation</h3>
+            <nav class="footer-col-links" aria-label="Foundation"><a href="../index.html">Home</a><a href="../solutions.html">Solutions</a><a href="../products.html">Products</a><a href="../about.html">About</a><a href="#">Contact</a></nav>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
+        });
+      })();
+
+      (function(){
+        var links = document.querySelectorAll('.pd-nav-link');
+        var ids = ['overview', 'functions', 'solutions'];
+        var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        if(!sections.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              links.forEach(function(a){ a.classList.remove('is-active'); });
+              var active = document.querySelector('.pd-nav-link[href="#' + entry.target.id + '"]');
+              if(active) active.classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(function(section){ obs.observe(section); });
+      })();
+    </script>
+  </body>
+</html>
