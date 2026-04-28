@@ -325,20 +325,21 @@
       /* ── Mobile ── */
       @media (max-width: 768px) {
         .pd-hero { grid-template-columns: 1fr; }
-        .pd-hero-left { padding: 48px 0 32px; }
+        .pd-hero-left { padding: 48px 20px 32px; }
         .pd-hero-right { height: 240px; }
         .pd-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
         .pd-body { grid-template-columns: 1fr; padding: 0; }
         .pd-sidenav {
-          position: static;
-          top: auto;
+          position: sticky;
+          top: 0px;
           height: auto;
           padding: 20px 20px 8px;
           display: flex;
           overflow-x: auto;
-          gap: 0;
+          gap: 0px;
           flex-direction: row;
-          border-right: none;
+          background: #fff;
+          z-index: 3;
         }
         .pd-sidenav::-webkit-scrollbar { display: none; }
         .pd-sidenav-label { display: none; }
