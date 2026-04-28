@@ -330,15 +330,17 @@
         .pd-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
         .pd-body { grid-template-columns: 1fr; padding: 0; }
         .pd-sidenav {
-          position: static;
-          top: auto;
+          position: sticky;
+          top: 0px;
           height: auto;
           padding: 20px 20px 8px;
           display: flex;
           overflow-x: auto;
           gap: 0;
           flex-direction: row;
+          background: #fff;
           border-right: none;
+          z-index: 3;
         }
         .pd-sidenav::-webkit-scrollbar { display: none; }
         .pd-sidenav-label { display: none; }
