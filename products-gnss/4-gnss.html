@@ -28,7 +28,7 @@
       .pd-hero-left {
         display: flex; flex-direction: column; justify-content: center;
         padding: 48px 48px 48px 0;
-        margin-left: 200px;
+        padding-left: max(20px, calc((100vw - 1120px) / 2));
       }
       .pd-eyebrow {
         display: block; font-size: 10px; font-weight: 800;
@@ -310,7 +310,7 @@
       /* ── Mobile ── */
       @media (max-width: 768px) {
         .pd-hero { grid-template-columns: 1fr; }
-        .pd-hero-left { padding: 48px 0 32px; }
+        .pd-hero-left { padding: 48px 20px 32px; }
         .pd-hero-right { height: 240px; }
         .pd-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
         .pd-body { grid-template-columns: 1fr; padding: 0; }

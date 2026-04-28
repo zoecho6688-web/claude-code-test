@@ -31,10 +31,8 @@
         flex-direction: column; 
         justify-content: center;
         /* padding-left 现在包含了基础对齐 + 额外位移 */
-        padding-left: max(20px, calc((100vw - 1200px) / 2));
-        padding-right: 48px;
-        padding-top: 48px;
-        padding-bottom: 48px;
+        padding: 48px 48px 48px 0;
+        padding-left: max(20px, calc((100vw - 1120px) / 2));
       }
       .pd-eyebrow {
         display: block; font-size: 10px; font-weight: 800;
@@ -47,7 +45,7 @@
         font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; color: #0f1f3d;
       }
       .pd-heading-sub {
-        margin: 0 0 8px;
+        margin: 0 0 20px;
         font-size: clamp(32px, 4vw, 52px);
         font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; color: #0056D6;
       }
@@ -60,7 +58,11 @@
       }
 
       .pd-hero-right {
-        position: relative; overflow: hidden; background: #0f1f3d;
+        position: relative; 
+        overflow: hidden; 
+        background: #0f1f3d;
+        align-self: stretch;
+        height: auto;
       }
       .pd-hero-right img {
         width: 100%; height: 100%; object-fit: cover; display: block;
@@ -319,7 +321,7 @@
       /* ── Mobile ── */
       @media (max-width: 768px) {
         .pd-hero { grid-template-columns: 1fr; }
-        .pd-hero-left { padding: 48px 0 32px; }
+        .pd-hero-left { padding: 48px 20px 32px; margin-left: 0;}
         .pd-hero-right { height: 240px; }
         .pd-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
         .pd-body { grid-template-columns: 1fr; padding: 0; }
