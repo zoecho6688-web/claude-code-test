@@ -132,7 +132,6 @@
         padding: 0 20px;
       }
 
-      /* ── Sidebar nav ── */
       /* ── Sidebar nav (线条串联模式) ── */
         .pd-sidenav {
         position: sticky;
@@ -200,34 +199,8 @@
         color: #0056D6; 
         }
 
-        /* ── 手机端响应式适配 (底部线条串联) ── */
-        @media (max-width: 768px) {
-        .pd-sidenav {
-            gap: 0;
-        }
-        .pd-sidenav-label {
-            display: none;
-        }
-        .pd-nav-link {
-            border-left: none; /* 手机端移除左侧线条 */
-            border-bottom: 2px solid #EEEEEE; /* 改为底部线条串联 */
-            padding: 12px 16px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .pd-nav-link:hover {
-            border-left-color: transparent;
-            border-bottom-color: #cbd5e1;
-        }
-        .pd-nav-link.is-active {
-            border-left-color: transparent;
-            border-bottom-color: #0056D6;
-        }
-        }
-
       /* ── Content ── */
       .pd-content { padding: 64px 0 80px 56px; }
-
       .pd-section {
         padding-bottom: 80px;
         margin-bottom: 72px;
@@ -405,61 +378,6 @@
         justify-content: flex-start;
         }
 
-        /* 📱 响应式适配 */
-        @media (max-width: 992px) {
-        .pd-functions-container {
-            flex-direction: column;
-            gap: 40px;
-        }
-        
-        .pd-functions-intro {
-            flex: auto;
-            position: static;
-            max-width: 100%;
-        }
-
-        .pd-func-card {
-            flex-direction: column; /* 手机端图片在上方 */
-            align-items: flex-start;
-            padding: 20px;
-            gap: 16px;
-        }
-
-        .pd-func-media {
-            width: 100%;
-            flex: none;
-            height: 200px; /* 手机端图片更高 */
-        }
-
-        .pd-func-text {
-            min-height: auto;
-            width: 100%;
-            overflow: visible;
-            display: block;
-        }
-
-        .pd-func-title,
-        .pd-func-desc-text {
-            display: block;
-            transform: none;
-            opacity: 1;
-            max-height: none;
-            overflow: visible;
-        }
-
-        .pd-func-title {
-            margin: 0 0 8px;
-        }
-
-        .pd-func-desc-text {
-            pointer-events: auto;
-        }
-
-        .pd-func-card:hover {
-            transform: translateY(-2px); /* 手机端改为向上浮动 */
-            box-shadow: 0px 8px 24px rgba(0, 86, 214, 0.08);
-        }
-        }
 
             /* ── 仿 IBM 简约风格 Related Solutions ── */
         .pd-solutions-grid {
@@ -563,13 +481,6 @@
         }
 
         /* 响应式调整 */
-        @media (max-width: 768px) {
-        .pd-solutions-grid {
-            grid-template-columns: 1fr;
-            gap: 48px; /* 移动端增加项与项之间的间距 */
-        }
-        }
-
       @media (max-width: 1024px) {
         .pd-feature-card { grid-template-columns: 1fr; }
         .pd-feature-card:nth-child(even) .pd-feature-media,
@@ -580,6 +491,107 @@
         }
         .pd-solutions-grid { grid-template-columns: 1fr; }
       }
+
+      @media (max-width: 992px) {
+       .pd-body {
+            grid-template-columns: 1fr;
+            padding: 0;
+        }
+        .pd-sidenav {
+            position: sticky;
+            top: 0px;
+            height: auto;
+            padding: 20px 8px 8px;
+            display: flex;
+            overflow-x: auto;
+            gap: 8px;
+            flex-direction: row;
+            background: #fff;
+            z-index: 3;
+        }
+        .pd-sidenav-label {
+            display: none;
+        }
+        .pd-nav-link {
+            border-left: none;
+            border-bottom: 2px solid #EEEEEE;
+            padding: 12px 16px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .pd-nav-link:hover {
+            border-left-color: transparent;
+            border-bottom-color: #cbd5e1;
+        }
+        .pd-nav-link.is-active {
+            border-left-color: transparent;
+            border-bottom-color: #0056D6;
+        }
+        .pd-nav-link .pd-nav-num {
+            display: none;
+        }
+        .pd-content {
+            padding: 24px 20px 60px;
+        }
+        .pd-functions-container {
+            flex-direction: column;
+            gap: 40px;
+        }
+        .pd-functions-intro {
+            flex: auto;
+            position: static;
+            max-width: 100%;
+        }
+        .pd-func-card {
+            flex-direction: column; /* 手机端图片在上方 */
+            align-items: flex-start;
+            padding: 20px;
+            gap: 16px;
+        }
+        .pd-func-media {
+            width: 100%;
+            flex: none;
+            height: 200px; /* 手机端图片更高 */
+        }
+        .pd-func-text {
+            min-height: auto;
+            width: 100%;
+            overflow: visible;
+            display: block;
+        }
+        .pd-func-title,
+        .pd-func-desc-text {
+            display: block;
+            transform: none;
+            opacity: 1;
+            max-height: none;
+            overflow: visible;
+        }
+        .pd-func-title {
+            margin: 0 0 8px;
+        }
+        .pd-func-card:hover .pd-func-title {
+            font-size: 20px;
+            transform: none;
+            opacity: 1;
+            max-height: none;
+        }
+        .pd-func-desc-text {
+            pointer-events: auto;
+        }
+        .pd-func-card:hover {
+            transform: translateY(-2px); /* 手机端改为向上浮动 */
+            box-shadow: 0px 8px 24px rgba(0, 86, 214, 0.08);
+        }
+        .pd-solutions-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px; /* 增加两列之间的间距 */
+        margin-top: 32px;
+        width: 720px;
+        }
+        .pd-content { padding: 24px 20px 60px; }
+        }
 
       @media (max-width: 768px) {
         .pd-hero { grid-template-columns: 1fr; }
@@ -598,14 +610,81 @@
           );
         }
         .pd-body { grid-template-columns: 1fr; padding: 0; }
-        .pd-sidenav {
+        .pd-intro {
+          width: 100%;
+          max-width: 100%;
+        }
+        .pd-intro-stats {
+          grid-template-columns: 1fr;
+        }
+        .pd-intro-stat {
+          border-right: none;
+          border-bottom: 1px solid #EEEEEE;
+        }
+        .pd-intro-stat:last-child {
+          border-bottom: none;
+        }
+        .pd-functions-container {
+          flex-direction: column;
+          gap: 32px;
+        }
+        .pd-functions-intro {
           position: static;
+          top: auto;
+          flex: auto;
+          max-width: 100%;
+          width: 100%;
+        }
+        .pd-functions-stack {
+          width: 100%;
+        }
+        .pd-feature-card {
+          grid-template-columns: 1fr;
+        }
+        .pd-feature-media {
+          min-height: 180px;
+        }
+        .pd-feature-body {
+          padding: 20px;
+        }
+        .pd-solutions-grid {
+          width: 100%;
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .pd-solution-btn {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .pd-solution-visual {
+          border-right: none;
+          border-bottom: 1px solid #EEEEEE;
+          min-height: 180px;
+        }
+        .pd-solution-content {
+          padding: 20px;
+        }
+        .pd-sol-cat {
+            font-size: 14px;
+        }
+        .pd-sol-copy {
+            font-size: 14px;
+        }
+        .pd-sol-arrow {
+            font-size: 14px;
+        }
+
+        .pd-sidenav {
+          position: sticky;
+          top: 0px;
           height: auto;
           padding: 20px 20px 8px;
           display: flex;
           overflow-x: auto;
           gap: 8px;
           flex-direction: row;
+          background: #fff;
+          z-index: 3;
         }
         .pd-sidenav::-webkit-scrollbar { display: none; }
         .pd-sidenav-label { display: none; }
