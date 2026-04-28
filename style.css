@@ -3844,10 +3844,10 @@ html{ scroll-behavior: smooth; }
   width: 36px;
   height: 36px;
   background: none;
-  border: 1px solid rgba(7, 48, 103, 0.18);
   cursor: pointer;
+  margin-left:auto;
+  border: transparent;
   padding: 0;
-  color: var(--text);
   flex-shrink: 0;
 }
 .nav-toggle:focus-visible{
