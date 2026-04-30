@@ -1943,7 +1943,7 @@ html{ scroll-behavior: smooth; }
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.82);
+  background: rgba(255,255,255,0.55);
 }
 
 .sol-hero-content {
@@ -3932,60 +3932,75 @@ html{ scroll-behavior: smooth; }
 .loop-slide::after{
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.72) 38%, rgba(255,255,255,0.12) 70%, rgba(255,255,255,0) 100%);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
   pointer-events: none;
 }
-.loop-slide img{
+  .loop-slide img{
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 30%;
+  width: 70%;
   height: 100%;
   object-fit: cover;
+  object-position: left center;
 }
 .loop-slide-content{
   position: relative;
   z-index: 2;
-  max-width: 720px;
-  padding: clamp(36px, 8vw, 96px);
+  width: calc(100% / 2.5);
+  margin-left: max(20px, calc((100vw - var(--container)) / 2));
+  padding: clamp(36px, 8vw, 96px) 0;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  color: #0056b3;
   text-transform: none;
+  height: 100%;
 }
 .loop-slide-kicker{
   font-size: 12px;
-  letter-spacing: 0.22em;
+  font-weight:700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #0056b3;
 }
 .loop-slide-title{
+  margin: 0 0 18px;
   font-size: clamp(34px, 5vw, 62px);
   line-height: 1.05;
-  letter-spacing: 0.02em;
-  font-weight: 900;
-  color: #0056b3;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: #fff;
 }
 .loop-slide-sub{
-  font-size: clamp(15px, 2.1vw, 20px);
-  line-height: 1.5;
-  color: #0b2f6b;
+  margin-top: auto;   
+  margin-bottom: 0;
+  font-size: clamp(12px, 1.6vw, 16px);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: #cccbcb;
   max-width: 620px;
 }
 .loop-cta{
   display: inline-flex;
+  margin-top: 0;
   align-items: center;
+  font-size: clamp(12px, 1.4vw, 14px);
   gap: 6px;
-  color: #0056b3;
+  color: #fff;
   text-decoration: none;
-  background: transparent;
-  border: 0;
-  padding: 0;
+  background: #0056D6;
+  padding: 14px 28px 14px 14px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing:0.12em;
   text-transform: uppercase;
   transition: gap 200ms ease, color 200ms ease;
+  align-self: flex-start;
 }
 .loop-cta svg{
   width: 18px;
@@ -3994,8 +4009,9 @@ html{ scroll-behavior: smooth; }
 .loop-cta:hover,
 .loop-cta:focus-visible{
   gap: 10px;
-  color: #0056b3;
+  color: #fff;
   outline: none;
+  background:#0056b3;
 }
 .loop-nav{
   position: absolute;
@@ -4029,11 +4045,11 @@ html{ scroll-behavior: smooth; }
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
-  gap: 10px;
+  gap: 4px;
 }
 .loop-dot{
-  width: 10px;
-  height: 10px;
+  width: 62px;
+  height: 3px;
   background: #d6d6d6;
   border: 1px solid #d6d6d6;
   padding: 0;
@@ -4041,30 +4057,4 @@ html{ scroll-behavior: smooth; }
 .loop-dot.is-active{
   background: #0056b3;
   border-color: #0056b3;
-}
-
-@media (max-width: 900px){
-  .loop-hero-inner{ min-height: 480px; }
-  .loop-nav{ width: 40px; height: 40px; }
-  .loop-nav-prev{ left: 12px; }
-  .loop-nav-next{ right: 12px; }
-  .loop-slide-content{ padding: 32px; gap: 14px; }
-}
-
-@media (max-width: 640px){
-  .loop-hero-inner{ min-height: 420px; height: 68vh; }
-  .loop-slide::after{
-    background: linear-gradient(0deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.72) 48%, rgba(255,255,255,0.08) 100%);
-  }
-  .loop-nav{ display: none; }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .hero-bg::after{ animation: none; }
-  .hero-slider-track{ animation: none; }
-  .hero-fadeup{ animation: none; opacity: 1; transform: none; }
-  .btn{ transition: none; }
-  .nav-link::after{ transition: none; }
-  .loop-track{ transition: none; }
-  .loop-cta{ transition: none; }
 }

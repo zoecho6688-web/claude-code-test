@@ -6,6 +6,110 @@
     <meta name="description" content="Medo — Precision monitoring for safer infrastructure and intelligent early warning." />
     <title>Medo Monitoring Technology | Precision in Every Dimension</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .loop-slide.slide-01::after {
+          /* 修改遮罩的渐变色 */
+          background: linear-gradient(to right, #0C3431 0%, #0C3431 30%, transparent 75%);
+        }
+        .loop-slide.slide-01 .loop-slide-kicker { color: #00b386; } /* Kicker 字体颜色 */
+        .loop-slide.slide-01 .loop-slide-title { color: #ffffff; }  /* 主标题字体颜色 */
+        .loop-slide.slide-01 .loop-slide-sub { color: #cccbcb; }    /* 副标题字体颜色 */
+
+
+        /* ── 第 2 张图 (深蓝色主题) ── */
+        .loop-slide.slide-02::after {
+          background: linear-gradient(to right, #0a192f 0%, #0a192f 30%, transparent 75%);
+        }
+        .loop-slide.slide-02 .loop-slide-kicker { color: #64ffda; }
+        .loop-slide.slide-02 .loop-slide-title { color: #e6f1ff; }
+        .loop-slide.slide-02 .loop-slide-sub { color: #8892b0; }
+
+
+        /* ── 第 3 张图 (深灰/黑色主题) ── */
+        .loop-slide.slide-03::after {
+          background: linear-gradient(to right, #1f1f1f 0%, #1f1f1f 30%, transparent 75%);
+        }
+        .loop-slide.slide-03 .loop-slide-kicker { color: #ffae42; }
+        .loop-slide.slide-03 .loop-slide-title { color: #ffffff; }
+        .loop-slide.slide-03 .loop-slide-sub { color: #a3a3a3; }
+
+
+        /* ── 第 4 张图 (深紫色主题) ── */
+        .loop-slide.slide-04::after {
+          background: linear-gradient(to right, #2d1b4e 0%, #2d1b4e 30%, transparent 75%);
+        }
+        .loop-slide.slide-04 .loop-slide-kicker { color: #d8b4fe; }
+        .loop-slide.slide-04 .loop-slide-title { color: #ffffff; }
+        .loop-slide.slide-04 .loop-slide-sub { color: #e9d5ff; }
+
+        @media (max-width: 900px) {
+          .loop-hero-inner {
+            min-height: 600px; /* 保证有足够的高度容纳上下两部分 */
+            height: 85vh;
+          }
+          
+          /* 1. 文字内容区移到上半部分 */
+          .loop-slide-content {
+            width: 100%;
+            height: 50%; /* 占据上半部分50% */
+            margin-left: 0;
+            padding: 40px 24px 20px; /* 缩小边距，适应小屏幕 */
+            gap: 12px;
+          }
+          .loop-slide-title {
+            font-size: clamp(28px, 6vw, 42px); /* 动态缩小标题字号 */
+          }
+          
+          /* 2. 图片移到下半部分 */
+          .loop-slide img {
+            top: 50%; /* 从屏幕50%的地方开始渲染 */
+            left: 0;
+            width: 100%;
+            height: 50%; /* 高度占剩下的50% */
+            object-position: center center; /* 让图片居中显示 */
+          }
+
+          /* 3. 导航箭头微调 */
+          .loop-nav { width: 40px; height: 40px; }
+          .loop-nav-prev { left: 12px; }
+          .loop-nav-next { right: 12px; }
+
+          /* 4. 将渐变遮罩方向从"左右"改为"上下"，完美衔接中间的分割线 */
+          .loop-slide.slide-01::after { background: linear-gradient(to bottom, #0C3431 0%, #0C3431 50%, transparent 85%); }
+          .loop-slide.slide-02::after { background: linear-gradient(to bottom, #0a192f 0%, #0a192f 50%, transparent 85%); }
+          .loop-slide.slide-03::after { background: linear-gradient(to bottom, #1f1f1f 0%, #1f1f1f 50%, transparent 85%); }
+          .loop-slide.slide-04::after { background: linear-gradient(to bottom, #2d1b4e 0%, #2d1b4e 50%, transparent 85%); }
+        }
+
+        /* ── 手机端特别优化 (< 640px) ── */
+        @media (max-width: 640px) {
+          .loop-hero-inner { 
+            min-height: 550px; 
+            height: 90vh; /* 手机端稍微拉长一点高度 */
+          }
+          .loop-slide-content {
+            padding: 30px 20px 20px;
+          }
+          .loop-slide-sub {
+             font-size: 15px; /* 手机端副标题稍微小一点，防止文字过多换行 */
+             line-height: 1.5;
+          }
+          .loop-nav { 
+            display: none; /* 手机屏幕太窄，隐藏左右箭头，仅保留底部小圆点 */
+          }
+        }
+
+        /* ── 无障碍支持：减少动画 ── */
+        @media (prefers-reduced-motion: reduce) {
+          .hero-bg::after { animation: none; }
+          .hero-slider-track { animation: none; }
+          .hero-fadeup { animation: none; opacity: 1; transform: none; }
+          .btn { transition: none; }
+          .nav-link::after { transition: none; }
+          .loop-track { transition: none; }
+          .loop-cta { transition: none; }
+        }
+      </style>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -53,43 +157,24 @@
         <div class="loop-hero-inner" role="region" aria-roledescription="carousel" aria-label="Continuous loop slider">
           <div class="loop-track" aria-live="polite">
 
-            <!-- 滚动图01 -->
-            <article class="loop-slide is-active">
-              <img src="images/hero-product.png" alt="Allystar high-precision GNSS technology in the field" />
+            <article class="loop-slide slide-01">
+              <img src="images-mine/minetailing.png" alt="Mining safety monitoring in tailing storage" />
               <div class="loop-slide-content">
-                <p class="loop-slide-kicker">Brand &amp; Technology</p>
-                <h1 class="loop-slide-title">PRECISION WITHOUT COMPROMISE</h1>
-                <p class="loop-slide-sub">Global Automated Monitoring Powered by Allystar High-Precision GNSS.</p>
-                <a class="loop-cta" href="products.html">
-                  EXPLORE OUR TECHNOLOGY
+                <p class="loop-slide-kicker">Infrastructure Health</p>
+                <h1 class="loop-slide-title">End-to-End Mining Safety Monitoring</h1>
+                <p class="loop-slide-sub">Your Trusted Partner for Integrated Hardware, Software, and Lifecycle O&M Mining Solutions.</p>
+                <a class="loop-cta" href="solutions-mining-main.html">
+                  View Mining Solutions
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
                   </svg>
                 </a>
               </div>
             </article>
-
-            <!-- 滚动图02 -->
-            <article class="loop-slide">
-              <img src="images/hero-mining.png" alt="Mining safety monitoring in an open-pit environment" />
-              <div class="loop-slide-content">
-                <p class="loop-slide-kicker">Mining Safety</p>
-                <h1 class="loop-slide-title">SMART MINING SOLUTIONS</h1>
-                <p class="loop-slide-sub">Millimeter-level accuracy for open-pit slope and tailings pond monitoring.</p>
-                <a class="loop-cta" href="cases-mining.html">
-                  VIEW MINING CASES
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- 滚动图03 -->
-            <article class="loop-slide">
+            
+            <article class="loop-slide slide-02">
               <img src="images/hero-case.png" alt="Water conservancy infrastructure monitoring" />
               <div class="loop-slide-content">
-                <p class="loop-slide-kicker">Water Conservancy</p>
                 <h1 class="loop-slide-title">INTELLIGENT WATER CONTROL</h1>
                 <p class="loop-slide-sub">Real-time stability monitoring for reservoirs, levees, and dams.</p>
                 <a class="loop-cta" href="solutions-water-main.html">
@@ -101,8 +186,21 @@
               </div>
             </article>
 
-            <!-- 滚动图04 -->
-            <article class="loop-slide">
+            <article class="loop-slide is-active slide-03">
+              <img src="images/hero-product.png" alt="Allystar high-precision GNSS technology in the field" />
+              <div class="loop-slide-content">
+                <h1 class="loop-slide-title">PRECISION WITHOUT COMPROMISE</h1>
+                <p class="loop-slide-sub">Global Automated Monitoring Powered by Allystar High-Precision GNSS.</p>
+                <a class="loop-cta" href="products.html">
+                  EXPLORE OUR TECHNOLOGY
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <article class="loop-slide slide-04">
               <img src="images/hero-tech.png" alt="Urban infrastructure health monitoring" />
               <div class="loop-slide-content">
                 <p class="loop-slide-kicker">Infrastructure Health</p>
