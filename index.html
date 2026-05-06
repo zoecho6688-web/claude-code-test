@@ -49,13 +49,13 @@
            ========================================= */
         .eco-scroll-container {
           position: relative;
-          height: 400vh; 
+          height: 250vh; 
           background: #f8f9fb; /* 👉 改为纯白背景 */
         }
 
         .eco-sticky-viewport {
           position: sticky;
-          top: 0;
+          top: 0vh;
           height: 100vh;
           display: flex;
           align-items: center;
@@ -646,29 +646,204 @@
         .case-card:hover .case-icon {
           transform: translateX(6px); /* 箭头向右滑动保持不变 */
         }
+        /* =========================================
+           响应式设计：Industry + Cases
+           ========================================= */
+
+        /* ── 大平板 / 小桌面 ── */
         @media (max-width: 1200px) {
           .cases-grid {
-            grid-template-columns: repeat(2, 1fr); /* 平板尺寸下变为 2 列 */
+            grid-template-columns: repeat(2, minmax(0, 1fr));
           }
         }
-        
-        @media (max-width: 640px) {
+
+        /* ── 平板端 ── */
+        @media (max-width: 1024px) {
+          .ind-img-item {
+            top: 40px;
+            bottom: 40px;
+            right: 40px;
+          }
+
+          .ind-text-item h3 {
+            font-size: clamp(24px, 3vw, 32px);
+          }
+
+          .ind-text-item p {
+            font-size: 1rem;
+            margin-bottom: 24px;
+          }
+
+          .industry-nav-numbers {
+            bottom: 36px;
+            gap: 18px;
+          }
+        }
+
+        /* ── Cases 中屏优化：先保证内容完整展开 ── */
+        @media (max-width: 900px) {
+          .industry-static-cases {
+            padding: 24px 0 44px;
+          }
+
+          .industry-static-cases .container {
+            width: min(var(--container), calc(100% - 32px));
+          }
+
           .cases-grid {
-            grid-template-columns: 1fr; /* 手机尺寸下变为 1 列 */
+            grid-template-columns: 1fr;
+            gap: 14px;
           }
+
           .case-card {
-            flex-direction: column; /* 手机屏幕太窄，将内部结构改为上下排列 */
+            flex-direction: column;
+            min-height: auto;
           }
+
           .case-img-wrap {
             width: 100%;
-            padding: 0;
-            height: 180px;
+            height: 200px;
+            margin: 0;
           }
-          .case-img-wrap img {
-            aspect-ratio: auto;
-          }
+
           .case-content {
-            padding: 12px;
+            padding: 18px;
+          }
+
+          .case-icon {
+            position: relative;
+            right: auto;
+            bottom: auto;
+            margin-top: 14px;
+            align-self: flex-start;
+          }
+        }
+
+        /* ── 中小屏：从左右结构改为上下结构 ── */
+        @media (max-width: 900px) {
+          .industry-scroll-container {
+            height: 360vh;
+          }
+
+          .industry-sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+          }
+
+          .industry-dynamic-area {
+            flex-direction: column;
+            height: 100%;
+          }
+
+          .industry-images,
+          .industry-texts {
+            width: 100%;
+            flex: none;
+          }
+
+          .industry-images {
+            height: 48vh;
+            min-height: 90px;
+          }
+
+          .ind-img-item {
+            top: 0;
+            bottom: 18px;
+            left: 0;
+            right: 0;
+          }
+
+          .industry-texts {
+            height: auto;
+            min-height: 230px;
+            align-items: flex-start;
+            padding: 10px 0 64px;
+          }
+
+          .ind-text-item {
+            top: 10px;
+            left: 0;
+            right: 0;
+            transform: translateY(20px);
+          }
+
+          .ind-text-item.is-active {
+            transform: translateY(0);
+          }
+
+          .industry-nav-numbers {
+            bottom: 22px;
+            left: 0;
+            gap: 16px;
+          }
+        }
+
+        /* ── 手机端 ── */
+        @media (max-width: 640px) {
+        
+          .industry-images {
+            height: 240px;
+            min-height: 240px;
+          }
+
+          .ind-img-item {
+            bottom: 14px;
+          }
+
+          .industry-texts {
+            min-height: 210px;
+            padding: 6px 0 58px;
+          }
+
+          .ind-text-label {
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            margin-bottom: 10px;
+          }
+
+          .ind-text-item h3 {
+            font-size: 26px;
+            margin-bottom: 12px;
+          }
+
+          .ind-text-item p {
+            font-size: 0.95rem;
+            line-height: 1.55;
+            margin-bottom: 18px;
+          }
+
+          .industry-nav-numbers {
+            bottom: 18px;
+            gap: 14px;
+          }
+
+          .cases-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .case-card {
+            flex-direction: column;
+            height: auto;
+          }
+
+          .case-img-wrap {
+            width: 100%;
+            height: 180px;
+            margin: 0;
+          }
+
+          .case-content {
+            padding: 18px;
+          }
+
+          .case-icon {
+            position: relative;
+            right: auto;
+            bottom: auto;
+            margin-top: 16px;
+            align-self: flex-start;
           }
         }
        
@@ -849,10 +1024,10 @@
 
           <div class="eco-right-image" id="eco-img-group">
             <div class="eco-img-item is-active">
-              <img src="images/hardware" alt="High-Precision GNSS" />
+              <img src="images/face/11.mov" alt="High-Precision GNSS" />
             </div>
             <div class="eco-img-item">
-              <img src="images/hardware/e40.png" alt="Intelligent Sensors" />
+              <img src="images/hardware/m50.mp4" alt="Intelligent Sensors" />
             </div>
             <div class="eco-img-item">
               <img src="images/hero-case.png" alt="Disaster Mitigation Station" />
@@ -927,41 +1102,41 @@
 
             <!-- ⬇️ 下半部分：固定常驻的 Cases 区域 -->
             <div class="industry-static-cases">
-              <span class="cases-label">Success Studies</span>
-              <div class="cases-grid">
-                
-                <!-- 把你刚刚调整好的 3个 Case Card 直接粘贴到这里 -->
-                <a href="#" class="case-card">
-                  <div class="case-img-wrap"><img src="images/hero-case.png" alt="Case 1"></div>
-                  <div class="case-content">
-                    <span class="case-category">Water Conservancy</span>
-                    <p class="case-desc">Real-time deformation monitoring for dams.</p>
-                    <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
-                  </div>
-                </a>
+              <div class="container">
+                <span class="cases-label">Success Studies</span>
+                <div class="cases-grid">
+                  
+                  <a href="#" class="case-card">
+                    <div class="case-img-wrap"><img src="images/hero-case.png" alt="Case 1"></div>
+                    <div class="case-content">
+                      <span class="case-category">Water Conservancy</span>
+                      <p class="case-desc">Real-time deformation monitoring for dams.</p>
+                      <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
+                    </div>
+                  </a>
 
-                <a href="#" class="case-card">
-                  <div class="case-img-wrap"><img src="images/hero-mining.png" alt="Case 2"></div>
-                  <div class="case-content">
-                    <span class="case-category">Mining Safety</span>
-                    <p class="case-desc">Automated TSF early warning system deployed.</p>
-                    <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
-                  </div>
-                </a>
+                  <a href="#" class="case-card">
+                    <div class="case-img-wrap"><img src="images/hero-mining.png" alt="Case 2"></div>
+                    <div class="case-content">
+                      <span class="case-category">Mining Safety</span>
+                      <p class="case-desc">Automated TSF early warning system deployed.</p>
+                      <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
+                    </div>
+                  </a>
 
-                <a href="#" class="case-card">
-                  <div class="case-img-wrap"><img src="images/hero-tech.png" alt="Case 3"></div>
-                  <div class="case-content">
-                    <span class="case-category">Urban Infrastructure</span>
-                    <p class="case-desc">Subway tunnel convergence monitoring safely.</p>
-                    <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
-                  </div>
-                </a>
+                  <a href="#" class="case-card">
+                    <div class="case-img-wrap"><img src="images/hero-tech.png" alt="Case 3"></div>
+                    <div class="case-content">
+                      <span class="case-category">Urban Infrastructure</span>
+                      <p class="case-desc">Subway tunnel convergence monitoring safely.</p>
+                      <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
+                    </div>
+                  </a>
 
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
