@@ -111,10 +111,10 @@
           
           /* 核心调整 2：纯净透明玻璃材质，去除所有蓝色发光 */
           /* 在白底上做玻璃，需要极淡的灰白渐变来体现材质厚度 */
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%);
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
           
           /* 光学扭曲：微弱的对比度增强和模糊，模拟纯净透镜 */
-          backdrop-filter: blur(6px) contrast(1.02) brightness(0.98);
+          backdrop-filter: blur(0px) contrast(1.02) brightness(0.98);
           -webkit-backdrop-filter: blur(6px) contrast(1.02) brightness(0.98);
           
           /* 玻璃边缘切割感 */
@@ -125,15 +125,13 @@
           
           /* 纯粹的物理光影，去除一切有色光晕 */
           box-shadow: 
-          0 0 24px 2px rgba(0, 86, 214, 0.15), /* 👉 将原本黑色的阴影改成了品牌主题蓝的光晕 */
-          inset 0 0 16px rgba(255, 255, 255, 0.9); /* 内部玻璃的通透反光 */
+          0 0 16px 2px rgba(0, 86, 214, 0.15), /* 👉 将原本黑色的阴影改成了品牌主题蓝的光晕 */
+          inset 0 0 16px rgba(255, 255, 255, 0.3); /* 内部玻璃的通透反光 */
           z-index: 10;
           pointer-events: none;
           display: flex;
           align-items: center;
         }
-        
-
         /* 👉 进化版：更“实在”的滑动标尺 */
         .eco-moving-ruler {
           position: absolute;
@@ -177,7 +175,7 @@
           font-weight: 700;
           transform-origin: left center;
           will-change: transform, opacity;
-          transition: color 0.4s ease;
+          transition: color 0.4s ease, text-shadow 0.4s ease;
         }
         
         /* ── 右侧图片 ── */
@@ -262,37 +260,7 @@
           .loop-slide.slide-04::after { background: linear-gradient(to bottom, #2d1b4e 0%, #2d1b4e 50%, transparent 85%); }
         }
 
-        /* ── 手机端特别优化 (< 640px) ── */
-        @media (max-width: 640px) {
-          .loop-hero-inner { 
-            min-height: 550px; 
-            height: 90vh; /* 手机端稍微拉长一点高度 */
-          }
-          .loop-slide-content {
-            padding: 30px 20px 20px;
-          }
-          .loop-slide-sub {
-             font-size: 15px; /* 手机端副标题稍微小一点，防止文字过多换行 */
-             line-height: 1.5;
-          }
-          .loop-nav { 
-            display: none; /* 手机屏幕太窄，隐藏左右箭头，仅保留底部小圆点 */
-          }
-        }
-
-        /* ── 无障碍支持：减少动画 ── */
-        @media (prefers-reduced-motion: reduce) {
-          .hero-bg::after { animation: none; }
-          .hero-slider-track { animation: none; }
-          .hero-fadeup { animation: none; opacity: 1; transform: none; }
-          .btn { transition: none; }
-          .nav-link::after { transition: none; }
-          .loop-track { transition: none; }
-          .loop-cta { transition: none; }
-        }
-        /* =========================================
-           响应式设计 (平板与手机端 - 直角无缝上下排布)
-           ========================================= */
+         /* 产品部分响应式设计  */
         @media (max-width: 900px) {
           .eco-sticky-viewport {
             display: flex;
@@ -375,6 +343,36 @@
             width: 80px; 
           }
         }
+
+        /* ── 手机端特别优化 (< 640px) ── */
+        @media (max-width: 640px) {
+          .loop-hero-inner { 
+            min-height: 550px; 
+            height: 90vh; /* 手机端稍微拉长一点高度 */
+          }
+          .loop-slide-content {
+            padding: 30px 20px 20px;
+          }
+          .loop-slide-sub {
+             font-size: 15px; /* 手机端副标题稍微小一点，防止文字过多换行 */
+             line-height: 1.5;
+          }
+          .loop-nav { 
+            display: none; /* 手机屏幕太窄，隐藏左右箭头，仅保留底部小圆点 */
+          }
+        }
+
+        /* ── 无障碍支持：减少动画 ── */
+        @media (prefers-reduced-motion: reduce) {
+          .hero-bg::after { animation: none; }
+          .hero-slider-track { animation: none; }
+          .hero-fadeup { animation: none; opacity: 1; transform: none; }
+          .btn { transition: none; }
+          .nav-link::after { transition: none; }
+          .loop-track { transition: none; }
+          .loop-cta { transition: none; }
+        }
+       
       </style>
   </head>
   <body>
@@ -502,7 +500,7 @@
         </div>
       </section>
 
-      <!-- ── Integrated Monitoring Ecosystem ── -->
+      <!-- ── Products Ecosystem ── -->
       <section class="eco-scroll-container" id="eco-section" aria-labelledby="ecosystem-title">
         <div class="eco-sticky-viewport container"> <div class="eco-left-text" id="eco-text-group">
             <div class="eco-text-item is-active">
@@ -900,13 +898,22 @@
           num.style.transform = 'scale(' + scale + ')';
           num.style.opacity = opacity;
 
-          // 👉 状态颜色判定更新为蓝色系
+          /// 👉 状态颜色判定更新为蓝色系
           if (distance < 0.15) {
             num.style.color = '#0056D6'; // 激活时的亮蓝数字
+            
+            // ✨ 新增核心代码：激活时的蓝色光晕
+            // 0 0 12px 分别代表：X轴不偏移、Y轴不偏移、扩散模糊半径为12px
+            num.style.textShadow = '0 0 0px rgba(0, 86, 214, 0.1)'; 
+            
             tick.style.width = '28px';
             tick.style.background = '#0056D6'; // 激活时的亮蓝刻度线
           } else {
             num.style.color = 'rgba(0, 86, 214, 0.3)'; // 未激活时的浅蓝数字
+            
+            // ✨ 新增核心代码：未激活时清除光晕
+            num.style.textShadow = 'none'; 
+            
             tick.style.width = '16px';
             tick.style.background = 'rgba(0, 86, 214, 0.2)'; // 未激活时的浅蓝刻度线
           }
