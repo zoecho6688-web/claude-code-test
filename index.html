@@ -201,11 +201,10 @@
           opacity: 0;
           transform: translateX(40px) scale(0.95);
           transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-          border: 1px solid rgba(0, 86, 214, 0.1);
           overflow: hidden;
         }
         .eco-img-item::before { 
-          content: "DATA STREAM // ACTIVE"; 
+          content: ""; 
           font-family: monospace; 
           position: absolute; 
           top: 20px; 
@@ -290,6 +289,91 @@
           .nav-link::after { transition: none; }
           .loop-track { transition: none; }
           .loop-cta { transition: none; }
+        }
+        /* =========================================
+           响应式设计 (平板与手机端 - 直角无缝上下排布)
+           ========================================= */
+        @media (max-width: 900px) {
+          .eco-sticky-viewport {
+            display: flex;
+            flex-direction: column; 
+            padding-top: 80px;      
+            padding-bottom: 40px;
+            justify-content: center; /* 让整体内容在屏幕垂直居中 */
+          }
+
+          /* ── 1. 上半部：图片展示区 (利用 order 提升层级) ── */
+          .eco-right-image {
+            order: 1; /* 👉 核心魔法：无视 HTML 顺序，强制将图片排在第 1 位 (最上方) */
+            position: relative;
+            width: 100%;
+            height: 35vh; /* 图片占据的高度，可根据需要微调 */
+            padding: 0 20px; 
+            box-sizing: border-box;
+            margin-bottom: 0; /* 👉 移除间距，准备与下方文字无缝贴合 */
+            flex: none; 
+          }
+          .eco-img-item {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: calc(100% - 40px); 
+            height: 100%;
+            border-radius: 0; /* 👉 取消圆角，变为锐利直角 */
+            border-bottom: none; /* 👉 去掉底边框，使其与下方文字卡片融为一体 */
+            transform: translateY(10px) scale(0.98); 
+          }
+          .eco-img-item.is-active {
+            transform: translateY(0) scale(1);
+          }
+
+          /* ── 2. 下半部：文字卡片区 ── */
+          .eco-left-text {
+            order: 2; /* 👉 强制文字排在第 2 位 (图片下方) */
+            position: relative;
+            width: 100%;
+            height: 260px; /* 为文字预留固定高度，防止滚动时跳动 */
+            padding: 0 20px;
+            box-sizing: border-box;
+          }
+          .eco-text-item {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
+            background: #ffffff; 
+            padding: 24px;
+            border-radius: 0; /* 👉 取消圆角，变为锐利直角 */
+            transform: translateY(10px);
+          }
+          .eco-text-item.is-active {
+            transform: translateY(0);
+          }
+          .eco-text-item h3 {
+            font-size: 24px; 
+            margin-bottom: 12px;
+          }
+          .eco-text-item p {
+            font-size: 15px; 
+            margin-bottom: 16px;
+          }
+
+          /* ── 3. 悬浮标尺：缩小并贴靠在右侧 ── */
+          .eco-center-scale {
+            position: absolute;
+            right: 0px; 
+            top: 50%; 
+            margin: 0;
+            transform: translateY(-50%) scale(0.7); 
+            transform-origin: right center;
+            z-index: 10;
+          }
+          .eco-hud-lens {
+            left: auto;
+            right: 20px; 
+            width: 80px; 
+          }
         }
       </style>
   </head>
@@ -468,10 +552,10 @@
 
           <div class="eco-right-image" id="eco-img-group">
             <div class="eco-img-item is-active">
-              <img src="images/hero-product.png" alt="High-Precision GNSS" />
+              <img src="images/hardware" alt="High-Precision GNSS" />
             </div>
             <div class="eco-img-item">
-              <img src="images/hero-tech.png" alt="Intelligent Sensors" />
+              <img src="images/hardware/e40.png" alt="Intelligent Sensors" />
             </div>
             <div class="eco-img-item">
               <img src="images/hero-case.png" alt="Disaster Mitigation Station" />
@@ -769,16 +853,40 @@
       function onScroll() {
         var rect = section.getBoundingClientRect();
         
-        // 1. 计算滚动进度 (0 到 1)
+        // 1. 计算原始滚动进度 (0 到 1)
+        var rect = section.getBoundingClientRect();
         var progress = -rect.top / (rect.height - window.innerHeight);
         progress = Math.max(0, Math.min(1, progress));
 
-        // 2. 滑动标尺
+        // 2. 核心升级：磁性吸附算法 (Magnetic Plateau)
         var totalItems = texts.length;
-        var progressIndex = progress * (totalItems - 1); 
+        var rawIndex = progress * (totalItems - 1); 
         
-        var yOffset = -(progressIndex * 120) - 60; // 120是刻度间距，60是对齐中心的偏移
+        // 把进度拆分为整数部分和小数部分
+        var indexFloor = Math.floor(rawIndex);
+        var f = rawIndex - indexFloor; // f 的范围是 0 到 1
+        
+        // 👉 设定吸附区域大小：0.25 意味着在这个区间的前 25% 和后 25% 滚动距离内，画面将完全锁定静止！
+        var snapZone = 0.25; 
+        var mappedF;
+        
+        if (f < snapZone) {
+          mappedF = 0; // 强行锁定在当前数字
+        } else if (f > 1 - snapZone) {
+          mappedF = 1; // 强行吸附到下一个数字
+        } else {
+          // 只有脱离了吸附区，标尺才开始平滑滑动
+          var ratio = (f - snapZone) / (1 - 2 * snapZone);
+          mappedF = ratio * ratio * (3 - 2 * ratio); // 保持 S 型平滑曲线
+        }
+        
+        // 经过磁性处理后的最终进度
+        var progressIndex = indexFloor + mappedF; 
+        
+        // 3. 滑动标尺及计算偏移
+        var yOffset = -(progressIndex * 120) - 60; 
         ruler.style.transform = 'translateY(' + yOffset + 'px)';
+
 
         // 3. 动态计算光学畸变与亮度
         marks.forEach(function(mark, i) {
