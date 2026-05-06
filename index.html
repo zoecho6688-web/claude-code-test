@@ -7,7 +7,8 @@
     <title>Medo Monitoring Technology | Precision in Every Dimension</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      
+      html{ scroll-behavior: smooth; }
+
       .loop-slide.slide-01::after {
           /* 修改遮罩的渐变色 */
           background: linear-gradient(to right, #0C3431 0%, #0C3431 30%, transparent 75%);
@@ -369,6 +370,174 @@
         }
 
         /* =========================================
+           Hybrid Scroll Parallax: Industry + Cases
+           ========================================= */
+        .industry-scroll-container {
+          height: 400vh; /* 为 4 个模块提供充足的滚动空间 */
+          position: relative;
+          background: #ffffff;
+        }
+
+        .industry-container {
+          height: 100%;
+          background: #ffffff;
+        }
+
+        .industry-sticky-viewport {
+          position: sticky;
+          width: 100%;      /* 👈 全宽 */
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          top: 0;
+          height: 100vh; /* 始终铺满全屏 */
+          display: flex;
+          flex-direction: column; /* 上下排布 */
+          overflow: hidden;
+          background: #ffffff;
+        }
+
+        /* ── 🔝 上半部：动态区 (占据主要空间) ── */
+        .industry-dynamic-area {
+          flex: 1; /* 占据屏幕减去底部 Cases 后的所有剩余空间 */
+          display: flex;
+          flex-direction: row; /* 左右排布 */
+        }
+
+        /* ── 左侧大图区 (独立长方形相框) ── */
+        .industry-images {
+          flex: 1.5; /* 依然保留较大的空间占比 */
+          position: relative;
+          height: 100%;
+          background: transparent; /* 确保背景透明，露出底色 */
+          background-color: #ffffff;
+        }
+        
+        .ind-img-item {
+          position: absolute;
+          /* 👉 核心修改：移除 inset: 0，改为四周精确留白 */
+          top: 60px;       /* 距离顶部留出 60px 呼吸空间 */
+          bottom: 60px;    /* 距离底部留出 60px 呼吸空间 */
+          left: 0;         /* 左边贴齐容器左边界，和上下内容对齐 */
+          right: 60px;     /* 👉 距离右侧留出 60px，不再与文字区贴边 */
+          opacity: 0;
+          transform: scale(0.98);
+          transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        
+        .ind-img-item.is-active {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .ind-img-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0; /* 保持你要求的锐利直角 */
+        }
+
+        /* 右侧文字区 */
+        .industry-texts {
+          flex: 1; /* 👉 占比小：相当于 40% 的宽度 */
+          position: relative;
+          display: flex;
+          align-items: center; /* 让文字在垂直方向上居中 */
+          padding: 0; /* 优雅的内边距 */
+          background: #ffffff;
+        }
+        .ind-text-item {
+          position: absolute;
+          left: 0;
+          right: 0;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .ind-text-item.is-active {
+          opacity: 1;
+          transform: translateY(0);
+          z-index: 10;
+        }
+        .ind-text-label {
+          font-size: 13px;
+          color: #0056D6;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          display: block;
+          margin-bottom: 12px;
+        }
+        .ind-text-item h3 {
+          font-size: clamp(28px, 3.5vw, 42px);
+          color: #1a1a1a;
+          margin: 0 0 16px;
+          line-height: 1.2;
+        }
+        .ind-text-item p {
+          color: #555;
+          font-size: 1.1rem;
+          line-height: 1.6;
+          margin-bottom: 30px;
+        }
+        .ind-link {
+          display: inline-block;
+          color: #0056D6;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 14px;
+          letter-spacing: 0.1em;
+          transition: opacity 0.3s ease;
+        }
+        .ind-link:hover { opacity: 0.7; }
+
+        /* ── 新增：右下角数字导航 ── */
+        .industry-nav-numbers {
+          position: absolute;
+          bottom: 50px; /* 距离容器底部的距离 */
+          left: 0; /* 跟随容器左边界对齐 */
+          display: flex;
+          gap: 28px; /* 数字之间的间距 */
+          z-index: 20; /* 确保它在文字的最上层可见 */
+        }
+
+        .ind-nav-num {
+          position: relative;
+          font-family: 'Courier New', Courier, monospace; /* 使用等宽字体增强科技感 */
+          font-size: 14px;
+          font-weight: 700;
+          color: rgba(26, 26, 26, 0.2); /* 默认未激活时的浅灰色 */
+          transition: color 0.4s ease, transform 0.4s ease;
+          display: inline-block;
+        }
+        .ind-nav-num::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -6px; /* 👉 控制下划线距离数字底部的间距 */
+          width: 100%;  /* 👉 宽度与数字文本等宽 */
+          height: 3px;  /* 👉 控制下划线的粗细 (厚度) */
+          border-radius: 2px;
+          background: transparent; /* 默认状态下透明隐藏 */
+          transition: background-color 0.4s ease; /* 颜色平滑过渡 */
+        }
+
+        /* 高亮时的状态 */
+        .ind-nav-num.is-active {
+          color: #0056D6; /* 变为品牌蓝 */
+          transform: scale(1.3); /* 字体微微放大突出显示 */
+        }
+        .ind-nav-num.is-active::after {
+          background-color: #0056D6; 
+        }
+
+        /* ── ⬇️ 下半部：静态 Cases 区 (常驻展示) ── */
+        .industry-static-cases {
+          height: auto;
+          background: #ffffff;
+          padding: 30px 0; /* 压缩上下边距，不要占太大高度 */
+        }
+
+        /* =========================================
            Cases / Success Stories 布局
            ========================================= */
         .cases-section {
@@ -696,126 +865,103 @@
         </div>
       </section>
 
-      <!-- ── Industry Applications ── -->
-      <section class="industry" aria-labelledby="industry-title">
-        <div class="container">
-          <div class="industry-head">
-            <div class="industry-head-left">
-              <span class="industry-label">INDUSTRY APPLICATIONS</span>
-              <h2 class="industry-title" id="industry-title">Mission-Critical Solutions</h2>
-            </div>
-            <p class="industry-desc">Tailored monitoring frameworks engineered for the unique demands of each sector — from deep-rock mining to urban infrastructure management.</p>
-          </div>
-
-          <div class="industry-grid">
-
-            <article class="ind-card">
-              <div class="ind-card-img">
-                <img src="images/hero-mining.png" alt="Water Conservancy monitoring" />
-              </div>
-              <div class="ind-card-body">
-                <h3 class="ind-card-title">Water Conservancy</h3>
-                <p class="ind-card-copy">Continuous dam and reservoir monitoring with real-time displacement and seepage analysis.</p>
-                <a class="ind-card-link" href="solutions.html">LEARN MORE →</a>
-              </div>
-            </article>
-
-            <article class="ind-card">
-              <div class="ind-card-img">
-                <img src="images/hero-tech.png" alt="Geological Hazards monitoring" />
-              </div>
-              <div class="ind-card-body">
-                <h3 class="ind-card-title">Geological Hazards</h3>
-                <p class="ind-card-copy">Early warning systems for landslides and ground subsidence across complex terrain.</p>
-                <a class="ind-card-link" href="solutions.html">LEARN MORE →</a>
-              </div>
-            </article>
-
-            <article class="ind-card">
-              <div class="ind-card-img">
-                <img src="images/hero-product.png" alt="Mining Safety monitoring" />
-              </div>
-              <div class="ind-card-body">
-                <h3 class="ind-card-title">Mining Safety</h3>
-                <p class="ind-card-copy">Slope stability and tailings dam surveillance for safer extraction operations.</p>
-                <a class="ind-card-link" href="solutions.html">LEARN MORE →</a>
-              </div>
-            </article>
-
-            <article class="ind-card">
-              <div class="ind-card-img">
-                <img src="images/hero-case.png" alt="Urban Infrastructure monitoring" />
-              </div>
-              <div class="ind-card-body">
-                <h3 class="ind-card-title">Urban Infrastructure</h3>
-                <p class="ind-card-copy">Structural health monitoring for bridges, tunnels, and high-rise buildings in dense environments.</p>
-                <a class="ind-card-link" href="solutions.html">LEARN MORE →</a>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ── Success Stories ── -->
-      <section class="cases-section" aria-labelledby="cases-section-title">
-        <div class="container">
-          <div class="cases-head">
-            <span class="cases-label">Success Stories</span>
-          </div>
-
-          <div class="cases-grid">
+      <!-- ── 组合视口：Industry Applications + Cases ── -->
+      <section class="industry-scroll-container" id="industry-hybrid-section">
+        <div class="container industry-container">
+          <div class="industry-sticky-viewport">
             
-            <!-- Case Card 1 -->
-            <a href="case-detail.html" class="case-card">
-              <div class="case-img-wrap">
-                <!-- 替换为你的真实图片 -->
-                <img src="images/hero-case.png" alt="Water Conservancy Case">
-              </div>
-              <div class="case-content">
-                <span class="case-category">Water Conservancy</span>
-                <p class="case-desc">Real-time deformation monitoring for the Three Gorges Dam auxiliary structures.</p>
-                <div class="case-icon">
-                  <!-- 科技感向右箭头 -->
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
+            <!-- 🔝 上半部分：动态滚动的行业应用 -->
+            <div class="industry-dynamic-area">
+              
+              <!-- 左侧图片区 (占比更大) -->
+              <div class="industry-images" id="ind-img-group">
+                <div class="ind-img-item is-active">
+                  <img src="images/hero-case.png" alt="Water Conservancy" />
+                </div>
+                <div class="ind-img-item">
+                  <img src="images/hero-tech.png" alt="Geological Hazards" />
+                </div>
+                <div class="ind-img-item">
+                  <img src="images/hero-mining.png" alt="Mining Safety" />
+                </div>
+                <div class="ind-img-item">
+                  <img src="images/hero-product.png" alt="Urban Infrastructure" />
                 </div>
               </div>
-            </a>
 
-            <!-- Case Card 2 -->
-            <a href="case-detail.html" class="case-card">
-              <div class="case-img-wrap">
-                <img src="images/hero-mining.png" alt="Mining Safety Case">
-              </div>
-              <div class="case-content">
-                <span class="case-category">Mining Safety</span>
-                <p class="case-desc">Automated tailings storage facility (TSF) early warning system deployed in 48 hours.</p>
-                <div class="case-icon">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
+              <!-- 右侧文字区 (占比更小) -->
+              <div class="industry-texts" id="ind-text-group">
+                <div class="ind-text-item is-active">
+                  <span class="ind-text-label">INDUSTRY 01</span>
+                  <h3>Water Conservancy</h3>
+                  <p>Continuous dam and reservoir monitoring with real-time displacement and seepage analysis.</p>
+                  <a class="ind-link" href="#">LEARN MORE →</a>
+                </div>
+                <div class="ind-text-item">
+                  <span class="ind-text-label">INDUSTRY 02</span>
+                  <h3>Geological Hazards</h3>
+                  <p>Early warning systems for landslides and ground subsidence across complex terrain.</p>
+                  <a class="ind-link" href="#">LEARN MORE →</a>
+                </div>
+                <div class="ind-text-item">
+                  <span class="ind-text-label">INDUSTRY 03</span>
+                  <h3>Mining Safety</h3>
+                  <p>Slope stability and tailings dam surveillance for safer extraction operations.</p>
+                  <a class="ind-link" href="#">LEARN MORE →</a>
+                </div>
+                <div class="ind-text-item">
+                  <span class="ind-text-label">INDUSTRY 04</span>
+                  <h3>Urban Infrastructure</h3>
+                  <p>Structural health monitoring for bridges, tunnels, and high-rise buildings in dense environments.</p>
+                  <a class="ind-link" href="#">LEARN MORE →</a>
+                </div>
+                <div class="industry-nav-numbers" id="ind-nav-numbers">
+                  <span class="ind-nav-num is-active">01</span>
+                  <span class="ind-nav-num">02</span>
+                  <span class="ind-nav-num">03</span>
+                  <span class="ind-nav-num">04</span>
                 </div>
               </div>
-            </a>
+              
+            </div>
 
-            <!-- Case Card 3 -->
-            <a href="case-detail.html" class="case-card">
-              <div class="case-img-wrap">
-                <img src="images/hero-tech.png" alt="Urban Infrastructure Case">
+            <!-- ⬇️ 下半部分：固定常驻的 Cases 区域 -->
+            <div class="industry-static-cases">
+              <span class="cases-label">Success Studies</span>
+              <div class="cases-grid">
+                
+                <!-- 把你刚刚调整好的 3个 Case Card 直接粘贴到这里 -->
+                <a href="#" class="case-card">
+                  <div class="case-img-wrap"><img src="images/hero-case.png" alt="Case 1"></div>
+                  <div class="case-content">
+                    <span class="case-category">Water Conservancy</span>
+                    <p class="case-desc">Real-time deformation monitoring for dams.</p>
+                    <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
+                  </div>
+                </a>
+
+                <a href="#" class="case-card">
+                  <div class="case-img-wrap"><img src="images/hero-mining.png" alt="Case 2"></div>
+                  <div class="case-content">
+                    <span class="case-category">Mining Safety</span>
+                    <p class="case-desc">Automated TSF early warning system deployed.</p>
+                    <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
+                  </div>
+                </a>
+
+                <a href="#" class="case-card">
+                  <div class="case-img-wrap"><img src="images/hero-tech.png" alt="Case 3"></div>
+                  <div class="case-content">
+                    <span class="case-category">Urban Infrastructure</span>
+                    <p class="case-desc">Subway tunnel convergence monitoring safely.</p>
+                    <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
+                  </div>
+                </a>
+
               </div>
-              <div class="case-content">
-                <span class="case-category">Urban Infrastructure</span>
-                <p class="case-desc">Subway tunnel convergence monitoring ensuring safe operations during adjacent excavation.</p>
-                <div class="case-icon">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
-                </div>
-              </div>
-            </a>
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -1126,6 +1272,50 @@
       onScroll();
     })();
     })();
+
+    // ── 行业应用滚动劫持引擎 (Industry Scroll Hijacking) ──
+    (function(){
+      var section = document.getElementById('industry-hybrid-section');
+      if(!section) return; 
+      
+      var imgs = section.querySelectorAll('.ind-img-item');
+      var texts = section.querySelectorAll('.ind-text-item');
+      // 👉 新增：获取那 4 个数字元素
+      var navNums = section.querySelectorAll('#ind-nav-numbers .ind-nav-num'); 
+      
+      var totalItems = imgs.length;
+
+      function onScroll() {
+        var rect = section.getBoundingClientRect();
+        var windowHeight = window.innerHeight;
+        var scrollableDistance = rect.height - windowHeight;
+        var scrolled = -rect.top;
+        var progress = scrolled / scrollableDistance;
+        progress = Math.max(0, Math.min(1, progress)); 
+
+        var rawIndex = progress * (totalItems - 1);
+        var activeIndex = Math.round(rawIndex); 
+
+        // 遍历并更新所有的图片状态
+        imgs.forEach(function(img, i) {
+          img.classList.toggle('is-active', i === activeIndex);
+        });
+
+        // 遍历并更新所有的文字状态
+        texts.forEach(function(text, i) {
+          text.classList.toggle('is-active', i === activeIndex);
+        });
+
+        // 👉 新增：遍历并更新底部的数字状态
+        navNums.forEach(function(num, i) {
+          num.classList.toggle('is-active', i === activeIndex);
+        });
+      }
+
+      window.addEventListener('scroll', onScroll);
+      onScroll(); // 初始化
+    })();
+    
   </script>
 </body>
 </html>
