@@ -3759,8 +3759,8 @@ html{ scroll-behavior: smooth; }
 .loop-hero-inner{
   position: relative;
   width: 100%;
-  height: min(78vh, 760px);
-  min-height: 520px;
+  height: 100vh;
+  min-height: 700px;
   overflow: hidden;
 }
 .loop-track{

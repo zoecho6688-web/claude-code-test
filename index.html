@@ -7,6 +7,7 @@
     <title>Medo Monitoring Technology | Precision in Every Dimension</title>
     <link rel="stylesheet" href="style.css" />
     <style>
+      
       .loop-slide.slide-01::after {
           /* 修改遮罩的渐变色 */
           background: linear-gradient(to right, #0C3431 0%, #0C3431 30%, transparent 75%);
@@ -220,7 +221,6 @@
         }
         .eco-img-item.is-active { opacity: 1; transform: translateX(0) scale(1); }
         .eco-img-item.is-active img { transform: scale(1.05); }
-
         @media (max-width: 900px) {
           .loop-hero-inner {
             min-height: 600px; /* 保证有足够的高度容纳上下两部分 */
@@ -259,7 +259,6 @@
           .loop-slide.slide-03::after { background: linear-gradient(to bottom, #1f1f1f 0%, #1f1f1f 50%, transparent 85%); }
           .loop-slide.slide-04::after { background: linear-gradient(to bottom, #2d1b4e 0%, #2d1b4e 50%, transparent 85%); }
         }
-
          /* 产品部分响应式设计  */
         @media (max-width: 900px) {
           .eco-sticky-viewport {
@@ -269,7 +268,6 @@
             padding-bottom: 40px;
             justify-content: center; /* 让整体内容在屏幕垂直居中 */
           }
-
           /* ── 1. 上半部：图片展示区 (利用 order 提升层级) ── */
           .eco-right-image {
             order: 1; /* 👉 核心魔法：无视 HTML 顺序，强制将图片排在第 1 位 (最上方) */
@@ -326,7 +324,6 @@
             font-size: 15px; 
             margin-bottom: 16px;
           }
-
           /* ── 3. 悬浮标尺：缩小并贴靠在右侧 ── */
           .eco-center-scale {
             position: absolute;
@@ -343,7 +340,6 @@
             width: 80px; 
           }
         }
-
         /* ── 手机端特别优化 (< 640px) ── */
         @media (max-width: 640px) {
           .loop-hero-inner { 
@@ -361,7 +357,6 @@
             display: none; /* 手机屏幕太窄，隐藏左右箭头，仅保留底部小圆点 */
           }
         }
-
         /* ── 无障碍支持：减少动画 ── */
         @media (prefers-reduced-motion: reduce) {
           .hero-bg::after { animation: none; }
@@ -371,6 +366,141 @@
           .nav-link::after { transition: none; }
           .loop-track { transition: none; }
           .loop-cta { transition: none; }
+        }
+
+        /* =========================================
+           Cases / Success Stories 布局
+           ========================================= */
+        .cases-section {
+          padding: 20px 0;
+          background: #ffffff; /* 纯白背景，与上下模块形成呼吸感区分 */
+        }
+        .cases-label {
+          font-size: 14px;
+          color: #0b1b33; 
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 16px;
+        }
+        .cases-title {
+          font-size: clamp(32px, 4vw, 42px);
+          color: #1a1a1a;
+          margin: 0;
+        }
+
+        /* ── 核心网格：一行 4 列 ── */
+        .cases-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 15px; /* 卡片之间的间距 */
+        }
+
+        /* ── 单个卡片样式 ── */
+        .case-card {
+          position: relative;
+          display: flex;
+          flex-direction: row; /* 内部左右排列 */
+          align-items: flex-start;;
+          background: #ffffff;
+          border: 1.5px solid rgba(0, 0, 0, 0.12); /* 默认淡灰色边框 */
+          border-radius: 3px; /* 锐利直角 */
+          text-decoration: none;
+          color: inherit;
+          min-height: 120px; /* 保证卡片基本高度 */
+          box-shadow: none; /* 👉 明确设定无阴影 */
+          transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease;
+        }
+
+        /* 左侧图片区域 */
+        .case-img-wrap {
+          width: 110px;  /* 👉 强制宽度 */
+          height: 110px;
+          flex-shrink: 0; /* 防止图片被挤压 */
+          margin: 0px; 
+        }
+        .case-img-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          aspect-ratio: 1 / 1; /* 保持图片为正方形 */
+          background: #f0f0f0; /* 图片加载前的底色 */
+        }
+
+        /* 右侧文字与图标区域 */
+        .case-content {
+          padding: 5px 16px 10px 18px;
+          display: flex;
+          flex-direction: column; /* 内部上下排列 */
+          flex-grow: 1;
+        }
+        
+        .case-category {
+          font-size: 12px;
+          color: #666666;
+          margin-bottom: 13px;
+          font-family: monospace; /* 分类标签使用等宽字体，增加仪器感 */
+        }
+        
+        .case-desc {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.5;
+          margin: 0;
+          color: #1a1a1a;
+          /* 多行文本截断：最多显示 2 行，多余显示省略号 */
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        /* 底部箭头图标 */
+        .case-icon {
+          position: absolute; /* 👉 新增：绝对定位，使其脱离文档流 */
+          right: 16px;        /* 👉 钉在距离右边缘 16px 的位置 */
+          bottom: 16px;
+          color: #0056D6; /* 默认蓝色 */
+          transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .case-icon svg {
+          width: 20px;
+          height: 20px;
+        }
+        .case-card:hover {
+          border-color: #0056D6; /* 👉 边框变为品牌蓝 */
+          background-color: #f5f5f5; /* 👉 背景变为干净的浅灰色 */
+          box-shadow: none; /* 👉 悬停时也绝不出现阴影 */
+        } 
+        .case-card:hover .case-icon {
+          transform: translateX(6px); /* 箭头向右滑动保持不变 */
+        }
+        @media (max-width: 1200px) {
+          .cases-grid {
+            grid-template-columns: repeat(2, 1fr); /* 平板尺寸下变为 2 列 */
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .cases-grid {
+            grid-template-columns: 1fr; /* 手机尺寸下变为 1 列 */
+          }
+          .case-card {
+            flex-direction: column; /* 手机屏幕太窄，将内部结构改为上下排列 */
+          }
+          .case-img-wrap {
+            width: 100%;
+            padding: 0;
+            height: 180px;
+          }
+          .case-img-wrap img {
+            aspect-ratio: auto;
+          }
+          .case-content {
+            padding: 12px;
+          }
         }
        
       </style>
@@ -623,6 +753,68 @@
               </div>
             </article>
 
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Success Stories ── -->
+      <section class="cases-section" aria-labelledby="cases-section-title">
+        <div class="container">
+          <div class="cases-head">
+            <span class="cases-label">Success Stories</span>
+          </div>
+
+          <div class="cases-grid">
+            
+            <!-- Case Card 1 -->
+            <a href="case-detail.html" class="case-card">
+              <div class="case-img-wrap">
+                <!-- 替换为你的真实图片 -->
+                <img src="images/hero-case.png" alt="Water Conservancy Case">
+              </div>
+              <div class="case-content">
+                <span class="case-category">Water Conservancy</span>
+                <p class="case-desc">Real-time deformation monitoring for the Three Gorges Dam auxiliary structures.</p>
+                <div class="case-icon">
+                  <!-- 科技感向右箭头 -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </div>
+              </div>
+            </a>
+
+            <!-- Case Card 2 -->
+            <a href="case-detail.html" class="case-card">
+              <div class="case-img-wrap">
+                <img src="images/hero-mining.png" alt="Mining Safety Case">
+              </div>
+              <div class="case-content">
+                <span class="case-category">Mining Safety</span>
+                <p class="case-desc">Automated tailings storage facility (TSF) early warning system deployed in 48 hours.</p>
+                <div class="case-icon">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </div>
+              </div>
+            </a>
+
+            <!-- Case Card 3 -->
+            <a href="case-detail.html" class="case-card">
+              <div class="case-img-wrap">
+                <img src="images/hero-tech.png" alt="Urban Infrastructure Case">
+              </div>
+              <div class="case-content">
+                <span class="case-category">Urban Infrastructure</span>
+                <p class="case-desc">Subway tunnel convergence monitoring ensuring safe operations during adjacent excavation.</p>
+                <div class="case-icon">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </section>
