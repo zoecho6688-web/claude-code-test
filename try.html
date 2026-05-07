@@ -514,7 +514,6 @@
            Hybrid Scroll Parallax: Industry + Cases
            ========================================= */
         .industry-scroll-container {
-          height: 400vh; /* 为 4 个模块提供充足的滚动空间 */
           position: relative;
           background: #ffffff;
         }
@@ -801,205 +800,169 @@
         .case-card:hover .case-icon {
           transform: translateX(6px); /* 箭头向右滑动保持不变 */
         }
-        /* =========================================
-           响应式设计：Industry + Cases
-           ========================================= */
 
-        /* ── 大平板 / 小桌面 ── */
-        @media (max-width: 1200px) {
-          .cases-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-          }
-        }
-
-        /* ── 平板端 ── */
-        @media (max-width: 1024px) {
-          .ind-img-item {
-            top: 40px;
-            bottom: 40px;
-            right: 40px;
-          }
-
-          .ind-text-item h3 {
-            font-size: clamp(24px, 3vw, 32px);
-          }
-
-          .ind-text-item p {
-            font-size: 1rem;
-            margin-bottom: 24px;
-          }
-
-          .industry-texts {
-            padding-left: 36px;
-            padding-top: 18px;
-          }
-
-          .industry-section-header {
-            margin-bottom: 44px;
-          }
-
-          .industry-section-title {
-            font-size: 24px;
-          }
-
-          .ind-text-item {
-            top: 104px;
-          }
-
-          .industry-nav-numbers {
-            bottom: 36px;
-            gap: 18px;
-          }
-        }
-
-        /* ── Cases 中屏优化：先保证内容完整展开 ── */
-       @media (max-width: 900px) {
-  .industry-scroll-container {
-    height: 360vh;
+        /* ≥ 1024px：cases 贴在视口底部，和 sticky 一起填满 100vh */
+@media (min-width: 1024px) {
+  .industry-sticky-outer {
+    height: 400vh;
+    position: relative;
   }
 
   .industry-sticky-viewport {
+    position: sticky;
     top: 0;
-    height: 100vh;
-    overflow: hidden;
-    justify-content: flex-start;
-    padding-top: 18px;
-    gap: 12px;
-  }
-
-  /* 1. 保持左右布局，顶部对齐 */
-  .industry-dynamic-area {
-    flex-direction: row;
-    align-items: flex-start;   /* ← 左右两列都从顶部开始 */
-    gap: 0;
+    height: calc(100vh - 220px); /* 留出 cases 的高度 */
     overflow: hidden;
   }
 
-  /* 3. 右侧图片跟随图片自然高度 */
-  .industry-images {
-    flex: 1.2;
-    height: auto;
-    min-height: 0;
-    position: relative;
-  }
-
-  .ind-img-item {
-    display: none;             /* 隐藏非激活项 */
-    position: relative;        /* 改为相对定位，由图片撑高 */
-    top: auto;
-    bottom: auto;
-    left: 0;
-    right: 0;
-    opacity: 1;
-    transform: none;
-  }
-
-  .ind-img-item.is-active {
-    display: block;
-    opacity: 1;
-    transform: none;
-  }
-
-  .ind-img-item img {
-    width: 100%;
-    height: auto;              /* ← 跟随图片本身比例 */
-    object-fit: unset;
-  }
-
-  /* 1. 左侧文字区贴顶 */
-  .industry-texts {
-    flex: 1;
-    height: auto;
-    min-height: 0;
-    padding: 0 0 0 24px;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-
-  .industry-section-header {
-    margin: 0 0 12px 0;
-    padding: 0 0 0 24px;
-  }
-
-  .industry-section-title {
-    font-size: clamp(16px, 2.2vw, 22px);
-    white-space: nowrap;
-  }
-
-  .ind-text-item {
-    position: relative;
-    top: auto;                 /* ← 清除 120px 偏移 */
-    left: auto;
-    right: auto;
-    opacity: 0;
-    display: none;
-    transform: none;
-    margin: 0;
-  }
-
-  .ind-text-item.is-active {
-    display: block;
-    opacity: 1;
-    transform: none;
-  }
-
-  .ind-text-item h3 {
-    font-size: clamp(18px, 2.4vw, 26px);
-    margin-bottom: 10px;
-  }
-
-  .ind-text-item p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 14px;
-  }
-
-  /* 2. nav-numbers 紧跟在 ind-link 下方 */
-  .industry-nav-numbers {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    margin: 14px 0 0 0;       /* ← 跟随文档流，紧贴链接下方 */
-    gap: 16px;
-  }
-
-  /* 4. case-card 变矮，case-img-wrap 缩小 */
   .industry-static-cases {
-    padding: 12px 0 16px;
-  }
-
-  .cases-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-  }
-
-  .case-card {
-    min-height: 0;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .case-img-wrap {
-    width: 72px;               /* ← 从 110px 缩到 72px */
-    height: 72px;
-    flex-shrink: 0;
-  }
-
-  .case-content {
-    padding: 8px 12px;
-  }
-
-  .case-desc {
-    font-size: 13px;
-    -webkit-line-clamp: 2;
-  }
-
-  .case-icon {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
+    position: sticky;
+    bottom: 0;                   /* 吸附在视口底部 */
+    height: 220px;
+    background: #ffffff;
+    z-index: 10;
+    padding: 20px 0;
   }
 }
+
+/* < 1024px：cases 回到普通文档流，sticky 独占 100vh */
+@media (max-width: 1023px) {
+  .industry-sticky-outer {
+    height: 300vh;
+    position: relative;
+  }
+
+  .industry-sticky-viewport {
+    position: sticky;
+    top: 0;
+    height: 100vh;     
+    overflow: hidden;
+  }
+
+  .industry-static-cases {
+    position: relative;          /* 普通流，滚完后自然出现 */
+    height: auto;
+    padding: 32px 0;
+  }
+}
+        
+
+        /* ── 中小屏：从左右结构改为上下结构 ── */
+        @media (max-width: 900px) {
+          .industry-images {
+            order: 1;
+          }
+          .industry-texts {
+            order: 2;
+          }
+          .industry-sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            justify-content: flex-start;
+            padding-top: 18px;
+            gap: 8px;
+          }
+
+          .industry-dynamic-area {
+            flex-direction: column;
+            height: auto;
+            gap: 6px;
+          }
+
+          .industry-images,
+          .industry-texts {
+            width: 100%;
+            flex: none;
+          }
+
+          .industry-images {
+            height: 40vh;
+            min-height: 300px;
+          }
+
+          .ind-img-item {
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+          }
+
+          .industry-texts {
+            height: auto;
+            min-height: 170px;
+            align-items: flex-start;
+            padding: 0 20px 20px;
+          }
+
+          .industry-section-header {
+            margin: 0 20px 4px;
+          }
+
+          .industry-section-title {
+            font-size: clamp(18px, 2.4vw, 24px);
+            white-space: nowrap;
+            max-width: none;
+          }
+
+          .ind-text-item {
+            position: relative;
+            top: auto;
+            left: auto;
+            right: auto;
+            transform: none;
+            opacity: 0;
+            display: none;
+            margin: 20px 20px;
+          }
+
+          .ind-text-item.is-active {
+            display: block;
+            opacity: 1;
+            transform: none;
+          }
+
+          .industry-nav-numbers {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            margin: 10px 20px 0;
+            gap: 16px;
+          }
+          .industry-static-cases {
+            padding: 12px 0 18px;
+          }
+
+          .cases-grid {
+            grid-template-columns: 1fr;
+            gap: 6px;
+          }
+
+          .case-card {
+            flex-direction: row;
+            align-items: center;
+            min-height: 72px;
+          }
+
+          .case-img-wrap {
+            width: 72px;                  /* ← 缩小为正方形小图 */
+            height: 72px;
+            flex-shrink: 0;
+          }
+
+          .case-content {
+            padding: 8px 10px 8px;
+          }
+
+          .case-icon {
+            position: absolute;
+            right: 12px;
+            bottom: auto;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
 
         /* ── 手机端 ── */
         @media (max-width: 640px) {
@@ -1016,7 +979,9 @@
 
           .industry-texts {
             min-height: 210px;
-            padding: 0 16px 46px;
+            margin-top: 28px;
+            padding: 0 16px 48px;
+            position: relative;
           }
 
           .industry-section-header {
@@ -1029,9 +994,10 @@
           }
 
           .ind-text-item {
-            left: 16px;
-            right: 16px;
-            top: 40px;
+            margin: 0;              /* ← 清除 900px 遗留的 20px 左右 margin */
+            left: auto;
+            right: auto;
+            top: 0;  
           }
 
           .ind-text-label {
@@ -1052,9 +1018,11 @@
           }
 
           .industry-nav-numbers {
-            bottom: 8px;
+            position: absolute;           /* ← 改回绝对定位 */
+            bottom: 14px;
             left: 16px;
-            gap: 12px;
+            margin: 0;
+            gap: 14px;
           }
 
           .cases-grid {
@@ -1288,110 +1256,132 @@
       </section>
 
       <!-- ── 02： Industry Applications + Cases ── -->
-      <section class="industry-scroll-container" id="industry-hybrid-section" aria-labelledby="industry-title">
-        <div class="container industry-container">
-          <div class="industry-sticky-viewport">
-            <div class="industry-section-header">
-                  <h2 class="industry-section-title" id="industry-title">Industry Applications + Cases</h2>
+      <!-- ── 02： Industry Applications + Cases ── -->
+<section class="industry-scroll-container" id="industry-hybrid-section" aria-labelledby="industry-title">
+
+  <!-- sticky 滚动区：只装动态内容 -->
+  <div class="industry-sticky-outer">
+    <div class="container industry-container">
+      <div class="industry-sticky-viewport">
+
+        <div class="industry-section-header">
+          <h2 class="industry-section-title" id="industry-title">Industry Applications</h2>
+        </div>
+
+        <div class="industry-dynamic-area">
+
+          <!-- 左侧文字区 -->
+          <div class="industry-texts" id="ind-text-group">
+            <div class="ind-text-item is-active">
+              <span class="ind-text-label">INDUSTRY 01</span>
+              <h3>Water Conservancy</h3>
+              <p>Continuous dam and reservoir monitoring with real-time displacement and seepage analysis.</p>
+              <a class="ind-link" href="#">LEARN MORE →</a>
             </div>
-            <!-- 🔝 上半部分：动态滚动的行业应用 -->
-            <div class="industry-dynamic-area">
-              
-              <!-- 左侧文字区 -->
-              <div class="industry-texts" id="ind-text-group">
-
-                <div class="ind-text-item is-active">
-                  <span class="ind-text-label">INDUSTRY 01</span>
-                  <h3>Water Conservancy</h3>
-                  <p>Continuous dam and reservoir monitoring with real-time displacement and seepage analysis.</p>
-                  <a class="ind-link" href="#">LEARN MORE →</a>
-                </div>
-                <div class="ind-text-item">
-                  <span class="ind-text-label">INDUSTRY 02</span>
-                  <h3>Geological Hazards</h3>
-                  <p>Early warning systems for landslides and ground subsidence across complex terrain.</p>
-                  <a class="ind-link" href="#">LEARN MORE →</a>
-                </div>
-                <div class="ind-text-item">
-                  <span class="ind-text-label">INDUSTRY 03</span>
-                  <h3>Mining Safety</h3>
-                  <p>Slope stability and tailings dam surveillance for safer extraction operations.</p>
-                  <a class="ind-link" href="#">LEARN MORE →</a>
-                </div>
-                <div class="ind-text-item">
-                  <span class="ind-text-label">INDUSTRY 04</span>
-                  <h3>Urban Infrastructure</h3>
-                  <p>Structural health monitoring for bridges, tunnels, and high-rise buildings in dense environments.</p>
-                  <a class="ind-link" href="#">LEARN MORE →</a>
-                </div>
-                <div class="industry-nav-numbers" id="ind-nav-numbers">
-                  <span class="ind-nav-num is-active">01</span>
-                  <span class="ind-nav-num">02</span>
-                  <span class="ind-nav-num">03</span>
-                  <span class="ind-nav-num">04</span>
-                </div>
-              </div>
-
-              <!-- 右侧图片区 -->
-              <div class="industry-images" id="ind-img-group">
-                <div class="ind-img-item is-active">
-                  <img src="images/hero-case.png" alt="Water Conservancy" />
-                </div>
-                <div class="ind-img-item">
-                  <img src="images/hero-tech.png" alt="Geological Hazards" />
-                </div>
-                <div class="ind-img-item">
-                  <img src="images/hero-mining.png" alt="Mining Safety" />
-                </div>
-                <div class="ind-img-item">
-                  <img src="images/hero-product.png" alt="Urban Infrastructure" />
-                </div>
-              </div>
-
-              
-              
-              
+            <div class="ind-text-item">
+              <span class="ind-text-label">INDUSTRY 02</span>
+              <h3>Geological Hazards</h3>
+              <p>Early warning systems for landslides and ground subsidence across complex terrain.</p>
+              <a class="ind-link" href="#">LEARN MORE →</a>
+            </div>
+            <div class="ind-text-item">
+              <span class="ind-text-label">INDUSTRY 03</span>
+              <h3>Mining Safety</h3>
+              <p>Slope stability and tailings dam surveillance for safer extraction operations.</p>
+              <a class="ind-link" href="#">LEARN MORE →</a>
+            </div>
+            <div class="ind-text-item">
+              <span class="ind-text-label">INDUSTRY 04</span>
+              <h3>Urban Infrastructure</h3>
+              <p>Structural health monitoring for bridges, tunnels, and high-rise buildings in dense environments.</p>
+              <a class="ind-link" href="#">LEARN MORE →</a>
             </div>
 
-            <!-- ⬇️ 下半部分：固定常驻的 Cases 区域 -->
-            <div class="industry-static-cases">
-              <div class="industry-static-cases-inner">
-                <span class="cases-label">Success Studies</span>
-                <div class="cases-grid">
-                  
-                  <a href="#" class="case-card">
-                    <div class="case-img-wrap"><img src="images/hero-case.png" alt="Case 1"></div>
-                    <div class="case-content">
-                      <span class="case-category">Water Conservancy</span>
-                      <p class="case-desc">Real-time deformation monitoring for dams.</p>
-                      <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
-                    </div>
-                  </a>
-
-                  <a href="#" class="case-card">
-                    <div class="case-img-wrap"><img src="images/hero-mining.png" alt="Case 2"></div>
-                    <div class="case-content">
-                      <span class="case-category">Mining Safety</span>
-                      <p class="case-desc">Automated TSF early warning system deployed.</p>
-                      <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
-                    </div>
-                  </a>
-
-                  <a href="#" class="case-card">
-                    <div class="case-img-wrap"><img src="images/hero-tech.png" alt="Case 3"></div>
-                    <div class="case-content">
-                      <span class="case-category">Urban Infrastructure</span>
-                      <p class="case-desc">Subway tunnel convergence monitoring safely.</p>
-                      <div class="case-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></div>
-                    </div>
-                  </a>
-
-                </div>
-              </div>
+            <div class="industry-nav-numbers" id="ind-nav-numbers">
+              <span class="ind-nav-num is-active">01</span>
+              <span class="ind-nav-num">02</span>
+              <span class="ind-nav-num">03</span>
+              <span class="ind-nav-num">04</span>
             </div>
           </div>
+
+          <!-- 右侧图片区 -->
+          <div class="industry-images" id="ind-img-group">
+            <div class="ind-img-item is-active">
+              <img src="images/hero-case.png" alt="Water Conservancy" />
+            </div>
+            <div class="ind-img-item">
+              <img src="images/hero-tech.png" alt="Geological Hazards" />
+            </div>
+            <div class="ind-img-item">
+              <img src="images/hero-mining.png" alt="Mining Safety" />
+            </div>
+            <div class="ind-img-item">
+              <img src="images/hero-product.png" alt="Urban Infrastructure" />
+            </div>
+          </div>
+
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- cases 独立在 sticky 外，普通文档流 -->
+  <div class="industry-static-cases">
+    <div class="container">
+      <span class="cases-label">Success Studies</span>
+      <div class="cases-grid">
+
+        <a href="#" class="case-card">
+          <div class="case-img-wrap">
+            <img src="images/hero-case.png" alt="Case 1">
+          </div>
+          <div class="case-content">
+            <span class="case-category">Water Conservancy</span>
+            <p class="case-desc">Real-time deformation monitoring for dams.</p>
+            <div class="case-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="case-card">
+          <div class="case-img-wrap">
+            <img src="images/hero-mining.png" alt="Case 2">
+          </div>
+          <div class="case-content">
+            <span class="case-category">Mining Safety</span>
+            <p class="case-desc">Automated TSF early warning system deployed.</p>
+            <div class="case-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="case-card">
+          <div class="case-img-wrap">
+            <img src="images/hero-tech.png" alt="Case 3">
+          </div>
+          <div class="case-content">
+            <span class="case-category">Urban Infrastructure</span>
+            <p class="case-desc">Subway tunnel convergence monitoring safely.</p>
+            <div class="case-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+</section>
 
       <!-- ── About Medo ── -->
       <section class="about-medo" aria-labelledby="about-medo-title">
@@ -1679,47 +1669,45 @@
     })();
 
     // ── 行业应用滚动劫持引擎 (Industry Scroll Hijacking) ──
-    (function(){
-      var section = document.getElementById('industry-hybrid-section');
-      if(!section) return; 
-      
-      var imgs = section.querySelectorAll('.ind-img-item');
-      var texts = section.querySelectorAll('.ind-text-item');
-      // 👉 新增：获取那 4 个数字元素
-      var navNums = section.querySelectorAll('#ind-nav-numbers .ind-nav-num'); 
-      
-      var totalItems = imgs.length;
+    // ── 行业应用滚动劫持引擎 (Industry Scroll Hijacking) ──
+(function(){
+  var section = document.getElementById('industry-hybrid-section');
+  if(!section) return;
 
-      function onScroll() {
-        var rect = section.getBoundingClientRect();
-        var windowHeight = window.innerHeight;
-        var scrollableDistance = rect.height - windowHeight;
-        var scrolled = -rect.top;
-        var progress = scrolled / scrollableDistance;
-        progress = Math.max(0, Math.min(1, progress)); 
+  var stickyOuter = section.querySelector('.industry-sticky-outer');
+  if(!stickyOuter) return;
 
-        var rawIndex = progress * (totalItems - 1);
-        var activeIndex = Math.round(rawIndex); 
+  var imgs = section.querySelectorAll('.ind-img-item');
+  var texts = section.querySelectorAll('.ind-text-item');
+  var navNums = section.querySelectorAll('#ind-nav-numbers .ind-nav-num');
 
-        // 遍历并更新所有的图片状态
-        imgs.forEach(function(img, i) {
-          img.classList.toggle('is-active', i === activeIndex);
-        });
+  var totalItems = imgs.length;
 
-        // 遍历并更新所有的文字状态
-        texts.forEach(function(text, i) {
-          text.classList.toggle('is-active', i === activeIndex);
-        });
+  function onScroll() {
+    var rect = stickyOuter.getBoundingClientRect(); // ← 只看 sticky-outer
+    var windowHeight = window.innerHeight;
+    var scrollableDistance = rect.height - windowHeight;
+    var scrolled = -rect.top;
+    var progress = scrolled / scrollableDistance;
+    progress = Math.max(0, Math.min(1, progress));
 
-        // 👉 新增：遍历并更新底部的数字状态
-        navNums.forEach(function(num, i) {
-          num.classList.toggle('is-active', i === activeIndex);
-        });
-      }
+    var rawIndex = progress * (totalItems - 1);
+    var activeIndex = Math.round(rawIndex);
 
-      window.addEventListener('scroll', onScroll);
-      onScroll(); // 初始化
-    })();
+    imgs.forEach(function(img, i) {
+      img.classList.toggle('is-active', i === activeIndex);
+    });
+    texts.forEach(function(text, i) {
+      text.classList.toggle('is-active', i === activeIndex);
+    });
+    navNums.forEach(function(num, i) {
+      num.classList.toggle('is-active', i === activeIndex);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+})();
     
   </script>
 </body>
