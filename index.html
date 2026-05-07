@@ -44,55 +44,110 @@
         .loop-slide.slide-04 .loop-slide-title { color: #ffffff; }
         .loop-slide.slide-04 .loop-slide-sub { color: #e9d5ff; }
 
-        /* =========================================
-           Integrated Monitoring Ecosystem (White & Blue Tech Style)
-           ========================================= */
+        /* Integrated Monitoring Ecosystem (White & Blue Tech Style) */
         .eco-scroll-container {
           position: relative;
           height: 250vh; 
           background: #f8f9fb; /* 👉 改为纯白背景 */
         }
-
         .eco-sticky-viewport {
           position: sticky;
           top: 0vh;
           height: 100vh;
           display: flex;
-          align-items: center;
           justify-content: space-between;
           overflow: hidden;
           padding-top: 80px; 
+          align-items: center;
+          flex-direction: column;   /* 改为纵向，标题在上，三列在下 */
+          align-items: stretch;
         }
 
+        .eco-section-header {
+          flex-shrink: 0;           /* 防止被压缩 */
+          padding: 10px 0 48px;
+          max-width: 760px;
+        }
+  
+        .eco-section-title {
+          font-size: clamp(28px, 3.4vw, 42px);
+          font-weight: 900;
+          color: #0d1b2a;
+          letter-spacing: -0.03em;
+          line-height: 1;
+          margin: 0;
+          max-width: none;
+          white-space: nowrap;
+        } 
+
+        /* 标题加进来后，三列内容区需要占满剩余高度 */
+        .eco-left-text,
+        .eco-center-scale,
+        .eco-right-image {
+          flex: 1;
+        }
+
+        .eco-body {
+          display: flex;
+          flex: 1;                  /* 占满标题以下的所有空间 */
+          align-items: stretch;        
+          padding-top: 24px;      
+        }
         /* ── 左侧文字 ── */
         .eco-left-text {
+          display: flex;
           flex: 1;
           position: relative;
-          height: 300px;
+          height: 400px;
+          min-height: 0;
         }
         .eco-text-item {
           position: absolute;
-          top: 50%;
+          top: 28px;
           left: 0;
-          transform: translateY(-50%) translateY(30px);
+          transform: translateY(30px);
           opacity: 0;
           transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
           width: 90%;
+          height: 100%;                  /* 撑满父容器高度 */
+          display: flex;
+          flex-direction: column;
         }
         .eco-text-item.is-active {
           opacity: 1;
-          transform: translateY(-50%) translateY(0);
+          transform: translateY(0);
+        } 
+        .eco-text-item h3 { 
+          font-size: clamp(24px, 3vw, 36px); 
+          margin: 0 0 16px; 
+          line-height: 1.1; 
+          color: #1a1a1a;
+        } 
+        .eco-text-item p { 
+          color: #555555; 
+          line-height: 1.6; 
+          font-size: 1.1rem; 
+          margin-top: 100px;
+          margin-bottom: 24px;
+        } 
+        .eco-cta-link { 
+          color: #0056D6; 
+          text-decoration: none; 
+          font-weight: 600; 
+          font-size: 14px; 
+          margin-bottom: 0;
+          align-self: flex-start; 
+          border-bottom: 1px solid #0056D6;
+          text-transform: uppercase; 
+          letter-spacing: 0.05em; 
+          transition: opacity 0.3s;
         }
-        .eco-text-kicker { font-size: 12px; color: #0056D6; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; display: block;} /* 👉 科技蓝 */
-        .eco-text-item h3 { font-size: clamp(32px, 4vw, 48px); margin: 0 0 16px; line-height: 1.1; color: #1a1a1a;} /* 👉 深黑标题 */
-        .eco-text-item p { color: #555555; line-height: 1.6; font-size: 1.1rem; margin-bottom: 24px;} /* 👉 深灰正文 */
-        .eco-cta-link { color: #0056D6; text-decoration: none; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; transition: opacity 0.3s;}
         .eco-cta-link:hover { opacity: 0.8; }
 
         /* ── 中间刻度盘 ── */
         .eco-center-scale {
           flex: 0 0 160px;
-          height: 35vh;
+          height: 50vh;
           position: relative;
           margin: 0 35px;
           /* 稍微拉长一点可视区域，让玻璃框滑动的效果更明显 */
@@ -418,8 +473,8 @@
           /* 👉 核心修改：移除 inset: 0，改为四周精确留白 */
           top: 60px;       /* 距离顶部留出 60px 呼吸空间 */
           bottom: 60px;    /* 距离底部留出 60px 呼吸空间 */
-          left: 0;         /* 左边贴齐容器左边界，和上下内容对齐 */
-          right: 60px;     /* 👉 距离右侧留出 60px，不再与文字区贴边 */
+          left: 60px;         /* 左边贴齐容器左边界，和上下内容对齐 */
+          right: 0;     
           opacity: 0;
           transform: scale(0.98);
           transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -442,14 +497,35 @@
           flex: 1; /* 👉 占比小：相当于 40% 的宽度 */
           position: relative;
           display: flex;
-          align-items: center; /* 让文字在垂直方向上居中 */
-          padding: 0; /* 优雅的内边距 */
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start; /* 让文字在垂直方向上居中 */
+          padding: 20px 0 0 48px; /* 为右侧标题预留空间 */
           background: #ffffff;
+        }
+        .industry-section-header {
+          position: relative;
+          align-self: flex-start;
+          z-index: 15;
+          width: auto;
+          margin: 48px 0 0px 0;
+          padding: 0;
+        }
+        .industry-section-title {
+          margin: 0;
+          max-width: none;
+          font-size: clamp(28px, 3.4vw, 42px);
+          line-height: 1;
+          letter-spacing: -0.03em;
+          font-weight: 900;
+          color: #0d1b2a;
+          white-space: nowrap;
         }
         .ind-text-item {
           position: absolute;
           left: 0;
           right: 0;
+          top: 120px;
           opacity: 0;
           transform: translateY(30px);
           transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -494,7 +570,7 @@
         .industry-nav-numbers {
           position: absolute;
           bottom: 50px; /* 距离容器底部的距离 */
-          left: 0; /* 跟随容器左边界对齐 */
+          left: 5px; /* 跟随容器左边界对齐 */
           display: flex;
           gap: 28px; /* 数字之间的间距 */
           z-index: 20; /* 确保它在文字的最上层可见 */
@@ -536,29 +612,15 @@
           background: #ffffff;
           padding: 30px 0; /* 压缩上下边距，不要占太大高度 */
         }
+        .industry-static-cases-inner {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
 
         /* =========================================
            Cases / Success Stories 布局
            ========================================= */
-        .cases-section {
-          padding: 20px 0;
-          background: #ffffff; /* 纯白背景，与上下模块形成呼吸感区分 */
-        }
-        .cases-label {
-          font-size: 14px;
-          color: #0b1b33; 
-          font-weight: 700;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          display: block;
-          margin-bottom: 16px;
-        }
-        .cases-title {
-          font-size: clamp(32px, 4vw, 42px);
-          color: #1a1a1a;
-          margin: 0;
-        }
-
         /* ── 核心网格：一行 4 列 ── */
         .cases-grid {
           display: grid;
@@ -604,14 +666,21 @@
           flex-direction: column; /* 内部上下排列 */
           flex-grow: 1;
         }
-        
+        .cases-label {
+          font-size: 14px;
+          color: #0056D6; 
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 16px;
+        }
         .case-category {
           font-size: 12px;
           color: #666666;
           margin-bottom: 13px;
           font-family: monospace; /* 分类标签使用等宽字体，增加仪器感 */
         }
-        
         .case-desc {
           font-size: 14px;
           font-weight: 600;
@@ -640,7 +709,7 @@
         }
         .case-card:hover {
           border-color: #0056D6; /* 👉 边框变为品牌蓝 */
-          background-color: #f5f5f5; /* 👉 背景变为干净的浅灰色 */
+          background-color: #e9e8e8; /* 👉 背景变为干净的浅灰色 */
           box-shadow: none; /* 👉 悬停时也绝不出现阴影 */
         } 
         .case-card:hover .case-icon {
@@ -674,6 +743,23 @@
             margin-bottom: 24px;
           }
 
+          .industry-texts {
+            padding-left: 36px;
+            padding-top: 18px;
+          }
+
+          .industry-section-header {
+            margin-bottom: 44px;
+          }
+
+          .industry-section-title {
+            font-size: 24px;
+          }
+
+          .ind-text-item {
+            top: 104px;
+          }
+
           .industry-nav-numbers {
             bottom: 36px;
             gap: 18px;
@@ -684,10 +770,6 @@
         @media (max-width: 900px) {
           .industry-static-cases {
             padding: 24px 0 44px;
-          }
-
-          .industry-static-cases .container {
-            width: min(var(--container), calc(100% - 32px));
           }
 
           .cases-grid {
@@ -759,11 +841,19 @@
             height: auto;
             min-height: 230px;
             align-items: flex-start;
-            padding: 10px 0 64px;
+            padding: 12px 0 64px;
+          }
+
+          .industry-section-header {
+            margin-bottom: 38px;
+          }
+
+          .industry-section-title {
+            font-size: 22px;
           }
 
           .ind-text-item {
-            top: 10px;
+            top: 92px;
             left: 0;
             right: 0;
             transform: translateY(20px);
@@ -795,6 +885,18 @@
           .industry-texts {
             min-height: 210px;
             padding: 6px 0 58px;
+          }
+
+          .industry-section-header {
+            margin-bottom: 32px;
+          }
+
+          .industry-section-title {
+            font-size: 20px;
+          }
+
+          .ind-text-item {
+            top: 88px;
           }
 
           .ind-text-label {
@@ -979,98 +1081,87 @@
         </div>
       </section>
 
-      <!-- ── Products Ecosystem ── -->
+      <!-- ── 01:Products Ecosystem ── -->
       <section class="eco-scroll-container" id="eco-section" aria-labelledby="ecosystem-title">
-        <div class="eco-sticky-viewport container"> <div class="eco-left-text" id="eco-text-group">
-            <div class="eco-text-item is-active">
-              <span class="eco-text-kicker">Core Tech 01</span>
-              <h3>High-Precision GNSS</h3>
-              <p>Millimeter-level displacement tracking with Beidou/GNSS multi-frequency technology. Engineered for extreme environments.</p>
-              <a class="eco-cta-link" href="products.html">Explore Technical Specs →</a>
-            </div>
-            <div class="eco-text-item">
-              <span class="eco-text-kicker">Core Tech 02</span>
-              <h3>Intelligent Sensors</h3>
-              <p>Advanced geotechnical sensing suite. Real-time data collection for tilt, vibration, and pore water pressure.</p>
-              <a class="eco-cta-link" href="iot-sensors.html">Explore Technical Specs →</a>
-            </div>
-            <div class="eco-text-item">
-              <span class="eco-text-kicker">Core Tech 03</span>
-              <h3>Disaster Mitigation Station</h3>
-              <p>Self-powered, rapid-deployment systems for early warning. Your first line of defense.</p>
-              <a class="eco-cta-link" href="disaster-monitoring.html">Explore Technical Specs →</a>
-            </div>
-            <div class="eco-text-item">
-              <span class="eco-text-kicker">Core Tech 04</span>
-              <h3>Medo Cloud Platform</h3>
-              <p>AI-driven analytics and 3D visualization. Transforming raw data into actionable safety insights 24/7.</p>
-              <a class="eco-cta-link" href="platform.html">Explore Technical Specs →</a>
-            </div>
+        <div class="eco-sticky-viewport container"> 
+          <div class="eco-section-header"> 
+            <h2 class="eco-section-title" id="ecosystem-title">Integrated Monitoring Ecosystem</h2>
           </div>
 
-          <div class="eco-center-scale">
-            <div class="eco-hud-lens"></div>
-            
-            <div class="eco-moving-ruler" id="eco-ruler">
-              <div class="eco-scale-mark">
-                <div class="eco-scale-tick"></div><div class="eco-scale-num">01</div>
+          <div class="eco-body">
+            <div class="eco-left-text" id="eco-text-group">
+              <div class="eco-text-item is-active">
+                <h3>High-Precision GNSS</h3>
+                <p>Millimeter-level displacement tracking with Beidou/GNSS multi-frequency technology. Engineered for extreme environments.</p>
+                <a class="eco-cta-link" href="products.html">Explore Technical Specs →</a>
               </div>
-              <div class="eco-scale-mark">
-                <div class="eco-scale-tick"></div><div class="eco-scale-num">02</div>
+              <div class="eco-text-item">
+                <h3>Intelligent Sensors</h3>
+                <p>Advanced geotechnical sensing suite. Real-time data collection for tilt, vibration, and pore water pressure.</p>
+                <a class="eco-cta-link" href="iot-sensors.html">Explore Technical Specs →</a>
               </div>
-              <div class="eco-scale-mark">
-                <div class="eco-scale-tick"></div><div class="eco-scale-num">03</div>
+              <div class="eco-text-item">
+                <h3>Disaster Mitigation Station</h3>
+                <p>Self-powered, rapid-deployment systems for early warning. Your first line of defense.</p>
+                <a class="eco-cta-link" href="disaster-monitoring.html">Explore Technical Specs →</a>
               </div>
-              <div class="eco-scale-mark">
-                <div class="eco-scale-tick"></div><div class="eco-scale-num">04</div>
+              <div class="eco-text-item">
+                <h3>Medo Cloud Platform</h3>
+                <p>AI-driven analytics and 3D visualization. Transforming raw data into actionable safety insights 24/7.</p>
+                <a class="eco-cta-link" href="platform.html">Explore Technical Specs →</a>
+              </div>
+            </div>
+
+            <div class="eco-center-scale">
+              <div class="eco-hud-lens"></div>
+              
+              <div class="eco-moving-ruler" id="eco-ruler">
+                <div class="eco-scale-mark">
+                  <div class="eco-scale-tick"></div><div class="eco-scale-num">01</div>
+                </div>
+                <div class="eco-scale-mark">
+                  <div class="eco-scale-tick"></div><div class="eco-scale-num">02</div>
+                </div>
+                <div class="eco-scale-mark">
+                  <div class="eco-scale-tick"></div><div class="eco-scale-num">03</div>
+                </div>
+                <div class="eco-scale-mark">
+                  <div class="eco-scale-tick"></div><div class="eco-scale-num">04</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="eco-right-image" id="eco-img-group">
+              <div class="eco-img-item is-active">
+                <img src="images/face/11.mov" alt="High-Precision GNSS" />
+              </div>
+              <div class="eco-img-item">
+                <img src="images/hardware/m50.mp4" alt="Intelligent Sensors" />
+              </div>
+              <div class="eco-img-item">
+                <img src="images/hero-case.png" alt="Disaster Mitigation Station" />
+              </div>
+              <div class="eco-img-item">
+                <img src="images/hero-mining.png" alt="Medo Cloud Platform" />
               </div>
             </div>
           </div>
-
-          <div class="eco-right-image" id="eco-img-group">
-            <div class="eco-img-item is-active">
-              <img src="images/face/11.mov" alt="High-Precision GNSS" />
-            </div>
-            <div class="eco-img-item">
-              <img src="images/hardware/m50.mp4" alt="Intelligent Sensors" />
-            </div>
-            <div class="eco-img-item">
-              <img src="images/hero-case.png" alt="Disaster Mitigation Station" />
-            </div>
-            <div class="eco-img-item">
-              <img src="images/hero-mining.png" alt="Medo Cloud Platform" />
-            </div>
-          </div>
-
-        </div>
+        </div> 
       </section>
 
-      <!-- ── 组合视口：Industry Applications + Cases ── -->
-      <section class="industry-scroll-container" id="industry-hybrid-section">
+      <!-- ── 02： Industry Applications + Cases ── -->
+      <section class="industry-scroll-container" id="industry-hybrid-section" aria-labelledby="industry-title">
         <div class="container industry-container">
           <div class="industry-sticky-viewport">
-            
+            <div class="industry-section-header">
+                  <h2 class="industry-section-title" id="industry-title">Industry Applications + Cases</h2>
+            </div>
             <!-- 🔝 上半部分：动态滚动的行业应用 -->
             <div class="industry-dynamic-area">
               
-              <!-- 左侧图片区 (占比更大) -->
-              <div class="industry-images" id="ind-img-group">
-                <div class="ind-img-item is-active">
-                  <img src="images/hero-case.png" alt="Water Conservancy" />
-                </div>
-                <div class="ind-img-item">
-                  <img src="images/hero-tech.png" alt="Geological Hazards" />
-                </div>
-                <div class="ind-img-item">
-                  <img src="images/hero-mining.png" alt="Mining Safety" />
-                </div>
-                <div class="ind-img-item">
-                  <img src="images/hero-product.png" alt="Urban Infrastructure" />
-                </div>
-              </div>
-
-              <!-- 右侧文字区 (占比更小) -->
+              <!-- 左侧文字区 -->
               <div class="industry-texts" id="ind-text-group">
+
                 <div class="ind-text-item is-active">
                   <span class="ind-text-label">INDUSTRY 01</span>
                   <h3>Water Conservancy</h3>
@@ -1102,12 +1193,31 @@
                   <span class="ind-nav-num">04</span>
                 </div>
               </div>
+
+              <!-- 右侧图片区 -->
+              <div class="industry-images" id="ind-img-group">
+                <div class="ind-img-item is-active">
+                  <img src="images/hero-case.png" alt="Water Conservancy" />
+                </div>
+                <div class="ind-img-item">
+                  <img src="images/hero-tech.png" alt="Geological Hazards" />
+                </div>
+                <div class="ind-img-item">
+                  <img src="images/hero-mining.png" alt="Mining Safety" />
+                </div>
+                <div class="ind-img-item">
+                  <img src="images/hero-product.png" alt="Urban Infrastructure" />
+                </div>
+              </div>
+
+              
+              
               
             </div>
 
             <!-- ⬇️ 下半部分：固定常驻的 Cases 区域 -->
             <div class="industry-static-cases">
-              <div class="container">
+              <div class="industry-static-cases-inner">
                 <span class="cases-label">Success Studies</span>
                 <div class="cases-grid">
                   
@@ -1150,53 +1260,30 @@
         <div class="container">
           <div class="about-medo-grid">
 
-            <!-- Left: Visual -->
-            <div class="about-medo-visual">
-              <div class="about-medo-img-outer">
-                <div class="about-medo-img-wrap">
-                  <img src="images/hero-tech.png" alt="Medo precision monitoring technology in the field" />
-                  <div style="position:absolute;bottom:-24px;right:-24px;width:48%;background:#2563EB;color:#ffffff;font-size:20px;font-weight:600;line-height:1.3;padding:20px 24px;">Pioneering High-Fidelity Infrastructure Intelligence.</div>
+            <!-- Left: Content -->
+            <div class="about-medo-content">
+              <h2 class="about-medo-title" id="about-medo-title">About Medo</h2>
+              <p class="about-medo-copy">10 years for 1 thing.</p>
+
+              <div class="about-medo-stats">
+                <div class="about-medo-stat">
+                  <span class="stat-number">2x</span>
+                  <span class="stat-desc">increase in daily active users</span>
+                </div>
+                <div class="about-medo-stat">
+                  <span class="stat-number">35%</span>
+                  <span class="stat-desc">increase in average time spent in-app</span>
                 </div>
               </div>
+
+              <a class="about-medo-explore" href="about.html">Learn More About Medo →</a>
             </div>
 
-            <!-- Right: Content -->
-            <div class="about-medo-content">
-              <span class="about-medo-label">ABOUT MEDO</span>
-              <h2 class="about-medo-title" id="about-medo-title">Medo Tech: The Authority in Structural Health Monitoring.</h2>
-              <p class="about-medo-copy">Founded on a decade of field-proven research, Medo integrates multi-frequency GNSS positioning with intelligent edge nodes to deliver monitoring data that teams can act on with confidence. Our systems operate continuously across the harshest environments — from deep-rock mining slopes to urban infrastructure corridors — translating raw sensor signals into decision-ready intelligence.</p>
-
-              <a class="about-medo-explore" href="about.html">Explore →</a>
-
-              <!-- Trust Bar -->
-              <div class="about-medo-trust">
-                <span class="about-medo-trust-label">Trusted by industry leaders</span>
-                <div class="about-medo-logos">
-                  <div class="trust-logo" aria-label="Partner 1">
-                    <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <rect x="1" y="8" width="22" height="16" stroke="currentColor" stroke-width="1.5"/>
-                      <rect x="5" y="12" width="6" height="8" fill="currentColor" opacity="0.4"/>
-                      <path d="M28 16h12M34 10v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
-                      <circle cx="52" cy="16" r="7" stroke="currentColor" stroke-width="1.5"/>
-                      <path d="M62 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
-                    </svg>
-                  </div>
-                  <div class="trust-logo" aria-label="Partner 2">
-                    <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <path d="M8 24V8l12 8-12 8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/>
-                      <rect x="26" y="10" width="14" height="12" stroke="currentColor" stroke-width="1.5"/>
-                      <path d="M46 10h16M46 16h10M46 22h13" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
-                    </svg>
-                  </div>
-                  <div class="trust-logo" aria-label="Partner 3">
-                    <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <rect x="4" y="10" width="12" height="12" stroke="currentColor" stroke-width="1.5"/>
-                      <rect x="20" y="10" width="12" height="12" stroke="currentColor" stroke-width="1.5"/>
-                      <path d="M38 10v12M44 10l10 12M54 10l-10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
-                      <path d="M68 10h8v5h-8v7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
-                    </svg>
-                  </div>
-                </div>
+            <!-- Right: Visual -->
+            <div class="about-medo-visual">
+              <div class="about-medo-img-wrap">
+                <img src="images/face/about.png" alt="Medo precision monitoring technology in the field" />
+                <div class="about-medo-badge">Pioneering High-Fidelity Infrastructure Intelligence.</div>
               </div>
             </div>
 
