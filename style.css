@@ -3580,7 +3580,7 @@ a{ color: inherit; }
   top: 100%;
   left: 0;
   right: 0;
-  background: #ffffff;
+  background:  rgba(255, 255, 255, 0.9);
   border-bottom: 2px solid var(--blue-700);
   box-shadow: 0 8px 24px rgba(4, 26, 58, 0.12);
   z-index: 49;
@@ -3602,7 +3602,7 @@ a{ color: inherit; }
 }
 .nav-drawer-link:hover,
 .nav-drawer-link:focus-visible{
-  background: rgba(16, 96, 214, 0.07);
+  background: rgba(16, 96, 214, 0.1);
   color: var(--blue-700);
   outline: none;
 }
@@ -3626,7 +3626,7 @@ a{ color: inherit; }
 .loop-hero-inner{
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   min-height: 700px;
   overflow: hidden;
 }
