@@ -3534,7 +3534,7 @@ a{ color: inherit; }
 
 
 
-@media (max-width: 768px){
+@media (max-width: 900px){
   .about-medo-grid{
     grid-template-columns: 1fr;
     gap: 40px;
