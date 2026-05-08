@@ -107,6 +107,7 @@
           left: 0;
           transform: translateY(30px);
           opacity: 0;
+          pointer-events: none;
           transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
           width: 90%;
           height: 100%;                  /* 撑满父容器高度 */
@@ -116,6 +117,8 @@
         .eco-text-item.is-active {
           opacity: 1;
           transform: translateY(0);
+          pointer-events: auto;
+          z-index: 1;
         } 
         .eco-text-item h3 { 
           font-size: clamp(24px, 3vw, 36px); 
@@ -241,7 +244,8 @@
           position: relative;
           height: 60vh;
           display: flex;
-          justify-content: flex-end;
+          justify-content: center;
+          align-items: center;
         }
         .eco-img-item {
           position: absolute;
@@ -277,6 +281,39 @@
         }
         .eco-img-item.is-active { opacity: 1; transform: translateX(0) scale(1); }
         .eco-img-item.is-active img { transform: scale(1.05); }
+
+        /* 桌面端：去掉图片框，直接展示原始图片 */
+        @media (min-width: 900px) {
+          .eco-right-image {
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            height: 34vh;
+          }
+          .eco-img-item {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+          }
+          .eco-img-item::before {
+            display: none;
+          }
+          .eco-img-item img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            opacity: 1;
+            transform: translateY(14px) scale(1.28);
+            transform-origin: center center;
+          }
+          .eco-img-item.is-active img {
+            transform: translateY(14px) scale(1.28);
+          }
+        }
         @media (max-width: 900px) {
           .loop-hero-inner {
             min-height: 600px; /* 保证有足够的高度容纳上下两部分 */
@@ -310,10 +347,10 @@
           .loop-nav-next { right: 12px; }
 
           /* 4. 将渐变遮罩方向从"左右"改为"上下"，完美衔接中间的分割线 */
-          .loop-slide.slide-01::after { background: linear-gradient(to bottom, #0C3431 0%, #0C3431 50%, transparent 85%); }
-          .loop-slide.slide-02::after { background: linear-gradient(to bottom, #0a192f 0%, #0a192f 50%, transparent 85%); }
-          .loop-slide.slide-03::after { background: linear-gradient(to bottom, #1f1f1f 0%, #1f1f1f 50%, transparent 85%); }
-          .loop-slide.slide-04::after { background: linear-gradient(to bottom, #2d1b4e 0%, #2d1b4e 50%, transparent 85%); }
+          .loop-slide.slide-01::after { background: linear-gradient(to bottom, #1A2F2B 0%, #0F261D 50%, transparent 85%); }
+          .loop-slide.slide-02::after { background: linear-gradient(to bottom, #A5BCE5 0%, #A5BCE5 50%, transparent 85%); }
+          .loop-slide.slide-03::after { background: linear-gradient(to bottom, #B7D3DF 0%, #B7D3DF 50%, transparent 85%); }
+          .loop-slide.slide-04::after { background: linear-gradient(to bottom, #fff 0%, #fff 50%, transparent 85%); }
         }
         /* 产品部分响应式设计  */
         @media (max-width: 900px) {
@@ -353,7 +390,7 @@
           .eco-right-image {
             order: 1; /* 👉 核心魔法：无视 HTML 顺序，强制将图片排在第 1 位 (最上方) */
             position: relative;
-            width: 100%;
+            width: auto;
             height: 34vh; /* 图片占据的高度，可根据需要微调 */
             padding: 0 20px; 
             box-sizing: border-box;
@@ -1235,16 +1272,16 @@
 
             <div class="eco-right-image" id="eco-img-group">
               <div class="eco-img-item is-active">
-                <img src="images/face/11.mov" alt="High-Precision GNSS" />
+                <img src="images/hardware/e40.png" alt="High-Precision GNSS" />
               </div>
               <div class="eco-img-item">
-                <img src="images/hardware/m50.mp4" alt="Intelligent Sensors" />
+                <img src="images/sensors/dr.png" alt="Intelligent Sensors" />
               </div>
               <div class="eco-img-item">
-                <img src="images/hero-case.png" alt="Disaster Mitigation Station" />
+                <img src="images/stations/gnss-dis.png" alt="Disaster Mitigation Station" />
               </div>
               <div class="eco-img-item">
-                <img src="images/hero-mining.png" alt="Medo Cloud Platform" />
+                <img src="images/software/mdnet.png" alt="Medo Cloud Platform" />
               </div>
             </div>
           </div>
