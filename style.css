@@ -3116,8 +3116,18 @@ a{ color: inherit; }
 
 /* ── About Timeline ── */
 .about-timeline{
-  padding: 40px 0 72px;
-  background: linear-gradient(to bottom, #ffffff 0%, #eef2f7 20%, #eef2f7 80%, #ffffff 100%);
+  position: relative;
+  isolation: isolate;
+  padding: 44px 0 76px;
+  background: #eef5ff;
+}
+
+.about-timeline::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #eef5ff;
 }
 
 .tl-heading{
@@ -3128,10 +3138,10 @@ a{ color: inherit; }
 }
 
 .tl-title-line{
-  width: 200px;
+  width: 150px;
   height: 3px;
   background: #2563EB;
-  margin-bottom: 80px;
+  margin-bottom: 76px;
 }
 
 .tl-track{
@@ -3144,8 +3154,8 @@ a{ color: inherit; }
   position: absolute;
   top: 50%;
   left: 0; right: 0;
-  height: 0.5px;
-  background: rgba(7,48,103,0.15);
+  height: 1px;
+  background: rgba(7,48,103,0.16);
   transform: translateY(-50%);
 }
 
@@ -3180,8 +3190,8 @@ a{ color: inherit; }
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #fff;
-  border: 1.5px solid #9ca3af;
+  background: #ffffff;
+  border: 1.5px solid #9fb7d6;
   flex-shrink: 0;
   transition: all 0.2s;
   position: relative;
@@ -3203,7 +3213,7 @@ a{ color: inherit; }
 }
 
 .tl-keyword{
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
   color: #0f1f3d;
   display: block;
@@ -3321,7 +3331,7 @@ a{ color: inherit; }
 }
 
 .about-ov-body-sm{
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.75;
   color: #718096;
   margin: 0;
