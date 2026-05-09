@@ -119,6 +119,61 @@
         },
       ],
     },
+    {
+      key: 'cases',
+      triggerHref: 'cases.html',
+      triggerLabel: 'Cases',
+      menuLabel: 'Cases mega menu',
+      viewAllLabel: 'View All Cases →',
+      isActivePath: function (pathname) {
+        return pathname.indexOf('cases.html') !== -1 ||
+          pathname.indexOf('cases-mining.html') !== -1 ||
+          pathname.indexOf('cases-water.html') !== -1 ||
+          pathname.indexOf('cases-geology.html') !== -1 ||
+          pathname.indexOf('cases-urban.html') !== -1 ||
+          pathname.indexOf('/cases/') !== -1;
+      },
+      categories: [
+        { title: 'Mining Cases', target: 'mega-cases-mining', href: 'cases-mining.html' },
+        { title: 'Water Cases', target: 'mega-cases-water', href: 'cases-water.html' },
+        { title: 'Geology Cases', target: 'mega-cases-geo', href: 'cases-geology.html' },
+        { title: 'Urban Cases', target: 'mega-cases-urban', href: 'cases-urban.html' },
+      ],
+      panels: [
+        {
+          target: 'mega-cases-mining',
+          items: [
+            { title: 'DRC Copper Mine Open-pit Slope Monitoring', desc: 'Case 1', href: 'cases/miningcase-1.html' },
+            { title: 'Mine Safety System', desc: 'Case 2', href: 'cases/miningcase-2.html' },
+            { title: 'Digital Transformation & Environmental Monitoring of Guizhou PG Stack', desc: 'Case 3', href: 'cases/miningcase-3.html' },
+            { title: 'Inner Mongolia Open-pit Mine Waste Dump Online Monitoring System', desc: 'Case 4', herf: 'cases/miningcase-4.html'},
+          ],
+        },
+        {
+          target: 'mega-cases-water',
+          items: [
+            { title: 'Fujian Reservoir Intelligent Dam Safety Monitoring System', desc: 'Case 1', href: 'cases/watercase-1.html' },
+            { title: 'Sichuan Hydropower Station Reservoir Slope Intelligent Safety Monitoring', desc: 'Case 2', href: 'cases/watercase-2.html' },
+            { title: 'Guangxi Smart Levee Safety Monitoring', desc: 'Case 3', href: 'cases/watercase-3.html' },
+          ],
+        },
+        {
+          target: 'mega-cases-geo',
+          items: [
+            { title: 'Guizhou Large-Scale Landslide Successful Early Warning', desc: 'Case 1', href: 'cases/geocase-1.html' },
+            { title: 'Southwest China Multi-Province Geo-hazard Monitoring', desc: 'Case 2', href: 'cases/geocase-2.html' },
+            { title: 'Technological Capacity Building for Geo-hazard Monitoring in Guizhou', desc: 'Case 3', href: 'cases/geocase-3.html' },
+          ],
+        },
+        {
+          target: 'mega-cases-urban',
+          items: [
+            { title: 'Deep Foundation Pit Monitoring in Core Shanghai', desc: 'Case 1', href: 'cases/urbancase-1.html' },
+            { title: 'Wastewater Treatment Plant (WWTP) Storage Facility', desc: 'Case 2', href: 'cases/urbancase-2.html' },
+          ],
+        },
+      ],
+    },
   ];
 
   var mobileSections = [
@@ -142,6 +197,17 @@
         { title: 'Water Conservancy', href: 'solutions-water-main.html' },
         { title: 'Geological Hazard', href: 'solutions-geology-main.html' },
         { title: 'Urban Infrastructure', href: 'solutions-urban-main.html' },
+      ],
+    },
+    {
+      key: 'cases',
+      triggerHref: 'cases.html',
+      toggleLabel: 'Cases',
+      links: [
+        { title: 'Mining Cases', href: 'cases-mining.html' },
+        { title: 'Water Cases', href: 'cases-water.html' },
+        { title: 'Geology Cases', href: 'cases-geology.html' },
+        { title: 'Urban Cases', href: 'cases-urban.html' },
       ],
     },
   ];
@@ -193,11 +259,22 @@
     ].join('\n');
   }
 
+  function normalizeHref(href) {
+    return String(href || '')
+      .split('#')[0]
+      .split('?')[0]
+      .replace(/^\.\//, '')
+      .replace(/^(\.\.\/)+/, '')
+      .replace(/^\/+/, '');
+  }
+
   function buildDesktopMenu(config) {
     var nav = document.querySelector('.nav');
     if (!nav) return;
 
-    var triggerLink = nav.querySelector('a.nav-link[href="' + config.triggerHref + '"]');
+    var triggerLink = Array.prototype.slice.call(nav.querySelectorAll('a.nav-link')).find(function (link) {
+      return normalizeHref(link.getAttribute('href')) === normalizeHref(config.triggerHref);
+    });
     if (!triggerLink) return;
 
     var wrapper = triggerLink.closest('.nav-item--mega');
@@ -259,7 +336,9 @@
     var drawerInner = drawer.querySelector('.nav-drawer-inner');
     if (!drawerInner) return;
 
-    var triggerLink = drawerInner.querySelector('a.nav-drawer-link[href="' + config.triggerHref + '"]');
+    var triggerLink = Array.prototype.slice.call(drawerInner.querySelectorAll('a.nav-drawer-link')).find(function (link) {
+      return normalizeHref(link.getAttribute('href')) === normalizeHref(config.triggerHref);
+    });
     if (!triggerLink || drawerInner.querySelector('.nav-drawer-' + config.key)) return;
 
     var section = document.createElement('div');
