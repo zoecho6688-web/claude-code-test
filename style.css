@@ -209,15 +209,6 @@ a{ color: inherit; }
   grid-template-columns: 250px minmax(0, 1fr);
   min-height: 320px;
 }
-
-.mega-menu-left{
-  align-self: start; 
-  padding: 0;
-  background:transparent;
-  border-right: 1px solid rgba(7, 48, 103, 0.08);
-  display: grid;
-  gap: 3px;
-}
 .mega-menu-tab{
   display: flex;
   width: 100%;
@@ -238,7 +229,7 @@ a{ color: inherit; }
   outline: none;
 }
 .mega-menu-tab-title{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: rgba(11, 27, 51, 0.8);
@@ -248,7 +239,7 @@ a{ color: inherit; }
 }
 .mega-menu-tab-title::after {
   content: '→';
-  font-size: 16px;
+  font-size: 14px;
   opacity: 0;
   transform: translateX(-10px);
   transition: opacity 160ms ease, transform 160ms ease;
@@ -257,7 +248,7 @@ a{ color: inherit; }
 .mega-menu-tab:focus-visible .mega-menu-tab-title,
 .mega-menu-tab.is-active .mega-menu-tab-title {
   color: var(--blue-700);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 }
 .mega-menu-tab:hover .mega-menu-tab-title::after,
@@ -305,13 +296,13 @@ a{ color: inherit; }
   outline: none;
 }
 .mega-panel-link-title{
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   color: rgba(11, 27, 51, 0.66);
 }
 .mega-panel-link-desc{
   display: block;          
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.45;
   color: rgba(11, 27, 51, 0.66);
 }
@@ -327,7 +318,8 @@ a{ color: inherit; }
 .mega-menu-left {
   display: flex;          /* 原来是 grid，改成 flex */
   flex-direction: column;
-  gap: 8px;
+  gap: 3px;
+  border-right: 1px solid rgba(7, 48, 103, 0.10);
 }
 
 .mega-menu-all {
