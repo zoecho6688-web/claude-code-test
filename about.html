@@ -6,7 +6,8 @@
     <meta name="description" content="About Medo: precision positioning and intelligent monitoring for safer infrastructure management and early warning." />
     <title>About Medo | Precision in Every Dimension</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
+    <script defer src="header-mega.js"></script>
+</head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -540,34 +541,6 @@
           var open = drawer.classList.toggle('is-open');
           btn.setAttribute('aria-expanded', open);
         });
-
-        var megaMenu = document.querySelector('.nav-item--mega');
-        if(megaMenu){
-          var tabs = Array.prototype.slice.call(megaMenu.querySelectorAll('[data-mega-target]'));
-          var panels = Array.prototype.slice.call(megaMenu.querySelectorAll('[data-mega-panel]'));
-
-          function activateMega(target){
-            tabs.forEach(function(tab){
-              var isActive = tab.getAttribute('data-mega-target') === target;
-              tab.classList.toggle('is-active', isActive);
-            });
-            panels.forEach(function(panel){
-              var isActive = panel.getAttribute('data-mega-panel') === target;
-              panel.classList.toggle('is-active', isActive);
-            });
-          }
-
-          tabs.forEach(function(tab){
-            var target = tab.getAttribute('data-mega-target');
-            tab.addEventListener('mouseenter', function(){ activateMega(target); });
-            tab.addEventListener('focus', function(){ activateMega(target); });
-            tab.addEventListener('click', function(){ activateMega(target); });
-          });
-
-          if(tabs.length){
-            activateMega(tabs[0].getAttribute('data-mega-target'));
-          }
-        }
       })();
     </script>
   </body>
