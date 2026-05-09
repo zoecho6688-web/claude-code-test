@@ -1,160 +1,220 @@
 (function () {
-  function buildMegaMenu() {
+  var desktopMenus = [
+    {
+      key: 'products',
+      triggerHref: 'products.html',
+      triggerLabel: 'Products',
+      menuLabel: 'Product mega menu',
+      viewAllLabel: 'View All Products →',
+      isActivePath: function (pathname) {
+        return /(?:^|\/)(products|iot-sensors|disaster-monitoring|platform)\.html$/.test(pathname) ||
+          pathname.indexOf('/products-gnss/') !== -1 ||
+          pathname.indexOf('/product-sensor/') !== -1 ||
+          pathname.indexOf('/stations/') !== -1 ||
+          pathname.indexOf('/platforms/') !== -1;
+      },
+      categories: [
+        { title: 'GNSS Series', target: 'mega-products-gnss', href: 'products.html' },
+        { title: 'IoT Sensors', target: 'mega-products-sensors', href: 'iot-sensors.html' },
+        { title: 'Disaster Monitoring', target: 'mega-products-stations', href: 'disaster-monitoring.html' },
+        { title: 'Cloud Platform', target: 'mega-products-platforms', href: 'platform.html' },
+      ],
+      panels: [
+        {
+          target: 'mega-products-gnss',
+          items: [
+            { title: 'M20 GNSS Receiver', desc: 'Real-time displacement tracking', href: 'products-gnss/1-gnss.html' },
+            { title: 'M50 GNSS Station', desc: 'All-in-one monitoring station', href: 'products-gnss/2-gnss.html' },
+            { title: 'E50Pro GNSS Reference Receiver', desc: 'Sub-millimeter precision engine', href: 'products-gnss/3-gnss.html' },
+            { title: 'E40 GNSS Receiver', desc: 'Unattended deformation monitoring', href: 'products-gnss/4-gnss.html' },
+            { title: 'A800 3D Choke Ring Antenna', desc: 'Robust signal foundation', href: 'products-gnss/5-gnss.html' },
+          ],
+        },
+        {
+          target: 'mega-products-sensors',
+          items: [
+            { title: 'DR030 Water Level Sensor', desc: 'Mud and water level monitoring', href: 'product-sensor/dr.html' },
+            { title: 'SY035 Vibrating Wire Piezometer', desc: 'Pore pressure telemetry', href: 'product-sensor/sy.html' },
+            { title: 'BHY-3S Tilt and Vibration Detector', desc: 'Landslide and rockfall monitoring', href: 'product-sensor/bhy.html' },
+            { title: 'MD-TR Tubular Soil Moisture Profiler', desc: 'Moisture, temperature, and angle sensing', href: 'product-sensor/sqj.html' },
+          ],
+        },
+        {
+          target: 'mega-products-stations',
+          items: [
+            { title: 'GNSS-MD40 Surface Displacement Station', desc: 'Surface displacement verification', href: 'stations/display.html' },
+            { title: 'MD-IN20 Deep Displacement Station', desc: 'Deep displacement oversight', href: 'stations/sbwy.html' },
+            { title: 'MD-MO20 Soil Moisture Station', desc: 'High-precision moisture tracking', href: 'stations/soil.html' },
+            { title: 'MD-WL20 Groundwater Station', desc: 'Groundwater level and pressure monitoring', href: 'stations/under.html' },
+            { title: 'MD-ML20 Mud and Water Level Station', desc: 'Mud and water level tracking', href: 'stations/level.html' },
+            { title: 'MD-RN20 Intelligent Rainfall Station', desc: 'Precipitation monitoring', href: 'stations/rain.html' },
+          ],
+        },
+        {
+          target: 'mega-products-platforms',
+          items: [
+            { title: 'MDT', desc: 'IoT middleware and AI integration', href: 'platforms/mdt.html' },
+            { title: 'MD-NET 3.0', desc: 'Safety monitoring and early warning analytics', href: 'platforms/net.html' },
+            { title: 'MYT App', desc: 'Mobile device management', href: 'platforms/miyitong.html' },
+            { title: 'Digital Twin Watershed Platform', desc: 'Bridge physical and spatial models', href: 'platforms/szls.html' },
+            { title: 'Intelligent Irrigation District Platform', desc: 'Dynamic spatial telemetry', href: 'platforms/zhgq.html' },
+          ],
+        },
+      ],
+    },
+    {
+      key: 'solutions',
+      triggerHref: 'solutions.html',
+      triggerLabel: 'Solutions',
+      menuLabel: 'Solutions mega menu',
+      viewAllLabel: 'View All Solutions →',
+      isActivePath: function (pathname) {
+        return pathname.indexOf('solutions.html') !== -1 ||
+          pathname.indexOf('solutions-') !== -1 ||
+          pathname.indexOf('solution-') !== -1;
+      },
+      categories: [
+        { title: 'Mining Safety', target: 'mega-solutions-mining', href: 'solutions-mining-main.html' },
+        { title: 'Water Conservancy', target: 'mega-solutions-water', href: 'solutions-water-main.html' },
+        { title: 'Geological Hazard', target: 'mega-solutions-geo', href: 'solutions-geology-main.html' },
+        { title: 'Urban Infrastructure', target: 'mega-solutions-urban', href: 'solutions-urban-main.html' },
+      ],
+      panels: [
+        {
+          target: 'mega-solutions-mining',
+          items: [
+            { title: 'Tailings Storage Facility Safety Monitoring Solution', desc: 'Tailings Storage Facility Safety Monitoring Solution', href: 'solution-tailing.html' },
+            { title: 'Open-pit Mine Slope Safety Monitoring Solution', desc: 'Open-pit Mine Slope Safety Monitoring Solution', href: 'solutions-mining-pit.html' },
+            { title: 'Waste Dump High Slope Safety Monitoring Solution', desc: 'Waste Dump High Slope Safety Monitoring Solution', href: 'solutions-mining-waste.html' },
+            { title: 'Phosphogypsum Stack Online Monitoring Solution', desc: 'Phosphogypsum Stack Online Monitoring Solution', href: 'solutions-mining-chemical.html' },
+            { title: 'Goaf Settlement & Displacement Monitoring Solution', desc: 'Goaf Settlement and Displacement Monitoring Solution', href: 'solutions-mining-goaf.html' },
+          ],
+        },
+        {
+          target: 'mega-solutions-water',
+          items: [
+            { title: 'Reservoir and Pond Online Monitoring Solution', desc: 'Reservoir and Pond Online Monitoring Solution', href: 'solutions-water-pond.html' },
+            { title: 'Reservoir Slope Online Monitoring Solution', desc: 'Reservoir Slope Online Monitoring Solution', href: 'solutions-water-slope.html' },
+            { title: 'Reservoir Dam Safety Monitoring Solution', desc: 'Reservoir Dam Safety Monitoring Solution', href: 'solutions-water-dam.html' },
+            { title: 'River and Lake Ecological Water Quality Monitoring Solution', desc: 'River and Lake Ecological Water Quality Monitoring Solution', href: 'solutions-water-lake.html' },
+            { title: 'Smart Irrigation District Integrated Monitoring Solution', desc: 'Irrigation Safety Online Monitoring Solution', href: 'solutions-water-irrigation.html' },
+            { title: 'Embankment Safety Online Monitoring Solution', desc: 'Embankment Safety Online Monitoring Solution', href: 'solutions-water-embankment.html' },
+          ],
+        },
+        {
+          target: 'mega-solutions-geo',
+          items: [
+            { title: 'Landslide Safety Monitoring Solution', desc: 'Landslide Safety Monitoring Solution', href: 'solutions-geo-landslide.html' },
+            { title: 'Debris Flow & Flash Flood Monitoring Solution', desc: 'Debris Flow & Flash Flood Monitoring Solution', href: 'solutions-geo-flow.html' },
+            { title: 'Rockfall & Collapse Online Monitoring Solution', desc: 'Rockfall & Collapse Online Monitoring Solution', href: 'solutions-geo-collapse.html' },
+          ],
+        },
+        {
+          target: 'mega-solutions-urban',
+          items: [
+            { title: 'Bridge Structural Safety Online Monitoring Solution', desc: 'Bridge Structural Safety Online Monitoring Solution', href: 'solutions-urban-bridge.html' },
+            { title: 'Tunnel & Underground Space Monitoring Solution', desc: 'Tunnel & Underground Space Monitoring Solution', href: 'solutions-urban-tunnel.html' },
+            { title: 'Integrated Building Structural Health Monitoring Solution', desc: 'Urban Building & Structure Safety Solution', href: 'solutions-urban-fundation.html' },
+          ],
+        },
+      ],
+    },
+  ];
+
+  var mobileSections = [
+    {
+      key: 'products',
+      triggerHref: 'products.html',
+      toggleLabel: 'Products',
+      links: [
+        { title: 'GNSS Series', href: 'products.html' },
+        { title: 'IoT Sensors', href: 'iot-sensors.html' },
+        { title: 'Disaster Monitoring', href: 'disaster-monitoring.html' },
+        { title: 'Cloud Platform', href: 'platform.html' },
+      ],
+    },
+    {
+      key: 'solutions',
+      triggerHref: 'solutions.html',
+      toggleLabel: 'Solutions',
+      links: [
+        { title: 'Mining Safety', href: 'solutions-mining-main.html' },
+        { title: 'Water Conservancy', href: 'solutions-water-main.html' },
+        { title: 'Geological Hazard', href: 'solutions-geology-main.html' },
+        { title: 'Urban Infrastructure', href: 'solutions-urban-main.html' },
+      ],
+    },
+  ];
+
+  function renderDesktopMenu(config) {
+    var categoriesHtml = config.categories.map(function (category, index) {
+      return [
+        '<a class="mega-menu-tab' + (index === 0 ? ' is-active' : '') + '" href="' + category.href + '" data-mega-target="' + category.target + '">',
+        '  <span class="mega-menu-tab-title">' + category.title + '</span>',
+        '</a>',
+      ].join('\n');
+    }).join('\n');
+
+    var panelsHtml = config.panels.map(function (panel, index) {
+      var itemsHtml = panel.items.map(function (item) {
+        return [
+          '<a class="mega-panel-link" href="' + item.href + '">',
+          '  <span class="mega-panel-link-title">' + item.title + '</span>',
+          '  <span class="mega-panel-link-desc">' + item.desc + '</span>',
+          '</a>',
+        ].join('\n');
+      }).join('\n');
+
+      return [
+        '<section class="mega-panel' + (index === 0 ? ' is-active' : '') + '" data-mega-panel="' + panel.target + '">',
+        '  <div class="mega-panel-links">',
+        itemsHtml,
+        '  </div>',
+        '</section>',
+      ].join('\n');
+    }).join('\n');
+
+    return [
+      '<a class="nav-link nav-link--mega" href="' + config.triggerHref + '" aria-haspopup="true">',
+      '  <span>' + config.triggerLabel + '</span>',
+      '  <span class="nav-link-caret" aria-hidden="true">▾</span>',
+      '</a>',
+      '<div class="mega-menu" aria-label="' + config.menuLabel + '">',
+      '  <div class="container mega-menu-inner">',
+      '    <div class="mega-menu-left" aria-label="' + config.triggerLabel + ' categories">',
+      categoriesHtml,
+      '      <a class="mega-menu-all" href="' + config.triggerHref + '">' + config.viewAllLabel + '</a>',
+      '    </div>',
+      '    <div class="mega-menu-content">',
+      panelsHtml,
+      '    </div>',
+      '  </div>',
+      '</div>',
+    ].join('\n');
+  }
+
+  function buildDesktopMenu(config) {
     var nav = document.querySelector('.nav');
     if (!nav) return;
 
-    var mega = nav.querySelector('.nav-item--mega');
-    if (!mega) {
-      var productsLink = nav.querySelector('a.nav-link[href="products.html"]');
-      if (!productsLink) return;
+    var triggerLink = nav.querySelector('a.nav-link[href="' + config.triggerHref + '"]');
+    if (!triggerLink) return;
 
-      var wrapper = document.createElement('div');
-      wrapper.className = 'nav-item nav-item--mega';
-      wrapper.innerHTML = `
-        <a class="nav-link nav-link--mega" href="products.html" aria-haspopup="true">
-          <span>Products</span>
-          <span class="nav-link-caret" aria-hidden="true">▾</span>
-        </a>
-        <div class="mega-menu" aria-label="Product mega menu">
-          <div class="container mega-menu-inner">
-            <div class="mega-menu-left" aria-label="Product categories">
-              <a class="mega-menu-tab is-active" href="products.html" data-mega-target="mega-gnss">
-                <span class="mega-menu-tab-title">GNSS Series</span>
-              </a>
-              <a class="mega-menu-tab" href="iot-sensors.html" data-mega-target="mega-sensors">
-                <span class="mega-menu-tab-title">IoT Sensors</span>
-              </a>
-              <a class="mega-menu-tab" href="disaster-monitoring.html" data-mega-target="mega-stations">
-                <span class="mega-menu-tab-title">Disaster Monitoring</span>
-              </a>
-              <a class="mega-menu-tab" href="platform.html" data-mega-target="mega-platforms">
-                <span class="mega-menu-tab-title">Cloud Platform</span>
-              </a>
-              <a class="mega-menu-all" href="products.html">View All Products →</a>
-            </div>
-            <div class="mega-menu-content">
-              <section class="mega-panel is-active" data-mega-panel="mega-gnss">
-                <div class="mega-panel-links">
-                  <a class="mega-panel-link" href="products-gnss/1-gnss.html">
-                    <span class="mega-panel-link-title">M20 GNSS Receiver</span>
-                    <span class="mega-panel-link-desc">Real-time displacement tracking</span>
-                  </a>
-                  <a class="mega-panel-link" href="products-gnss/2-gnss.html">
-                    <span class="mega-panel-link-title">M50 GNSS Station</span>
-                    <span class="mega-panel-link-desc">All-in-one monitoring station</span>
-                  </a>
-                  <a class="mega-panel-link" href="products-gnss/3-gnss.html">
-                    <span class="mega-panel-link-title">E50Pro GNSS Reference Receiver</span>
-                    <span class="mega-panel-link-desc">Sub-millimeter precision engine</span>
-                  </a>
-                  <a class="mega-panel-link" href="products-gnss/4-gnss.html">
-                    <span class="mega-panel-link-title">E40 GNSS Receiver</span>
-                    <span class="mega-panel-link-desc">Unattended deformation monitoring</span>
-                  </a>
-                  <a class="mega-panel-link" href="products-gnss/5-gnss.html">
-                    <span class="mega-panel-link-title">A800 3D Choke Ring Antenna</span>
-                    <span class="mega-panel-link-desc">Robust signal foundation</span>
-                  </a>
-                </div>
-              </section>
-
-              <section class="mega-panel" data-mega-panel="mega-sensors">
-                <div class="mega-panel-links">
-                  <a class="mega-panel-link" href="product-sensor/dr.html">
-                    <span class="mega-panel-link-title">DR030 Water Level Sensor</span>
-                    <span class="mega-panel-link-desc">Mud and water level monitoring</span>
-                  </a>
-                  <a class="mega-panel-link" href="product-sensor/sy.html">
-                    <span class="mega-panel-link-title">SY035 Vibrating Wire Piezometer</span>
-                    <span class="mega-panel-link-desc">Pore pressure telemetry</span>
-                  </a>
-                  <a class="mega-panel-link" href="product-sensor/bhy.html">
-                    <span class="mega-panel-link-title">BHY-3S Tilt and Vibration Detector</span>
-                    <span class="mega-panel-link-desc">Landslide and rockfall monitoring</span>
-                  </a>
-                  <a class="mega-panel-link" href="product-sensor/sqj.html">
-                    <span class="mega-panel-link-title">MD-TR Tubular Soil Moisture Profiler</span>
-                    <span class="mega-panel-link-desc">Moisture, temperature, and angle sensing</span>
-                  </a>
-                </div>
-              </section>
-
-              <section class="mega-panel" data-mega-panel="mega-stations">
-                <div class="mega-panel-links">
-                  <a class="mega-panel-link" href="stations/display.html">
-                    <span class="mega-panel-link-title">GNSS-MD40 Surface Displacement Station</span>
-                    <span class="mega-panel-link-desc">Surface displacement verification</span>
-                  </a>
-                  <a class="mega-panel-link" href="stations/sbwy.html">
-                    <span class="mega-panel-link-title">MD-IN20 Deep Displacement Station</span>
-                    <span class="mega-panel-link-desc">Deep displacement oversight</span>
-                  </a>
-                  <a class="mega-panel-link" href="stations/soil.html">
-                    <span class="mega-panel-link-title">MD-MO20 Soil Moisture Station</span>
-                    <span class="mega-panel-link-desc">High-precision moisture tracking</span>
-                  </a>
-                  <a class="mega-panel-link" href="stations/under.html">
-                    <span class="mega-panel-link-title">MD-WL20 Groundwater Station</span>
-                    <span class="mega-panel-link-desc">Groundwater level and pressure monitoring</span>
-                  </a>
-                  <a class="mega-panel-link" href="stations/level.html">
-                    <span class="mega-panel-link-title">MD-ML20 Mud and Water Level Station</span>
-                    <span class="mega-panel-link-desc">Mud and water level tracking</span>
-                  </a>
-                  <a class="mega-panel-link" href="stations/rain.html">
-                    <span class="mega-panel-link-title">MD-RN20 Intelligent Rainfall Station</span>
-                    <span class="mega-panel-link-desc">Precipitation monitoring</span>
-                  </a>
-                </div>
-              </section>
-
-              <section class="mega-panel" data-mega-panel="mega-platforms">
-                <div class="mega-panel-links">
-                  <a class="mega-panel-link" href="platforms/mdt.html">
-                    <span class="mega-panel-link-title">MDT</span>
-                    <span class="mega-panel-link-desc">IoT middleware and AI integration</span>
-                  </a>
-                  <a class="mega-panel-link" href="platforms/net.html">
-                    <span class="mega-panel-link-title">MD-NET 3.0</span>
-                    <span class="mega-panel-link-desc">Safety monitoring and early warning analytics</span>
-                  </a>
-                  <a class="mega-panel-link" href="platforms/miyitong.html">
-                    <span class="mega-panel-link-title">MYT App</span>
-                    <span class="mega-panel-link-desc">Mobile device management</span>
-                  </a>
-                  <a class="mega-panel-link" href="platforms/szls.html">
-                    <span class="mega-panel-link-title">Digital Twin Watershed Platform</span>
-                    <span class="mega-panel-link-desc">Bridge physical and spatial models</span>
-                  </a>
-                  <a class="mega-panel-link" href="platforms/zhgq.html">
-                    <span class="mega-panel-link-title">Intelligent Irrigation District Platform</span>
-                    <span class="mega-panel-link-desc">Dynamic spatial telemetry</span>
-                  </a>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>`;
-
-      nav.insertBefore(wrapper, productsLink);
-      productsLink.remove();
-      mega = wrapper;
+    var wrapper = triggerLink.closest('.nav-item--mega');
+    if (!wrapper) {
+      wrapper = document.createElement('div');
+      wrapper.className = 'nav-item nav-item--mega nav-item--mega--' + config.key;
+      wrapper.innerHTML = renderDesktopMenu(config);
+      triggerLink.replaceWith(wrapper);
     }
 
-    var productsNavLink = mega.querySelector('.nav-link--mega');
-    var pathname = window.location.pathname;
-    var isProductSection =
-      /(?:^|\/)(products|iot-sensors|disaster-monitoring|platform)\.html$/.test(pathname) ||
-      pathname.indexOf('/products-gnss/') !== -1 ||
-      pathname.indexOf('/product-sensor/') !== -1 ||
-      pathname.indexOf('/stations/') !== -1 ||
-      pathname.indexOf('/platforms/') !== -1;
-    if (productsNavLink) {
-      productsNavLink.classList.toggle('active', isProductSection);
+    var navLink = wrapper.querySelector('.nav-link--mega');
+    if (navLink) {
+      navLink.classList.toggle('active', config.isActivePath(window.location.pathname));
     }
 
-    var tabs = Array.prototype.slice.call(mega.querySelectorAll('[data-mega-target]'));
-    var panels = Array.prototype.slice.call(mega.querySelectorAll('[data-mega-panel]'));
+    var tabs = Array.prototype.slice.call(wrapper.querySelectorAll('[data-mega-target]'));
+    var panels = Array.prototype.slice.call(wrapper.querySelectorAll('[data-mega-panel]'));
     if (!tabs.length || !panels.length) return;
 
     function activateMega(target) {
@@ -168,61 +228,63 @@
 
     tabs.forEach(function (tab) {
       var target = tab.getAttribute('data-mega-target');
-      tab.addEventListener('mouseenter', function () {
-        activateMega(target);
-      });
-      tab.addEventListener('focus', function () {
-        activateMega(target);
-      });
-      tab.addEventListener('click', function () {
-        activateMega(target);
-      });
+      tab.addEventListener('mouseenter', function () { activateMega(target); });
+      tab.addEventListener('focus', function () { activateMega(target); });
+      tab.addEventListener('click', function () { activateMega(target); });
     });
 
     activateMega(tabs[0].getAttribute('data-mega-target'));
   }
 
-  function buildMobileProductsMenu() {
+  function renderMobileSection(config) {
+    var linksHtml = config.links.map(function (link) {
+      return '<a class="nav-drawer-sub-link" href="' + link.href + '">' + link.title + '</a>';
+    }).join('\n');
+
+    return [
+      '<button class="nav-drawer-' + config.key + '-toggle" type="button" aria-expanded="false" aria-controls="mobile-' + config.key + '-panel">',
+        '  <span>' + config.toggleLabel + '</span>',
+        '  <span class="nav-drawer-' + config.key + '-caret" aria-hidden="true">+</span>',
+      '</button>',
+      '<div class="nav-drawer-' + config.key + '-panel" id="mobile-' + config.key + '-panel" hidden aria-hidden="true">',
+      linksHtml,
+      '</div>',
+    ].join('\n');
+  }
+
+  function buildMobileSection(config) {
     var drawer = document.getElementById('mobile-nav');
     if (!drawer) return;
 
     var drawerInner = drawer.querySelector('.nav-drawer-inner');
     if (!drawerInner) return;
 
-    var productsLink = drawerInner.querySelector('a.nav-drawer-link[href="products.html"]');
-    if (!productsLink || drawerInner.querySelector('.nav-drawer-products')) return;
+    var triggerLink = drawerInner.querySelector('a.nav-drawer-link[href="' + config.triggerHref + '"]');
+    if (!triggerLink || drawerInner.querySelector('.nav-drawer-' + config.key)) return;
 
     var section = document.createElement('div');
-    section.className = 'nav-drawer-products';
-    section.innerHTML = `
-      <button class="nav-drawer-products-toggle" type="button" aria-expanded="false" aria-controls="mobile-products-panel">
-        <span>Products</span>
-        <span class="nav-drawer-products-caret" aria-hidden="true">+</span>
-      </button>
-      <div class="nav-drawer-products-panel" id="mobile-products-panel" hidden>
-        <a class="nav-drawer-sub-link" href="products.html">GNSS Series</a>
-        <a class="nav-drawer-sub-link" href="iot-sensors.html">IoT Sensors</a>
-        <a class="nav-drawer-sub-link" href="disaster-monitoring.html">Disaster Monitoring</a>
-        <a class="nav-drawer-sub-link" href="platform.html">Cloud Platform</a>
-      </div>
-    `;
+    section.className = 'nav-drawer-' + config.key;
+    section.innerHTML = renderMobileSection(config);
 
-    drawerInner.insertBefore(section, productsLink);
-    productsLink.remove();
+    drawerInner.insertBefore(section, triggerLink);
+    triggerLink.remove();
 
-    var toggle = section.querySelector('.nav-drawer-products-toggle');
-    var panel = section.querySelector('.nav-drawer-products-panel');
-    var caret = section.querySelector('.nav-drawer-products-caret');
+    var toggle = section.querySelector('.nav-drawer-' + config.key + '-toggle');
+    var panel = section.querySelector('.nav-drawer-' + config.key + '-panel');
+    var caret = section.querySelector('.nav-drawer-' + config.key + '-caret');
     if (!toggle || !panel || !caret) return;
 
     function setOpen(nextOpen) {
       toggle.setAttribute('aria-expanded', String(nextOpen));
       panel.hidden = !nextOpen;
+      panel.setAttribute('aria-hidden', String(!nextOpen));
+      panel.style.display = nextOpen ? 'grid' : 'none';
       section.classList.toggle('is-open', nextOpen);
       caret.textContent = nextOpen ? '−' : '+';
     }
 
-    toggle.addEventListener('click', function () {
+    toggle.addEventListener('click', function (evt) {
+      if (evt && typeof evt.preventDefault === 'function') evt.preventDefault();
       var open = toggle.getAttribute('aria-expanded') === 'true';
       setOpen(!open);
     });
@@ -232,13 +294,18 @@
         setOpen(false);
       });
     });
+
+    setOpen(false);
+  }
+
+  function init() {
+    desktopMenus.forEach(buildDesktopMenu);
+    mobileSections.forEach(buildMobileSection);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildMegaMenu);
-    document.addEventListener('DOMContentLoaded', buildMobileProductsMenu);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    buildMegaMenu();
-    buildMobileProductsMenu();
+    init();
   }
 })();
