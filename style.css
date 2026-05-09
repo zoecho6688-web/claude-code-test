@@ -3258,6 +3258,82 @@ a{ color: inherit; }
   max-height: 80px;
 }
 
+@media (max-width: 640px) {
+
+  .tl-track {
+    flex-direction: column;
+    height: auto;           /* 高度自适应 */
+    padding-left: 32px;     /* 给竖线 + dot 留空间 */
+  }
+
+  /* 竖线：沿左侧贯穿 */
+  .tl-line {
+    top: 0;
+    bottom: 0;
+    left: 4px;              /* dot 水平中心 */
+    right: auto;
+    width: 1px;
+    height: auto;
+    transform: none;
+  }
+
+  /* 每个 node 变为普通块，高度自适应 */
+  .tl-node {
+    flex: none !important;  /* 覆盖 hover 的 flex 缩放 */
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 36px;
+    min-height: 80px;
+  }
+  .tl-node:last-child {
+    padding-bottom: 0;
+  }
+
+  /* dot 锁在竖线上，垂直居于 node 顶部 */
+  .tl-dot {
+    top: 4px;
+    left: calc(-32px + 0px); /* 回到竖线位置 */
+    transform: none;
+  }
+
+  /* 原来的上方区域（偶数节点）统一改为左侧内容区，不再使用 */
+  .tl-top {
+    position: static;
+    bottom: auto;
+    padding-bottom: 0;
+    justify-content: flex-start;
+  }
+
+  /* 所有内容统一走 tl-bottom（左→右方向） */
+  .tl-bottom {
+    position: static;
+    top: auto;
+    padding-top: 0;
+  }
+
+  /* 原来在 tl-top 的内容（偶数节点）移到上方显示 */
+  .tl-top .tl-year,
+  .tl-top .tl-keyword,
+  .tl-top .tl-desc {
+    display: block;
+  }
+
+  /* desc 在移动端默认展开，不依赖 hover */
+  .tl-desc {
+    max-height: none !important;
+    opacity: 1 !important;
+    margin-top: 4px;
+  }
+
+  /* 禁用宽度缩放的 hover 效果 */
+  .tl-track:has(.tl-node:hover) .tl-node:not(:hover) {
+    flex: none;
+  }
+
+  .tl-year  { font-size: 22px; }
+  .tl-keyword { font-size: 18px; }
+}
+
 /* ── About Overview Section ── */
 .about-overview{
   padding: 100px 0;
