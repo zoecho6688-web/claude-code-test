@@ -118,6 +118,7 @@ a{ color: inherit; }
   gap: 0;
   margin-left: 40px;
   height: 100%;
+  overflow: visible;
 }
 .nav-link{
   position: relative;
@@ -154,6 +155,195 @@ a{ color: inherit; }
 .nav-link.active{
   color: var(--blue-700);
   font-weight: 600;
+}
+
+.nav-item--mega{
+  position: static;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+.nav-link--mega{
+  gap: 6px;
+}
+.nav-link-caret{
+  font-size: 10px;
+  line-height: 1;
+  transform: translateY(1px);
+  opacity: 0.75;
+}
+
+.mega-menu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: block;
+  grid-template-columns: 250px minmax(0, 1fr);
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid rgba(7, 48, 103, 0.12);
+  border-bottom: 1px solid rgba(7, 48, 103, 0.12);
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  box-shadow: 0 28px 70px rgba(4, 26, 58, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: none;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  pointer-events: none;
+  z-index: 60;
+  overflow: hidden;
+}
+.nav-item--mega:hover .mega-menu,
+.nav-item--mega:focus-within .mega-menu,
+.mega-menu:hover{
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+.mega-menu-inner {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  min-height: 320px;
+}
+
+.mega-menu-left{
+  align-self: start; 
+  padding: 0;
+  background:transparent;
+  border-right: 1px solid rgba(7, 48, 103, 0.08);
+  display: grid;
+  gap: 3px;
+}
+.mega-menu-tab{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--text);
+  padding: 12px 14px 12px 12px;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  transition: background 160ms ease, color 160ms ease;
+}
+.mega-menu-tab:hover,
+.mega-menu-tab:focus-visible,
+.mega-menu-tab.is-active{
+  background: rgba(236, 236, 236, 0.9);
+  outline: none;
+}
+.mega-menu-tab-title{
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(11, 27, 51, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.mega-menu-tab-title::after {
+  content: '→';
+  font-size: 16px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+.mega-menu-tab:hover .mega-menu-tab-title,
+.mega-menu-tab:focus-visible .mega-menu-tab-title,
+.mega-menu-tab.is-active .mega-menu-tab-title {
+  color: var(--blue-700);
+  font-size: 18px;
+  font-weight: 700;
+}
+.mega-menu-tab:hover .mega-menu-tab-title::after,
+.mega-menu-tab.is-active .mega-menu-tab-title::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+.mega-menu-tab-desc{
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(11, 27, 51, 0.66);
+}
+
+.mega-menu-content{
+  padding: 16px 20px 18px;
+  min-height: 320px;
+}
+.mega-panel{
+  display: none;
+}
+.mega-panel.is-active{
+  display: block;
+}
+.mega-panel-links{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.mega-panel-link{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  padding: 7px 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  transition: color 140ms ease;
+}
+.mega-panel-link:hover,
+.mega-panel-link:focus-visible{
+  color: var(--blue-700);
+  background: transparent;
+  outline: none;
+}
+.mega-panel-link-title{
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(11, 27, 51, 0.66);
+}
+.mega-panel-link-desc{
+  display: block;          
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(11, 27, 51, 0.66);
+}
+.mega-panel-link:hover .mega-panel-link-title,
+.mega-panel-link:focus-visible .mega-panel-link-title{
+  color: rgba(11, 27, 51, 0.9);
+}
+.mega-panel-link:hover .mega-panel-link-desc,
+.mega-panel-link:focus-visible .mega-panel-link-desc{
+  color: rgba(11, 27, 51, 0.9);
+}
+
+.mega-menu-left {
+  display: flex;          /* 原来是 grid，改成 flex */
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mega-menu-all {
+  margin-top: auto;       /* 把按钮推到最底部 */
+  display: block;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-700);
+  text-decoration: none;
+  border-top: 1px solid rgba(7, 48, 103, 0.10);
+  transition: background 160ms ease;
+}
+
+.mega-menu-all:hover {
+  background: rgba(37, 99, 235, 0.07);
 }
 
 .header-cta{
