@@ -29,6 +29,7 @@
       .tl-hero-left {
         display: flex; flex-direction: column; justify-content: center;
         padding: 48px 48px 48px 0;
+        padding-left: max(20px, calc((100vw - var(--container)) / 2));
       }
       .tl-eyebrow {
         display: block; font-size: 10px; font-weight: 800;
@@ -766,7 +767,7 @@
     <!-- Hero -->
     <section class="tl-hero" aria-label="River Embankment hero">
       <div class="container" style="display:contents;">
-        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+        <div class="tl-hero-left">
           <span class="tl-eyebrow">Flood Control Instrumentation</span>
           <h1 class="tl-heading">River Embankment &amp; Levee<br><span class="tl-heading-blue">Safety Monitoring</span></h1>
           <p class="tl-hero-desc">Specialized seepage and deformation sensing for flood control systems. Ensuring long-term stability of critical water infrastructure.</p>

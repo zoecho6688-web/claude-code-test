@@ -28,6 +28,7 @@
       .tl-hero-left {
         display: flex; flex-direction: column; justify-content: center;
         padding: 48px 48px 48px 0;
+        padding-left: max(20px, calc((100vw - var(--container)) / 2));
       }
       .tl-eyebrow {
         display: block; font-size: 10px; font-weight: 800;
@@ -513,7 +514,7 @@
       /* ── Mobile ── */
       @media (max-width: 768px) {
         .tl-hero { grid-template-columns: 1fr; min-height: auto; }
-        .tl-hero-left { padding: 48px 0 32px; }
+        .tl-hero-left { padding: 48px 0 32px; margin-left: 0; }
         .tl-hero-right { height: 260px; }
         .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
         .tl-body { grid-template-columns: 1fr; padding: 0; }
@@ -593,7 +594,7 @@
     <!-- Hero -->
     <section class="tl-hero" aria-label="Case study hero">
       <div class="container" style="display:contents;">
-        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+        <div class="tl-hero-left" >
           <span class="tl-eyebrow">Hazard Project</span>
           <h1 class="tl-heading">Successful Early Warning of<br><span class="tl-heading-blue">Guizhou Large-Scale Landslide</span></h1>
           <div class="tl-hero-meta">

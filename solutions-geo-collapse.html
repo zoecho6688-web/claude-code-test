@@ -46,7 +46,7 @@
 
       /* Hero */
       .tl-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 440px; background: #fff; border-bottom: 1px solid #EEEEEE; }
-      .tl-hero-left { display: flex; flex-direction: column; justify-content: center; padding: 48px 48px 48px 0; }
+      .tl-hero-left { display: flex; flex-direction: column; justify-content: center; padding: 48px 48px 48px 0;padding-left: max(20px, calc((100vw - var(--container)) / 2)); }
       .tl-eyebrow { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #0056D6; margin-bottom: 16px; }
       .tl-heading { margin: 0 0 20px; font-size: clamp(28px, 3.8vw, 48px); font-weight: 900; line-height: 1.05; color: #0f1f3d; }
       .tl-heading-blue { color: #0056D6; }
@@ -632,7 +632,7 @@
 
     <section class="tl-hero">
       <div class="container" style="display:contents;">
-        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+        <div class="tl-hero-left">
           <span class="tl-eyebrow">Structural Integrity</span>
           <h1 class="tl-heading">Rockfall &amp; Collapse<br><span class="tl-heading-blue">Safety Monitoring</span></h1>
           <p class="tl-hero-desc">Capturing precursor micro-tilts and joint expansions with 0.001° resolution. Engineering resilience for vertical rock faces and highway corridors.</p>

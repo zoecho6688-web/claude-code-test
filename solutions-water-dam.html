@@ -29,6 +29,7 @@
       .tl-hero-left {
         display: flex; flex-direction: column; justify-content: center;
         padding: 48px 48px 48px 0;
+        padding-left: max(20px, calc((100vw - var(--container)) / 2));
       }
       .tl-eyebrow {
         display: block; font-size: 10px; font-weight: 800;
@@ -755,7 +756,7 @@
     <!-- Hero -->
     <section class="tl-hero" aria-label="Reservoir Dam Safety Monitoring hero">
       <div class="container" style="display:contents;">
-        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+        <div class="tl-hero-left">
           <span class="tl-eyebrow">Precision Instrumentation</span>
           <h1 class="tl-heading">Reservoir Dam Safety &amp;<br><span class="tl-heading-blue">Seepage Monitoring</span></h1>
           <p class="tl-hero-desc">Automated sensing for structural integrity and seepage pressure. High-precision monitoring for concrete gravity dams and earth-rockfill dams.</p>

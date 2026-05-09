@@ -66,7 +66,7 @@
       .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
 
       .tl-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 460px; background: #fff; border-bottom: 1px solid #EEEEEE; }
-      .tl-hero-left { display: flex; flex-direction: column; justify-content: center; padding: 48px 48px 48px 0; }
+      .tl-hero-left { display: flex; flex-direction: column; justify-content: center; padding: 48px 48px 48px 0; padding-left: max(20px, calc((100vw - var(--container)) / 2));}
       .tl-eyebrow { display: block; font-size: 10px; font-weight: 800; text-transform: uppercase; color: #0056D6; margin-bottom: 16px; letter-spacing: 0.14em; }
       .tl-heading { margin: 0 0 20px; font-size: clamp(28px, 3.8vw, 48px); font-weight: 900; line-height: 1.05; color: #0f1f3d; letter-spacing: -0.03em; }
       .tl-heading-blue { color: #0056D6; }
@@ -509,7 +509,7 @@
 
     <section class="tl-hero">
       <div class="container" style="display:contents;">
-        <div class="tl-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+        <div class="tl-hero-left">
           <span class="tl-eyebrow">Life-Cycle Structural Health</span>
           <h1 class="tl-heading">Bridge Structural<br><span class="tl-heading-blue">Health Monitoring (SHM)</span></h1>
           <p class="tl-hero-desc">Real-time sensing for static and dynamic structural integrity. From long-span bridges to urban overpasses, Medo ensures safety through precision strain and vibration analysis.</p>
