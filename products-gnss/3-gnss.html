@@ -29,7 +29,7 @@
       .pd-hero-left {
         display: flex; flex-direction: column; justify-content: center;
         padding: 48px 48px 48px 0;
-        padding-left: max(20px, calc((100vw - 1120px) / 2));
+        padding-left: max(20px, calc((100vw - var(--container)) / 2));
       }
       .pd-eyebrow {
         display: block; font-size: 10px; font-weight: 800;
@@ -390,7 +390,7 @@
     <!-- Hero -->
     <section class="pd-hero" aria-label="Product hero">
       <div class="container" style="display:contents;">
-        <div class="pd-hero-left" style="padding-left: max(20px, calc((100vw - 1200px) / 2));">
+          <div class="pd-hero-left" style="padding-left: max(20px, calc((100vw - var(--container)) / 2));">
           <span class="pd-eyebrow">GNSS Rover</span>
           <h1 class="pd-heading">E50Pro</h1>
           <p class="pd-heading-sub">GNSS Reference Receiver</p>
