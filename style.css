@@ -18,7 +18,7 @@
   --radius-lg: 20px;
   --radius-md: 14px;
   --radius-sm: 10px;
-  --container: clamp(1120px, 86vw, 1440px);
+  --container: clamp(1120px, 88vw, 1600px);
 }
 
 *{ box-sizing: border-box; }
@@ -50,6 +50,12 @@ a{ color: inherit; }
 .container{
   width: min(var(--container), calc(100% - 40px));
   margin: 0 auto;
+}
+
+.pd-body,
+.tl-body{
+  max-width: 1520px !important;
+  width: min(1520px, calc(100% - 40px));
 }
 
 .site-header{
