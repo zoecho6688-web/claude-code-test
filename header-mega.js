@@ -146,7 +146,7 @@
             { title: 'DRC Copper Mine Open-pit Slope Monitoring', desc: 'Case 1', href: 'cases/miningcase-1.html' },
             { title: 'Mine Safety System', desc: 'Case 2', href: 'cases/miningcase-2.html' },
             { title: 'Digital Transformation & Environmental Monitoring of Guizhou PG Stack', desc: 'Case 3', href: 'cases/miningcase-3.html' },
-            { title: 'Inner Mongolia Open-pit Mine Waste Dump Online Monitoring System', desc: 'Case 4', herf: 'cases/miningcase-4.html'},
+            { title: 'Inner Mongolia Open-pit Mine Waste Dump Online Monitoring System', desc: 'Case 4', href: 'cases/miningcase-4.html'},
           ],
         },
         {
@@ -215,7 +215,7 @@
   function renderDesktopMenu(config) {
     var categoriesHtml = config.categories.map(function (category, index) {
       return [
-        '<a class="mega-menu-tab' + (index === 0 ? ' is-active' : '') + '" href="' + category.href + '" data-mega-target="' + category.target + '">',
+        '<a class="mega-menu-tab' + (index === 0 ? ' is-active' : '') + '" href="' + resolveMenuHref(category.href) + '" data-mega-target="' + category.target + '">',
         '  <span class="mega-menu-tab-title">' + category.title + '</span>',
         '</a>',
       ].join('\n');
@@ -224,7 +224,7 @@
     var panelsHtml = config.panels.map(function (panel, index) {
       var itemsHtml = panel.items.map(function (item) {
         return [
-          '<a class="mega-panel-link" href="' + item.href + '">',
+          '<a class="mega-panel-link" href="' + resolveMenuHref(item.href) + '">',
           '  <span class="mega-panel-link-title">' + item.title + '</span>',
           '  <span class="mega-panel-link-desc">' + item.desc + '</span>',
           '</a>',
@@ -241,7 +241,7 @@
     }).join('\n');
 
     return [
-      '<a class="nav-link nav-link--mega" href="' + config.triggerHref + '" aria-haspopup="true">',
+      '<a class="nav-link nav-link--mega" href="' + resolveMenuHref(config.triggerHref) + '" aria-haspopup="true">',
       '  <span>' + config.triggerLabel + '</span>',
       '  <span class="nav-link-caret" aria-hidden="true">▾</span>',
       '</a>',
@@ -249,7 +249,7 @@
       '  <div class="container mega-menu-inner">',
       '    <div class="mega-menu-left" aria-label="' + config.triggerLabel + ' categories">',
       categoriesHtml,
-      '      <a class="mega-menu-all" href="' + config.triggerHref + '">' + config.viewAllLabel + '</a>',
+      '      <a class="mega-menu-all" href="' + resolveMenuHref(config.triggerHref) + '">' + config.viewAllLabel + '</a>',
       '    </div>',
       '    <div class="mega-menu-content">',
       panelsHtml,
@@ -266,6 +266,22 @@
       .replace(/^\.\//, '')
       .replace(/^(\.\.\/)+/, '')
       .replace(/^\/+/, '');
+  }
+
+  function getSitePrefix() {
+    var pathname = (window.location && window.location.pathname) || '';
+    var normalized = pathname.replace(/\\/g, '/');
+    var isSubdirPage = normalized.indexOf('/cases/') !== -1 ||
+      normalized.indexOf('/products-gnss/') !== -1 ||
+      normalized.indexOf('/product-sensor/') !== -1 ||
+      normalized.indexOf('/stations/') !== -1 ||
+      normalized.indexOf('/platforms/') !== -1;
+
+    return isSubdirPage ? '../' : '';
+  }
+
+  function resolveMenuHref(href) {
+    return getSitePrefix() + normalizeHref(href);
   }
 
   function buildDesktopMenu(config) {
@@ -315,7 +331,7 @@
 
   function renderMobileSection(config) {
     var linksHtml = config.links.map(function (link) {
-      return '<a class="nav-drawer-sub-link" href="' + link.href + '">' + link.title + '</a>';
+      return '<a class="nav-drawer-sub-link" href="' + resolveMenuHref(link.href) + '">' + link.title + '</a>';
     }).join('\n');
 
     return [
