@@ -3115,14 +3115,14 @@ a{ color: inherit; }
 }
 
 /* ── About Timeline ── */
-.about-timeline{
+/* ── About Timeline ── */
+.about-timeline {
   position: relative;
   isolation: isolate;
   padding: 44px 0 76px;
   background: #eef5ff;
 }
-
-.about-timeline::before{
+.about-timeline::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -3130,96 +3130,114 @@ a{ color: inherit; }
   background: #eef5ff;
 }
 
-.tl-heading{
+.tl-heading {
   font-size: clamp(28px, 3.5vw, 44px);
   font-weight: 800;
   color: #0f1f3d;
   margin: 0 0 12px;
 }
-
-.tl-title-line{
+.tl-title-line {
   width: 150px;
   height: 3px;
-  background: #2563EB;
+  background: #2563eb;
   margin-bottom: 76px;
 }
 
-.tl-track{
+/* ── Track：固定高度，线条永远居中 ── */
+.tl-track {
   position: relative;
   display: flex;
-  align-items: stretch;
+  height: 260px; /* 固定高度，hover 不撑开页面 */
 }
 
-.tl-line{
+.tl-line {
   position: absolute;
   top: 50%;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   height: 1px;
-  background: rgba(7,48,103,0.16);
+  background: rgba(7, 48, 103, 0.16);
   transform: translateY(-50%);
+  pointer-events: none;
 }
 
-.tl-node{
+/* ── Node：宽度用 flex 控制，高度由 track 决定 ── */
+.tl-node {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  transition: flex 0.35s ease;
+  position: relative; /* tl-top / tl-dot / tl-bottom 的绝对定位基准 */
   min-width: 0;
   padding-right: 20px;
   cursor: default;
+  transition: flex 0.35s ease;
+}
+.tl-node:hover {
+  flex: 1.5;
+}
+.tl-track:has(.tl-node:hover) .tl-node:not(:hover) {
+  flex: 0.7;
 }
 
-.tl-node:hover{ flex: 1.5; }
-.tl-track:has(.tl-node:hover) .tl-node:not(:hover){ flex: 0.7; }
-
-.tl-top{
-  min-height: 100px;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-start;
-  padding-bottom: 12px;
-}
-
-.tl-bottom{
-  min-height: 100px;
-  padding-top: 12px;
-}
-
-.tl-dot{
+/* ── Dot：始终锁在中线上 ── */
+.tl-dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: #ffffff;
   border: 1.5px solid #9fb7d6;
-  flex-shrink: 0;
-  transition: all 0.2s;
-  position: relative;
   z-index: 1;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+.tl-node:hover .tl-dot {
+  background: #2563eb;
+  border-color: #2563eb;
 }
 
-.tl-node:hover .tl-dot{
-  background: #2563EB;
-  border-color: #2563EB;
+/* ── 上方内容区：从中线向上延伸 ── */
+.tl-top {
+  position: absolute;
+  bottom: calc(50% + 10px); /* dot 上边缘 */
+  left: 0;
+  right: 20px;
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* 内容贴近中线 */
+  overflow: hidden;
 }
 
-.tl-year{
+/* ── 下方内容区：从中线向下延伸 ── */
+.tl-bottom {
+  position: absolute;
+  top: calc(50% + 10px); /* dot 下边缘 */
+  left: 0;
+  right: 20px;
+  padding-top: 12px;
+  overflow: hidden;
+}
+
+/* ── Year / Keyword ── */
+.tl-year {
   font-size: 28px;
   font-weight: 800;
   letter-spacing: -0.01em;
-  color: #2563EB;
+  color: #2563eb;
   margin-bottom: 6px;
   display: block;
 }
-
-.tl-keyword{
+.tl-keyword {
   font-size: 24px;
   font-weight: 700;
   color: #0f1f3d;
   display: block;
 }
 
-.tl-desc{
+/* ── Desc：hover 时展开 ── */
+.tl-desc {
   font-size: 12px;
   color: #718096;
   line-height: 1.6;
@@ -3229,14 +3247,13 @@ a{ color: inherit; }
   opacity: 0;
   transition: opacity 0.3s ease, max-height 0.3s ease;
 }
-
-/* odd: desc expands downward */
-.tl-bottom .tl-desc{ margin-top: 6px; }
-
-/* even: desc expands upward (column-reverse in .tl-top) */
-.tl-top .tl-desc{ margin-bottom: 6px; }
-
-.tl-node:hover .tl-desc{
+.tl-bottom .tl-desc {
+  margin-top: 6px;
+}
+.tl-top .tl-desc {
+  margin-bottom: 6px;
+}
+.tl-node:hover .tl-desc {
   opacity: 1;
   max-height: 80px;
 }
