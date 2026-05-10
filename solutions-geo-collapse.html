@@ -56,7 +56,8 @@
       .tl-hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #fff 0%, transparent 28%); z-index: 1; }
 
       /* Body Layout */
-      .tl-body { display: grid; grid-template-columns: 180px 1fr; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+      .tl-body { display: grid; grid-template-columns: 180px 1fr; width: min(calc(var(--container) + 40px), 100%);
+        max-width: none !important; margin: 0 auto; padding: 0 20px; }
       .tl-sidenav { position: sticky; top: 52px; height: calc(100vh - 52px); padding: 56px 32px 40px 0; border-right: 1px solid #EEEEEE; display: flex; flex-direction: column; }
       .tl-sidenav-label { font-size: 9px; font-weight: 800; text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px; }
       .tl-nav-num { display: block; font-size: 9px; font-weight: 700; color: #c0c8d4; margin-bottom: 2px; transition: color 0.3s; }

@@ -84,9 +84,10 @@
       .pd-body {
         display: grid;
         grid-template-columns: 200px 1fr;
-        max-width: 1200px;
+        width: min(calc(var(--container) + 40px), 100%);
         margin: 0 auto;
         padding: 0 20px;
+        max-width: none !important;
       }
 
       /* ── Sidebar nav ── */

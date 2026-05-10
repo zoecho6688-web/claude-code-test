@@ -55,7 +55,8 @@
       .tl-body {
         display: grid;
         grid-template-columns: 180px 1fr;
-        max-width: 1240px;
+        width: min(calc(var(--container) + 40px), 100%);
+        max-width: none !important;
         margin: 0 auto;
         padding: 0 20px;
         gap: 0;

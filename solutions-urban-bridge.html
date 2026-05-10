@@ -75,7 +75,8 @@
       .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
       .tl-hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #fff 0%, transparent 28%); z-index: 1; }
 
-      .tl-body { display: grid; grid-template-columns: 180px 1fr; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+      .tl-body { display: grid; grid-template-columns: 180px 1fr; width: min(calc(var(--container) + 40px), 100%);
+        max-width: none !important; margin: 0 auto; padding: 0 20px; }
       .tl-sidenav { 
           position: sticky; 
           top: 52px; 
