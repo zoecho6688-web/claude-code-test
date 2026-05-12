@@ -422,10 +422,11 @@
       
 
       /* case study */
+     /* --- Case Card --- */
       .case-card {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0;
+          grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1fr);
+          gap: 32px;
           background: #fff;
           margin: 0;
           padding: 0;      /* 确保容器本身无内边距 */
@@ -435,73 +436,60 @@
           overflow: hidden;
       }
 
-      /* --- Image Wrapper：实现“顶格”效果 --- */
+      /* --- Image Wrapper：透明背景，内容居中 --- */
       .case-image-wrapper {
-          background: #0f1f3d;
+          background: transparent; /* 保持透明，无边框感 */
           display: flex;
-          align-items: center;
-          justify-content: center;
-          /* 移除 padding 或根据需要调整，确保背景色充满整个 grid 格子 */
-          padding: 40px 0; 
+          align-items: center;     /* 垂直居中 */
+          justify-content: flex-start; 
+          padding: 0;
           margin: 0;
           width: 100%;
           height: 100%;
       }
 
+      /* --- Image：原图比例展示，拒绝过度放大 --- */
       .case-image {
-          width: 90%;      /* 图片宽度占容器的 90%，留出一点呼吸感，但背景顶格 */
-          height: auto;
-          max-width: 400px;
+          width: 100%;
+          max-width: 450px;    /* 设置一个最大宽度，防止图片在宽屏下无限制变大，你可以根据喜好微调这个数值 */
+          height: auto;        /* 高度自动，保持原图完美比例 */
+          object-fit: contain; /* 确保图片完整包含在容器内，绝不裁剪 */
           display: block;
       }
 
       /* --- 内容区域 --- */
       .case-content {
-          padding: 40px 40px;   /* 内容区域保持适当内边距 */
-          padding-bottom: 0;
+          padding: 0px 40px 0 0;   /* 内容区域保持适当内边距 */
           display: flex;
           flex-direction: column;
           height: 100%;
-          gap: 24px;
+          gap: clamp(24px, 5vw, 64px);
+          justify-content: center;
       }
 
       /* --- 文字与结果卡片 --- */
-      .case-tag { display: block; font-size: 9px; font-weight: 800; color: #0056D6; text-transform: uppercase; margin-bottom: 8px; }
-      .case-title { margin: 0; font-size: 20px; font-weight: 800; color: #0f1f3d; }
+      .case-title { margin: 0; font-size: 26px; font-weight: 800; color: #0f1f3d; }
       .detail-label { font-size: 11px; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px; }
       .detail-text { font-size: 13px; line-height: 1.6; color: #4a5568; margin: 0; }
-
-      .results-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-      }
-
-      .result-item {
-          border: 1px solid #EEEEEE;
-          padding: 12px;
-          border-radius: 0; /* 直角 */
-      }
-
-      .result-value { font-size: 22px; font-weight: 900; color: #0056D6; }
-      .result-desc { font-size: 12px; color: #9ca3af; margin-top: 3px; }
       /* --- 按钮样式：淡蓝背景，无阴影，直角 --- */
       .case-study-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          background: #F0F7FF;
-          color: #0056D6;
-          text-decoration: none;
-          padding: 14px 24px;
-          font-size: 13px;
-          font-weight: 800;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          position: relative;
-          margin-top: auto;
-          width: 100%;
-          transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        align-self: flex-start; /* 保持在左侧 */
+        margin-top: auto;       /* 自动推到底部 */
+        padding: 14px 28px;
+        background-color: #0056D6; /* 使用品牌蓝 */
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition: background-color 250ms ease, transform 200ms ease;
       }
 
       /* 下划线动画：悬停前隐藏，悬停后展开 */
@@ -516,7 +504,7 @@
           transition: width 0.3s ease;
       }
 
-      .case-study-link:hover { background: #E1EFFF; }
+      .case-study-link:hover { background: #0047b0; }
       .case-study-link svg { transition: transform 0.3s ease; width: 13px; }
       .case-study-link:hover svg { transform: translateX(5px); }
 
@@ -524,17 +512,81 @@
           width: 100%;        /* 悬停时宽度铺满 */
       }
 
+      @media (max-width: 1024px) {
+          .case-card {
+              grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1fr);
+              gap: 28px;
+          }
+
+          .case-image {
+              max-width: 360px;
+          }
+
+          .case-content {
+              padding-right: 16px;
+              gap: 28px;
+          }
+
+          .case-title {
+              font-size: 24px;
+              line-height: 1.2;
+          }
+      }
+
       /* --- 📱 响应式适配 --- */
       @media (max-width: 768px) {
           .case-card {
               grid-template-columns: 1fr; /* 手机端上下堆叠 */
+              gap: 22px;
           }
           
           .case-image-wrapper {
-              padding: 60px 20px; /* 手机端背景同样左右顶格，上下留出空间展示图片 */
+              justify-content: center;
+              padding: 0;
+              min-height: 0;
+          }
+
+          .case-image {
+              width: min(100%, 420px);
+              max-width: 100%;
+          }
+
+          .case-content {
+              padding: 0;
+              gap: 18px;
+          }
+
+          .case-title {
+              font-size: 22px;
+              line-height: 1.25;
+          }
+
+          .detail-text {
+              font-size: 14px;
+              line-height: 1.7;
+          }
+
+          .case-study-link {
+              min-height: 48px;
+              align-self: flex-start;
+              padding: 14px 18px;
           }
       }
 
+      @media (max-width: 480px) {
+          .case-card {
+              gap: 18px;
+          }
+
+          .case-title {
+              font-size: 20px;
+          }
+
+          .case-study-link {
+              font-size: 11px;
+              letter-spacing: 0.08em;
+          }
+      }
 
       /* next solution bar */
       .tl-next {
@@ -886,48 +938,24 @@
           </section>
 
           <!-- 05 Success Stories -->
-          <section id="cases" class="tl-section">
+         <section id="cases" class="tl-section">
             <span class="tl-section-label">05 / Success Stories</span>
-            <h2 class="tl-section-title">Proven in the Field</h2>
-            <p class="tl-section-desc">Real deployments. Zero accidents.</p>
-
             <div class="case-card">
               <div class="case-image-wrapper">
-                <img src="images/abouthero.png" alt="Shanxi open-pit mine" class="case-image" />
+                <img src="images/mining/mc-1-drc.png" alt="Shanxi open-pit mine" class="case-image" />
               </div>
 
               <div class="case-content">
                 <div class="case-header">
-                  <span class="case-tag">Primary Case Study · 2023</span>
-                  <h3 class="case-title">Shanxi Huge Open-Pit Mine<br>Slope Safety Project</h3>
+                  <h3 class="case-title">DRC Kamoya Copper Mine</br>Slope Monitoring</h3>
                 </div>
 
                 <div class="case-detail">
-                  <p class="detail-label">Challenge</p>
-                  <p class="detail-text">A 380m deep open-pit coal mine in Shanxi Province faced recurring bench instability events.</p>
+                  <p class="detail-text">24/7 automated GNSS displacement monitoring across a large open-pit copper mine in the Democratic Republic of the Congo — millimeter-level accuracy, zero downtime.</p>
                 </div>
 
-                <div class="case-detail">
-                  <p class="detail-label">Solution</p>
-                  <p class="detail-text">Medo deployed 24 GNSS monitoring stations and 3 robotic total stations.</p>
-                </div>
-
-                <div class="case-detail">
-                  <p class="detail-label">Results</p>
-                  <div class="results-grid">
-                    <div class="result-item">
-                      <div class="result-value">22 days</div>
-                      <div class="result-desc">Early warning before visible slope cracking</div>
-                    </div>
-                    <div class="result-item">
-                      <div class="result-value">0</div>
-                      <div class="result-desc">Accidents during 18-month period</div>
-                    </div>
-                  </div>
-                </div>
-
-                <a href="cases.html" class="case-study-link">
-                  Explore Geohazard Case Studies
+                <a href="cases/miningcase-1.html" class="case-study-link">
+                  Explore DRC Project
                   <svg viewBox="0 0 14 14" fill="none" class="link-icon" aria-hidden="true">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
                   </svg>

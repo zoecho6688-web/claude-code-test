@@ -340,10 +340,10 @@
       }
 
     
-      /* --- Case Card：彻底去掉边框和阴影 --- */
+      /* --- Case Card --- */
       .case-card {
           display: grid;
-          grid-template-columns: auto 1fr;
+          grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1fr);
           gap: 32px;
           background: #fff;
           margin: 0;
@@ -381,7 +381,7 @@
           display: flex;
           flex-direction: column;
           height: 100%;
-          gap: 64px;
+          gap: clamp(24px, 5vw, 64px);
           justify-content: center;
       }
 
@@ -405,6 +405,8 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
         text-decoration: none;
+        position: relative;
+        overflow: hidden;
         transition: background-color 250ms ease, transform 200ms ease;
       }
 
@@ -428,14 +430,79 @@
           width: 100%;        /* 悬停时宽度铺满 */
       }
 
+      @media (max-width: 1024px) {
+          .case-card {
+              grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1fr);
+              gap: 28px;
+          }
+
+          .case-image {
+              max-width: 360px;
+          }
+
+          .case-content {
+              padding-right: 16px;
+              gap: 28px;
+          }
+
+          .case-title {
+              font-size: 24px;
+              line-height: 1.2;
+          }
+      }
+
       /* --- 📱 响应式适配 --- */
       @media (max-width: 768px) {
           .case-card {
               grid-template-columns: 1fr; /* 手机端上下堆叠 */
+              gap: 22px;
           }
           
           .case-image-wrapper {
-              padding: 60px 20px; /* 手机端背景同样左右顶格，上下留出空间展示图片 */
+              justify-content: center;
+              padding: 0;
+              min-height: 0;
+          }
+
+          .case-image {
+              width: min(100%, 420px);
+              max-width: 100%;
+          }
+
+          .case-content {
+              padding: 0;
+              gap: 18px;
+          }
+
+          .case-title {
+              font-size: 22px;
+              line-height: 1.25;
+          }
+
+          .detail-text {
+              font-size: 14px;
+              line-height: 1.7;
+          }
+
+          .case-study-link {
+              min-height: 48px;
+              align-self: flex-start;
+              padding: 14px 18px;
+          }
+      }
+
+      @media (max-width: 480px) {
+          .case-card {
+              gap: 18px;
+          }
+
+          .case-title {
+              font-size: 20px;
+          }
+
+          .case-study-link {
+              font-size: 11px;
+              letter-spacing: 0.08em;
           }
       }
 
@@ -774,7 +841,7 @@
 
               <div class="case-content">
                 <div class="case-header">
-                  <h3 class="case-title">DRC Kamoya Copper Mine</br>Slope Monitoring</h3>
+                  <h3 class="case-title">DRC Kamoya Copper Mine<br>Slope Monitoring</h3>
                 </div>
 
                 <div class="case-detail">
