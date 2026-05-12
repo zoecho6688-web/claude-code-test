@@ -2095,6 +2095,47 @@ a{ color: inherit; }
   font-weight: 800;
 }
 
+.sol-geo-features{
+  margin: 0 0 32px;
+}
+
+.sol-geo-features-title{
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0f1f3d;
+}
+
+.sol-geo-features-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sol-geo-feature{
+  border-left: 3px solid #2563EB;
+  background: #f8fbff;
+  padding: 14px 16px;
+}
+
+.sol-geo-feature-kicker{
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #2563EB;
+}
+
+.sol-geo-feature p{
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #4a5568;
+}
+
 .sol-geo-visual{
   position: relative;
 }
@@ -2119,6 +2160,7 @@ a{ color: inherit; }
   .sol-geo-grid{ grid-template-columns: 1fr; gap: 40px; }
   .sol-geo-visual{ order: 2; }
   .sol-geo-text{ order: 1; }
+  .sol-geo-features-grid{ grid-template-columns: 1fr; }
 }
 
 /* ── Water Conservancy Tri-Panel ── */
