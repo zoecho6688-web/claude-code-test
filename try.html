@@ -3,1052 +3,535 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Medo — Precision monitoring for safer infrastructure and intelligent early warning." />
-    <title>Medo Monitoring Technology | Precision in Every Dimension</title>
+    <meta name="description" content="Medo Tailings Dam Safety Monitoring: real-time pore pressure, saturation, and GNSS displacement monitoring for tailings storage facilities." />
+    <title>Tailings Dam Safety Monitoring | Medo</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      html{ scroll-behavior: smooth; }
+      body { background: #fff; }
 
-      .loop-slide.slide-01::after {
-          /* 修改遮罩的渐变色 */
-          background: linear-gradient(to right, #0C3431 0%, #0C3431 30%, transparent 75%);
-        }
-        .loop-slide.slide-01 .loop-slide-kicker { color: #00b386; } /* Kicker 字体颜色 */
-        .loop-slide.slide-01 .loop-slide-title { color: #ffffff; }  /* 主标题字体颜色 */
-        .loop-slide.slide-01 .loop-slide-sub { color: #cccbcb; }    /* 副标题字体颜色 */
+      /* ── Breadcrumb ── */
+      .tl-breadcrumb { background: #fff; border-bottom: 1px solid #EEEEEE; }
+      .tl-breadcrumb-inner {
+        display: flex; align-items: center; gap: 8px;
+        height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap;
+      }
+      .tl-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+      .tl-breadcrumb a:hover { color: #0056D6; }
+      .tl-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+      .tl-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
 
+      /* ── Hero ── */
+      .tl-hero {
+        display: grid; grid-template-columns: 1fr 1fr;
+        min-height: clamp(260px, 42vh, 460px);
+        background: #fff; border-bottom: 1px solid #EEEEEE;
+      }
+      .tl-hero-left {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 48px 48px 48px 0;
+        padding-left: max(20px, calc((100vw - var(--container)) / 2));
+      }
+      .tl-eyebrow {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 16px;
+      }
+      .tl-heading {
+        margin: 0 0 20px;
+        font-size: clamp(28px, 3.8vw, 48px);
+        font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; color: #0f1f3d;
+      }
+      .tl-heading-blue { color: #0056D6; }
+      .tl-hero-desc { margin: 0; font-size: 15px; line-height: 1.75; color: #4a5568; }
+      .tl-hero-right { position: relative; overflow: hidden; background: #0f1f3d; }
+      .tl-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tl-hero-right::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to right, #fff 0%, transparent 28%);
+        z-index: 1; pointer-events: none;
+      }
 
-        /* ── 第 2 张图 (深蓝色主题) ── */
-        .loop-slide.slide-02::after {
-          background: linear-gradient(to right, #0a192f 0%, #0a192f 30%, transparent 75%);
-        }
-        .loop-slide.slide-02 .loop-slide-kicker { color: #64ffda; }
-        .loop-slide.slide-02 .loop-slide-title { color: #e6f1ff; }
-        .loop-slide.slide-02 .loop-slide-sub { color: #8892b0; }
+      /* ── Body layout: sticky sidebar + content ── */
+      .tl-body {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 1fr);
+        width: min(calc(var(--container) + 40px), 100%);
+        max-width: none !important;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 0;
+      }
 
+      /* ── Sticky anchor nav ── */
+      .tl-sidenav {
+        position: sticky;
+        top: 52px;
+        height: calc(100vh - 52px);
+        padding: 56px 20px 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-right: 1px solid #EEEEEE;
+      }
+      .tl-sidenav-label {
+        font-size: 9px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: #c0c8d4; margin-bottom: 24px;
+      }
+      .tl-nav-link {
+        display: block;
+        padding: 9px 0;
+        font-size: 13px; font-weight: 500;
+        color: #999999;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
+        line-height: 1.3;
+      }
+      .tl-nav-link .tl-nav-num {
+        display: block; font-size: 9px; font-weight: 700;
+        letter-spacing: 0.10em; color: #c0c8d4;
+        margin-bottom: 2px; transition: color 0.3s ease;
+      }
+      .tl-nav-link:hover { color: #0056D6; }
+      .tl-nav-link:hover .tl-nav-num { color: #0056D6; }
+      .tl-nav-link:hover { border-bottom-color: #0056D6; }
+      .tl-nav-link.is-active { color: #0056D6; border-bottom-color: #0056D6; font-weight: 700; }
+      .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
 
-        /* ── 第 3 张图 (深灰/黑色主题) ── */
-        .loop-slide.slide-03::after {
-          background: linear-gradient(to right, #1f1f1f 0%, #1f1f1f 30%, transparent 75%);
-        }
-        .loop-slide.slide-03 .loop-slide-kicker { color: #ffae42; }
-        .loop-slide.slide-03 .loop-slide-title { color: #ffffff; }
-        .loop-slide.slide-03 .loop-slide-sub { color: #a3a3a3; }
+      /* ── Content area ── */
+      .tl-content { padding: 64px 0 80px 40px; }
 
+      .tl-section {
+        padding-bottom: 96px;
+        border-bottom: 1px solid #EEEEEE;
+        margin-bottom: 80px;
+      }
+      .tl-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
 
-        /* ── 第 4 张图 (深紫色主题) ── */
-        .loop-slide.slide-04::after {
-          background: linear-gradient(to right, #2d1b4e 0%, #2d1b4e 30%, transparent 75%);
-        }
-        .loop-slide.slide-04 .loop-slide-kicker { color: #d8b4fe; }
-        .loop-slide.slide-04 .loop-slide-title { color: #ffffff; }
-        .loop-slide.slide-04 .loop-slide-sub { color: #e9d5ff; }
+      .tl-section-label {
+        display: block; font-size: 10px; font-weight: 800;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: #0056D6; margin-bottom: 14px;
+      }
+      .tl-section-title {
+        margin: 0 0 20px;
+        font-size: clamp(22px, 2.8vw, 34px);
+        font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d;
+      }
+      .tl-section-desc { margin: 0 0 32px; font-size: 15px; line-height: 1.75; color: #4a5568; }
 
-        /* Integrated Monitoring Ecosystem (White & Blue Tech Style) */
-        .eco-scroll-container {
-          position: relative;
-          height: 250vh; 
-          background: #f8f9fb; /* 👉 改为纯白背景 */
-        }
-        .eco-sticky-viewport {
-          position: sticky;
-          top: 0vh;
-          height: 100vh;
-          display: flex;
-          justify-content: space-between;
-          overflow: hidden;
-          padding-top: 80px; 
-          align-items: center;
-          flex-direction: column;   /* 改为纵向，标题在上，三列在下 */
-          align-items: stretch;
-        }
+      /* pain points grid */
+      .tl-pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-pain-card {
+        border: 1px solid #EEEEEE; 
+        padding: 24px 22px;
+        display: flex; 
+        flex-direction: column; 
+        gap: 10px;
+      }
+      .tl-pain-grid .tl-pain-card:nth-child(1),
+      .tl-pain-grid .tl-pain-card:nth-child(4) {
+          background-color: #F0F7FF;
+          border: none;
+          /* 如果你之前设置了直角风格，记得这里也可以统一控制 */
+          border-radius: 0; 
+      }
+      .tl-pain-icon { width: 36px; height: 36px; color: #0056D6; }
+      .tl-pain-icon svg { width: 100%; height: 100%; }
+      .tl-pain-title { font-size: 15px; font-weight: 800; color: #0f1f3d; margin: 0; }
+      .tl-pain-desc { font-size: 13px; line-height: 1.65; color: #4a5568; margin: 0; }
 
-        .eco-section-header {
-          flex-shrink: 0;           /* 防止被压缩 */
-          padding: 10px 0 48px;
-          max-width: 760px;
-        }
-  
-        .eco-section-title {
-          font-size: clamp(28px, 3.4vw, 42px);
-          font-weight: 900;
-          color: #0d1b2a;
-          letter-spacing: -0.03em;
-          line-height: 1;
-          margin: 0;
-          max-width: none;
-          white-space: nowrap;
-        } 
-
-        /* 标题加进来后，三列内容区需要占满剩余高度 */
-        .eco-left-text,
-        .eco-center-scale,
-        .eco-right-image {
-          flex: 1;
-        }
-
-        .eco-body {
-          display: flex;
-          flex: 1;                  /* 占满标题以下的所有空间 */
-          align-items: stretch;        
-          padding-top: 24px;      
-        }
-        /* ── 左侧文字 ── */
-        .eco-left-text {
-          display: flex;
-          flex: 1;
-          position: relative;
-          height: 400px;
-          min-height: 0;
-        }
-        .eco-text-item {
-          position: absolute;
-          top: 28px;
-          left: 0;
-          transform: translateY(30px);
-          opacity: 0;
-          transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-          width: 90%;
-          height: 100%;                  /* 撑满父容器高度 */
-          display: flex;
-          flex-direction: column;
-        }
-        .eco-text-item.is-active {
-          opacity: 1;
-          transform: translateY(0);
-        } 
-        .eco-text-item h3 { 
-          font-size: clamp(24px, 3vw, 36px); 
-          margin: 0 0 16px; 
-          line-height: 1.1; 
-          color: #1a1a1a;
-        } 
-        .eco-text-item p { 
-          color: #555555; 
-          line-height: 1.6; 
-          font-size: 1.1rem; 
-          margin-top: 100px;
-          margin-bottom: 24px;
-        } 
-        .eco-cta-link { 
-          color: #0056D6; 
-          text-decoration: none; 
-          font-weight: 600; 
-          font-size: 14px; 
-          margin-bottom: 0;
-          align-self: flex-start; 
-          border-bottom: 1px solid #0056D6;
-          text-transform: uppercase; 
-          letter-spacing: 0.05em; 
-          transition: opacity 0.3s;
-        }
-        .eco-cta-link:hover { opacity: 0.8; }
-
-        /* ── 中间刻度盘 ── */
-        .eco-center-scale {
-          flex: 0 0 160px;
-          height: 50vh;
-          position: relative;
-          margin: 0 35px;
-          /* 稍微拉长一点可视区域，让玻璃框滑动的效果更明显 */
-          -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-          mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-        }
-
-        /* 👉 进化版 3.0：纯净光学玻璃透镜（仅覆盖数字区域） */
-        .eco-hud-lens {
-          position: absolute;
-          top: 50%;
-          /* 核心调整 1：向右平移，避开左侧的主轴和刻度线，只覆盖数字 */
-          left: 26px; 
-          right: 0; 
-          width: 100px;
-          height: 72px; /* 稍微收敛高度，更精致 */
-          transform: translateY(-50%);
-          
-          /* 核心调整 2：纯净透明玻璃材质，去除所有蓝色发光 */
-          /* 在白底上做玻璃，需要极淡的灰白渐变来体现材质厚度 */
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
-          
-          /* 光学扭曲：微弱的对比度增强和模糊，模拟纯净透镜 */
-          backdrop-filter: blur(0px) contrast(1.02) brightness(0.98);
-          -webkit-backdrop-filter: blur(6px) contrast(1.02) brightness(0.98);
-          
-          /* 玻璃边缘切割感 */
-          border-radius: 12px; 
-          border: 1px solid rgba(0, 0, 0, 0.06); /* 淡淡的外轮廓线 */
-          border-top: 1px solid rgba(255, 255, 255, 0.8); /* 顶部高光折射 */
-          border-left: 1px solid rgba(255, 255, 255, 0.6); /* 左侧高光折射 */
-          
-          /* 纯粹的物理光影，去除一切有色光晕 */
-          box-shadow: 
-          0 0 16px 2px rgba(0, 86, 214, 0.15), /* 👉 将原本黑色的阴影改成了品牌主题蓝的光晕 */
-          inset 0 0 16px rgba(255, 255, 255, 0.3); /* 内部玻璃的通透反光 */
-          z-index: 10;
-          pointer-events: none;
-          display: flex;
-          align-items: center;
-        }
-        /* 👉 进化版：更“实在”的滑动标尺 */
-        .eco-moving-ruler {
-          position: absolute;
-          top: 50%; 
-          left: 0;
-          width: 100%;
-          transform: translateY(-60px); 
-          will-change: transform;
-          z-index: 5;
-        }
-        .eco-moving-ruler::before {
-          content: "";
-          position: absolute;
-          top: -1000px;
-          bottom: -1000px;
-          left: -1px;
-          width: 8px;
-          /* 加粗主轴线，加深颜色 */
-          border-left: 2px solid rgba(0, 86, 214, 0.3); 
-          /* 让毫米刻度线也加粗 (1.5px) 并加深透明度 */
-          background-image: repeating-linear-gradient(to bottom, rgba(0, 86, 214, 0.5) 0, rgba(0, 86, 214, 0.5) 1.5px, transparent 1.5px, transparent 15px);
-        }
-
-        .eco-scale-mark {
-          height: 120px; 
-          display: flex;
-          align-items: center;
-          position: relative;
-        }
-        .eco-scale-tick {
-          width: 16px;
-          height: 2px;
-          background: rgba(0, 86, 214, 0.4); /* 基础刻度线更实在 */
-          margin-right: 20px;
-          transition: width 0.4s ease, background-color 0.4s ease;
-        }
-        .eco-scale-num {
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 1.2rem;
-          color: rgba(0, 86, 214, 0.5); /* 数字更清晰 */
-          font-weight: 700;
-          transform-origin: left center;
-          will-change: transform, opacity;
-          transition: color 0.4s ease, text-shadow 0.4s ease;
-        }
-        
-        /* ── 右侧图片 ── */
-        .eco-right-image {
-          flex: 1.2; 
-          position: relative;
-          height: 60vh;
-          display: flex;
-          justify-content: flex-end;
-        }
-        .eco-img-item {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background: transparent; 
-          border-radius: 4px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          opacity: 0;
-          transform: translateX(40px) scale(0.95);
-          transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-          overflow: hidden;
-        }
-        .eco-img-item::before { 
-          content: ""; 
-          font-family: monospace; 
-          position: absolute; 
-          top: 20px; 
-          left: 20px; 
-          font-size: 12px; 
-          color: #0056D6; /* 👉 蓝色状态文字 */
-          z-index: 2;
-        }
-        .eco-img-item img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          opacity: 0.9;
-          transition: transform 3s ease;
-        }
-        .eco-img-item.is-active { opacity: 1; transform: translateX(0) scale(1); }
-        .eco-img-item.is-active img { transform: scale(1.05); }
-        @media (max-width: 900px) {
-          .loop-hero-inner {
-            min-height: 600px; /* 保证有足够的高度容纳上下两部分 */
-            height: 85vh;
-          }
-          
-          /* 1. 文字内容区移到上半部分 */
-          .loop-slide-content {
-            width: 100%;
-            height: 50%; /* 占据上半部分50% */
-            margin-left: 0;
-            padding: 40px 24px 20px; /* 缩小边距，适应小屏幕 */
-            gap: 12px;
-          }
-          .loop-slide-title {
-            font-size: clamp(28px, 6vw, 42px); /* 动态缩小标题字号 */
-          }
-          
-          /* 2. 图片移到下半部分 */
-          .loop-slide img {
-            top: 50%; /* 从屏幕50%的地方开始渲染 */
-            left: 0;
-            width: 100%;
-            height: 50%; /* 高度占剩下的50% */
-            object-position: center center; /* 让图片居中显示 */
-          }
-
-          /* 3. 导航箭头微调 */
-          .loop-nav { width: 40px; height: 40px; }
-          .loop-nav-prev { left: 12px; }
-          .loop-nav-next { right: 12px; }
-
-          /* 4. 将渐变遮罩方向从"左右"改为"上下"，完美衔接中间的分割线 */
-          .loop-slide.slide-01::after { background: linear-gradient(to bottom, #0C3431 0%, #0C3431 50%, transparent 85%); }
-          .loop-slide.slide-02::after { background: linear-gradient(to bottom, #0a192f 0%, #0a192f 50%, transparent 85%); }
-          .loop-slide.slide-03::after { background: linear-gradient(to bottom, #1f1f1f 0%, #1f1f1f 50%, transparent 85%); }
-          .loop-slide.slide-04::after { background: linear-gradient(to bottom, #2d1b4e 0%, #2d1b4e 50%, transparent 85%); }
-        }
-        /* 产品部分响应式设计  */
-        @media (max-width: 900px) {
-          .eco-sticky-viewport {
-            display: flex;
+    /* solution overview: flow layout */
+      .flow-wrapper {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        position: relative;
+      }
+      .flow-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        z-index: 1;
+      }
+      .flow-arrow svg { opacity: 0.35; }
+      .flow-card {
+        flex: 1 1 0;
+        position: relative;
+        background: #fff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 0;
+        padding: 32px 24px 28px;
+        cursor: default;
+        transition: all 0.32s cubic-bezier(.4,0,.2,1);
+        overflow: hidden;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      }
+      .flow-card:hover {
+        flex: 3 1 0;
+        border-color: #0056D6;
+        box-shadow: 0 8px 40px rgba(0,86,214,0.13);
+        transform: translateY(-4px);
+        z-index: 2;
+      }
+      .step-num {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #0056D6;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        opacity: 0.7;
+      }
+      .step-img {
+        width: 140%;
+        height: 90px;
+        object-fit: cover;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .step-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #0f1f3d;
+        line-height: 1.4;
+        margin-bottom: 0;
+        transition: color 0.2s;
+      }
+      .step-detail {
+        font-size: 14px;
+        color: #4a5568;
+        line-height: 1.65;
+        margin-top: 14px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.3s ease;
+      }
+      .flow-card:hover .step-detail {
+        max-height: 300px;
+        opacity: 1;
+      }
+      .flow-card:hover .step-title { font-size: 16px; }
+      .flow-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0056D6, #4d9fff);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+        border-radius: 0;
+      }
+      .flow-card:hover::after { transform: scaleX(1); }
+      
+      @media (max-width: 768px) {
+        .flow-wrapper { 
             flex-direction: column; 
-            padding-top: 44px;      
-            padding-bottom: 28px;
-            justify-content: flex-start;
-            gap: 18px;
-          }
-
-          .eco-section-header {
-            max-width: none;
-            padding: 0 20px;
-          }
-
-          .eco-section-title {
-            font-size: clamp(24px, 4.2vw, 34px);
-            max-width: none;
-            white-space: nowrap;
-            line-height: 1;
-          }
-
-          .eco-section-title::after {
-            width: 72px;
-            margin-top: 10px;
-          }
-
-          /* ── 1. 上半部：图片展示区 (利用 order 提升层级) ── */
-          .eco-body {
-            flex-direction: column;
-            padding-top: 0;
-            gap: 14px;
-          }
-
-          .eco-right-image {
-            order: 1; /* 👉 核心魔法：无视 HTML 顺序，强制将图片排在第 1 位 (最上方) */
-            position: relative;
-            width: 100%;
-            height: 34vh; /* 图片占据的高度，可根据需要微调 */
-            padding: 0 20px; 
-            box-sizing: border-box;
-            margin-bottom: 0; /* 👉 移除间距，准备与下方文字无缝贴合 */
-            flex: none; 
-          }
-          .eco-img-item {
-            position: absolute;
-            top: 0;
-            left: 20px;
-            width: calc(100% - 40px); 
-            height: 100%;
-            border-radius: 0; /* 👉 取消圆角，变为锐利直角 */
-            border-bottom: none; /* 👉 去掉底边框，使其与下方文字卡片融为一体 */
-            transform: translateY(10px) scale(0.98); 
-          }
-          .eco-img-item.is-active {
-            transform: translateY(0) scale(1);
-          }
-
-          /* ── 2. 下半部：文字卡片区 ── */
-          .eco-left-text {
-            order: 2; /* 👉 强制文字排在第 2 位 (图片下方) */
-            position: relative;
-            width: 100%;
-            height: 240px; /* 为文字预留固定高度，防止滚动时跳动 */
-            padding: 0 20px;
-            box-sizing: border-box;
-          }
-          .eco-text-item {
-            position: absolute;
-            top: 0;
-            left: 20px;
-            width: calc(100% - 40px);
-            box-sizing: border-box;
-            background: #ffffff; 
-            padding: 20px;
-            border-radius: 0; /* 👉 取消圆角，变为锐利直角 */
-            transform: translateY(10px);
-            box-shadow: none;
-            gap: 8px;
-          }
-          .eco-text-item.is-active {
-            transform: translateY(0);
-          }
-          .eco-text-item h3 {
-            font-size: 22px; 
-            margin: 0;
-          }
-          .eco-text-item p {
-            font-size: 14px; 
-            margin: 0;
-            line-height: 1.45;
-          }
-
-          .eco-cta-link {
-            font-size: 12px;
-            margin: 0;
-          }
-
-          .eco-center-scale {
-            display: none;
-          }
-        }
-        /* ── 手机端特别优化 (< 640px) ── */
-        @media (max-width: 640px) {
-          .loop-hero-inner { 
-            min-height: 550px; 
-            height: 90vh; /* 手机端稍微拉长一点高度 */
-          }
-          .loop-slide-content {
-            padding: 30px 20px 20px;
-          }
-          .loop-slide-sub {
-             font-size: 15px; /* 手机端副标题稍微小一点，防止文字过多换行 */
-             line-height: 1.5;
-          }
-          .loop-nav { 
-            display: none; /* 手机屏幕太窄，隐藏左右箭头，仅保留底部小圆点 */
-          }
-
-          .eco-sticky-viewport {
-            padding-top: 36px;
-            padding-bottom: 22px;
-            gap: 14px;
-          }
-
-          .eco-section-header {
-            padding: 36px 16px;
-          }
-
-          .eco-section-title {
-            font-size: 32px;
-            max-width: 14ch;
-          }
-
-
-          .eco-right-image {
-            height: 280px;
-            padding: 0 16px;
-          }
-
-          .eco-img-item {
-            left: 16px;
-            width: calc(100% - 32px);
-          }
-
-          .eco-left-text {
-            height: 220px;
-            padding: 0 16px;
-          }
-
-          .eco-text-item {
-            left: 16px;
-            width: calc(100% - 32px);
-            padding: 18px;
-          }
-
-          .eco-text-item h3 {
-            font-size: 20px;
-            margin-top: 15px;
-          }
-
-          .eco-text-item p {
-            font-size: 13px;
-            line-height: 1.5;
-            margin-bottom: 12px;
-          }
-
-          .eco-cta-link {
-            font-size: 11px;
-          }
-        }
-        /* ── 无障碍支持：减少动画 ── */
-        @media (prefers-reduced-motion: reduce) {
-          .hero-bg::after { animation: none; }
-          .hero-slider-track { animation: none; }
-          .hero-fadeup { animation: none; opacity: 1; transform: none; }
-          .btn { transition: none; }
-          .nav-link::after { transition: none; }
-          .loop-track { transition: none; }
-          .loop-cta { transition: none; }
+            gap: 12px; /* 增加卡片间的间距 */
         }
 
-        /* =========================================
-           Hybrid Scroll Parallax: Industry + Cases
-           ========================================= */
-        .industry-scroll-container {
-          position: relative;
-          background: #ffffff;
+        .flow-arrow { 
+            transform: rotate(90deg); 
+            width: 100%; 
+            height: 32px; 
         }
 
-        .industry-container {
-          height: 100%;
-          background: #ffffff;
+        .flow-card { 
+            min-height: auto; 
+            flex: 1 1 auto; /* 改为 auto，允许内容撑开高度 */
+            padding: 24px;  /* 稍微缩小内边距 */
         }
 
-        .industry-sticky-viewport {
-          position: sticky;
-          width: 100%;      /* 👈 全宽 */
-          max-width: none;
-          margin: 0;
-          padding: 0;
-          top: 0;
-          height: 100vh; /* 始终铺满全屏 */
-          display: flex;
-          flex-direction: column; /* 上下排布 */
-          overflow: hidden;
-          background: #ffffff;
+        .flow-card:hover { 
+            flex: 1 1 auto; /* 移除移动端的伸缩效果，避免抖动 */
+            transform: none; /* 移除位移，移动端位移容易导致误触 */
         }
 
-        /* ── 🔝 上半部：动态区 (占据主要空间) ── */
-        .industry-dynamic-area {
-          flex: 1; /* 占据屏幕减去底部 Cases 后的所有剩余空间 */
-          display: flex;
-          flex-direction: row; /* 左右排布 */
+        /* 修复图片：不要让它超出容器 */
+        .step-img {
+            width: 100%; 
+            height: 120px; /* 固定一个高度或设为 auto */
+            margin-bottom: 15px;
         }
 
-        /* ── 左侧大图区 (独立长方形相框) ── */
-        .industry-images {
-          flex: 1.5; /* 依然保留较大的空间占比 */
-          position: relative;
-          height: 100%;
-          background: transparent; /* 确保背景透明，露出底色 */
-          background-color: #ffffff;
-        }
-        
-        .ind-img-item {
-          position: absolute;
-          /* 👉 核心修改：移除 inset: 0，改为四周精确留白 */
-          top: 60px;       /* 距离顶部留出 60px 呼吸空间 */
-          bottom: 60px;    /* 距离底部留出 60px 呼吸空间 */
-          left: 60px;         /* 左边贴齐容器左边界，和上下内容对齐 */
-          right: 0;     
-          opacity: 0;
-          transform: scale(0.98);
-          transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        
-        .ind-img-item.is-active {
-          opacity: 1;
-          transform: scale(1);
-        }
-        
-        .ind-img-item img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 0; /* 保持你要求的锐利直角 */
-        }
-
-        /* 右侧文字区 */
-        .industry-texts {
-          flex: 1; /* 👉 占比小：相当于 40% 的宽度 */
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: flex-start; /* 让文字在垂直方向上居中 */
-          padding: 20px 0 0 48px; /* 为右侧标题预留空间 */
-          background: #ffffff;
-        }
-        .industry-section-header {
-          position: relative;
-          align-self: flex-start;
-          z-index: 15;
-          width: auto;
-          margin: 48px 0 0px 0;
-          padding: 0;
-        }
-        .industry-section-title {
-          margin: 0;
-          max-width: none;
-          font-size: clamp(28px, 3.4vw, 42px);
-          line-height: 1;
-          letter-spacing: -0.03em;
-          font-weight: 900;
-          color: #0d1b2a;
-          white-space: nowrap;
-        }
-        .ind-text-item {
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 120px;
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .ind-text-item.is-active {
-          opacity: 1;
-          transform: translateY(0);
-          z-index: 10;
-        }
-        .ind-text-label {
-          font-size: 13px;
-          color: #0056D6;
-          font-weight: 700;
-          letter-spacing: 0.15em;
-          display: block;
-          margin-bottom: 12px;
-        }
-        .ind-text-item h3 {
-          font-size: clamp(28px, 3.5vw, 42px);
-          color: #1a1a1a;
-          margin: 0 0 16px;
-          line-height: 1.2;
-        }
-        .ind-text-item p {
-          color: #555;
-          font-size: 1.1rem;
-          line-height: 1.6;
-          margin-bottom: 30px;
-        }
-        .ind-link {
-          display: inline-block;
-          color: #0056D6;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 14px;
-          letter-spacing: 0.1em;
-          transition: opacity 0.3s ease;
-        }
-        .ind-link:hover { opacity: 0.7; }
-
-        /* ── 新增：右下角数字导航 ── */
-        .industry-nav-numbers {
-          position: absolute;
-          bottom: 50px; /* 距离容器底部的距离 */
-          left: 5px; /* 跟随容器左边界对齐 */
-          display: flex;
-          gap: 28px; /* 数字之间的间距 */
-          z-index: 20; /* 确保它在文字的最上层可见 */
-        }
-
-        .ind-nav-num {
-          position: relative;
-          font-family: 'Courier New', Courier, monospace; /* 使用等宽字体增强科技感 */
-          font-size: 14px;
-          font-weight: 700;
-          color: rgba(26, 26, 26, 0.2); /* 默认未激活时的浅灰色 */
-          transition: color 0.4s ease, transform 0.4s ease;
-          display: inline-block;
-        }
-        .ind-nav-num::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: -6px; /* 👉 控制下划线距离数字底部的间距 */
-          width: 100%;  /* 👉 宽度与数字文本等宽 */
-          height: 3px;  /* 👉 控制下划线的粗细 (厚度) */
-          border-radius: 2px;
-          background: transparent; /* 默认状态下透明隐藏 */
-          transition: background-color 0.4s ease; /* 颜色平滑过渡 */
-        }
-
-        /* 高亮时的状态 */
-        .ind-nav-num.is-active {
-          color: #0056D6; /* 变为品牌蓝 */
-          transform: scale(1.3); /* 字体微微放大突出显示 */
-        }
-        .ind-nav-num.is-active::after {
-          background-color: #0056D6; 
-        }
-
-        /* ── ⬇️ 下半部：静态 Cases 区 (常驻展示) ── */
-        .industry-static-cases {
-          height: auto;
-          background: #ffffff;
-          padding: 30px 0; /* 压缩上下边距，不要占太大高度 */
-        }
-        .industry-static-cases-inner {
-          width: 100%;
-          margin: 0;
-          padding: 0;
-        }
-
-        /* =========================================
-           Cases / Success Stories 布局
-           ========================================= */
-        /* ── 核心网格：一行 4 列 ── */
-        .cases-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 15px; /* 卡片之间的间距 */
-        }
-
-        /* ── 单个卡片样式 ── */
-        .case-card {
-          position: relative;
-          display: flex;
-          flex-direction: row; /* 内部左右排列 */
-          align-items: flex-start;;
-          background: #ffffff;
-          border: 1.5px solid rgba(0, 0, 0, 0.12); /* 默认淡灰色边框 */
-          border-radius: 3px; /* 锐利直角 */
-          text-decoration: none;
-          color: inherit;
-          min-height: 120px; /* 保证卡片基本高度 */
-          box-shadow: none; /* 👉 明确设定无阴影 */
-          transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease;
-        }
-
-        /* 左侧图片区域 */
-        .case-img-wrap {
-          width: 110px;  /* 👉 强制宽度 */
-          height: 110px;
-          flex-shrink: 0; /* 防止图片被挤压 */
-          margin: 0px; 
-        }
-        .case-img-wrap img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          aspect-ratio: 1 / 1; /* 保持图片为正方形 */
-          background: #f0f0f0; /* 图片加载前的底色 */
-        }
-
-        /* 右侧文字与图标区域 */
-        .case-content {
-          padding: 5px 16px 10px 18px;
-          display: flex;
-          flex-direction: column; /* 内部上下排列 */
-          flex-grow: 1;
-        }
-        .cases-label {
-          font-size: 14px;
-          color: #0056D6; 
-          font-weight: 700;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          display: block;
-          margin-bottom: 16px;
-        }
-        .case-category {
-          font-size: 12px;
-          color: #666666;
-          margin-bottom: 13px;
-          font-family: monospace; /* 分类标签使用等宽字体，增加仪器感 */
-        }
-        .case-desc {
-          font-size: 14px;
-          font-weight: 600;
-          line-height: 1.5;
-          margin: 0;
-          color: #1a1a1a;
-          /* 多行文本截断：最多显示 2 行，多余显示省略号 */
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        /* 底部箭头图标 */
-        .case-icon {
-          position: absolute; /* 👉 新增：绝对定位，使其脱离文档流 */
-          right: 16px;        /* 👉 钉在距离右边缘 16px 的位置 */
-          bottom: 16px;
-          color: #0056D6; /* 默认蓝色 */
-          transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .case-icon svg {
-          width: 20px;
-          height: 20px;
-        }
-        .case-card:hover {
-          border-color: #0056D6; /* 👉 边框变为品牌蓝 */
-          background-color: #e9e8e8; /* 👉 背景变为干净的浅灰色 */
-          box-shadow: none; /* 👉 悬停时也绝不出现阴影 */
-        } 
-        .case-card:hover .case-icon {
-          transform: translateX(6px); /* 箭头向右滑动保持不变 */
-        }
-
-        /* ≥ 1024px：cases 贴在视口底部，和 sticky 一起填满 100vh */
-        @media (min-width: 1024px) {
-          .industry-sticky-outer {
-            height: 400vh;
-            position: relative;
-          }
-
-          .industry-sticky-viewport {
-            position: sticky;
-            top: 0;
-            height: calc(100vh - 220px); /* 留出 cases 的高度 */
-            overflow: hidden;
-          }
-
-          .industry-static-cases {
-            position: sticky;
-            bottom: 0;                   /* 吸附在视口底部 */
-            height: 220px;
-            background: #ffffff;
-            z-index: 10;
-            padding: 20px 0;
-          }
-        }
-
-        /* < 1024px：cases 回到普通文档流，sticky 独占 100vh */
-        @media (max-width: 1023px) {
-          .industry-sticky-outer {
-            height: 300vh;
-            position: relative;
-          }
-
-          .industry-sticky-viewport {
-            position: sticky;
-            top: 0;
-            height: 100vh;     
-            overflow: hidden;
-          }
-
-          .industry-static-cases {
-            position: relative;          /* 普通流，滚完后自然出现 */
-            height: auto;
-            padding: 32px 0;
-          }
-        }
-        
-
-        /* ── 中小屏：从左右结构改为上下结构 ── */
-        @media (max-width: 900px) {
-          .industry-images {
-            order: 1;
-          }
-          .industry-texts {
-            order: 2;
-          }
-          .industry-sticky-viewport {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow: hidden;
-            justify-content: flex-start;
-            padding-top: 18px;
-            gap: 8px;
-          }
-
-          .industry-dynamic-area {
-            flex-direction: column;
-            height: auto;
-            gap: 6px;
-          }
-
-          .industry-images,
-          .industry-texts {
-            width: 100%;
-            flex: none;
-          }
-
-          .industry-images {
-            height: 40vh;
-            min-height: 300px;
-          }
-
-          .ind-img-item {
-            top: 0;
-            bottom: 0;
-            left: 20px;
-            right: 20px;
-          }
-
-          .industry-texts {
-            height: auto;
-            min-height: 170px;
-            align-items: flex-start;
-            padding: 0 20px 20px;
-          }
-
-          .industry-section-header {
-            margin: 0 20px 4px;
-          }
-
-          .industry-section-title {
-            font-size: clamp(24px, 24.2vw, 34px);
-            white-space: nowrap;
-            max-width: none;
-          }
-
-          .ind-text-item {
-            position: relative;
-            top: auto;
-            left: auto;
-            right: auto;
-            transform: none;
-            opacity: 0;
-            display: none;
-            margin: 20px 20px;
-          }
-
-          .ind-text-item.is-active {
-            display: block;
+        /* 核心修复：关于内容显示 */
+        /* 如果你希望手机端默认就能看到内容（推荐），可以取消 0 高度限制 */
+        .step-detail {
+            max-height: none; /* 允许显示内容 */
             opacity: 1;
-            transform: none;
-          }
-
-          .industry-nav-numbers {
-            position: relative;
-            bottom: auto;
-            left: auto;
-            margin: 10px 20px 0;
-            gap: 16px;
-          }
-          .industry-static-cases {
-            padding: 12px 0 18px;
-          }
-
-          .cases-grid {
-            grid-template-columns: 1fr;
-            gap: 6px;
-          }
-
-          .case-card {
-            flex-direction: row;
-            align-items: center;
-            min-height: 72px;
-          }
-
-          .case-img-wrap {
-            width: 72px;                  /* ← 缩小为正方形小图 */
-            height: 72px;
-            flex-shrink: 0;
-          }
-
-          .case-content {
-            padding: 8px 10px 8px;
-          }
-
-          .case-icon {
-            position: absolute;
-            right: 12px;
-            bottom: auto;
-            top: 50%;
-            transform: translateY(-50%);
-          }
+            margin-top: 10px;
+            display: block; /* 确保是块级元素 */
         }
 
-        /* ── 手机端 ── */
-        @media (max-width: 640px) {
-        
-          .industry-images {
-            height: 280px;
-            min-height: 204px;
-          }
-
-          .ind-img-item {
-            left: 16px;
-            right: 16px;
-          }
-
-          .industry-texts {
-            min-height: 210px;
-            margin-top: 28px;
-            padding: 0 16px 48px;
-            position: relative;
-          }
-
-          .industry-section-header {
-            margin: 32px 16px;
-          }
-
-          .industry-section-title {
-            font-size: 36px;
-            white-space: nowrap;
-          }
-
-          .ind-text-item {
-            margin: 0;              /* ← 清除 900px 遗留的 20px 左右 margin */
-            left: auto;
-            right: auto;
-            top: 0;  
-          }
-
-          .ind-text-label {
-            font-size: 12px;
-            letter-spacing: 0.12em;
-            margin-bottom: 10px;
-          }
-
-          .ind-text-item h3 {
-            font-size: 21px;
-            margin-bottom: 8px;
-          }
-
-          .ind-text-item p {
-            font-size: 0.9rem;
-            line-height: 1.45;
-            margin-bottom: 12px;
-          }
-
-          .industry-nav-numbers {
-            position: absolute;           /* ← 改回绝对定位 */
-            bottom: 14px;
-            left: 16px;
-            margin: 0;
-            gap: 14px;
-          }
-
-          .cases-grid {
-            grid-template-columns: 1fr;
-            gap: 12px;
-          }
-
-          .case-card {
-            flex-direction: row;
-            height: auto;
-          }
-
-          .case-img-wrap {
-            width: 72px;                  /* ← 缩小为正方形小图 */
-            height: 72px;
-            flex-shrink: 0;
-          }
-
-          .case-content {
-            padding: 8px 10px 8px;
-          }
-          
-          .case-desc {
-            line-height: 1.2;
-            margin-top: 0;
-            font-size: 13px;
-          }
-          .case-icon {
-            position: absolute;
-            right: 12px;
-            bottom: auto;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-
+        /* 或者如果你坚持要点击才显示，确保过渡顺滑，但请注意手机端点击可能不灵敏 */
+        .flow-card:active .step-detail {
+            max-height: 500px;
+            opacity: 1;
         }
-       
-      </style>
+      }
+
+
+
+      /* advantages */
+      .tl-adv-list { display: flex; flex-direction: column; gap: 12px; }
+      .tl-adv-item {
+        display: grid; grid-template-columns: 48px 1fr;
+        gap: 20px; align-items: start;
+        border: 1px solid #EEEEEE; padding: 20px 24px;
+      }
+      .tl-adv-item:hover {
+        border: none;
+        background-color: #F0F7FF; 
+      }
+
+      .tl-adv-num {
+        font-size: 28px; font-weight: 900; color: #0056D6;
+        letter-spacing: -0.04em; line-height: 1;
+      }
+      .tl-adv-title { margin: 0 0 6px; font-size: 15px; font-weight: 800; color: #0f1f3d; }
+      .tl-adv-desc { margin: 0; font-size: 13px; line-height: 1.65; color: #4a5568; }
+
+      /* products */
+      .tl-prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .tl-prod-card {
+        border: 1px solid #EEEEEE; padding: 0;
+        display: grid; grid-template-columns: minmax(0,1fr) 160px;
+        align-items: stretch; overflow: hidden;
+        text-decoration: none; color: inherit;
+        transition: border-color 200ms, box-shadow 200ms, transform 200ms;
+      }
+      .tl-prod-card:hover { border-color: #0056D6; box-shadow: 0 4px 20px rgba(0,86,214,0.10); transform: translateY(-8px); }
+      .tl-prod-body {
+        padding: 22px 24px;
+        display: flex; flex-direction: column; gap: 8px;
+        min-height: 140px;
+      }
+      .tl-prod-cat {
+        font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+        text-transform: uppercase; color: #0056D6;
+      }
+      .tl-prod-name { margin: 0; font-size: 17px; font-weight: 800; color: #0f1f3d; }
+      .tl-prod-link {
+        font-size: 11px; font-weight: 800; letter-spacing: 0.10em;
+        text-transform: uppercase; color: #0056D6;
+        border-bottom: 1px solid #0056D6; padding-bottom: 1px;
+        align-self: flex-start; margin-top: auto;
+      }
+      .tl-prod-media { position: relative; background: #E1EFFF; display: flex; align-items: center; justify-content: center;  }
+      .tl-prod-media img { 
+        width: 100%; 
+        height: auto; 
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.3s ease;
+      }
+      .tl-prod-card:hover .tl-prod-media img {
+        transform: scale(1.2); /* 稍微加大一点缩放比例，视觉效果更好 */
+      }
+      .tl-prod-card:hover .tl-prod-name {
+        font-size: 20px; 
+      }
+
+    
+     /* 基础卡片容器：取消了原本的 hover 边框变色和位移，作为纯展示容器 */
+.case-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.15fr);
+  border: none !important; /* 核心修改：使用 !important 强制干掉边框 */
+  background: transparent !important; /* 去掉白色背景，让它融入页面 */
+  box-shadow: none !important; /* 确保没有阴影伪装成边框 */
+  overflow: hidden; 
+}
+
+/* 左侧图片容器 */
+.case-image-wrapper {
+  min-height: 260px;
+  background: #f6f8fb;
+  overflow: hidden;
+}
+
+/* 图片本身：当鼠标悬停在卡片上时，图片会轻微放大，保留高级感 */
+.case-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.case-card:hover .case-image { 
+  transform: scale(1.05); 
+}
+
+/* 右侧内容容器 */
+.case-content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 34px 36px;
+}
+.case-tag {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0056D6;
+}
+.case-title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 850;
+  color: #0f1f3d;
+}
+.case-summary {
+  margin: 0;
+  max-width: 560px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4a5568;
+}
+.case-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding-top: 4px;
+}
+.case-metric {
+  border-top: 2px solid #E5E7EB;
+  padding-top: 12px;
+}
+.metric-value {
+  display: block;
+  font-size: 22px;
+  font-weight: 900;
+  color: #0056D6;
+}
+.metric-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #6b7280;
+}
+
+/* 全新设计的独立操作按钮 */
+.case-study-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  align-self: flex-start; /* 保持在左侧 */
+  margin-top: auto;       /* 自动推到底部 */
+  padding: 14px 28px;
+  background-color: #0056D6; /* 使用品牌蓝 */
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 250ms ease, transform 200ms ease;
+}
+
+/* 按钮的悬停效果 */
+.case-study-btn:hover {
+  background-color: #0f1f3d; /* 悬停时变成深藏青色 */
+}
+.case-study-btn svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 200ms;
+}
+.case-study-btn:hover svg { 
+  transform: translateX(4px); /* 箭头轻微右移 */
+}
+
+/* 移动端适配保持原样即可 */
+@media (max-width: 768px) {
+  .case-card { grid-template-columns: 1fr; }
+  .case-image-wrapper { min-height: 210px; }
+  .case-content { padding: 26px 22px; }
+  .case-metrics { grid-template-columns: 1fr; gap: 12px; }
+}
+      /* next solution bar */
+      .tl-next {
+        display: flex; align-items: center; justify-content: space-between;
+        border: 1px solid #EEEEEE; padding: 24px 32px;
+        text-decoration: none; color: inherit;
+        position: relative; overflow: hidden; transition: border-color 200ms;
+        margin-top: 64px;
+      }
+      .tl-next::before {
+        content: ''; position: absolute; inset: 0;
+        background: #0056D6; transform: translateX(-100%);
+        transition: transform 380ms cubic-bezier(0.4,0,0.2,1); z-index: 0;
+      }
+      .tl-next:hover::before { transform: translateX(0); }
+      .tl-next-label {
+        position: relative; z-index: 1; font-size: 11px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-label { color: rgba(255,255,255,0.65); }
+      .tl-next-title {
+        position: relative; z-index: 1; font-size: 20px; font-weight: 800;
+        letter-spacing: -0.02em; color: #0f1f3d; transition: color 200ms;
+      }
+      .tl-next:hover .tl-next-title { color: #fff; }
+      .tl-next-arrow {
+        position: relative; z-index: 1; display: flex; align-items: center; gap: 8px;
+        font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+        color: #0056D6; border: 1px solid #0056D6; padding: 10px 20px;
+        transition: color 200ms, background 200ms, border-color 200ms;
+      }
+      .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
+      .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
+      .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+
+      
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        .tl-hero { grid-template-columns: 1fr; min-height: auto; }
+        .tl-hero-left { padding: 48px 20px 32px; }
+        .tl-hero-right { height: 260px; }
+        .tl-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+
+        /* horizontal scrollable anchor bar */
+        .tl-body { grid-template-columns: 1fr; padding: 0; }
+        .tl-sidenav {
+          position: sticky; top: 52px; height: auto;
+          flex-direction: row; gap: 0;
+          padding: 0; border-right: none; border-bottom: 1px solid #EEEEEE;
+          overflow-x: auto; overflow-y: visible;
+          background: #fff; z-index: 10;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .tl-sidenav::-webkit-scrollbar { display: none; }
+        .tl-sidenav-label { display: none; }
+        .tl-nav-link {
+          flex-shrink: 0; padding: 14px 16px;
+          border-bottom: 2px solid transparent; white-space: nowrap;
+        }
+        .tl-nav-link .tl-nav-num { display: none; }
+        .tl-nav-link.is-active { border-bottom-color: #0056D6; }
+        .tl-content { padding: 40px 20px 60px; }
+        .tl-pain-grid { grid-template-columns: 1fr; }
+        .tl-overview-row { grid-template-columns: 1fr; }
+        .tl-feat-row { grid-template-columns: 1fr; }
+        .tl-metrics { grid-template-columns: 1fr 1fr; }
+        .tl-prod-grid { grid-template-columns: 1fr; }
+        .tl-next { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+      }
+    </style>
     <script defer src="header-mega.js"></script>
 </head>
   <body>
@@ -1059,27 +542,18 @@
         <a class="brand" href="index.html" aria-label="Medo Home">
           <img class="brand-logo" src="images/logo.png" alt="Medo" />
         </a>
-
         <nav class="nav" aria-label="Primary navigation">
           <a class="nav-link" href="products.html">Products</a>
-          <a class="nav-link" href="solutions.html">Solutions</a>
+          <a class="nav-link active" href="solutions.html">Solutions</a>
           <a class="nav-link" href="cases.html">Cases</a>
           <a class="nav-link" href="resources.html">Support</a>
           <a class="nav-link" href="about.html">About</a>
         </nav>
-
         <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
-          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <rect y="3" width="20" height="2" fill="currentColor"/>
-            <rect y="9" width="20" height="2" fill="currentColor"/>
-            <rect y="15" width="20" height="2" fill="currentColor"/>
-          </svg>
-          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
-          </svg>
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
         </button>
       </div>
-
       <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
         <div class="nav-drawer-inner">
           <a class="nav-drawer-link" href="products.html">Products</a>
@@ -1091,357 +565,306 @@
       </div>
     </header>
 
+    <!-- Breadcrumb -->
+    <nav class="tl-breadcrumb" aria-label="Breadcrumb">
+      <div class="container tl-breadcrumb-inner">
+        <a href="solutions.html">Solutions</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="solutions-mining-main.html">Mining</a>
+        <span class="tl-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="tl-breadcrumb-current" aria-current="page">Tailings Storage Facility Safety</span>
+      </div>
+    </nav>
+
     <!-- Hero -->
+    <section class="tl-hero" aria-label="Tailings Dam Safety hero">
+      <div class="container" style="display:contents;">
+        <div class="tl-hero-left">
+          <span class="tl-eyebrow">Precision Instrumentation</span>
+          <h1 class="tl-heading">Tailings Storage Facility Safety<br><span class="tl-heading-blue">Monitoring Solution</span></h1>
+          <p class="tl-hero-desc">Real-time saturation, pore pressure, and GNSS displacement monitoring — sub-millimeter accuracy and automated early warning to prevent catastrophic dam failures.</p>
+        </div>
+        <div class="tl-hero-right">
+          <img src="images/mining/minetailing.jpg" alt="Tailings Storage Facility monitoring facility" />
+        </div>
+      </div>
+    </section>
+
     <main id="main" role="main">
-      <section id="home" class="hero loop-hero" aria-label="Hero">
-        <div class="loop-hero-inner" role="region" aria-roledescription="carousel" aria-label="Continuous loop slider">
-          <div class="loop-track" aria-live="polite">
+      <div class="tl-body">
 
-            <article class="loop-slide slide-01">
-              <img src="images-mine/minetailing.png" alt="Mining safety monitoring in tailing storage" />
-              <div class="loop-slide-content">
-                <p class="loop-slide-kicker">Infrastructure Health</p>
-                <h1 class="loop-slide-title">End-to-End Mining Safety Monitoring</h1>
-                <p class="loop-slide-sub">Your Trusted Partner for Integrated Hardware, Software, and Lifecycle O&M Mining Solutions.</p>
-                <a class="loop-cta" href="solutions-mining-main.html">
-                  View Mining Solutions
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
-                </a>
-              </div>
-            </article>
-            
-            <article class="loop-slide slide-02">
-              <img src="images/hero-case.png" alt="Water conservancy infrastructure monitoring" />
-              <div class="loop-slide-content">
-                <h1 class="loop-slide-title">INTELLIGENT WATER CONTROL</h1>
-                <p class="loop-slide-sub">Real-time stability monitoring for reservoirs, levees, and dams.</p>
-                <a class="loop-cta" href="solutions-water-main.html">
-                  VIEW WATER SOLUTIONS
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
-                </a>
-              </div>
-            </article>
+        <!-- Sticky sidebar nav -->
+        <aside class="tl-sidenav" aria-label="Page sections">
+          <span class="tl-sidenav-label">On this page</span>
+          <a class="tl-nav-link" href="#pain-points">
+            <span class="tl-nav-num">01</span>Industry Pain Points
+          </a>
+          <a class="tl-nav-link" href="#overview">
+            <span class="tl-nav-num">02</span>Solution Overview
+          </a>
+          <a class="tl-nav-link" href="#advantages">
+            <span class="tl-nav-num">03</span>Core Advantages
+          </a>
+          <a class="tl-nav-link" href="#products">
+            <span class="tl-nav-num">04</span>Related Products
+          </a>
+          <a class="tl-nav-link" href="#cases">
+            <span class="tl-nav-num">05</span>Success Stories
+          </a>
+        </aside>
 
-            <article class="loop-slide is-active slide-03">
-              <img src="images/hero-product.png" alt="Allystar high-precision GNSS technology in the field" />
-              <div class="loop-slide-content">
-                <h1 class="loop-slide-title">PRECISION WITHOUT COMPROMISE</h1>
-                <p class="loop-slide-sub">Global Automated Monitoring Powered by Allystar High-Precision GNSS.</p>
-                <a class="loop-cta" href="products.html">
-                  EXPLORE OUR TECHNOLOGY
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
-                </a>
-              </div>
-            </article>
+        <!-- Content -->
+        <div class="tl-content">
 
-            <article class="loop-slide slide-04">
-              <img src="images/hero-tech.png" alt="Urban infrastructure health monitoring" />
-              <div class="loop-slide-content">
-                <p class="loop-slide-kicker">Infrastructure Health</p>
-                <h1 class="loop-slide-title">RESILIENT INFRASTRUCTURE</h1>
-                <p class="loop-slide-sub">Cloud-based structural deformation monitoring for bridges, tunnels, and urban assets.</p>
-                <a class="loop-cta" href="solutions-urban-main.html">
-                  LEARN MORE
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-                  </svg>
-                </a>
+          <!-- 01 Pain Points -->
+          <section id="pain-points" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">01 / Industry Pain Points</span>
+            <h2 class="tl-section-title">Key Pain Points in Tailing Dam Safety</h2>
+            <p class="tl-section-desc">Tailings storage facilities represent one of the highest-risk structures in the mining industry. Traditional inspection methods are too slow, too infrequent, and too imprecise for modern safety demands.</p>
+            <div class="tl-pain-grid">
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L32 28H4L18 4Z" stroke="#0056D6" stroke-width="1.8" stroke-linejoin="miter"/><path d="M18 14v8" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/><circle cx="18" cy="25" r="1.2" fill="#0056D6"/></svg>
+                </div>
+                <h3 class="tl-pain-title">Invisible Seepage Buildup</h3>
+                <p class="tl-pain-desc">Pore water pressure accumulates silently inside dam walls. Manual piezometer readings are too infrequent to catch rapid saturation events before they become critical.</p>
               </div>
-            </article>
-          </div>
-
-          <button class="loop-nav loop-nav-prev" type="button" aria-label="Previous slide">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M19 12H7M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-            </svg>
-          </button>
-          <button class="loop-nav loop-nav-next" type="button" aria-label="Next slide">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
-            </svg>
-          </button>
-
-          <div class="loop-indicators" role="tablist" aria-label="Slide indicators">
-            <button class="loop-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Go to slide 1"></button>
-            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="Go to slide 2"></button>
-            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="Go to slide 3"></button>
-            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="Go to slide 4"></button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── 01:Products Ecosystem ── -->
-      <section class="eco-scroll-container" id="eco-section" aria-labelledby="ecosystem-title">
-        <div class="eco-sticky-viewport container"> 
-          <div class="eco-section-header"> 
-            <h2 class="eco-section-title" id="ecosystem-title">Integrated Monitoring Ecosystem</h2>
-          </div>
-
-          <div class="eco-body">
-            <div class="eco-left-text" id="eco-text-group">
-              <div class="eco-text-item is-active">
-                <h3>High-Precision GNSS</h3>
-                <p>Millimeter-level displacement tracking with Beidou/GNSS multi-frequency technology. Engineered for extreme environments.</p>
-                <a class="eco-cta-link" href="products.html">Explore Technical Specs →</a>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><path d="M4 28L12 16l6 6 6-10 8 12" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter"/></svg>
+                </div>
+                <h3 class="tl-pain-title">Slow Deformation Detection</h3>
+                <p class="tl-pain-desc">Surface displacement of even a few millimeters can signal imminent slope failure. Periodic survey methods miss the early warning window entirely.</p>
               </div>
-              <div class="eco-text-item">
-                <h3>Intelligent Sensors</h3>
-                <p>Advanced geotechnical sensing suite. Real-time data collection for tilt, vibration, and pore water pressure.</p>
-                <a class="eco-cta-link" href="iot-sensors.html">Explore Technical Specs →</a>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" stroke="#0056D6" stroke-width="1.8"/><path d="M18 10v8l5 3" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="tl-pain-title">Delayed Emergency Response</h3>
+                <p class="tl-pain-desc">Without automated alerting, operators rely on manual checks. By the time an anomaly is reported, the response window may already be closed.</p>
               </div>
-              <div class="eco-text-item">
-                <h3>Disaster Mitigation Station</h3>
-                <p>Self-powered, rapid-deployment systems for early warning. Your first line of defense.</p>
-                <a class="eco-cta-link" href="disaster-monitoring.html">Explore Technical Specs →</a>
-              </div>
-              <div class="eco-text-item">
-                <h3>Medo Cloud Platform</h3>
-                <p>AI-driven analytics and 3D visualization. Transforming raw data into actionable safety insights 24/7.</p>
-                <a class="eco-cta-link" href="platform.html">Explore Technical Specs →</a>
+              <div class="tl-pain-card">
+                <div class="tl-pain-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><rect x="4" y="8" width="28" height="20" stroke="#0056D6" stroke-width="1.8"/><path d="M4 16h28M12 8v20" stroke="#0056D6" stroke-width="1.8" stroke-linecap="square"/></svg>
+                </div>
+                <h3 class="tl-pain-title">Fragmented Data Silos</h3>
+                <p class="tl-pain-desc">Rainfall, tilt, GNSS, and seepage data are collected by separate systems with no unified view, making holistic risk assessment nearly impossible.</p>
               </div>
             </div>
+          </section>
 
-            <div class="eco-center-scale">
-              <div class="eco-hud-lens"></div>
-              
-              <div class="eco-moving-ruler" id="eco-ruler">
-                <div class="eco-scale-mark">
-                  <div class="eco-scale-tick"></div><div class="eco-scale-num">01</div>
-                </div>
-                <div class="eco-scale-mark">
-                  <div class="eco-scale-tick"></div><div class="eco-scale-num">02</div>
-                </div>
-                <div class="eco-scale-mark">
-                  <div class="eco-scale-tick"></div><div class="eco-scale-num">03</div>
-                </div>
-                <div class="eco-scale-mark">
-                  <div class="eco-scale-tick"></div><div class="eco-scale-num">04</div>
-                </div>
+          <!-- 02 Solution Overview -->
+          <section id="overview" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">02 / Solution Overview</span>
+            <h2 class="tl-section-title">From Sensor to Warning: The Data Flow</h2>
+            <p class="tl-section-desc">Medo's tailings solution creates an unbroken chain from field instrumentation to real-time decision support — five layers, zero gaps.</p>
+
+            <div class="flow-wrapper">
+              <div class="flow-card">
+                <span class="step-num">Step 01</span>
+                <img class="step-img" src="images/mining/mine-surving.webp" alt="mining survey" />
+                <p class="step-title">On-site Survey & Site Assessment</p>
+                <p class="step-detail">Our engineers conduct a thorough field inspection of the tailings dam facility, evaluating terrain, geotechnical conditions, structural integrity, and risk zones. Key survey outputs include a topographic map, hazard classification, sensor placement plan, and connectivity feasibility report — laying the foundation for a precisely tailored monitoring architecture.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 02</span>
+                <img class="step-img" src="images/hero-mining.webp" alt="hardware and monitoring stations" />
+                <p class="step-title">Hardware & Integrated Monitoring Stations Development</p>
+                <p class="step-detail">Based on the survey results, we deploy a network of all-in-one integrated monitoring stations at critical locations across the site. Each station combines a high-precision GNSS receiver with a suite of environmental and structural sensors — measuring displacement, seepage, pore water pressure, rainfall, and more. Ruggedised enclosures ensure continuous operation in harsh outdoor conditions.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 03</span>
+                <img class="step-img" src="images/software/software-ams.webp" alt="" />
+                <p class="step-title">Data Transmission & GNSS Processing Platform</p>
+                <p class="step-detail">Raw sensor data is securely transmitted to the cloud-based MEDO computation platform, AMS, via satellite, 4G, or 5G links — whichever provides the most reliable coverage for the site. MEDO performs real-time GNSS baseline processing, multi-sensor fusion, and precision deformation calculation, converting raw signals into high-accuracy displacement vectors and trend indicators.</p>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 04</span>
+                <img class="step-img" src="images/software/software-network.webp" alt="MDT Platform" />
+                <p class="step-title">Intelligent Data Analytics and Remote Device Management</p>
+                <p class="step-detail">Acting as the core engine, the MDT Platform ensures high-precision collection and real-time acquisition of monitoring data. By integrating big data analytics and remote device management, the platform automates the entire process—from data retrieval and analysis to visual presentation—providing users with accurate, intuitive, and instantaneous equipment updates to fully understand the real-time status of the tailings storage facility.</p>
+              </div>
+              <div class="flow-arrow">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0056D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+
+              <div class="flow-card">
+                <span class="step-num">Step 05</span>
+                <img class="step-img" src="images/software/software-mdnet.webp" alt="MD-NET" />
+                <p class="step-title">Full-Cycle Lifecycle Management and Decision Support</p>
+                <p class="step-detail">Leveraging MD-NET and MD LINK, this step enables comprehensive project lifecycle management across large-scale displays and mobile devices. The system provides real-time intelligent warnings and instant status updates, empowering stakeholders to make rapid, informed decisions based on live project data.</p> 
+            </div>
+          </section>
+          
+          <!-- 03 Core Advantages -->
+          <section id="advantages" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">03 / Core Advantages</span>
+            <h2 class="tl-section-title">Why Medo</h2>
+            <p class="tl-section-desc">Purpose-built for the harshest mine environments — not adapted from generic IoT platforms.</p>
+            <div class="tl-adv-list">
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">01</span>
+                <div><h3 class="tl-adv-title">Sub-millimeter GNSS Precision</h3><p class="tl-adv-desc">Phase-differential processing delivers ±2mm horizontal accuracy — an order of magnitude beyond standard GPS, enabling detection of deformation events weeks before visible cracking.</p></div>
+              </div>
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">02</span>
+                <div><h3 class="tl-adv-title">Automated Multi-level Early Warning</h3><p class="tl-adv-desc">Three-tier alert thresholds (attention / warning / emergency) trigger simultaneous notifications across SMS, email, and platform dashboard — no manual intervention required.</p></div>
+              </div>
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">03</span>
+                <div><h3 class="tl-adv-title">Unified Data Platform</h3><p class="tl-adv-desc">All sensor streams — GNSS, piezometer, inclinometer, rainfall — converge in a single cloud dashboard with historical trend analysis and regulatory export tools.</p></div>
+              </div>
+              <div class="tl-adv-item">
+                <span class="tl-adv-num">04</span>
+                <div><h3 class="tl-adv-title">Extreme Environment Hardening</h3><p class="tl-adv-desc">IP67-rated enclosures, solar + battery power, and satellite uplink backup ensure continuous operation through flooding, power outages, and communication blackouts.</p></div>
               </div>
             </div>
+          </section>
 
-            <div class="eco-right-image" id="eco-img-group">
-              <div class="eco-img-item is-active">
-                <img src="images/face/11.mov" alt="High-Precision GNSS" />
-              </div>
-              <div class="eco-img-item">
-                <img src="images/hardware/m50.mp4" alt="Intelligent Sensors" />
-              </div>
-              <div class="eco-img-item">
-                <img src="images/hero-case.png" alt="Disaster Mitigation Station" />
-              </div>
-              <div class="eco-img-item">
-                <img src="images/hero-mining.png" alt="Medo Cloud Platform" />
-              </div>
-            </div>
-          </div>
-        </div> 
-      </section>
-
-    
-      <!-- ── 02： Industry Applications + Cases ── -->
-      <section class="industry-scroll-container" id="industry-hybrid-section" aria-labelledby="industry-title">
-
-        <!-- sticky 滚动区：只装动态内容 -->
-        <div class="industry-sticky-outer">
-          <div class="container industry-container">
-            <div class="industry-sticky-viewport">
-
-              <div class="industry-section-header">
-                <h2 class="industry-section-title" id="industry-title">Industry Applications</h2>
-              </div>
-
-              <div class="industry-dynamic-area">
-
-                <!-- 左侧文字区 -->
-                <div class="industry-texts" id="ind-text-group">
-                  <div class="ind-text-item is-active">
-                    <span class="ind-text-label">INDUSTRY 01</span>
-                    <h3>Water Conservancy</h3>
-                    <p>Continuous dam and reservoir monitoring with real-time displacement and seepage analysis.</p>
-                    <a class="ind-link" href="#">LEARN MORE →</a>
-                  </div>
-                  <div class="ind-text-item">
-                    <span class="ind-text-label">INDUSTRY 02</span>
-                    <h3>Geological Hazards</h3>
-                    <p>Early warning systems for landslides and ground subsidence across complex terrain.</p>
-                    <a class="ind-link" href="#">LEARN MORE →</a>
-                  </div>
-                  <div class="ind-text-item">
-                    <span class="ind-text-label">INDUSTRY 03</span>
-                    <h3>Mining Safety</h3>
-                    <p>Slope stability and tailings dam surveillance for safer extraction operations.</p>
-                    <a class="ind-link" href="#">LEARN MORE →</a>
-                  </div>
-                  <div class="ind-text-item">
-                    <span class="ind-text-label">INDUSTRY 04</span>
-                    <h3>Urban Infrastructure</h3>
-                    <p>Structural health monitoring for bridges, tunnels, and high-rise buildings in dense environments.</p>
-                    <a class="ind-link" href="#">LEARN MORE →</a>
-                  </div>
-
-                  <div class="industry-nav-numbers" id="ind-nav-numbers">
-                    <span class="ind-nav-num is-active">01</span>
-                    <span class="ind-nav-num">02</span>
-                    <span class="ind-nav-num">03</span>
-                    <span class="ind-nav-num">04</span>
-                  </div>
+          <!-- 04 Related Products -->
+          <section id="products" class="tl-section" style="scroll-margin-top:100px;">
+            <span class="tl-section-label">04 / Related Products</span>
+            <h2 class="tl-section-title">Recommended Hardware</h2>
+            <p class="tl-section-desc">Each component is field-validated for tailings dam environments and integrates natively with the Medo cloud platform.</p>
+            <div class="tl-prod-grid">
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">GNSS Rover</span>
+                  <h3 class="tl-prod-name">MD 20 GNSS Receiver</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-
-                <!-- 右侧图片区 -->
-                <div class="industry-images" id="ind-img-group">
-                  <div class="ind-img-item is-active">
-                    <img src="images/hero-case.png" alt="Water Conservancy" />
-                  </div>
-                  <div class="ind-img-item">
-                    <img src="images/hero-tech.png" alt="Geological Hazards" />
-                  </div>
-                  <div class="ind-img-item">
-                    <img src="images/hero-mining.png" alt="Mining Safety" />
-                  </div>
-                  <div class="ind-img-item">
-                    <img src="images/hero-product.png" alt="Urban Infrastructure" />
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- cases 独立在 sticky 外，普通文档流 -->
-        <div class="industry-static-cases">
-          <div class="container">
-            <span class="cases-label">Success Studies</span>
-            <div class="cases-grid">
-
-              <a href="#" class="case-card">
-                <div class="case-img-wrap">
-                  <img src="images/hero-case.png" alt="Case 1">
-                </div>
-                <div class="case-content">
-                  <span class="case-category">Water Conservancy</span>
-                  <p class="case-desc">Real-time deformation monitoring for dams.</p>
-                  <div class="case-icon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
-                    </svg>
-                  </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/m20.webp" alt="M20 GNSS Receiver" />
                 </div>
               </a>
-
-              <a href="#" class="case-card">
-                <div class="case-img-wrap">
-                  <img src="images/hero-mining.png" alt="Case 2">
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Pore Pressure</span>
+                  <h3 class="tl-prod-name">MD Vibrating Wire Piezometer</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-                <div class="case-content">
-                  <span class="case-category">Mining Safety</span>
-                  <p class="case-desc">Automated TSF early warning system deployed.</p>
-                  <div class="case-icon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
-                    </svg>
-                  </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/piezometer.webp" alt="MD Vibrating Wire Piezometer" />
                 </div>
               </a>
-
-              <a href="#" class="case-card">
-                <div class="case-img-wrap">
-                  <img src="images/hero-tech.png" alt="Case 3">
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">Radar Level Gauge</span>
+                  <h3 class="tl-prod-name">MD LD105</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-                <div class="case-content">
-                  <span class="case-category">Urban Infrastructure</span>
-                  <p class="case-desc">Subway tunnel convergence monitoring safely.</p>
-                  <div class="case-icon">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
-                    </svg>
-                  </div>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/ld015.webp" alt="MD LD105 Radar Level Gauge" />
                 </div>
               </a>
-
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ── About Medo ── -->
-      <section class="about-medo" aria-labelledby="about-medo-title">
-        <div class="container">
-          <div class="about-medo-grid">
-
-            <!-- Left: Content -->
-            <div class="about-medo-content">
-              <h2 class="about-medo-title" id="about-medo-title">About Medo</h2>
-              <p class="about-medo-copy">10 years for 1 thing.</p>
-
-              <div class="about-medo-stats">
-                <div class="about-medo-stat">
-                  <span class="stat-number">2x</span>
-                  <span class="stat-desc">increase in daily active users</span>
+              <a class="tl-prod-card" href="products.html">
+                <div class="tl-prod-body">
+                  <span class="tl-prod-cat">GNSS Rover</span>
+                  <h3 class="tl-prod-name">MD E40S</h3>
+                  <span class="tl-prod-link">View Specs →</span>
                 </div>
-                <div class="about-medo-stat">
-                  <span class="stat-number">35%</span>
-                  <span class="stat-desc">increase in average time spent in-app</span>
+                <div class="tl-prod-media" aria-hidden="true">
+                  <img src="images/hardware/e40.webp" alt="MD E40S GNSS Rover" />
                 </div>
-              </div>
-
-              <a class="about-medo-explore" href="about.html">Learn More About Medo →</a>
+              </a>
             </div>
+          </section>
 
-            <!-- Right: Visual -->
-            <div class="about-medo-visual">
-              <div class="about-medo-img-wrap">
-                <img src="images/face/about.png" alt="Medo precision monitoring technology in the field" />
-                <div class="about-medo-badge">Pioneering High-Fidelity Infrastructure Intelligence.</div>
-              </div>
-            </div>
+          <!-- 05 Success Stories -->
+          <!-- 05 Success Stories -->
+<section id="cases" class="tl-section">
+  <span class="tl-section-label">05 / Success Stories</span>
+  <h2 class="tl-section-title">Proven in the Field</h2>
+  <p class="tl-section-desc">Real deployments. Zero accidents.</p>
 
-          </div>
+  <!-- 这里把 <a> 换成了 <div> -->
+  <div class="case-card">
+    <div class="case-image-wrapper">
+      <img src="images/abouthero.png" alt="Shanxi open-pit mine" class="case-image" />
+    </div>
+
+    <div class="case-content">
+      <div class="case-header">
+        <span class="case-tag">Primary Case Study · 2023</span>
+        <h3 class="case-title">Shanxi Huge Open-Pit Mine Slope Safety Project</h3>
+      </div>
+
+      <p class="case-summary">A 380m deep open-pit coal mine used Medo GNSS monitoring stations and robotic total stations to track slope movement and support early warnings.</p>
+
+      <div class="case-metrics">
+        <div class="case-metric">
+          <span class="metric-value">24</span>
+          <span class="metric-label">GNSS stations</span>
         </div>
-      </section>
+        <div class="case-metric">
+          <span class="metric-value">22 days</span>
+          <span class="metric-label">Early warning lead time</span>
+        </div>
+        <div class="case-metric">
+          <span class="metric-value">0</span>
+          <span class="metric-label">Accidents in 18 months</span>
+        </div>
+      </div>
+
+      <!-- 这里将原本的 span 换成了真正的 <a> 按钮 -->
+      <a href="cases/miningcase-1.html" class="case-study-btn">
+        View Case Study
+        <svg viewBox="0 0 14 14" fill="none" class="link-icon" aria-hidden="true">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+          <!-- Next solution -->
+          <a class="tl-next" href="solutions-mining-pit.html" aria-label="Next: Open-pit Mine Slope Safety Monitoring Solution">
+            <div style="position:relative;z-index:1;">
+              <span class="tl-next-label">Next Solution</span>
+              <p class="tl-next-title">Open-pit Mine Slope Safety</p>
+            </div>
+            <span class="tl-next-arrow">
+              Explore Module
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
+
+        </div><!-- /tl-content -->
+      </div><!-- /tl-body -->
     </main>
 
     <footer class="site-footer" role="contentinfo">
       <div class="container">
         <div class="footer-inner">
-          <!-- Left: Brand -->
           <div class="footer-left">
-            <div class="footer-logo">
-              <img src="images/logowhite.png" alt="Medo" />
-            </div>
+            <div class="footer-logo"><img src="images/logowhite.png" alt="Medo" /></div>
             <p class="footer-slogan">Advancing infrastructure resilience through instrumented precision and predictive data science.</p>
             <div class="footer-icons">
-              <div class="footer-icon" aria-label="Global reach">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg>
-              </div>
-              <div class="footer-icon" aria-label="Network">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg>
-              </div>
-              <div class="footer-icon" aria-label="Security">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg>
-              </div>
+              <div class="footer-icon" aria-label="Global reach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+              <div class="footer-icon" aria-label="Network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+              <div class="footer-icon" aria-label="Security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
             </div>
           </div>
-
-          <!-- Middle: Protocols -->
           <div class="footer-col">
             <h3 class="footer-col-title">Protocols</h3>
-            <nav class="footer-col-links" aria-label="Protocols">
-              <a href="#">Privacy Protocol</a>
-              <a href="#">Security Compliance</a>
-              <a href="#">System Status</a>
-            </nav>
+            <nav class="footer-col-links" aria-label="Protocols"><a href="#">Privacy Protocol</a><a href="#">Security Compliance</a><a href="#">System Status</a></nav>
           </div>
-
-          <!-- Right: Foundation -->
           <div class="footer-col">
             <h3 class="footer-col-title">Foundation</h3>
             <nav class="footer-col-links" aria-label="Foundation">
@@ -1453,251 +876,41 @@
             </nav>
           </div>
         </div>
-
-        <!-- Bottom bar -->
         <div class="footer-bottom">
           <span class="footer-copy">© 2026 Medo Tech. All rights reserved.</span>
-          <div class="footer-status">
-            <span class="footer-status-dot" aria-hidden="true"></span>
-            All Systems Nominal
-          </div>
+          <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>All Systems Nominal</div>
         </div>
       </div>
     </footer>
-  <script>
-    (function(){
-      var btn = document.querySelector('.nav-toggle');
-      var drawer = document.getElementById('mobile-nav');
-      if(!btn || !drawer) return;
-      btn.addEventListener('click', function(){
-        var open = drawer.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', open);
-      });
-    })();
-    (function(){
-      var slider = document.querySelector('.loop-hero-inner');
-      if(!slider) return;
-      var track = slider.querySelector('.loop-track');
-      var slides = Array.prototype.slice.call(track.children);
-      var dots = Array.prototype.slice.call(slider.querySelectorAll('.loop-dot'));
-      var prevBtn = slider.querySelector('.loop-nav-prev');
-      var nextBtn = slider.querySelector('.loop-nav-next');
-      var interval = 5000;
-      var timer = null;
-      var index = 0;
-      var isPaused = false;
 
-      var clone = slides[0].cloneNode(true);
-      clone.setAttribute('data-clone', 'true');
-      track.appendChild(clone);
-
-      function setTransition(enabled){
-        track.style.transition = enabled ? 'transform 600ms ease' : 'none';
-      }
-
-      function updateIndicators(activeIndex){
-        dots.forEach(function(dot, i){
-          var isActive = i === activeIndex;
-          dot.classList.toggle('is-active', isActive);
-          dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    <script>
+      (function(){
+        var btn = document.querySelector('.nav-toggle');
+        var drawer = document.getElementById('mobile-nav');
+        if(!btn || !drawer) return;
+        btn.addEventListener('click', function(){
+          var open = drawer.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open);
         });
-      }
+      })();
 
-      function goTo(idx, animate){
-        index = idx;
-        setTransition(animate !== false);
-        track.style.transform = 'translateX(-' + (index * 100) + '%)';
-        updateIndicators(index % slides.length);
-      }
-
-      function next(){
-        if(index >= slides.length) return;
-        goTo(index + 1, true);
-      }
-
-      function prev(){
-        if(index === 0){
-          setTransition(false);
-          index = slides.length;
-          track.style.transform = 'translateX(-' + (index * 100) + '%)';
-          requestAnimationFrame(function(){
-            requestAnimationFrame(function(){
-              goTo(slides.length - 1, true);
-            });
+      // Scrollspy
+      (function(){
+        var links = document.querySelectorAll('.tl-nav-link');
+        var ids = ['pain-points','overview','advantages','products','cases'];
+        var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+        if(!sections.length) return;
+        var obs = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if(e.isIntersecting){
+              links.forEach(function(a){ a.classList.remove('is-active'); });
+              var active = document.querySelector('.tl-nav-link[href="#'+e.target.id+'"]');
+              if(active) active.classList.add('is-active');
+            }
           });
-          return;
-        }
-        goTo(index - 1, true);
-      }
-
-      function start(){
-        if(timer) clearInterval(timer);
-        timer = setInterval(function(){
-          if(!isPaused) next();
-        }, interval);
-      }
-
-      track.addEventListener('transitionend', function(){
-        if(index === slides.length){
-          setTransition(false);
-          index = 0;
-          track.style.transform = 'translateX(0%)';
-          requestAnimationFrame(function(){
-            setTransition(true);
-          });
-        }
-      });
-
-      slider.addEventListener('mouseenter', function(){ isPaused = true; });
-      slider.addEventListener('mouseleave', function(){ isPaused = false; });
-
-      if(prevBtn) prevBtn.addEventListener('click', prev);
-      if(nextBtn) nextBtn.addEventListener('click', next);
-      dots.forEach(function(dot, i){
-        dot.addEventListener('click', function(){ goTo(i, true); });
-      });
-
-      goTo(0, false);
-      start();
-
-      // ── 滚动高度计生态矩阵引擎 ──
-    (function(){
-      var section = document.getElementById('eco-section');
-      if(!section) return; // 如果页面没有这个模块，直接跳过
-      
-      var texts = section.querySelectorAll('#eco-text-group .eco-text-item');
-      var imgs = section.querySelectorAll('#eco-img-group .eco-img-item');
-      var marks = section.querySelectorAll('.eco-scale-mark');
-      var ruler = document.getElementById('eco-ruler');
-      
-      function onScroll() {
-        var rect = section.getBoundingClientRect();
-        
-        // 1. 计算原始滚动进度 (0 到 1)
-        var rect = section.getBoundingClientRect();
-        var progress = -rect.top / (rect.height - window.innerHeight);
-        progress = Math.max(0, Math.min(1, progress));
-
-        // 2. 核心升级：磁性吸附算法 (Magnetic Plateau)
-        var totalItems = texts.length;
-        var rawIndex = progress * (totalItems - 1); 
-        
-        // 把进度拆分为整数部分和小数部分
-        var indexFloor = Math.floor(rawIndex);
-        var f = rawIndex - indexFloor; // f 的范围是 0 到 1
-        
-        // 👉 设定吸附区域大小：0.25 意味着在这个区间的前 25% 和后 25% 滚动距离内，画面将完全锁定静止！
-        var snapZone = 0.25; 
-        var mappedF;
-        
-        if (f < snapZone) {
-          mappedF = 0; // 强行锁定在当前数字
-        } else if (f > 1 - snapZone) {
-          mappedF = 1; // 强行吸附到下一个数字
-        } else {
-          // 只有脱离了吸附区，标尺才开始平滑滑动
-          var ratio = (f - snapZone) / (1 - 2 * snapZone);
-          mappedF = ratio * ratio * (3 - 2 * ratio); // 保持 S 型平滑曲线
-        }
-        
-        // 经过磁性处理后的最终进度
-        var progressIndex = indexFloor + mappedF; 
-        
-        // 3. 滑动标尺及计算偏移
-        var yOffset = -(progressIndex * 120) - 60; 
-        ruler.style.transform = 'translateY(' + yOffset + 'px)';
-
-
-        // 3. 动态计算光学畸变与亮度
-        marks.forEach(function(mark, i) {
-          var num = mark.querySelector('.eco-scale-num');
-          var tick = mark.querySelector('.eco-scale-tick');
-          
-          var distance = Math.abs(progressIndex - i); 
-          var scale = 1 + Math.max(0, 1 - distance) * 1.2; 
-          var opacity = Math.max(0.1, 1 - distance * 0.6); 
-
-          num.style.transform = 'scale(' + scale + ')';
-          num.style.opacity = opacity;
-
-          /// 👉 状态颜色判定更新为蓝色系
-          if (distance < 0.15) {
-            num.style.color = '#0056D6'; // 激活时的亮蓝数字
-            
-            // ✨ 新增核心代码：激活时的蓝色光晕
-            // 0 0 12px 分别代表：X轴不偏移、Y轴不偏移、扩散模糊半径为12px
-            num.style.textShadow = '0 0 0px rgba(0, 86, 214, 0.1)'; 
-            
-            tick.style.width = '28px';
-            tick.style.background = '#0056D6'; // 激活时的亮蓝刻度线
-          } else {
-            num.style.color = 'rgba(0, 86, 214, 0.3)'; // 未激活时的浅蓝数字
-            
-            // ✨ 新增核心代码：未激活时清除光晕
-            num.style.textShadow = 'none'; 
-            
-            tick.style.width = '16px';
-            tick.style.background = 'rgba(0, 86, 214, 0.2)'; // 未激活时的浅蓝刻度线
-          }
-        });
-
-        // 4. 切换左右内容的激活状态
-        var activeIndex = Math.round(progressIndex);
-        texts.forEach(function(text, i) {
-          text.classList.toggle('is-active', i === activeIndex);
-        });
-        imgs.forEach(function(img, i) {
-          img.classList.toggle('is-active', i === activeIndex);
-        });
-      }
-
-      window.addEventListener('scroll', onScroll);
-      // 初始化触发一次
-      onScroll();
-    })();
-    })();
-
-    // ── 行业应用滚动劫持引擎 (Industry Scroll Hijacking) ──
-    // ── 行业应用滚动劫持引擎 (Industry Scroll Hijacking) ──
-(function(){
-  var section = document.getElementById('industry-hybrid-section');
-  if(!section) return;
-
-  var stickyOuter = section.querySelector('.industry-sticky-outer');
-  if(!stickyOuter) return;
-
-  var imgs = section.querySelectorAll('.ind-img-item');
-  var texts = section.querySelectorAll('.ind-text-item');
-  var navNums = section.querySelectorAll('#ind-nav-numbers .ind-nav-num');
-
-  var totalItems = imgs.length;
-
-  function onScroll() {
-    var rect = stickyOuter.getBoundingClientRect(); // ← 只看 sticky-outer
-    var windowHeight = window.innerHeight;
-    var scrollableDistance = rect.height - windowHeight;
-    var scrolled = -rect.top;
-    var progress = scrolled / scrollableDistance;
-    progress = Math.max(0, Math.min(1, progress));
-
-    var rawIndex = progress * (totalItems - 1);
-    var activeIndex = Math.round(rawIndex);
-
-    imgs.forEach(function(img, i) {
-      img.classList.toggle('is-active', i === activeIndex);
-    });
-    texts.forEach(function(text, i) {
-      text.classList.toggle('is-active', i === activeIndex);
-    });
-    navNums.forEach(function(num, i) {
-      num.classList.toggle('is-active', i === activeIndex);
-    });
-  }
-
-  window.addEventListener('scroll', onScroll);
-  onScroll();
-})();
-    
-  </script>
-</body>
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(function(s){ obs.observe(s); });
+      })();
+    </script>
+  </body>
 </html>
