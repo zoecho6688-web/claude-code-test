@@ -415,7 +415,7 @@
           grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1fr);
           gap: 32px;
           background: #fff;
-          margin: 0;
+          margin-top: 20px;
           padding: 0;      /* 确保容器本身无内边距 */
           border: none;    /* 去掉灰色边框 */
           box-shadow: none;
@@ -450,14 +450,14 @@
           display: flex;
           flex-direction: column;
           height: 100%;
-          gap: clamp(24px, 5vw, 64px);
+          gap: clamp(6px, 1.2vw, 16px);
           justify-content: center;
       }
 
       /* --- 文字与结果卡片 --- */
       .case-title { margin: 0; font-size: 26px; font-weight: 800; color: #0f1f3d; }
       .detail-label { font-size: 11px; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px; }
-      .detail-text { font-size: 13px; line-height: 1.6; color: #4a5568; margin: 0; }
+      .detail-text { font-size: 14px; line-height: 1.6; color: #4a5568; margin: 0; }
       /* --- 按钮样式：淡蓝背景，无阴影，直角 --- */
       .case-study-link {
         display: inline-flex;
@@ -928,20 +928,20 @@
             <span class="tl-section-label">05 / Success Stories</span>
             <div class="case-card">
               <div class="case-image-wrapper">
-                <img src="images/mining/mc-1-drc.png" alt="Shanxi open-pit mine" class="case-image" />
+                <img src="images/mining/mc-3.webp" alt="Guizhou PG Stack" class="case-image" />
               </div>
 
               <div class="case-content">
                 <div class="case-header">
-                  <h3 class="case-title">DRC Kamoya Copper Mine</br>Slope Monitoring</h3>
+                  <h3 class="case-title">Digital Transformation & Environmental Monitoring of Guizhou PG Stack</h3>
                 </div>
 
                 <div class="case-detail">
-                  <p class="detail-text">24/7 automated GNSS displacement monitoring across a large open-pit copper mine in the Democratic Republic of the Congo — millimeter-level accuracy, zero downtime.</p>
+                  <p class="detail-text">By integrating subsurface deformation tracking and groundwater surveillance, the project establishes a "digital shield" that aligns legacy industrial infrastructure with stringent modern "Green Transformation" standards.</p>
                 </div>
 
-                <a href="cases/miningcase-1.html" class="case-study-link">
-                  Explore DRC Project
+                <a href="cases/miningcase-3.html" class="case-study-link">
+                  Explore PG Stack Project
                   <svg viewBox="0 0 14 14" fill="none" class="link-icon" aria-hidden="true">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
                   </svg>
@@ -949,6 +949,7 @@
               </div>
             </div>
           </section>
+          
 
           <!-- Next solution -->
           <a class="tl-next" href="solutions-mining-goaf.html" aria-label="Next: Goaf Settlement & Displacement Monitoring Solution">
