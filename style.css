@@ -3880,7 +3880,10 @@ a{ color: inherit; }
 .stat-number {
   font-size: clamp(27px, 3vw, 39px);
   font-weight: 400;
-  color: #0056D6;
+  background: linear-gradient(to bottom, #1b32c6, #547be3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 1;
   letter-spacing: -0.02em;
 }
