@@ -321,11 +321,11 @@ a{ color: inherit; }
 }
 .mega-panel-link:hover .mega-panel-link-title,
 .mega-panel-link:focus-visible .mega-panel-link-title{
-  color: rgba(11, 27, 51, 0.9);
+  color: var(--blue-700);
 }
 .mega-panel-link:hover .mega-panel-link-desc,
 .mega-panel-link:focus-visible .mega-panel-link-desc{
-  color: rgba(11, 27, 51, 0.9);
+  color: var(--blue-700);
 }
 
 .mega-menu-left {
