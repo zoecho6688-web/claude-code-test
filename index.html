@@ -91,8 +91,8 @@
         .eco-body {
           display: flex;
           flex: 1;                  /* 占满标题以下的所有空间 */
-          align-items: stretch;        
-          padding-top: 24px;      
+          align-items: center;        
+          padding-top: 0;      
         }
         /* ── 左侧文字 ── */
         .eco-left-text {
@@ -122,11 +122,16 @@
           z-index: 1;
         } 
         .eco-text-item h3 { 
-          font-size: clamp(24px, 3vw, 36px); 
+          font-size: clamp(26px, 3.2vw, 40px); 
           margin: 0 0 16px; 
+          font-weight: 700;
           line-height: 1.1; 
-          color: #1a1a1a;
+          color: #0f1f3d;
         } 
+        .eco-title-accent {
+          display: inline-block;
+          color: #0056D6;
+        }
         .eco-text-item p { 
           color: #555555; 
           line-height: 1.6; 
@@ -151,7 +156,7 @@
         /* ── 中间刻度盘 ── */
         .eco-center-scale {
           flex: 0 0 160px;
-          height: 50vh;
+          height: 65vh;
           position: relative;
           margin: 0 35px;
           /* 稍微拉长一点可视区域，让玻璃框滑动的效果更明显 */
@@ -312,6 +317,10 @@
           }
           .eco-img-item.is-active img {
             transform: translateY(14px) scale(1.28);
+          }
+          .eco-img-item:last-child img,
+          .eco-img-item:last-child.is-active img {
+            transform: translateX(64px) translateY(14px) scale(1.28);
           }
         }
         @media (max-width: 900px) {
@@ -1233,22 +1242,22 @@
           <div class="eco-body">
             <div class="eco-left-text" id="eco-text-group">
               <div class="eco-text-item is-active">
-                <h3>High-Precision GNSS</h3>
+                <h3>High-Precision<br><span class="eco-title-accent">GNSS Rover</span></h3>
                 <p>Millimeter-level displacement tracking with Beidou/GNSS multi-frequency technology. Engineered for extreme environments.</p>
                 <a class="eco-cta-link" href="products.html">Explore Technical Specs →</a>
               </div>
               <div class="eco-text-item">
-                <h3>Intelligent Sensors</h3>
+                <h3>Intelligent<br><span class="eco-title-accent">Moniroting Sensors</span></h3>
                 <p>Advanced geotechnical sensing suite. Real-time data collection for tilt, vibration, and pore water pressure.</p>
                 <a class="eco-cta-link" href="iot-sensors.html">Explore Technical Specs →</a>
               </div>
               <div class="eco-text-item">
-                <h3>Disaster Mitigation Station</h3>
+                <h3>Integrated Disaster<br><span class="eco-title-accent">Mitigation Station</span></h3>
                 <p>Self-powered, rapid-deployment systems for early warning. Your first line of defense.</p>
                 <a class="eco-cta-link" href="disaster-monitoring.html">Explore Technical Specs →</a>
               </div>
               <div class="eco-text-item">
-                <h3>Medo Cloud Platform</h3>
+                <h3>Medo</br><span class="eco-title-accent">Cloud Platform</span></h3>
                 <p>AI-driven analytics and 3D visualization. Transforming raw data into actionable safety insights 24/7.</p>
                 <a class="eco-cta-link" href="platform.html">Explore Technical Specs →</a>
               </div>
