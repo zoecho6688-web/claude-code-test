@@ -429,11 +429,14 @@
           <!-- Left: form -->
           <div class="about-contact-left">
             <h2 class="about-contact-title">Online Inquiry</h2>
-            <form class="about-contact-form" action="#" method="post" novalidate>
+            <form class="about-contact-form" action="https://api.web3forms.com/submit" method="POST">
+  
+              <input type="hidden" name="access_key" value="3e639bad-c43c-4431-9926-57a05f594a25" />
+
               <div class="acf-row">
                 <div class="acf-field">
                   <label for="cf-name">Name</label>
-                  <input id="cf-name" type="text" name="name" placeholder="Your full name" autocomplete="name" />
+                  <input id="cf-name" type="text" name="name" placeholder="Your full name" autocomplete="name" required />
                 </div>
                 <div class="acf-field">
                   <label for="cf-company">Company</label>
@@ -442,11 +445,11 @@
               </div>
               <div class="acf-field">
                 <label for="cf-email">Email</label>
-                <input id="cf-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" />
+                <input id="cf-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
               </div>
               <div class="acf-field">
                 <label for="cf-message">Message</label>
-                <textarea id="cf-message" name="message" rows="5" placeholder="Describe your monitoring requirements..."></textarea>
+                <textarea id="cf-message" name="message" rows="5" placeholder="Describe your monitoring requirements..." required></textarea>
               </div>
               <button class="about-contact-btn" type="submit">Submit Protocol →</button>
             </form>
