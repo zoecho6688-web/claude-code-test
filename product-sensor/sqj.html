@@ -366,6 +366,83 @@
         .pd-specs-layout { grid-template-columns: 1fr; }
         .pd-solutions-grid { grid-template-columns: 1fr; }
       }
+      /* Shared alignment and responsive fixes */
+      .pd-hero { min-height: 320px; }
+      .pd-hero-left {
+        box-sizing: border-box;
+        min-width: 0;
+        margin-left: 0;
+        padding-left: max(20px, calc((100vw - var(--container)) / 2));
+      }
+      .pd-hero-right {
+        align-self: stretch;
+        height: auto;
+        min-height: 320px;
+        max-height: none;
+      }
+      .pd-body {
+        box-sizing: border-box;
+        width: min(calc(var(--container) + 40px), 100%);
+        max-width: none !important;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .pd-content { min-width: 0; }
+      .pd-intro,
+      .pd-solutions-grid { max-width: 100%; }
+
+      @media (max-width: 1024px) and (min-width: 769px) {
+        .pd-body { grid-template-columns: 180px minmax(0, 1fr); }
+        .pd-sidenav { padding-right: 24px; }
+        .pd-nav-link { padding-left: 14px; padding-right: 14px; }
+        .pd-content { padding-left: 40px; }
+        .pd-solutions-grid { width: 100%; }
+      }
+
+      @media (max-width: 768px) {
+        .pd-hero { grid-template-columns: 1fr; }
+        .pd-hero-left { padding: 48px 20px 32px; margin-left: 0; }
+        .pd-hero-right { height: 240px; min-height: 240px; }
+        .pd-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+        .pd-body { grid-template-columns: 1fr; width: 100%; padding: 0; }
+        .pd-sidenav {
+          position: sticky;
+          top: 0;
+          height: auto;
+          flex-direction: row;
+          gap: 0;
+          padding: 0;
+          border-right: none;
+          border-bottom: 1px solid #EEEEEE;
+          overflow-x: auto;
+          background: #fff;
+          z-index: 10;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .pd-sidenav::-webkit-scrollbar { display: none; }
+        .pd-sidenav-label { display: none; }
+        .pd-nav-link {
+          flex-shrink: 0;
+          padding: 14px 16px;
+          border-left: none;
+          border-bottom: 2px solid transparent;
+          border-radius: 0;
+          white-space: nowrap;
+          background: transparent;
+        }
+        .pd-nav-link:hover,
+        .pd-nav-link.is-active {
+          background: transparent;
+          border-left-color: transparent;
+          border-bottom-color: #0056D6;
+        }
+        .pd-nav-link .pd-nav-num { display: none; }
+        .pd-content { padding: 40px 20px 60px; }
+        .pd-intro,
+        .pd-solutions-grid { width: 100%; }
+      }
+
     </style>
     <script defer src="../header-mega.js"></script>
 </head>
