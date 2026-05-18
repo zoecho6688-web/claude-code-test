@@ -54,7 +54,7 @@
       /* ── Body layout: sticky sidebar + content ── */
       .tl-body {
         display: grid;
-        grid-template-columns: 200px 1fr;
+        grid-template-columns: 180px minmax(0, 1fr);
         width: min(calc(var(--container) + 40px), 100%);
         max-width: none !important;
         margin: 0 auto;
@@ -67,7 +67,7 @@
         position: sticky;
         top: 52px;
         height: calc(100vh - 52px);
-        padding: 56px 32px 40px 0;
+        padding: 56px 20px 40px 0;
         display: flex;
         flex-direction: column;
         gap: 0;
@@ -99,7 +99,7 @@
       .tl-nav-link.is-active .tl-nav-num { color: #0056D6; }
 
       /* ── Content area ── */
-      .tl-content { padding: 64px 0 80px 56px; }
+      .tl-content { padding: 64px 0 80px 40px; min-width: 0; }
 
       .tl-section {
         padding-bottom: 96px;
@@ -663,6 +663,59 @@
       .tl-next:hover .tl-next-arrow { color: #0056D6; background: #fff; border-color: #fff; }
       .tl-next-arrow svg { width: 14px; height: 14px; transition: transform 200ms; }
       .tl-next:hover .tl-next-arrow svg { transform: translateX(3px); }
+      /* ── Tablet / middle widths ── */
+      @media (max-width: 1024px) and (min-width: 769px) {
+        .tl-body {
+          grid-template-columns: 150px minmax(0, 1fr);
+        }
+
+        .tl-sidenav {
+          padding-right: 16px;
+        }
+
+        .tl-content {
+          padding-left: 32px;
+        }
+
+        .flow-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        .flow-arrow {
+          display: none;
+        }
+
+        .flow-card,
+        .flow-card:hover {
+          flex: none;
+          transform: none;
+        }
+
+        .flow-card {
+          min-height: 0;
+          padding: 24px;
+        }
+
+        .step-img {
+          width: 100%;
+        }
+
+        .step-detail {
+          max-height: none;
+          opacity: 1;
+        }
+
+        .tl-prod-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tl-metrics {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
 
       /* ── Mobile ── */
       @media (max-width: 768px) {
