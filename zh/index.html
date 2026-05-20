@@ -1,0 +1,1762 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="米度测控 — 面向基础设施安全的高精度监测与智能预警。" />
+    <title>米度测控 | 高精度监测与智能预警</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preload" as="image" href="../images/face/minepit.jpg" fetchpriority="high" />
+    <style>
+      html{ scroll-behavior: smooth; }
+
+      .loop-slide.slide-01::after {
+          /* 修改遮罩的渐变色 */
+          background: linear-gradient(to right, #1A2F2B 0%, #0F261D 30%, transparent 75%);
+        }
+        .loop-slide.slide-01 .loop-slide-kicker { color: #66C2A9; } /* Kicker 字体颜色 */
+        .loop-slide.slide-01 .loop-slide-title { color: #F0F7F4; }  /* 主标题字体颜色 */
+        .loop-slide.slide-01 .loop-slide-sub { color: #A3B8B0; }    /* 副标题字体颜色 */
+
+
+        /* ── 第 2 张图 (蓝色主题) ── */
+        .loop-slide.slide-02::after {
+          background: linear-gradient(to right, #A5BCE5 0%, #A5BCE5 30%, transparent 75%);
+        }
+        .loop-slide.slide-02 .loop-slide-kicker { color: #003EA4; }
+        .loop-slide.slide-02 .loop-slide-title { color: #0F2B4D; }
+        .loop-slide.slide-02 .loop-slide-sub { color: #2C3E6A; }
+
+
+        /* ── 第 3 张图 (深灰/黑色主题) ── */
+        .loop-slide.slide-03::after {
+          background: linear-gradient(to right, #B7D3DF 0%, #B7D3DF 30%, transparent 75%);
+        }
+        .loop-slide.slide-03 .loop-slide-kicker { color: #2C6E5C; }
+        .loop-slide.slide-03 .loop-slide-title { color: #1E3A4D; }
+        .loop-slide.slide-03 .loop-slide-sub { color: #4A6F82; }
+
+
+        /* ── 第 4 张图 (深紫色主题) ── */
+        .loop-slide.slide-04::after {
+          background: linear-gradient(to right, #fff 0%, #fff 30%, transparent 75%);
+        }
+        .loop-slide.slide-04 .loop-slide-kicker { color: #0056D6; }
+        .loop-slide.slide-04 .loop-slide-title { color: #1f1f1f; }
+        .loop-slide.slide-04 .loop-slide-sub { color: #666666; }
+
+        /* 一体化监测产品体系 (White & Blue Tech Style) */
+        .eco-scroll-container {
+          position: relative;
+          height: 250vh; 
+          background: #f8f9fb; /* 👉 改为纯白背景 */
+        }
+        .eco-sticky-viewport {
+          position: sticky;
+          top: 0vh;
+          height: 100vh;
+          display: flex;
+          justify-content: space-between;
+          overflow: hidden;
+          padding-top: 80px; 
+          align-items: center;
+          flex-direction: column;   /* 改为纵向，标题在上，三列在下 */
+          align-items: stretch;
+        }
+
+        .eco-section-header {
+          flex-shrink: 0;           /* 防止被压缩 */
+          padding: 10px 0 48px;
+          max-width: 760px;
+        }
+  
+        .eco-section-title {
+          font-size: clamp(28px, 3.4vw, 42px);
+          font-weight: 900;
+          color: #0d1b2a;
+          letter-spacing: -0.03em;
+          line-height: 1;
+          margin: 0;
+          max-width: none;
+          white-space: nowrap;
+        } 
+
+        /* 标题加进来后，三列内容区需要占满剩余高度 */
+        .eco-left-text,
+        .eco-center-scale,
+        .eco-right-image {
+          flex: 1;
+        }
+
+        .eco-body {
+          display: flex;
+          flex: 1;                  /* 占满标题以下的所有空间 */
+          align-items: center;        
+          padding-top: 0;      
+        }
+        /* ── 左侧文字 ── */
+        .eco-left-text {
+          display: flex;
+          flex: 1;
+          position: relative;
+          height: 400px;
+          min-height: 0;
+        }
+        .eco-text-item {
+          position: absolute;
+          top: 28px;
+          left: 0;
+          transform: translateY(30px);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+          width: 90%;
+          height: 100%;                  /* 撑满父容器高度 */
+          display: flex;
+          flex-direction: column;
+        }
+        .eco-text-item.is-active {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+          z-index: 1;
+        } 
+        .eco-text-item h3 { 
+          font-size: clamp(26px, 3.2vw, 40px); 
+          margin: 0 0 16px; 
+          font-weight: 700;
+          line-height: 1.1; 
+          color: #0f1f3d;
+        } 
+        .eco-title-accent {
+          display: inline-block;
+          color: #0056D6;
+        }
+        .eco-text-item p { 
+          color: #555555; 
+          line-height: 1.6; 
+          font-size: 1.1rem; 
+          margin-top: 100px;
+          margin-bottom: 24px;
+        } 
+        .eco-cta-link { 
+          color: #0056D6; 
+          text-decoration: none; 
+          font-weight: 600; 
+          font-size: 14px; 
+          margin-bottom: 0;
+          align-self: flex-start; 
+          border-bottom: 1px solid #0056D6;
+          text-transform: uppercase; 
+          letter-spacing: 0.05em; 
+          transition: opacity 0.3s;
+        }
+        .eco-cta-link:hover { opacity: 0.8; }
+
+        /* ── 中间刻度盘 ── */
+        .eco-center-scale {
+          flex: 0 0 160px;
+          height: 65vh;
+          position: relative;
+          margin: 0 35px;
+          /* 稍微拉长一点可视区域，让玻璃框滑动的效果更明显 */
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        }
+
+        /* 👉 进化版 3.0：纯净光学玻璃透镜（仅覆盖数字区域） */
+        .eco-hud-lens {
+          position: absolute;
+          top: 50%;
+          /* 核心调整 1：向右平移，避开左侧的主轴和刻度线，只覆盖数字 */
+          left: 26px; 
+          right: 0; 
+          width: 100px;
+          height: 72px; /* 稍微收敛高度，更精致 */
+          transform: translateY(-50%);
+          
+          /* 核心调整 2：纯净透明玻璃材质，去除所有蓝色发光 */
+          /* 在白底上做玻璃，需要极淡的灰白渐变来体现材质厚度 */
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
+          
+          /* 光学扭曲：微弱的对比度增强和模糊，模拟纯净透镜 */
+          backdrop-filter: blur(0px) contrast(1.02) brightness(0.98);
+          -webkit-backdrop-filter: blur(6px) contrast(1.02) brightness(0.98);
+          
+          /* 玻璃边缘切割感 */
+          border-radius: 12px; 
+          border: 1px solid rgba(0, 0, 0, 0.06); /* 淡淡的外轮廓线 */
+          border-top: 1px solid rgba(255, 255, 255, 0.8); /* 顶部高光折射 */
+          border-left: 1px solid rgba(255, 255, 255, 0.6); /* 左侧高光折射 */
+          
+          /* 纯粹的物理光影，去除一切有色光晕 */
+          box-shadow: 
+          0 0 16px 2px rgba(0, 86, 214, 0.15), /* 👉 将原本黑色的阴影改成了品牌主题蓝的光晕 */
+          inset 0 0 16px rgba(255, 255, 255, 0.3); /* 内部玻璃的通透反光 */
+          z-index: 10;
+          pointer-events: none;
+          display: flex;
+          align-items: center;
+        }
+        /* 👉 进化版：更“实在”的滑动标尺 */
+        .eco-moving-ruler {
+          position: absolute;
+          top: 50%; 
+          left: 0;
+          width: 100%;
+          transform: translateY(-60px); 
+          will-change: transform;
+          z-index: 5;
+        }
+        .eco-moving-ruler::before {
+          content: "";
+          position: absolute;
+          top: -1000px;
+          bottom: -1000px;
+          left: -1px;
+          width: 8px;
+          /* 加粗主轴线，加深颜色 */
+          border-left: 2px solid rgba(0, 86, 214, 0.3); 
+          /* 让毫米刻度线也加粗 (1.5px) 并加深透明度 */
+          background-image: repeating-linear-gradient(to bottom, rgba(0, 86, 214, 0.5) 0, rgba(0, 86, 214, 0.5) 1.5px, transparent 1.5px, transparent 15px);
+        }
+
+        .eco-scale-mark {
+          height: 120px; 
+          display: flex;
+          align-items: center;
+          position: relative;
+        }
+        .eco-scale-tick {
+          width: 16px;
+          height: 2px;
+          background: rgba(0, 86, 214, 0.4); /* 基础刻度线更实在 */
+          margin-right: 20px;
+          transition: width 0.4s ease, background-color 0.4s ease;
+        }
+        .eco-scale-num {
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 1.2rem;
+          color: rgba(0, 86, 214, 0.5); /* 数字更清晰 */
+          font-weight: 700;
+          transform-origin: left center;
+          will-change: transform, opacity;
+          transition: color 0.4s ease, text-shadow 0.4s ease;
+        }
+        
+        /* ── 右侧图片 ── */
+        .eco-right-image {
+          flex: 1.2; 
+          position: relative;
+          height: 60vh;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .eco-img-item {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: transparent; 
+          border-radius: 4px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          opacity: 0;
+          transform: translateX(40px) scale(0.95);
+          transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+          overflow: hidden;
+        }
+        .eco-img-item::before { 
+          content: ""; 
+          font-family: monospace; 
+          position: absolute; 
+          top: 20px; 
+          left: 20px; 
+          font-size: 12px; 
+          color: #0056D6; /* 👉 蓝色状态文字 */
+          z-index: 2;
+        }
+        .eco-img-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.9;
+          transition: transform 3s ease;
+        }
+        .eco-img-item.is-active { opacity: 1; transform: translateX(0) scale(1); }
+        .eco-img-item.is-active img { transform: scale(1.05); }
+
+        /* 桌面端：去掉图片框，直接展示原始图片 */
+        @media (min-width: 900px) {
+          .eco-right-image {
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            height: 34vh;
+          }
+          .eco-img-item {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+          }
+          .eco-img-item::before {
+            display: none;
+          }
+          .eco-img-item img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            opacity: 1;
+            transform: translateY(14px) scale(1.28);
+            transform-origin: center center;
+          }
+          .eco-img-item.is-active img {
+            transform: translateY(14px) scale(1.28);
+          }
+          .eco-img-item:last-child img,
+          .eco-img-item:last-child.is-active img {
+            transform: translateX(64px) translateY(14px) scale(1.28);
+          }
+        }
+        @media (max-width: 900px) {
+          .loop-hero-inner {
+            min-height: 600px; /* 保证有足够的高度容纳上下两部分 */
+            height: 85vh;
+          }
+          
+          /* 1. 文字内容区移到上半部分 */
+          .loop-slide-content {
+            width: 100%;
+            height: 50%; /* 占据上半部分50% */
+            margin-left: 0;
+            padding: 40px 24px 20px; /* 缩小边距，适应小屏幕 */
+            gap: 12px;
+          }
+          .loop-slide-title {
+            font-size: clamp(28px, 6vw, 42px); /* 动态缩小标题字号 */
+          }
+          
+          /* 2. 图片移到下半部分 */
+          .loop-slide img {
+            top: 50%; /* 从屏幕50%的地方开始渲染 */
+            left: 0;
+            width: 100%;
+            height: 50%; /* 高度占剩下的50% */
+            object-position: center center; /* 让图片居中显示 */
+          }
+
+          /* 3. 导航箭头微调 */
+          .loop-nav { width: 40px; height: 40px; }
+          .loop-nav-prev { left: 12px; }
+          .loop-nav-next { right: 12px; }
+
+          /* 4. 将渐变遮罩方向从"左右"改为"上下"，完美衔接中间的分割线 */
+          .loop-slide.slide-01::after { background: linear-gradient(to bottom, #1A2F2B 0%, #0F261D 50%, transparent 85%); }
+          .loop-slide.slide-02::after { background: linear-gradient(to bottom, #A5BCE5 0%, #A5BCE5 50%, transparent 85%); }
+          .loop-slide.slide-03::after { background: linear-gradient(to bottom, #B7D3DF 0%, #B7D3DF 50%, transparent 85%); }
+          .loop-slide.slide-04::after { background: linear-gradient(to bottom, #fff 0%, #fff 50%, transparent 85%); }
+        }
+        /* 产品部分响应式设计  */
+        @media (max-width: 900px) {
+          .eco-sticky-viewport {
+            display: flex;
+            flex-direction: column; 
+            padding-top: 44px;      
+            padding-bottom: 28px;
+            justify-content: flex-start;
+            gap: 18px;
+          }
+
+          .eco-section-header {
+            max-width: none;
+            padding: 0 20px;
+          }
+
+          .eco-section-title {
+            font-size: clamp(24px, 4.2vw, 34px);
+            max-width: none;
+            white-space: nowrap;
+            line-height: 1;
+          }
+
+          .eco-section-title::after {
+            width: 72px;
+            margin-top: 10px;
+          }
+
+          /* ── 1. 上半部：图片展示区 (利用 order 提升层级) ── */
+          .eco-body {
+            flex-direction: column;
+            padding-top: 0;
+            gap: 14px;
+          }
+
+          .eco-right-image {
+            order: 1; /* 👉 核心魔法：无视 HTML 顺序，强制将图片排在第 1 位 (最上方) */
+            position: relative;
+            width: auto;
+            height: 34vh; /* 图片占据的高度，可根据需要微调 */
+            padding: 0 20px; 
+            box-sizing: border-box;
+            margin-bottom: 0; /* 👉 移除间距，准备与下方文字无缝贴合 */
+            flex: none; 
+          }
+          .eco-img-item {
+            position: absolute;
+            top: 18px;
+            left: 20px;
+            width: calc(100% - 40px); 
+            height: 100%;
+            border-radius: 0; /* 👉 取消圆角，变为锐利直角 */
+            border-bottom: none; /* 👉 去掉底边框，使其与下方文字卡片融为一体 */
+            transform: translateY(10px) scale(0.98); 
+          }
+          .eco-img-item.is-active {
+            transform: translateY(0) scale(1);
+          }
+
+          /* ── 2. 下半部：文字卡片区 ── */
+          .eco-left-text {
+            order: 2; /* 👉 强制文字排在第 2 位 (图片下方) */
+            position: relative;
+            width: 100%;
+            height: 240px; /* 为文字预留固定高度，防止滚动时跳动 */
+            padding: 0 20px;
+            box-sizing: border-box;
+          }
+          .eco-text-item {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: calc(100% - 40px);
+            height: 70%;
+            box-sizing: border-box;
+            background: #ffffff; 
+            padding: 20px;
+            border-radius: 0; /* 👉 取消圆角，变为锐利直角 */
+            transform: translateY(10px);
+            box-shadow: none;
+            gap: 8px;
+          }
+          .eco-text-item.is-active {
+            transform: translateY(0);
+          }
+          .eco-text-item h3 {
+            font-size: 22px; 
+            margin-top: 15px;
+          }
+          .eco-text-item p {
+            font-size: 14px; 
+            margin-top: 0px;
+            line-height: 1.45;
+          }
+
+          .eco-cta-link {
+            font-size: 14px;
+            margin-top: 20px;
+          }
+
+          .eco-center-scale {
+            display: none;
+          }
+        }
+        /* ── 手机端特别优化 (< 640px) ── */
+        @media (max-width: 640px) {
+          .loop-hero-inner { 
+            min-height: 550px; 
+            height: 90vh; /* 手机端稍微拉长一点高度 */
+          }
+          .loop-slide-content {
+            padding: 30px 20px 20px;
+          }
+          .loop-slide-sub {
+             font-size: 15px; /* 手机端副标题稍微小一点，防止文字过多换行 */
+             line-height: 1.5;
+          }
+          .loop-nav { 
+            display: none; /* 手机屏幕太窄，隐藏左右箭头，仅保留底部小圆点 */
+          }
+
+          .eco-sticky-viewport {
+            padding-top: 36px;
+            padding-bottom: 22px;
+            gap: 14px;
+          }
+
+          .eco-section-header {
+            padding: 36px 16px;
+          }
+
+          .eco-section-title {
+            font-size: 32px;
+            max-width: 14ch;
+          }
+
+
+          .eco-right-image {
+            height: 280px;
+            padding: 0 16px;
+          }
+
+          .eco-img-item {
+            top: 0;
+            left: 16px;
+            width: calc(100% - 32px);
+          }
+
+          .eco-left-text {
+            height: 220px;
+            padding: 0 16px;
+          }
+
+          .eco-text-item {
+            left: 16px;
+            width: calc(100% - 32px);
+            padding: 18px;
+          }
+
+          .eco-text-item h3 {
+            font-size: 20px;
+            margin-top: 15px;
+          }
+
+          .eco-text-item p {
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+          }
+
+          .eco-cta-link {
+            font-size: 11px;
+          }
+        }
+        /* ── 无障碍支持：减少动画 ── */
+        @media (prefers-reduced-motion: reduce) {
+          .hero-bg::after { animation: none; }
+          .hero-slider-track { animation: none; }
+          .hero-fadeup { animation: none; opacity: 1; transform: none; }
+          .btn { transition: none; }
+          .nav-link::after { transition: none; }
+          .loop-track { transition: none; }
+          .loop-cta { transition: none; }
+        }
+
+        /* =========================================
+           Hybrid Scroll Parallax: Industry + Cases
+           ========================================= */
+        .industry-scroll-container {
+          position: relative;
+          background: #ffffff;
+        }
+
+        .industry-container {
+          height: 100%;
+          background: #ffffff;
+        }
+
+        .industry-sticky-viewport {
+          position: sticky;
+          width: 100%;      /* 👈 全宽 */
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          top: 0;
+          height: 100vh; /* 始终铺满全屏 */
+          display: flex;
+          flex-direction: column; /* 上下排布 */
+          overflow: hidden;
+          background: #ffffff;
+        }
+
+        /* ── 🔝 上半部：动态区 (占据主要空间) ── */
+        .industry-dynamic-area {
+          flex: 1; /* 占据屏幕减去底部 Cases 后的所有剩余空间 */
+          display: flex;
+          flex-direction: row; /* 左右排布 */
+        }
+
+        /* ── 左侧大图区 (独立长方形相框) ── */
+        .industry-images {
+          flex: 1.5; /* 依然保留较大的空间占比 */
+          position: relative;
+          height: 100%;
+          background: transparent; /* 确保背景透明，露出底色 */
+          background-color: #ffffff;
+        }
+        
+        .ind-img-item {
+          position: absolute;
+          /* 👉 核心修改：移除 inset: 0，改为四周精确留白 */
+          top: 60px;       /* 距离顶部留出 60px 呼吸空间 */
+          bottom: 60px;    /* 距离底部留出 60px 呼吸空间 */
+          left: 60px;         /* 左边贴齐容器左边界，和上下内容对齐 */
+          right: 0;     
+          opacity: 0;
+          transform: scale(0.98);
+          transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        
+        .ind-img-item.is-active {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .ind-img-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0; /* 保持你要求的锐利直角 */
+        }
+
+        /* 右侧文字区 */
+        .industry-texts {
+          flex: 1; /* 👉 占比小：相当于 40% 的宽度 */
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start; /* 让文字在垂直方向上居中 */
+          padding: 20px 0 0 48px; /* 为右侧标题预留空间 */
+          background: #ffffff;
+        }
+        .industry-section-header {
+          position: relative;
+          align-self: flex-start;
+          z-index: 15;
+          width: auto;
+          margin: 48px 0 0px 0;
+          padding: 0;
+        }
+        .industry-section-title {
+          margin: 0;
+          max-width: none;
+          font-size: clamp(28px, 3.4vw, 42px);
+          line-height: 1;
+          letter-spacing: -0.03em;
+          font-weight: 900;
+          color: #0d1b2a;
+          white-space: nowrap;
+        }
+        .ind-text-item {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 120px;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .ind-text-item.is-active {
+          opacity: 1;
+          transform: translateY(0);
+          z-index: 10;
+        }
+        .ind-text-label {
+          font-size: 13px;
+          color: #0056D6;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          display: block;
+          margin-bottom: 12px;
+        }
+        .ind-text-item h3 {
+          font-size: clamp(24px, 3vw, 36px);
+          color: #1a1a1a;
+          margin: 0 0 16px;
+          line-height: 1.2;
+        }
+        .ind-text-item p {
+          color: #555;
+          font-size: 1.1rem;
+          line-height: 1.6;
+          margin-bottom: 30px;
+        }
+        .ind-link {
+          display: inline-block;
+          color: #0056D6;
+          text-decoration: none;
+          border: 1px solid #0056D6;
+          padding: 12px 16px;
+          font-weight: 600;
+          font-size: 14px;
+          letter-spacing: 0.05em;
+          transition: opacity 0.3s ease;
+        }
+        .ind-link:hover { background: #0056D6;color: #ffffff; }
+
+        /* ── 新增：右下角数字导航 ── */
+        .industry-nav-numbers {
+          position: absolute;
+          bottom: 50px; /* 距离容器底部的距离 */
+          left: 5px; /* 跟随容器左边界对齐 */
+          display: flex;
+          gap: 28px; /* 数字之间的间距 */
+          z-index: 20; /* 确保它在文字的最上层可见 */
+        }
+
+        .ind-nav-num {
+          position: relative;
+          font-family: 'Courier New', Courier, monospace; /* 使用等宽字体增强科技感 */
+          font-size: 14px;
+          font-weight: 700;
+          color: rgba(26, 26, 26, 0.2); /* 默认未激活时的浅灰色 */
+          transition: color 0.4s ease, transform 0.4s ease;
+          display: inline-block;
+        }
+        .ind-nav-num::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -6px; /* 👉 控制下划线距离数字底部的间距 */
+          width: 100%;  /* 👉 宽度与数字文本等宽 */
+          height: 3px;  /* 👉 控制下划线的粗细 (厚度) */
+          border-radius: 2px;
+          background: transparent; /* 默认状态下透明隐藏 */
+          transition: background-color 0.4s ease; /* 颜色平滑过渡 */
+        }
+
+        /* 高亮时的状态 */
+        .ind-nav-num.is-active {
+          color: #0056D6; /* 变为品牌蓝 */
+          transform: scale(1.3); /* 字体微微放大突出显示 */
+        }
+        .ind-nav-num.is-active::after {
+          background-color: #0056D6; 
+        }
+
+        /* ── ⬇️ 下半部：静态 Cases 区 (常驻展示) ── */
+        .industry-static-cases {
+          height: auto;
+          background: #ffffff;
+          padding: 30px 0; /* 压缩上下边距，不要占太大高度 */
+        }
+        .industry-static-cases-inner {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        /* =========================================
+           Cases / Success Stories 布局
+           ========================================= */
+        /* ── 核心网格：一行 4 列 ── */
+        .cases-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 15px; /* 卡片之间的间距 */
+        }
+
+        /* ── 单个卡片样式 ── */
+        .case-card {
+          position: relative;
+          display: flex;
+          flex-direction: row; /* 内部左右排列 */
+          align-items: flex-start;;
+          background: #ffffff;
+          border: 1.5px solid rgba(0, 0, 0, 0.12); /* 默认淡灰色边框 */
+          border-radius: 3px; /* 锐利直角 */
+          text-decoration: none;
+          color: inherit;
+          min-height: 120px; /* 保证卡片基本高度 */
+          box-shadow: none; /* 👉 明确设定无阴影 */
+          transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease;
+        }
+
+        /* 左侧图片区域 */
+        .case-img-wrap {
+          width: 110px;  /* 👉 强制宽度 */
+          height: 110px;
+          flex-shrink: 0; /* 防止图片被挤压 */
+          margin: 0px; 
+        }
+        .case-img-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          aspect-ratio: 1 / 1; /* 保持图片为正方形 */
+          background: #f0f0f0; /* 图片加载前的底色 */
+        }
+
+        /* 右侧文字与图标区域 */
+        .case-content {
+          padding: 5px 16px 10px 18px;
+          display: flex;
+          flex-direction: column; /* 内部上下排列 */
+          flex-grow: 1;
+        }
+        .cases-label {
+          font-size: 14px;
+          color: #0056D6; 
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 16px;
+        }
+        .case-category {
+          font-size: 12px;
+          color: #666666;
+          margin-bottom: 13px;
+          font-family: monospace; /* 分类标签使用等宽字体，增加仪器感 */
+        }
+        .case-desc {
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 1.5;
+          margin: 0;
+          color: #1a1a1a;
+          /* 多行文本截断：最多显示 2 行，多余显示省略号 */
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        /* 底部箭头图标 */
+        .case-icon {
+          position: absolute; /* 👉 新增：绝对定位，使其脱离文档流 */
+          right: 16px;        /* 👉 钉在距离右边缘 16px 的位置 */
+          bottom: 16px;
+          color: #0056D6; /* 默认蓝色 */
+          transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .case-icon svg {
+          width: 20px;
+          height: 20px;
+        }
+        .case-card:hover {
+          border-color: #0056D6; /* 👉 边框变为品牌蓝 */
+          background-color: #e9e8e8; /* 👉 背景变为干净的浅灰色 */
+          box-shadow: none; /* 👉 悬停时也绝不出现阴影 */
+        } 
+        .case-card:hover .case-icon {
+          transform: translateX(6px); /* 箭头向右滑动保持不变 */
+        }
+
+        /* ≥ 1024px：cases 贴在视口底部，和 sticky 一起填满 100vh */
+        @media (min-width: 1024px) {
+          .industry-sticky-outer {
+            height: 400vh;
+            position: relative;
+          }
+
+          .industry-sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: calc(100vh - 220px); /* 留出 cases 的高度 */
+            overflow: hidden;
+          }
+
+          .industry-static-cases {
+            position: sticky;
+            bottom: 0;                   /* 吸附在视口底部 */
+            height: 220px;
+            background: #ffffff;
+            z-index: 10;
+            padding: 20px 0;
+          }
+        }
+
+        /* < 1024px：cases 回到普通文档流，sticky 独占 100vh */
+        @media (max-width: 1023px) {
+          .industry-sticky-outer {
+            height: 300vh;
+            position: relative;
+          }
+
+          .industry-sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: 100vh;     
+            overflow: hidden;
+          }
+
+          .industry-static-cases {
+            position: relative;          /* 普通流，滚完后自然出现 */
+            height: auto;
+            padding: 32px 0;
+          }
+        }
+        
+
+        /* ── 中小屏：从左右结构改为上下结构 ── */
+        @media (max-width: 900px) {
+          .industry-images {
+            order: 1;
+          }
+          .industry-texts {
+            order: 2;
+          }
+          .industry-sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            justify-content: flex-start;
+            padding-top: 18px;
+            gap: 8px;
+          }
+
+          .industry-dynamic-area {
+            flex-direction: column;
+            height: auto;
+            gap: 6px;
+          }
+
+          .industry-images,
+          .industry-texts {
+            width: 100%;
+            flex: none;
+          }
+
+          .industry-images {
+            height: 40vh;
+            min-height: 300px;
+          }
+
+          .ind-img-item {
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            right: 20px;
+          }
+
+          .industry-texts {
+            height: auto;
+            min-height: 170px;
+            align-items: flex-start;
+            padding: 0 20px 20px;
+          }
+
+          .industry-section-header {
+            margin: 0 20px 16px;
+          }
+
+          .industry-section-title {
+            font-size: clamp(24px, 24.2vw, 34px);
+            white-space: nowrap;
+            max-width: none;
+          }
+
+          .ind-text-item {
+            position: relative;
+            top: auto;
+            left: auto;
+            right: auto;
+            transform: none;
+            opacity: 0;
+            display: none;
+            margin: 20px 20px;
+          }
+
+          .ind-text-item.is-active {
+            display: block;
+            opacity: 1;
+            transform: none;
+          }
+
+          .industry-nav-numbers {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            margin: 10px 20px 0;
+            gap: 16px;
+          }
+          .industry-static-cases {
+            padding: 12px 0 18px;
+          }
+
+          .cases-grid {
+            grid-template-columns: 1fr;
+            gap: 6px;
+          }
+
+          .case-card {
+            flex-direction: row;
+            align-items: center;
+            min-height: 72px;
+          }
+
+          .case-img-wrap {
+            width: 72px;                  /* ← 缩小为正方形小图 */
+            height: 72px;
+            flex-shrink: 0;
+          }
+
+          .case-content {
+            padding: 8px 10px 8px;
+          }
+
+          .case-icon {
+            position: absolute;
+            right: 12px;
+            bottom: auto;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        /* ── 手机端 ── */
+        @media (max-width: 640px) {
+        
+          .industry-images {
+            height: 280px;
+            min-height: 204px;
+          }
+
+          .ind-img-item {
+            left: 16px;
+            right: 16px;
+          }
+
+          .industry-texts {
+            min-height: 210px;
+            margin-top: 28px;
+            padding: 0 16px 48px;
+            position: relative;
+          }
+
+          .industry-section-header {
+            margin: 32px 16px;
+          }
+
+          .industry-section-title {
+            font-size: 36px;
+            white-space: nowrap;
+          }
+
+          .ind-text-item {
+            margin: 0;              /* ← 清除 900px 遗留的 20px 左右 margin */
+            left: auto;
+            right: auto;
+            top: 0;  
+          }
+
+          .ind-text-label {
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            margin-bottom: 10px;
+          }
+
+          .ind-text-item h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
+          }
+
+          .ind-text-item p {
+            font-size: 0.9rem;
+            line-height: 1.45;
+            margin-bottom: 12px;
+          }
+
+          .industry-nav-numbers {
+            position: absolute;           /* ← 改回绝对定位 */
+            bottom: 14px;
+            left: 16px;
+            margin: 0;
+            gap: 14px;
+          }
+
+          .cases-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+
+          .case-card {
+            flex-direction: row;
+            height: auto;
+          }
+
+          .case-img-wrap {
+            width: 72px;                  /* ← 缩小为正方形小图 */
+            height: 72px;
+            flex-shrink: 0;
+          }
+
+          .case-content {
+            padding: 8px 10px 8px;
+          }
+          
+          .case-desc {
+            line-height: 1.2;
+            margin-top: 0;
+            font-size: 13px;
+          }
+          .case-icon {
+            position: absolute;
+            right: 12px;
+            bottom: auto;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+        }
+       
+      </style>
+    <script defer src="../header-mega-zh.js"></script>
+</head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="米度测控首页">
+          <img class="brand-logo" src="../images/logo.png" alt="Medo" width="983" height="115" decoding="async" />
+        </a>
+
+        <nav class="nav" aria-label="主导航">
+          <a class="nav-link" href="products.html">产品中心</a>
+          <a class="nav-link" href="solutions.html">解决方案</a>
+          <a class="nav-link" href="../cases.html">项目案例</a>
+          <a class="nav-link" href="../resources.html">服务支持</a>
+          <a class="nav-link" href="../about.html">关于我们</a>
+        </nav>
+
+        <a class="lang-switch" href="../index.html" aria-label="切换到英文版">中/EN</a>
+
+        <button class="nav-toggle" aria-label="打开或关闭菜单" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect y="3" width="20" height="2" fill="currentColor"/>
+            <rect y="9" width="20" height="2" fill="currentColor"/>
+            <rect y="15" width="20" height="2" fill="currentColor"/>
+          </svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="移动端导航">
+        <div class="nav-drawer-inner">
+          <a class="nav-drawer-link" href="products.html">产品中心</a>
+          <a class="nav-drawer-link" href="solutions.html">解决方案</a>
+          <a class="nav-drawer-link" href="../cases.html">项目案例</a>
+          <a class="nav-drawer-link" href="../resources.html">服务支持</a>
+          <a class="nav-drawer-link" href="../about.html">关于我们</a>
+          <a class="nav-drawer-link" href="../index.html">中/EN</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 首页轮播 -->
+    <main id="main" role="main">
+      <section id="home" class="hero loop-hero" aria-label="首页轮播">
+        <div class="loop-hero-inner" role="region" aria-roledescription="carousel" aria-label="连续轮播">
+          <div class="loop-track" aria-live="polite">
+
+            <!-- Mining Solution -->
+            <article class="loop-slide slide-01">
+              <img src="../images/face/minepit.jpg" alt="Mining safety monitoring in tailing storage" width="1376" height="768" fetchpriority="high" decoding="async" />
+              <div class="loop-slide-content">
+                <p class="loop-slide-kicker">全生命周期监测</p>
+                <h1 class="loop-slide-title">矿山安全一体化监测</h1>
+                <p class="loop-slide-sub">面向矿山场景，提供硬件、平台与运维一体化安全监测能力。</p>
+                <a class="loop-cta" href="../solutions-mining-main.html">
+                  查看矿山解决方案
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+            
+            <!-- 数字水利海报 -->
+            <article class="loop-slide slide-02">
+              <img src="../images/face/water.jpg" alt="Water conservancy infrastructure monitoring" width="1200" height="896" fetchpriority="low" decoding="async" />
+              <div class="loop-slide-content">
+                <p class="loop-slide-kicker">智慧水利</p>
+                <h1 class="loop-slide-title">数字孪生流域</h1>
+                <p class="loop-slide-sub">以全生命周期监测能力赋能智慧水利建设。</p>
+                <a class="loop-cta" href="../solutions-water-lake.html">
+                  查看水利解决方案
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- 地灾预警 -->
+            <article class="loop-slide is-active slide-03">
+              <img src="../images/optimized/index-face-geo.jpg" alt="Allystar high-precision GNSS technology in the field" width="1852" height="1204" fetchpriority="low" decoding="async" />
+              <div class="loop-slide-content">
+                <p class="loop-slide-kicker">全生命周期监测</p>
+                <h1 class="loop-slide-title">预判风险，守护生命</h1>
+                <p class="loop-slide-sub">基于高精度 GNSS 与实时分析能力，构建可靠的地质灾害预警体系。</p>
+                <a class="loop-cta" href="../solutions-geology-main.html">
+                  探索地灾预警方案
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- m50 -->
+            <article class="loop-slide slide-04">
+              <img src="../images/face/m50.jpg" alt="Monitoring Product m50" width="4413" height="2305" fetchpriority="low" decoding="async" />
+              <div class="loop-slide-content">
+                <p class="loop-slide-kicker">GNSS 接收机</p>
+                <h1 class="loop-slide-title">M50 一体化 GNSS 接收机</h1>
+                <p class="loop-slide-sub">高精度 GNSS 监测的可靠选择。</p>
+                <a class="loop-cta" href="../products-gnss/2-gnss.html">
+                  了解更多详情
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <button class="loop-nav loop-nav-prev" type="button" aria-label="上一张">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19 12H7M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+            </svg>
+          </button>
+          <button class="loop-nav loop-nav-next" type="button" aria-label="下一张">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+            </svg>
+          </button>
+
+          <div class="loop-indicators" role="tablist" aria-label="轮播指示器">
+            <button class="loop-dot is-active" type="button" role="tab" aria-selected="true" aria-label="切换到第 1 张"></button>
+            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="切换到第 2 张"></button>
+            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="切换到第 3 张"></button>
+            <button class="loop-dot" type="button" role="tab" aria-selected="false" aria-label="切换到第 4 张"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 01:Products Ecosystem ── -->
+      <section class="eco-scroll-container" id="eco-section" aria-labelledby="ecosystem-title">
+        <div class="eco-sticky-viewport container"> 
+          <div class="eco-section-header"> 
+            <h2 class="eco-section-title" id="ecosystem-title">一体化监测产品体系</h2>
+          </div>
+
+          <div class="eco-body">
+            <div class="eco-left-text" id="eco-text-group">
+              <div class="eco-text-item is-active">
+                <h3>高精度<br><span class="eco-title-accent">GNSS 接收机</span></h3>
+                <p>基于北斗/GNSS 多频技术，实现毫米级位移监测，适应复杂严苛环境。</p>
+                <a class="eco-cta-link" href="products.html">查看技术规格 →</a>
+              </div>
+              <div class="eco-text-item">
+                <h3>智能<br><span class="eco-title-accent">监测传感器</span></h3>
+                <p>覆盖倾角、振动、孔隙水压力等岩土参数，实现现场数据实时采集。</p>
+                <a class="eco-cta-link" href="../iot-sensors.html">查看技术规格 →</a>
+              </div>
+              <div class="eco-text-item">
+                <h3>一体化<br><span class="eco-title-accent">灾害监测站</span></h3>
+                <p>自供电、易部署的预警监测系统，构建现场风险感知第一道防线。</p>
+                <a class="eco-cta-link" href="../disaster-monitoring.html">查看技术规格 →</a>
+              </div>
+              <div class="eco-text-item">
+                <h3>米度</br><span class="eco-title-accent">云平台</span></h3>
+                <p>融合智能分析与三维可视化，将监测数据转化为可执行的安全决策。</p>
+                <a class="eco-cta-link" href="../platform.html">查看技术规格 →</a>
+              </div>
+            </div>
+
+            <div class="eco-center-scale">
+              <div class="eco-hud-lens"></div>
+              
+              <div class="eco-moving-ruler" id="eco-ruler">
+                <div class="eco-scale-mark">
+                  <div class="eco-scale-tick"></div><div class="eco-scale-num">01</div>
+                </div>
+                <div class="eco-scale-mark">
+                  <div class="eco-scale-tick"></div><div class="eco-scale-num">02</div>
+                </div>
+                <div class="eco-scale-mark">
+                  <div class="eco-scale-tick"></div><div class="eco-scale-num">03</div>
+                </div>
+                <div class="eco-scale-mark">
+                  <div class="eco-scale-tick"></div><div class="eco-scale-num">04</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="eco-right-image" id="eco-img-group">
+              <div class="eco-img-item is-active">
+                <img src="../images/hardware/e40.webp" alt="High-Precision GNSS" width="947" height="676" loading="lazy" decoding="async" />
+              </div>
+              <div class="eco-img-item">
+                <img src="../images/sensors/dr.png" alt="Intelligent Sensors" width="442" height="260" loading="lazy" decoding="async" />
+              </div>
+              <div class="eco-img-item">
+                <img src="../images/stations/gnss-dis.png" alt="Disaster Mitigation Station" width="755" height="523" loading="lazy" decoding="async" />
+              </div>
+              <div class="eco-img-item">
+                <img src="../images/optimized/index-mdnet.jpg" alt="Medo Cloud Platform" width="758" height="374" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        </div> 
+      </section>
+
+    
+      <!-- ── 02： 行业应用场景 + Cases ── -->
+      <section class="industry-scroll-container" id="industry-hybrid-section" aria-labelledby="industry-title">
+
+        <!-- sticky 滚动区：只装动态内容 -->
+        <div class="industry-sticky-outer">
+          <div class="container industry-container">
+            <div class="industry-sticky-viewport">
+
+              <div class="industry-section-header">
+                <h2 class="industry-section-title" id="industry-title">行业应用场景</h2>
+              </div>
+
+              <div class="industry-dynamic-area">
+
+                <!-- 左侧文字区 -->
+                <div class="industry-texts" id="ind-text-group">
+                  <div class="ind-text-item is-active">
+                    <span class="ind-text-label">行业 01</span>
+                    <h3>矿山安全</h3>
+                    <p>面向边坡、尾矿库等高风险场景，构建连续在线安全监测体系。</p>
+                    <a class="ind-link" href="../solutions-mining-main.html">查看矿山监测方案 →</a>
+                  </div>
+                  <div class="ind-text-item">
+                    <span class="ind-text-label">行业 02</span>
+                    <h3>水利工程</h3>
+                    <p>对大坝、水库、堤防等设施开展连续监测，实时掌握位移、渗流与运行状态。</p>
+                    <a class="ind-link" href="../solutions-water-main.html">查看水利监测方案 →</a>
+                  </div>
+                  <div class="ind-text-item">
+                    <span class="ind-text-label">行业 03</span>
+                    <h3>地质灾害</h3>
+                    <p>面向滑坡、崩塌、地面沉降等复杂地形风险，提供自动化监测预警。</p>
+                    <a class="ind-link" href="../solutions-geology-main.html">查看地灾预警方案 →</a>
+                  </div>
+                  <div class="ind-text-item">
+                    <span class="ind-text-label">行业 04</span>
+                    <h3>城市基础设施</h3>
+                    <p>服务桥梁、隧道、高层建筑等城市结构健康监测，保障复杂环境下的运行安全。</p>
+                    <a class="ind-link" href="../solutions-urban-main.html">查看城市基础设施方案 →</a>
+                  </div>
+
+                  <div class="industry-nav-numbers" id="ind-nav-numbers">
+                    <span class="ind-nav-num is-active">01</span>
+                    <span class="ind-nav-num">02</span>
+                    <span class="ind-nav-num">03</span>
+                    <span class="ind-nav-num">04</span>
+                  </div>
+                </div>
+
+                <!-- 右侧图片区 -->
+                <div class="industry-images" id="ind-img-group">
+                  <div class="ind-img-item is-active">
+                    <img src="../images/optimized/index-minestack.jpg" alt="矿山安全" width="644" height="342" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="ind-img-item">
+                    <img src="../images/optimized/index-water-main.jpg" alt="水利工程" width="972" height="490" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="ind-img-item">
+                    <img src="../images/optimized/index-geo-slide.jpg" alt="地质灾害" width="830" height="590" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="ind-img-item">
+                    <img src="../images/optimized/index-urban-main.jpg" alt="城市基础设施" width="948" height="632" loading="lazy" decoding="async" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- cases 独立在 sticky 外，普通文档流 -->
+        <div class="industry-static-cases">
+          <div class="container">
+            <span class="cases-label">成功案例</span>
+            <div class="cases-grid">
+
+              <a href="../cases/watercase-1.html" class="case-card">
+                <div class="case-img-wrap">
+                  <img src="../images/optimized/index-wc-2.jpg" alt="Case 1" width="818" height="444" loading="lazy" decoding="async">
+                </div>
+                <div class="case-content">
+                  <span class="case-category">水利工程</span>
+                  <p class="case-desc">水库大坝变形实时监测。</p>
+                  <div class="case-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                    </svg>
+                  </div>
+                </div>
+              </a>
+
+              <a href="../cases/miningcase-1.html" class="case-card">
+                <div class="case-img-wrap">
+                  <img src="../images/optimized/index-mc-1-drc.jpg" alt="Case 2" width="950" height="606" loading="lazy" decoding="async">
+                </div>
+                <div class="case-content">
+                  <span class="case-category">矿山安全</span>
+                  <p class="case-desc">海外尾矿库自动化监测预警系统落地。</p>
+                  <div class="case-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                    </svg>
+                  </div>
+                </div>
+              </a>
+
+              <a href="../cases/urbancase-1.html" class="case-card">
+                <div class="case-img-wrap">
+                  <img src="../images/optimized/index-uc-1-system.jpg" alt="Case 3" width="884" height="490" loading="lazy" decoding="async">
+                </div>
+                <div class="case-content">
+                  <span class="case-category">城市基础设施</span>
+                  <p class="case-desc">上海核心城区深基坑监测项目。</p>
+                  <div class="case-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                    </svg>
+                  </div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ── 关于米度 ── -->
+      <section class="about-medo" aria-labelledby="about-medo-title">
+        <div class="container">
+          <div class="about-medo-grid">
+
+            <!-- Left: Content -->
+            <div class="about-medo-content">
+              <h2 class="about-medo-title" id="about-medo-title">关于米度</h2>
+              <p class="about-medo-copy">十余年来，米度持续专注高精度监测技术，为工程项目提供可靠的安全监测与预警能力。</p>
+
+              <div class="about-medo-stats">
+                <div class="about-medo-stat">
+                  <span class="stat-number">10+</span>
+                  <span class="stat-desc">年行业经验</span>
+                </div>
+                <div class="about-medo-stat">
+                  <span class="stat-number">5000+</span>
+                  <span class="stat-desc">全球项目部署</span>
+                </div>
+              </div>
+
+              <a class="about-medo-explore" href="../about.html">了解米度 →</a>
+            </div>
+
+            <!-- Right: Visual -->
+            <div class="about-medo-visual">
+              <div class="about-medo-img-wrap">
+                <img src="../images/face/about.webp" alt="Medo precision monitoring technology in the field" width="1800" height="841" loading="lazy" decoding="async" />
+                <div class="about-medo-badge">以高保真监测数据驱动基础设施智能化。</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-inner">
+          <!-- Left: Brand -->
+          <div class="footer-left">
+            <div class="footer-logo">
+              <img src="../images/logowhite.png" alt="Medo" loading="lazy" decoding="async" />
+            </div>
+            <p class="footer-slogan">以高精度感知与预测分析，提升基础设施韧性。</p>
+            <div class="footer-icons">
+              <div class="footer-icon" aria-label="Global reach">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg>
+              </div>
+              <div class="footer-icon" aria-label="Network">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg>
+              </div>
+              <div class="footer-icon" aria-label="Security">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle: 服务协议 -->
+          <div class="footer-col">
+            <h3 class="footer-col-title">服务协议</h3>
+            <nav class="footer-col-links" aria-label="服务协议">
+              <a href="#">隐私政策</a>
+              <a href="#">安全合规</a>
+              <a href="#">系统状态</a>
+            </nav>
+          </div>
+
+          <!-- Right: 网站导航 -->
+          <div class="footer-col">
+            <h3 class="footer-col-title">网站导航</h3>
+            <nav class="footer-col-links" aria-label="网站导航">
+              <a href="index.html">首页</a>
+              <a href="products.html">产品中心</a>
+              <a href="solutions.html">解决方案</a>
+              <a href="../resources.html">服务支持</a>
+              <a href="../about.html">关于我们</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Medo Tech. 版权所有。</span>
+          <div class="footer-status">
+            <span class="footer-status-dot" aria-hidden="true"></span>
+            系统运行正常
+          </div>
+        </div>
+      </div>
+    </footer>
+  <script>
+    (function(){
+      var btn = document.querySelector('.nav-toggle');
+      var drawer = document.getElementById('mobile-nav');
+      if(!btn || !drawer) return;
+      btn.addEventListener('click', function(){
+        var open = drawer.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open);
+      });
+    })();
+    (function(){
+      var slider = document.querySelector('.loop-hero-inner');
+      if(!slider) return;
+      var track = slider.querySelector('.loop-track');
+      var slides = Array.prototype.slice.call(track.children);
+      var dots = Array.prototype.slice.call(slider.querySelectorAll('.loop-dot'));
+      var prevBtn = slider.querySelector('.loop-nav-prev');
+      var nextBtn = slider.querySelector('.loop-nav-next');
+      var interval = 5000;
+      var timer = null;
+      var index = 0;
+      var isPaused = false;
+
+      var clone = slides[0].cloneNode(true);
+      clone.setAttribute('data-clone', 'true');
+      track.appendChild(clone);
+
+      function setTransition(enabled){
+        track.style.transition = enabled ? 'transform 600ms ease' : 'none';
+      }
+
+      function updateIndicators(activeIndex){
+        dots.forEach(function(dot, i){
+          var isActive = i === activeIndex;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+      }
+
+      function goTo(idx, animate){
+        index = idx;
+        setTransition(animate !== false);
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        updateIndicators(index % slides.length);
+      }
+
+      function next(){
+        if(index >= slides.length) return;
+        goTo(index + 1, true);
+      }
+
+      function prev(){
+        if(index === 0){
+          setTransition(false);
+          index = slides.length;
+          track.style.transform = 'translateX(-' + (index * 100) + '%)';
+          requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+              goTo(slides.length - 1, true);
+            });
+          });
+          return;
+        }
+        goTo(index - 1, true);
+      }
+
+      function start(){
+        if(timer) clearInterval(timer);
+        timer = setInterval(function(){
+          if(!isPaused) next();
+        }, interval);
+      }
+
+      track.addEventListener('transitionend', function(){
+        if(index === slides.length){
+          setTransition(false);
+          index = 0;
+          track.style.transform = 'translateX(0%)';
+          requestAnimationFrame(function(){
+            setTransition(true);
+          });
+        }
+      });
+
+      slider.addEventListener('mouseenter', function(){ isPaused = true; });
+      slider.addEventListener('mouseleave', function(){ isPaused = false; });
+
+      if(prevBtn) prevBtn.addEventListener('click', prev);
+      if(nextBtn) nextBtn.addEventListener('click', next);
+      dots.forEach(function(dot, i){
+        dot.addEventListener('click', function(){ goTo(i, true); });
+      });
+
+      goTo(0, false);
+      start();
+
+      // ── 滚动高度计生态矩阵引擎 ──
+    (function(){
+      var section = document.getElementById('eco-section');
+      if(!section) return; // 如果页面没有这个模块，直接跳过
+      
+      var texts = section.querySelectorAll('#eco-text-group .eco-text-item');
+      var imgs = section.querySelectorAll('#eco-img-group .eco-img-item');
+      var marks = section.querySelectorAll('.eco-scale-mark');
+      var ruler = document.getElementById('eco-ruler');
+      
+      function onScroll() {
+        var rect = section.getBoundingClientRect();
+        
+        // 1. 计算原始滚动进度 (0 到 1)
+        var rect = section.getBoundingClientRect();
+        var progress = -rect.top / (rect.height - window.innerHeight);
+        progress = Math.max(0, Math.min(1, progress));
+
+        // 2. 核心升级：磁性吸附算法 (Magnetic Plateau)
+        var totalItems = texts.length;
+        var rawIndex = progress * (totalItems - 1); 
+        
+        // 把进度拆分为整数部分和小数部分
+        var indexFloor = Math.floor(rawIndex);
+        var f = rawIndex - indexFloor; // f 的范围是 0 到 1
+        
+        // 👉 设定吸附区域大小：0.25 意味着在这个区间的前 25% 和后 25% 滚动距离内，画面将完全锁定静止！
+        var snapZone = 0.25; 
+        var mappedF;
+        
+        if (f < snapZone) {
+          mappedF = 0; // 强行锁定在当前数字
+        } else if (f > 1 - snapZone) {
+          mappedF = 1; // 强行吸附到下一个数字
+        } else {
+          // 只有脱离了吸附区，标尺才开始平滑滑动
+          var ratio = (f - snapZone) / (1 - 2 * snapZone);
+          mappedF = ratio * ratio * (3 - 2 * ratio); // 保持 S 型平滑曲线
+        }
+        
+        // 经过磁性处理后的最终进度
+        var progressIndex = indexFloor + mappedF; 
+        
+        // 3. 滑动标尺及计算偏移
+        var yOffset = -(progressIndex * 120) - 60; 
+        ruler.style.transform = 'translateY(' + yOffset + 'px)';
+
+
+        // 3. 动态计算光学畸变与亮度
+        marks.forEach(function(mark, i) {
+          var num = mark.querySelector('.eco-scale-num');
+          var tick = mark.querySelector('.eco-scale-tick');
+          
+          var distance = Math.abs(progressIndex - i); 
+          var scale = 1 + Math.max(0, 1 - distance) * 1.2; 
+          var opacity = Math.max(0.1, 1 - distance * 0.6); 
+
+          num.style.transform = 'scale(' + scale + ')';
+          num.style.opacity = opacity;
+
+          /// 👉 状态颜色判定更新为蓝色系
+          if (distance < 0.15) {
+            num.style.color = '#0056D6'; // 激活时的亮蓝数字
+            
+            // ✨ 新增核心代码：激活时的蓝色光晕
+            // 0 0 12px 分别代表：X轴不偏移、Y轴不偏移、扩散模糊半径为12px
+            num.style.textShadow = '0 0 0px rgba(0, 86, 214, 0.1)'; 
+            
+            tick.style.width = '28px';
+            tick.style.background = '#0056D6'; // 激活时的亮蓝刻度线
+          } else {
+            num.style.color = 'rgba(0, 86, 214, 0.3)'; // 未激活时的浅蓝数字
+            
+            // ✨ 新增核心代码：未激活时清除光晕
+            num.style.textShadow = 'none'; 
+            
+            tick.style.width = '16px';
+            tick.style.background = 'rgba(0, 86, 214, 0.2)'; // 未激活时的浅蓝刻度线
+          }
+        });
+
+        // 4. 切换左右内容的激活状态
+        var activeIndex = Math.round(progressIndex);
+        texts.forEach(function(text, i) {
+          text.classList.toggle('is-active', i === activeIndex);
+        });
+        imgs.forEach(function(img, i) {
+          img.classList.toggle('is-active', i === activeIndex);
+        });
+      }
+
+      window.addEventListener('scroll', onScroll);
+      // 初始化触发一次
+      onScroll();
+    })();
+    })();
+
+    // ── 行业应用滚动劫持引擎 (Industry Scroll Hijacking) ──
+    // ── 行业应用滚动劫持引擎 (Industry Scroll Hijacking) ──
+(function(){
+  var section = document.getElementById('industry-hybrid-section');
+  if(!section) return;
+
+  var stickyOuter = section.querySelector('.industry-sticky-outer');
+  if(!stickyOuter) return;
+
+  var imgs = section.querySelectorAll('.ind-img-item');
+  var texts = section.querySelectorAll('.ind-text-item');
+  var navNums = section.querySelectorAll('#ind-nav-numbers .ind-nav-num');
+
+  var totalItems = imgs.length;
+
+  function onScroll() {
+    var rect = stickyOuter.getBoundingClientRect(); // ← 只看 sticky-outer
+    var windowHeight = window.innerHeight;
+    var scrollableDistance = rect.height - windowHeight;
+    var scrolled = -rect.top;
+    var progress = scrolled / scrollableDistance;
+    progress = Math.max(0, Math.min(1, progress));
+
+    var rawIndex = progress * (totalItems - 1);
+    var activeIndex = Math.round(rawIndex);
+
+    imgs.forEach(function(img, i) {
+      img.classList.toggle('is-active', i === activeIndex);
+    });
+    texts.forEach(function(text, i) {
+      text.classList.toggle('is-active', i === activeIndex);
+    });
+    navNums.forEach(function(num, i) {
+      num.classList.toggle('is-active', i === activeIndex);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+})();
+    
+  </script>
+</body>
+</html>

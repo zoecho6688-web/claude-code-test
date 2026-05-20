@@ -170,6 +170,32 @@ a{ color: inherit; }
   font-weight: 600;
 }
 
+.lang-switch{
+  margin-left: auto;
+  height: 32px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: var(--blue-700);
+  background: transparent;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+.lang-switch:hover,
+.lang-switch:focus-visible{
+  border-color: var(--blue-600);
+  background: transparent;
+  color: var(--blue-800);
+  outline: none;
+}
+
 .nav-item--mega{
   position: static;
   display: flex;
@@ -4086,6 +4112,7 @@ a{ color: inherit; }
 
 @media (max-width: 768px){
   .nav{ display: none; }
+  .lang-switch{ margin-left: auto; margin-right: 12px; }
   .nav-toggle{ display: flex; }
   .site-header{ position: sticky; }
 }
@@ -4250,3 +4277,83 @@ a{ color: inherit; }
   background: #0056b3;
   border-color: #0056b3;
 }
+
+/* ── Chinese typography layer ── */
+html[lang="zh-CN"] body{
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", "Noto Sans CJK SC", Arial, sans-serif;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+}
+
+html[lang="zh-CN"] h1,
+html[lang="zh-CN"] h2,
+html[lang="zh-CN"] h3,
+html[lang="zh-CN"] .loop-slide-title,
+html[lang="zh-CN"] .prod-headline,
+html[lang="zh-CN"] .sol-hero-heading,
+html[lang="zh-CN"] .sol-detail-heading,
+html[lang="zh-CN"] .eco-section-title,
+html[lang="zh-CN"] .industry-section-title{
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+html[lang="zh-CN"] .nav-link,
+html[lang="zh-CN"] .nav-drawer-link,
+html[lang="zh-CN"] .nav-drawer-products-toggle,
+html[lang="zh-CN"] .nav-drawer-solutions-toggle,
+html[lang="zh-CN"] .nav-drawer-cases-toggle{
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+html[lang="zh-CN"] .loop-cta,
+html[lang="zh-CN"] .eco-cta-link,
+html[lang="zh-CN"] .ind-link,
+html[lang="zh-CN"] .about-medo-explore,
+html[lang="zh-CN"] .sol-btn-primary,
+html[lang="zh-CN"] .sol-btn-ghost,
+html[lang="zh-CN"] .sol-detail-cta,
+html[lang="zh-CN"] .sol-urban-btn-primary,
+html[lang="zh-CN"] .sol-urban-btn-ghost,
+html[lang="zh-CN"] .ccard-quote,
+html[lang="zh-CN"] .cat-callout-link{
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+html[lang="zh-CN"] p,
+html[lang="zh-CN"] li,
+html[lang="zh-CN"] .loop-slide-sub,
+html[lang="zh-CN"] .prod-subhead,
+html[lang="zh-CN"] .cat-grid-desc,
+html[lang="zh-CN"] .ccard-desc,
+html[lang="zh-CN"] .sol-hero-desc,
+html[lang="zh-CN"] .sol-detail-desc,
+html[lang="zh-CN"] .sol-tri-box-desc,
+html[lang="zh-CN"] .footer-slogan{
+  line-height: 1.75;
+}
+
+html[lang="zh-CN"] .loop-slide-kicker,
+html[lang="zh-CN"] .prod-eyebrow,
+html[lang="zh-CN"] .cat-grid-label,
+html[lang="zh-CN"] .ccard-cat,
+html[lang="zh-CN"] .sol-hero-label,
+html[lang="zh-CN"] .sol-detail-label,
+html[lang="zh-CN"] .cases-label{
+  letter-spacing: 0.08em;
+}
+
+html[lang="zh-CN"] .mega-menu-tab-title,
+html[lang="zh-CN"] .mega-panel-link-title,
+html[lang="zh-CN"] .mega-panel-link-desc,
+html[lang="zh-CN"] .nav-drawer-sub-link{
+  letter-spacing: 0;
+}
+
+.zh-tight{ letter-spacing: -0.02em; }
+.zh-balanced{ letter-spacing: 0.02em; }
+.zh-loose{ letter-spacing: 0.06em; }
