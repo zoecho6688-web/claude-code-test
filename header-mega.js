@@ -284,6 +284,36 @@
     return getSitePrefix() + normalizeHref(href);
   }
 
+  function getLanguageSwitchHref() {
+    var pathname = (window.location && window.location.pathname || '').replace(/\\/g, '/');
+    var currentFile = pathname.split('/').pop() || 'index.html';
+    var zhPages = {
+      'index.html': true,
+      'products.html': true,
+      'solutions.html': true,
+      'resources.html': true
+    };
+
+    return getSitePrefix() + 'zh/' + (zhPages[currentFile] ? currentFile : 'index.html');
+  }
+
+  function ensureLanguageSwitch() {
+    var pathname = (window.location && window.location.pathname || '').replace(/\\/g, '/');
+    if (pathname.indexOf('/zh/') !== -1 || document.querySelector('.lang-switch')) return;
+
+    var headerInner = document.querySelector('.site-header .header-inner');
+    var navToggle = headerInner && headerInner.querySelector('.nav-toggle');
+    if (!headerInner || !navToggle) return;
+
+    var switchLink = document.createElement('a');
+    switchLink.className = 'lang-switch';
+    switchLink.href = getLanguageSwitchHref();
+    switchLink.setAttribute('aria-label', 'Switch to Chinese');
+    switchLink.textContent = 'EN/中';
+
+    headerInner.insertBefore(switchLink, navToggle);
+  }
+
   function buildDesktopMenu(config) {
     var nav = document.querySelector('.nav');
     if (!nav) return;
@@ -396,6 +426,7 @@
   function init() {
     desktopMenus.forEach(buildDesktopMenu);
     mobileSections.forEach(buildMobileSection);
+    ensureLanguageSwitch();
   }
 
   if (document.readyState === 'loading') {
