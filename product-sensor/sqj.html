@@ -770,5 +770,44 @@
         sections.forEach(function(s){ obs.observe(s); });
       })();
     </script>
+    <!-- Coze AI chat widget test -->
+    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.20/libs/cn/index.js"></script>
+    <script>
+      new CozeWebSDK.WebChatClient({
+        config: {
+          type: 'bot',
+          bot_id: '7644113734910230543',
+          isIframe: false
+        },
+        auth: {
+          type: 'token',
+          token: 'cztei_l6MDbTyVbCKiJtGkGBFzYXCT0HiAdzZWFvQ42SFoiGkFcZGvhPcfD90jEtuo9jMAs',
+          onRefreshToken: async () => 'cztei_l6MDbTyVbCKiJtGkGBFzYXCT0HiAdzZWFvQ42SFoiGkFcZGvhPcfD90jEtuo9jMAs'
+        },
+        ui: {
+          base: {
+            icon: '../images/chat-support.svg',
+            layout: 'pc',
+            lang: 'zh-CN',
+            zIndex: 9999
+          },
+          header: {
+            isShow: true,
+            isNeedClose: true
+          },
+          asstBtn: {
+            isNeed: true
+          },
+          footer: {
+            isShow: false
+          },
+          chatBot: {
+            title: 'AI 在线客服',
+            uploadable: false,
+            width: 390
+          }
+        }
+      });
+    </script>
   </body>
 </html>
