@@ -286,11 +286,25 @@
     var normalizedHref = normalizeHref(href);
     var pathname = (window.location && window.location.pathname || '').replace(/\\/g, '/');
     if (pathname.indexOf('/zh/') !== -1) {
+      var afterZh = pathname.split('/zh/')[1] || '';
+      var isZhSubdir = afterZh.indexOf('/') !== -1;
       var zhPages = {
         'index.html': true,
         'products.html': true,
-        'solutions.html': true
+        'solutions.html': true,
+        'cases.html': true,
+        'iot-sensors.html': true,
+        'disaster-monitoring.html': true,
+        'platform.html': true,
+        'products-gnss/1-gnss.html': true,
+        'products-gnss/2-gnss.html': true,
+        'products-gnss/3-gnss.html': true,
+        'products-gnss/4-gnss.html': true,
+        'products-gnss/5-gnss.html': true
       };
+      if (isZhSubdir) {
+        return zhPages[normalizedHref] ? '../' + normalizedHref : '../../' + normalizedHref;
+      }
       return zhPages[normalizedHref] ? normalizedHref : '../' + normalizedHref;
     }
     return getSitePrefix() + normalizedHref;

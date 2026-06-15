@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E50Pro GNSS 基准接收机 | 米度测控</title>
+  <meta name="description" content="米度测控 E50Pro GNSS 基准接收机——专业级参考站接收机，亚毫米级精度，适用于高精度定位基础设施。" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script defer src="../../header-mega-zh.js"></script>
+  <style>
+    body { background: #fff; }
+    .pd-breadcrumb { background: #fff; }
+    .pd-breadcrumb-inner { display: flex; align-items: center; gap: 8px; height: 48px; font-size: 15px; color: #9ca3af; white-space: nowrap; }
+    .pd-breadcrumb a { text-decoration: none; color: #9ca3af; transition: color 150ms; }
+    .pd-breadcrumb a:hover { color: #0056D6; }
+    .pd-breadcrumb-sep { color: #d1d5db; font-size: 13px; }
+    .pd-breadcrumb-current { color: #0f1f3d; font-weight: 600; }
+    .pd-hero { display: grid; grid-template-columns: 1fr 1fr; background: #fff; border-bottom: 1px solid #EEEEEE; min-height: 320px; }
+    .pd-hero-left { display: flex; flex-direction: column; justify-content: center; padding: 48px 48px 48px 0; padding-left: max(20px, calc((100vw - var(--container)) / 2)); }
+    .pd-eyebrow { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #0056D6; margin-bottom: 16px; }
+    .pd-heading { margin: 0 0 8px; font-size: clamp(32px, 4vw, 52px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; color: #0f1f3d; }
+    .pd-heading-sub { margin: 0 0 20px; font-size: clamp(21px, 2.4vw, 27px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.0; color: #0056D6; }
+    .pd-hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+    .pd-hero-tag { font-size: 10px; font-weight: 700; padding: 4px 12px; background: #f0f4ff; color: #0056b3; border: 1px solid rgba(0,86,179,0.15); letter-spacing: 0.06em; text-transform: uppercase; }
+    .pd-hero-right { position: relative; overflow: hidden; background: #0f1f3d; align-self: stretch; height: auto; }
+    .pd-hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; }
+    .pd-hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #fff 0%, transparent 28%); z-index: 1; pointer-events: none; }
+    .pd-img-placeholder { width: 100%; height: 100%; min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: rgba(255,255,255,0.2); }
+    .pd-img-placeholder svg { width: 48px; height: 48px; }
+    .pd-img-placeholder span { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .pd-body { display: grid; grid-template-columns: 200px 1fr; width: min(calc(var(--container) + 40px), 100%); margin: 0 auto; padding: 0 20px; max-width: none !important; }
+    .pd-sidenav { position: sticky; top: 52px; height: calc(100vh - 52px); padding: 56px 32px 40px 0; display: flex; flex-direction: column; gap: 4px; border-right: none; }
+    .pd-sidenav-label { font-size: 9px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #c0c8d4; margin-bottom: 20px; }
+    .pd-nav-link { display: flex; align-items: center; gap: 10px; padding: 10px 14px; font-size: 12px; font-weight: 600; color: #9ca3af; text-decoration: none; border-left: 2px solid transparent; transition: color 200ms, background 200ms, border-color 200ms; border-radius: 0 4px 4px 0; }
+    .pd-nav-link .pd-nav-num { font-size: 9px; font-weight: 800; letter-spacing: 0.10em; color: #d1d5db; transition: color 200ms; flex-shrink: 0; }
+    .pd-nav-link:hover, .pd-nav-link.is-active { color: #0056D6; background: #f0f4ff; border-left-color: #0056D6; }
+    .pd-nav-link:hover .pd-nav-num, .pd-nav-link.is-active .pd-nav-num { color: #0056D6; }
+    .pd-nav-link.is-active { font-weight: 700; }
+    .pd-content { padding: 64px 0 80px 56px; }
+    .pd-section { padding-bottom: 80px; margin-bottom: 72px; border-bottom: 1px solid #EEEEEE; }
+    .pd-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 40px; }
+    .pd-section-label { display: block; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #0056D6; margin-bottom: 14px; }
+    .pd-section-title { margin: 0 0 24px; font-size: clamp(20px, 2.6vw, 30px); font-weight: 800; letter-spacing: -0.02em; color: #0f1f3d; }
+    .pd-intro-text { font-size: 14px; line-height: 1.85; color: #4a5568; margin: 0 0 32px; }
+    .pd-intro-stats { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #EEEEEE; }
+    .pd-intro-stat { padding: 22px 26px; border-right: 1px solid #EEEEEE; }
+    .pd-intro-stat:last-child { border-right: none; }
+    .pd-intro-stat-val { font-size: 30px; font-weight: 900; color: #0056D6; letter-spacing: -0.03em; line-height: 1; }
+    .pd-intro-stat-label { font-size: 11px; color: #9ca3af; margin-top: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.4; }
+    .pd-func-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: #0056b3; }
+    .pd-func-card { background: #fff; padding: 28px 26px 30px; display: flex; flex-direction: column; gap: 12px; transition: background 200ms; }
+    .pd-func-card:hover { background: #f7faff; }
+    .pd-func-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #f0f4ff; padding: 8px; margin-bottom: 4px; transition: background 200ms; }
+    .pd-func-card:hover .pd-func-icon { background: #e0eaff; }
+    .pd-func-icon svg { width: 100%; height: 100%; }
+    .pd-func-title { margin: 0; font-size: 14px; font-weight: 800; color: #0f1f3d; line-height: 1.3; }
+    .pd-func-desc { margin: 0; font-size: 12px; line-height: 1.75; color: #6b7280; }
+    @media (max-width: 1024px) { .pd-func-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .pd-func-grid { grid-template-columns: 1fr; } }
+    .pd-specs-layout { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; }
+    .pd-spec-table { display: flex; flex-direction: column; }
+    .pd-spec-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #EEEEEE; gap: 16px; }
+    .pd-spec-row:last-child { border-bottom: none; }
+    .pd-spec-key { font-size: 12px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; }
+    .pd-spec-val { font-size: 14px; font-weight: 700; color: #0f1f3d; text-align: right; }
+    .pd-solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pd-solution-btn { display: flex; flex-direction: column; gap: 10px; padding: 24px 28px; border: 1px solid #EEEEEE; text-decoration: none; color: inherit; position: relative; overflow: hidden; transition: border-color 200ms; }
+    .pd-solution-btn::before { content: ''; position: absolute; inset: 0; background: #0056D6; transform: translateY(100%); transition: transform 320ms cubic-bezier(0.4,0,0.2,1); z-index: 0; }
+    .pd-solution-btn:hover::before { transform: translateY(0); }
+    .pd-solution-btn:hover { border-color: #0056D6; }
+    .pd-sol-cat { position: relative; z-index: 1; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #0056D6; transition: color 200ms; }
+    .pd-solution-btn:hover .pd-sol-cat { color: rgba(255,255,255,0.65); }
+    .pd-sol-title { position: relative; z-index: 1; font-size: 16px; font-weight: 800; color: #0f1f3d; margin: 0; line-height: 1.3; transition: color 200ms; }
+    .pd-solution-btn:hover .pd-sol-title { color: #fff; }
+    .pd-solution-img { width: 100%; aspect-ratio: 16 / 9; background: #f3f4f6; border: 1px solid #EEEEEE; overflow: hidden; position: relative; }
+    .pd-solution-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pd-solution-img-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(15,31,61,0.35); background: repeating-linear-gradient(135deg, rgba(15,31,61,0.04), rgba(15,31,61,0.04) 12px, rgba(15,31,61,0.02) 12px, rgba(15,31,61,0.02) 24px); }
+    .pd-sol-arrow { position: relative; z-index: 1; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; letter-spacing: 0.10em; text-transform: uppercase; color: #0056D6; margin-top: 8px; transition: color 200ms; align-self: flex-start; }
+    .pd-solution-btn:hover .pd-sol-arrow { color: rgba(255,255,255,0.85); }
+    .pd-sol-arrow svg { width: 12px; height: 12px; transition: transform 200ms; }
+    .pd-solution-btn:hover .pd-sol-arrow svg { transform: translateX(3px); }
+    @media (max-width: 768px) {
+      .pd-hero { grid-template-columns: 1fr; }
+      .pd-hero-left { padding: 48px 20px 32px; }
+      .pd-hero-right { height: 240px; }
+      .pd-hero-right::before { background: linear-gradient(to bottom, #fff 0%, transparent 30%); }
+      .pd-body { grid-template-columns: 1fr; padding: 0; }
+      .pd-sidenav { position: sticky; top: 0px; height: auto; flex-direction: row; gap: 0; padding: 0; border-right: none; border-bottom: 1px solid #EEEEEE; overflow-x: auto; background: #fff; z-index: 10; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .pd-sidenav::-webkit-scrollbar { display: none; }
+      .pd-sidenav-label { display: none; }
+      .pd-nav-link { flex-shrink: 0; padding: 14px 16px; border-left: none; border-bottom: 2px solid transparent; border-radius: 0; white-space: nowrap; background: transparent; }
+      .pd-nav-link:hover, .pd-nav-link.is-active { background: transparent; border-left-color: transparent; border-bottom-color: #0056D6; }
+      .pd-nav-link .pd-nav-num { display: none; }
+      .pd-content { padding: 40px 20px 60px; }
+      .pd-intro-stats { grid-template-columns: 1fr; }
+      .pd-intro-stat { border-right: none; border-bottom: 1px solid #EEEEEE; }
+      .pd-intro-stat:last-child { border-bottom: none; }
+      .pd-specs-layout { grid-template-columns: 1fr; }
+      .pd-solutions-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="米度测控首页">
+        <img class="brand-logo" src="../../images/logo.png" alt="Medo" width="983" height="115" decoding="async" />
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a class="nav-link active" href="../products.html">产品中心</a>
+        <a class="nav-link" href="../solutions.html">解决方案</a>
+        <a class="nav-link" href="../cases.html">项目案例</a>
+        <a class="nav-link" href="../resources.html">服务支持</a>
+        <a class="nav-link" href="../about.html">关于我们</a>
+      </nav>
+        <a class="lang-switch" href="../../products-gnss/3-gnss.html" aria-label="切换到英文版">中/EN</a>
+        <button class="nav-toggle" aria-label="打开或关闭菜单" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect y="3" width="20" height="2" fill="currentColor"/><rect y="9" width="20" height="2" fill="currentColor"/><rect y="15" width="20" height="2" fill="currentColor"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </button>
+      </div>
+      <div class="nav-drawer" id="mobile-nav" role="navigation" aria-label="移动端导航">
+    <div class="nav-drawer-inner">
+      <a class="nav-drawer-link" href="../products.html">产品中心</a>
+      <a class="nav-drawer-link" href="../solutions.html">解决方案</a>
+      <a class="nav-drawer-link" href="../cases.html">项目案例</a>
+      <a class="nav-drawer-link" href="../resources.html">服务支持</a>
+      <a class="nav-drawer-link" href="../about.html">关于我们</a>
+      <a class="nav-drawer-link" href="../../products-gnss/3-gnss.html">中/EN</a>
+    </div>
+      </div>
+  </header>
+
+  <!-- ── Breadcrumb ── -->
+  <div class="pd-breadcrumb">
+    <div class="container pd-breadcrumb-inner">
+      <a href="../index.html">首页</a>
+      <span class="pd-breadcrumb-sep">›</span>
+      <a href="../products.html">产品中心</a>
+      <span class="pd-breadcrumb-sep">›</span>
+      <span class="pd-breadcrumb-current">E50Pro</span>
+    </div>
+  </div>
+
+  <!-- ── Hero ── -->
+  <section class="pd-hero" aria-label="产品封面">
+    <div class="pd-hero-left">
+      <span class="pd-eyebrow">GNSS 参考站</span>
+      <h1 class="pd-heading">E50Pro</h1>
+      <p class="pd-heading-sub">GNSS 基准接收机</p>
+      <div class="pd-hero-tags">
+        <span class="pd-hero-tag">GPS + BDS + GLONASS</span>
+        <span class="pd-hero-tag">±1mm 精度</span>
+      </div>
+    </div>
+    <div class="pd-hero-right">
+      <img src="../../images/hardware/e50pro.png" alt="米度测控 E50Pro"
+        onerror="this.style.display='none'; this.parentElement.querySelector('.pd-img-placeholder').style.display='flex';" />
+      <div class="pd-img-placeholder" style="display:none; position:absolute; inset:0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg>
+        <span>产品图片</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Page body ── -->
+  <div class="pd-body">
+
+    <!-- ── Sidebar nav ── -->
+    <aside class="pd-sidenav" aria-label="页面章节">
+      <span class="pd-sidenav-label">本页内容</span>
+      <a class="pd-nav-link is-active" href="#intro"><span class="pd-nav-num">01</span>产品概览</a>
+      <a class="pd-nav-link" href="#functions"><span class="pd-nav-num">02</span>核心功能</a>
+      <a class="pd-nav-link" href="#specs"><span class="pd-nav-num">03</span>技术规格</a>
+      <a class="pd-nav-link" href="#solutions"><span class="pd-nav-num">04</span>相关方案</a>
+    </aside>
+
+    <!-- ── Main content ── -->
+    <main class="pd-content">
+
+      <!-- 01 产品概览 -->
+      <section class="pd-section" id="intro" aria-labelledby="intro-title">
+        <span class="pd-section-label">01 / 产品概览</span>
+        <h2 class="pd-section-title" id="intro-title">E50Pro｜高精度参考站 GNSS 接收机</h2>
+        <p class="pd-intro-text">
+          E50Pro 是专业级参考站接收机，专为高精度定位基础设施奠定基础而设计。适用于地面增强系统（GBAS）与大地测量，与米度精密天线及实时处理引擎配合使用可实现亚毫米至毫米级精度。E50Pro 注重业务连续性，配备大容量内置电池，在外部断电时可维持 30 小时以上的应急运行。从 CORS 网络部署到工程机控与海洋工程，E50Pro 为全球最苛刻的测量与测绘项目提供始终如一的可靠性与精度。
+        </p>
+        <div class="pd-intro-stats" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="pd-intro-stat">
+            <div class="pd-intro-stat-val">30+h</div>
+            <div class="pd-intro-stat-label">应急备电</div>
+          </div>
+          <div class="pd-intro-stat">
+            <div class="pd-intro-stat-val">亚毫米</div>
+            <div class="pd-intro-stat-label">级精度</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 核心功能 -->
+      <section class="pd-section" id="functions" aria-labelledby="functions-title">
+        <span class="pd-section-label">02 / 核心功能</span>
+        <h2 class="pd-section-title" id="functions-title">核心功能</h2>
+        <div class="pd-func-grid">
+
+          <div class="pd-func-card">
+            <div class="pd-func-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0056D6" stroke-width="1.6" aria-hidden="true">
+                <path d="M2 12h4M18 12h4M12 2v4M12 18v4"/>
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>
+              </svg>
+            </div>
+            <h3 class="pd-func-title">高保真信号稳定性</h3>
+            <p class="pd-func-desc">集成多频抗干扰技术，滤除射频噪声，在复杂电磁环境中提供高质量稳定的 GNSS 数据流，确保基线可靠性。</p>
+          </div>
+
+          <div class="pd-func-card">
+            <div class="pd-func-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0056D6" stroke-width="1.6" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4"/>
+                <path d="M7 8h2M13 8h4M7 12h4M15 12h2"/>
+              </svg>
+            </div>
+            <h3 class="pd-func-title">多样化数据连接</h3>
+            <p class="pd-func-desc">配备丰富接口矩阵与 4G LTE 支持，可同时向多个控制中心以多种格式广播数据，满足不同应用协议需求。</p>
+          </div>
+
+          <div class="pd-func-card">
+            <div class="pd-func-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0056D6" stroke-width="1.6" aria-hidden="true">
+                <circle cx="12" cy="5" r="2"/>
+                <circle cx="5" cy="19" r="2"/>
+                <circle cx="19" cy="19" r="2"/>
+                <path d="M12 7v4M12 11l-5 6M12 11l5 6"/>
+              </svg>
+            </div>
+            <h3 class="pd-func-title">智能网络架构</h3>
+            <p class="pd-func-desc">支持 NAT 穿透与 DDNS，灵活部署。用户可通过以太网或 WiFi 访问设备管理界面，实现远程配置、状态追踪与 OTA 升级。</p>
+          </div>
+
+          <div class="pd-func-card">
+            <div class="pd-func-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0056D6" stroke-width="1.6" aria-hidden="true">
+                <path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="pd-func-title">工业级可靠性</h3>
+            <p class="pd-func-desc">铝合金外壳，IP67 防护等级，具备跌落防护。内置大容量电池防止突然断电或电压波动导致数据丢失。</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03 技术规格 -->
+      <section class="pd-section" id="specs" aria-labelledby="specs-title">
+        <span class="pd-section-label">03 / 技术规格</span>
+        <h2 class="pd-section-title" id="specs-title">技术规格</h2>
+        <div class="pd-specs-layout">
+          <div class="pd-spec-table">
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">卫星系统</span>
+              <span class="pd-spec-val">BDS / GPS / GLONASS / Galileo / NavIC / SBAS</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">静态精度</span>
+              <span class="pd-spec-val">H: ±(2.5 + 0.5ppm×D) mm; V: ±(5 + 0.5ppm×D) mm</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">动态精度</span>
+              <span class="pd-spec-val">H: ±(8 + 1ppm×D) mm; V: ±(15 + 1ppm×D) mm</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">数据更新率</span>
+              <span class="pd-spec-val">1Hz – 20Hz（最高 50Hz 可定制）</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">通信方式</span>
+              <span class="pd-spec-val">4G / WiFi / LAN / RS232 / RS485</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">传输协议</span>
+              <span class="pd-spec-val">Ntrip / MQTT / TCP / UDP / FTP</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">存储容量</span>
+              <span class="pd-spec-val">64GB 内置（支持 TF 卡及外部存储）</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">电源管理</span>
+              <span class="pd-spec-val">DC 9V–28V；内置电池 ≥ 30h</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">工作温度</span>
+              <span class="pd-spec-val">−40°C to +75°C</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">可靠性 (MTBF)</span>
+              <span class="pd-spec-val">&gt; 100,000 小时</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">防护等级</span>
+              <span class="pd-spec-val">IP68</span>
+            </div>
+            <div class="pd-spec-row">
+              <span class="pd-spec-key">外形尺寸</span>
+              <span class="pd-spec-val">234.5 × 169.4 × 65 mm</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 相关方案 -->
+      <section class="pd-section" id="solutions" aria-labelledby="solutions-title">
+        <span class="pd-section-label">04 / 相关方案</span>
+        <h2 class="pd-section-title" id="solutions-title">相关方案</h2>
+        <div class="pd-solutions-grid">
+
+          <a class="pd-solution-btn" href="../../solutions-urban-bridge.html">
+            <div class="pd-solution-img">
+              <img src="../../images/urban/urban- bridge.png" alt="桥梁结构安全监测"
+                onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
+              <div class="pd-solution-img-placeholder" style="display:none;">暂无图片</div>
+            </div>
+            <span class="pd-sol-cat">城市基础设施</span>
+            <h3 class="pd-sol-title">桥梁结构健康监测方案</h3>
+            <span class="pd-sol-arrow">
+              查看方案
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
+
+          <a class="pd-solution-btn" href="../../solutions-geo-landslide.html">
+            <div class="pd-solution-img">
+              <img src="../../images/geology/geo-slide.png" alt="滑坡与边坡稳定性监测"
+                onerror="this.style.display='none'; this.parentElement.querySelector('.pd-solution-img-placeholder').style.display='flex';" />
+              <div class="pd-solution-img-placeholder" style="display:none;">暂无图片</div>
+            </div>
+            <span class="pd-sol-cat">地质灾害</span>
+            <h3 class="pd-sol-title">滑坡与边坡稳定性监测方案</h3>
+            <span class="pd-sol-arrow">
+              查看方案
+              <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+            </span>
+          </a>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="footer-logo"><img src="../../images/logowhite.png" alt="Medo" loading="lazy" decoding="async" /></div>
+          <p class="footer-slogan">以高精度感知与预测分析，提升基础设施韧性。</p>
+          <div class="footer-icons">
+            <div class="footer-icon" aria-label="全球服务"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9M3 12h18"/></svg></div>
+            <div class="footer-icon" aria-label="网络能力"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg></div>
+            <div class="footer-icon" aria-label="安全能力"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 3.5v5c0 4.5-3.5 8-8 9.5C7.5 19.5 4 16 4 11.5v-5L12 3Z"/></svg></div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">服务协议</h3>
+          <nav class="footer-col-links" aria-label="服务协议"><a href="#">隐私政策</a><a href="#">安全合规</a><a href="#">系统状态</a></nav>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">网站导航</h3>
+          <nav class="footer-col-links" aria-label="网站导航">
+            <a href="../index.html">首页</a>
+            <a href="../products.html">产品中心</a>
+            <a href="../solutions.html">解决方案</a>
+            <a href="../cases.html">项目案例</a>
+            <a href="../resources.html">服务支持</a>
+            <a href="../about.html">关于我们</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Medo Tech. 版权所有。</span>
+        <div class="footer-status"><span class="footer-status-dot" aria-hidden="true"></span>系统运行正常</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var btn = document.querySelector('.nav-toggle');
+      var drawer = document.getElementById('mobile-nav');
+      if(!btn || !drawer) return;
+      btn.addEventListener('click', function(){
+        var open = drawer.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open);
+      });
+    })();
+    (function(){
+      var links = document.querySelectorAll('.pd-nav-link');
+      var ids = ['intro','functions','specs','solutions'];
+      var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+      if(!sections.length) return;
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            links.forEach(function(a){ a.classList.remove('is-active'); });
+            var active = document.querySelector('.pd-nav-link[href="#'+e.target.id+'"]');
+            if(active) active.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      sections.forEach(function(s){ obs.observe(s); });
+    })();
+  </script>
+
+</body>
+</html>

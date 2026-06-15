@@ -286,15 +286,31 @@
 
   function getLanguageSwitchHref() {
     var pathname = (window.location && window.location.pathname || '').replace(/\\/g, '/');
-    var currentFile = pathname.split('/').pop() || 'index.html';
+    var segments = pathname.split('/').filter(function(s) { return s !== ''; });
+    var currentFile = segments[segments.length - 1] || 'index.html';
+    var prefix = getSitePrefix();
+
+    if (prefix === '../' && segments.length >= 2) {
+      var parentDir = segments[segments.length - 2];
+      var zhSubdirs = { 'products-gnss': true };
+      if (zhSubdirs[parentDir]) {
+        return '../zh/' + parentDir + '/' + currentFile;
+      }
+    }
+
     var zhPages = {
       'index.html': true,
       'products.html': true,
       'solutions.html': true,
-      'resources.html': true
+      'resources.html': true,
+      'about.html': true,
+      'cases.html': true,
+      'iot-sensors.html': true,
+      'disaster-monitoring.html': true,
+      'platform.html': true
     };
 
-    return getSitePrefix() + 'zh/' + (zhPages[currentFile] ? currentFile : 'index.html');
+    return prefix + 'zh/' + (zhPages[currentFile] ? currentFile : 'index.html');
   }
 
   function ensureLanguageSwitch() {
